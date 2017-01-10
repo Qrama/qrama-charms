@@ -66,7 +66,7 @@ def receive_ip_address(controller, model): #pylint: disable = W0613
     return es_ip
 
 def get_machines_by_application(controller, model, application, api_key):
-    url = 'http://127.0.0.1:5000//tengu/controllers/{}/models/{}/applications/{}'.format(
+    url = 'http://127.0.0.1:5000/tengu/controllers/{}/models/{}/applications/{}'.format(
         controller, model, application
         )
     res = requests.get(url, params={'api_key': api_key})
