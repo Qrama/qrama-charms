@@ -43,7 +43,7 @@ def render_metricbeat_template():
     render_without_context('metricbeat.yml', '/etc/metricbeat/metricbeat.yml')
     remove_state('beat.render')
     status_set('active', 'metricbeat ready.')
-    service_restart('topbeat')
+    service_restart('metricbeat')
 
 
 @when('config.changed.install_sources')

@@ -96,12 +96,12 @@
     "default": "elasticsearch"
   "api-key":
     "type": "string"
-    "default": "ce379ddaa7f7008cd0c6fc86d38ad378bb2b5ac6e6e335b844354e8bfa56f686"
+    "default": "5d8904d801a51adf62cd53da0e7797aac1ba2408d2923abc812f71dbcb94aa63"
     "description": |
       the API key that is needed to send a request to the sojobo
   "sojobo-ip":
     "type": "string"
-    "default": "10.132.30.102"
+    "default": "104.196.25.210"
     "description": |
       IP or url of the sojobo-api
   "username":
