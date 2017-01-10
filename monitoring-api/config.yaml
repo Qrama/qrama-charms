@@ -1,0 +1,12 @@
+"options":
+  "username":
+    "type": "string"
+    "default": "sojobo"
+    "description": |
+      The username used to get access to nginx. This username will be used by the
+      sojobo to get information out of elasticsearch.
+  "pass":
+    "type": "string"
+    "default": "mighty molten volunteers"
+    "description": |
+      Encrypted password used for basic auth configuration of nginx.

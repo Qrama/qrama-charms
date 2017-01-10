@@ -1,0 +1,32 @@
+# This file is controlled by Juju. Hand edits will not persist!
+metricbeat.modules:
+- module: system
+  metricsets:
+    - core
+    - cpu
+    - filesystem
+    - memory
+    - network
+    - process
+  cgroups: true
+  enabled: true
+  period: {{ period }}
+  procs: ["{{ procs }}"]
+  cpu_ticks: false
+{% if not logstash %}
+  {% if elasticsearch %}
+output.elasticsearch:
+  hosts: {{ elasticsearch }}
+    {% endif %}
+{% else %}
+output:
+  logstash:
+    hosts:
+    {% for host in logstash -%}
+      - "{{ host }}"
+    {% endfor -%}
+{% endif %}
+{% if principal_unit %}
+shipper:
+  name: {{ principal_unit }}
+{% endif %}

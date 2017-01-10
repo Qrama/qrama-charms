@@ -1,0 +1,10 @@
+│   ├── hook.template
+│   ├── install
+│   ├── leader-elected
+│   ├── leader-settings-changed
+│   ├── start
+│   ├── stop
+│   ├── update-status
+│   └── upgrade-charm
+├── icon.svg
+

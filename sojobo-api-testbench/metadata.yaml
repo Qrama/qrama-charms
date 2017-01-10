@@ -1,0 +1,12 @@
+"name": "sojobo-api-testbench"
+"summary": "Subordinate charm for the Sojobo-api which will install the test-bench"
+"maintainer": "Mathijs Moerman <mathijs.moerman@qrama.io>"
+"description": |
+  This subordenate charm copies the necessairy files to enable the use of the testbench and restarts the api.
+"tags": ["misc"]
+"requires":
+  "sojobo-api":
+    "interface": "juju-info"
+    "scope": "container"
+"series": ["xenial"]
+"subordinate": !!bool "true"

@@ -1,0 +1,13 @@
+"name": "monitoring-api"
+"summary": "Adds the monitoring options to the sojobo API"
+"maintainer": "Sebastien Pattyn <sebastien.pattyn@qrama.io>"
+"description": |
+  This subordinate charm installs the right files on the right location so
+  the SOJOBO api can use this as a blueprint.
+"tags": ["misc"]
+"requires":
+  "sojobo-api":
+    "interface": "juju-info"
+    "scope": "container"
+"series": ["xenial"]
+"subordinate": !!bool "true"
