@@ -38,7 +38,7 @@ def send_ping_request():
     url = '{}/monitoring/ping'.format(URL)
     charm_ip = '10.132.30.113'
     body = {
-        'api-key' : APIKEY,
+        'api_key' : APIKEY,
         'charm-ip' : charm_ip,
         'service-name' : 'aws-sepa-est'
         }
@@ -48,14 +48,14 @@ def send_ping_request():
 
 def get_model_monitor():
     url = '{}/monitoring/{}/{}'.format(URL, 'aws', 'sepa')
-    myparams = {'api-key' : APIKEY}
+    myparams = {'api_key' : APIKEY}
     request = requests.get(url, params=myparams, auth=('admin', USERS['admin']))
     print(request)
     return request
 
 def get_model_monitor_application(application):
     url = '{}/monitoring/{}/{}/{}/{}'.format(URL, 'aws', 'sepa', 'application', application)
-    myparams = {'api-key' : APIKEY}
+    myparams = {'api_key' : APIKEY}
     request = requests.get(url, params=myparams, auth=('admin', USERS['admin']))
     return request
 
