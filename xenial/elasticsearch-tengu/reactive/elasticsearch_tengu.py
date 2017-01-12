@@ -89,11 +89,11 @@ def send_request():
     api_key = conf['api-key']
     charm_ip = socket.gethostbyname(socket.gethostname())
     body = {
-        'api_key' : api_key,
         'charm-ip' : charm_ip,
         'service-name' : service_name()
         }
-    res = requests.put(url, data=json.dumps(body), headers={'Content-Type':'application/json'})
+    headers = {'Content-Type':'application/json', 'api-key': api_key}
+    res = requests.put(url, data=json.dumps(body), headers=headers)
     print(res.text)
     return res.status_code
 

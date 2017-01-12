@@ -16,7 +16,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 # pylint: disable=c0111,c0301,c0325,w0406
 import logging
-import json
 import yaml
 import requests
 
@@ -66,14 +65,13 @@ def receive_ip_address(controller, model): #pylint: disable = W0613
     return es_ip
 
 def get_machines_by_application(controller, model, application, api_key):
-    url = 'http://127.0.0.1:5000/tengu/controllers/{}/models/{}/applications/{}'.format(
+    url = 'http://127.0.0.1:5000//tengu/controllers/{}/models/{}/applications/{}'.format(
         controller, model, application
         )
     res = requests.get(url, params={'api_key': api_key})
     logging.debug(res)
     result = {}
-    jsonres = json.loads(res.text)
-    for unit in json.res['message']['units']:
+    for unit in res.text['message']['units']:
         result[unit['name']] = unit['machine']
     return result
 

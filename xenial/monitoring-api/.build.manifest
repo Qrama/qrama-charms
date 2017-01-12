@@ -58,7 +58,7 @@
     "files/w_monitoring.py": [
       "monitoring-api", 
       "static", 
-      "cce53fdadd6797554c0fe4c57496884dea6bb912e7b1cfd1be344854900e2e43"
+      "ea93734a5c0a24272da567a7bf379537994237f3c1ca8326dcb3d4d09f2d5a14"
     ], 
     "hooks/config-changed": [
       "layer:basic", 
