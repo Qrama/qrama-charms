@@ -32,7 +32,7 @@ def get():
 def get_elasticsearch_ip():
     data = request.json
     try:
-        monitoring.check_authentication(data['api_key'])
+        monitoring.check_authentication(request.headers['api-key'])
         file_path = '{}/elastic_ip.yaml'.format(monitoring.get_monitor_dir())
         monitoring.update_ip_list(file_path, data)
         code, response = 200, 'succesfully connected to SOJOBO-api'
@@ -40,10 +40,10 @@ def get_elasticsearch_ip():
         code, response = errors.invalid_data()
     return create_response(code, {'message': response})
 
-@MONITOR.route('/<controller>/<model>', methods=['GET'])
+@MONITOR.route('/controllers/<controller>/models/<model>', methods=['GET'])
 def get_model_monitor(controller, model):
     try:
-        juju.authenticate(request.args['api_key'], request.authorization, controller, model)
+        juju.authenticate(request.headers['api-key'], request.authorization, controller, model)
         es_ip = monitoring.receive_ip_address(controller, model)
         elasticsearch = monitoring.connect_to_elasticsearch(es_ip)
         result = elasticsearch.search(index='metricbeat-*', body={"query": {"match_all": {}}})
@@ -52,13 +52,13 @@ def get_model_monitor(controller, model):
         code, response = errors.invalid_data()
     return create_response(code, {'message': response})
 
-@MONITOR.route('/<controller>/<model>/application/<application>', methods=['GET'])
+@MONITOR.route('/controllers/<controller>/models/<model>/applications/<application>', methods=['GET'])
 def get_application_monitor(controller, model, application):
     try:
-        juju.authenticate(request.args['api_key'], request.authorization, controller, model)
+        juju.authenticate(request.headers['api-key'], request.authorization, controller, model)
         es_ip = monitoring.receive_ip_address(controller, model)
         elasticsearch = monitoring.connect_to_elasticsearch(es_ip)
-        machines = monitoring.get_machines_by_application(controller, model, application, request.args['api_key'])
+        machines = monitoring.get_machines_by_application(controller, model, application, request.headers['api-key'])
         match = ''
         for machine in machines.items():
             match += '{"match":{"beats.name" : {}}},\n'.format(machine) #pylint: disable = W1303
