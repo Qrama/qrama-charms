@@ -38,26 +38,25 @@ def send_ping_request():
     url = '{}/monitoring/ping'.format(URL)
     charm_ip = '10.132.30.113'
     body = {
-        'api_key' : APIKEY,
         'charm-ip' : charm_ip,
-        'service-name' : 'aws-sepa-est'
+        'service-name' : 'aws-default-est'
         }
     print(json.dumps(body))
-    request = requests.put(url, data=json.dumps(body), headers={'Content-Type':'application/json'})
+    headers = {'Content-Type':'application/json', 'api-key' : APIKEY}
+    request = requests.put(url, data=json.dumps(body), headers= headers)
     return request
 
 def get_model_monitor():
     url = '{}/monitoring/controllers/{}/models/{}'.format(URL, 'aws', 'default')
-    myparams = {'api-key' : APIKEY}
-    request = requests.get(url, headers=myparams, auth=('admin', USERS['admin']))
+    headers = {'api-key' : APIKEY}
+    request = requests.get(url, headers=headers, auth=('admin', USERS['admin']))
     print(request)
     return request
 
 def get_model_monitor_application(application):
     url = '{}/monitoring/controllers/{}/models/{}/applications/{}'.format(URL, 'aws', 'default', application)
-    myparams = {'api-key' : APIKEY}
-    request = requests.get(url, headers=myparams, auth=('admin', USERS['admin']))
-    print(request.text)
+    headers = {'api-key' : APIKEY}
+    request = requests.get(url, headers=headers, auth=('admin', USERS['admin']))
     return request
 
 if __name__ == '__main__':

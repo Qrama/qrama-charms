@@ -54,7 +54,6 @@ def install_tengu_monitor():
         hookenv.status_set('active', 'ready')
     else:
         hookenv.status_set('blocked', 'Unable to reach SOJOBO!')
-    set_state('tengu-monitor.installed')
 
 @when('tengu-monitor.installed')
 @when_not('tengu-monitor.configured')
@@ -99,7 +98,7 @@ def send_request(sojobo, api_key, controller_type):
         'charm-ip' : charm_ip,
         'service-name' : service_name()
         }
-    myheaders = {'Content-Type':'application/json', 'api_key' : api_key}
+    myheaders = {'Content-Type':'application/json', 'api-key' : api_key}
     res = requests.put(url, data=json.dumps(body), headers=myheaders)
     return res.status_code
 
