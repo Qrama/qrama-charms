@@ -14,7 +14,7 @@ deploy the other necessary subordinatecharms:
     juju deploy path/to/charm monitor-api
     juju add-relation monitor-api <charm-name>
 
-##### Elasticsearch-Tengu
+#### Elasticsearch-Tengu
  in `config.yaml`:
  - change api-key and sojobo-ip options to the right values
 
@@ -22,3 +22,21 @@ deployment:
 
     cd qrama-charms
     juju deploy ./xenial/elasticsearch-tengu aws-default-est --resource deb="./resources/elasticsearch-5.1.1.deb"
+
+#### Metricbeats
+Trusty:
+
+    cd qrama-charms
+    juju deploy ./trusty/metricbeat trustybeat
+    juju deploy cs:trusty/application
+    juju add-relation applications trustybeat:beats-host
+    juju add-relation trustybeat:elasticsearch aws-default-est:client
+
+Xenial:
+
+    cd qrama-charms
+    juju deploy ./xenial/metricbeat xenialbeat
+    juju deploy cs:xenial/application
+    juju add-relation applications xenialbeat:beats-host
+    juju add-relation xenialbeat:elasticsearch aws-default-est:client
+    
