@@ -27,7 +27,7 @@ from charmhelpers.contrib.python.packages import pip_install
 
 @when_not('monitoring-api.installed')
 def install():
-    api_dir = requests.get('http://localhost:5000').json()['message']['api_dir']
+    api_dir = requests.get('http://localhost:5000').json()['api_dir']
     shutil.copyfile('{}/files/api_monitoring.py'.format(charm_dir()), '{}/api/api_monitoring.py'.format(api_dir))
     shutil.copyfile('{}/files/w_monitoring.py'.format(charm_dir()), '{}/api/w_monitoring.py'.format(api_dir))
     os.mkdir('{}/monitoring'.format(api_dir))
@@ -44,7 +44,7 @@ def install():
 
 @hook('stop')
 def remove_controller():
-    api_dir = requests.get('http://localhost:5000').json()['message']['api_dir']
+    api_dir = requests.get('http://localhost:5000').json()['api_dir']
     os.remove('{}/api/api_monitoring.py'.format(api_dir))
     shutil.rmtree('{}/monitoring'.format(api_dir))
     service_restart('sojobo-api')

@@ -37,7 +37,7 @@ def get_elasticsearch_ip():
         code, response = 200, 'succesfully connected to SOJOBO-api'
     except KeyError:
         code, response = errors.invalid_data()
-    return create_response(code, {'message': response})
+    return create_response(code, response)
 
 @MONITOR.route('/controllers/<controller>/models/<model>', methods=['GET'])
 def get_model_monitor(controller, model):
@@ -50,7 +50,7 @@ def get_model_monitor(controller, model):
         code, response = 200, reformat_result
     except KeyError:
         code, response = errors.invalid_data()
-    return create_response(code, {'message': response})
+    return create_response(code, response)
 
 @MONITOR.route('/controllers/<controller>/models/<model>/applications/<application>', methods=['GET'])
 def get_application_monitor(controller, model, application):

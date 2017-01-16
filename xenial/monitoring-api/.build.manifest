@@ -48,7 +48,7 @@
     "files/api_monitoring.py": [
       "monitoring-api", 
       "static", 
-      "1a128042b4d333b64f6031afe6408591e20a63b78f32cb1f79813402db893f12"
+      "341319e428265a26e6952d7e07f01bdffa2afc48d848be4b4beeac04282b8612"
     ], 
     "files/elastic_ip.yaml": [
       "monitoring-api", 
@@ -143,7 +143,7 @@
     "reactive/monitoring_api.py": [
       "monitoring-api", 
       "static", 
-      "83e47368a64460da60f398848663bdf0946fc46596d410c1ce19d172d952cc22"
+      "cbfc9087f4eed53c388912b5f485d1f32a4894369c3fb4016ccd2893f597fc0d"
     ], 
     "requirements.txt": [
       "layer:basic", 
