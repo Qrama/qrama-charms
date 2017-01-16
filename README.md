@@ -10,6 +10,7 @@ This repository contains the all the qrama charms
     juju deploy path/to/charm <charm name>
 
 deploy the other necessary subordinatecharms:
+
     juju deploy path/to/charm monitor-api
     juju add-relation monitor-api <charm-name>
 
@@ -21,5 +22,3 @@ deployment:
 
     cd qrama-charms
     juju deploy ./xenial/elasticsearch-tengu aws-default-est --resource deb="./resources/elasticsearch-5.1.1.deb"
-
-    
