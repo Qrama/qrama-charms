@@ -1,4 +1,3 @@
-
 # !/usr/bin/env python3
 # Copyright (C) 2016  Qrama
 #
@@ -15,7 +14,6 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 # pylint: disable=c0111,c0301,c0325,w0406
-import logging
 import json
 import yaml
 import requests
@@ -65,18 +63,29 @@ def receive_ip_address(controller, model): #pylint: disable = W0613
         es_ip = es_data[controller][model]
     return es_ip
 
-def get_machines_by_application(controller, model, application, api_key):
+def get_machines_by_application(controller, model, application, req):
     url = 'http://127.0.0.1:5000/tengu/controllers/{}/models/{}/applications/{}'.format(
         controller, model, application
         )
-    res = requests.get(url, headers={'api-key': api_key})
-    logging.debug(res)
+    res = requests.get(url, headers={'api-key': req.headers['api-key']}, auth=(req.authorization.username, req.authorization.password))
     result = {}
     jsonres = json.loads(res.text)
     for unit in jsonres['message']['units']:
-        result[unit['name']] = unit['machine']
+        result[unit['name']] = {
+            'instance-id':unit['instance-id']
+        }
     return result
 
 def get_monitor_dir():
     file_path = '{}/monitoring'.format(juju.get_api_dir())
     return file_path
+
+def reformat_json(old_json):
+    data = {}
+    for hit in old_json['hits']['hits']:
+        data[hit['_id']] = {
+            'name' : hit['_source']['beat']['name'],
+            'timestamp': hit['_source']['@timestamp'],
+            'metrics': hit['_source']['system']
+        }
+    return data

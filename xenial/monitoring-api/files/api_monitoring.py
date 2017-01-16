@@ -18,7 +18,6 @@ from flask import request, Blueprint
 from api import w_errors as errors, w_juju as juju, w_monitoring as monitoring #pylint: disable = e0401
 from sojobo_api import create_response #pylint: disable = e0401
 
-
 MONITOR = Blueprint('monitoring', __name__)
 
 def get():
@@ -47,7 +46,8 @@ def get_model_monitor(controller, model):
         es_ip = monitoring.receive_ip_address(controller, model)
         elasticsearch = monitoring.connect_to_elasticsearch(es_ip)
         result = elasticsearch.search(index='metricbeat-*', body={"query": {"match_all": {}}})
-        code, response = 200, result
+        reformat_result = monitoring.reformat_json(result)
+        code, response = 200, reformat_result
     except KeyError:
         code, response = errors.invalid_data()
     return create_response(code, {'message': response})
@@ -58,10 +58,10 @@ def get_application_monitor(controller, model, application):
         juju.authenticate(request.headers['api-key'], request.authorization, controller, model)
         es_ip = monitoring.receive_ip_address(controller, model)
         elasticsearch = monitoring.connect_to_elasticsearch(es_ip)
-        machines = monitoring.get_machines_by_application(controller, model, application, request.headers['api-key'])
+        machines = monitoring.get_machines_by_application(controller, model, application, request)
         match = ''
-        for machine in machines.items():
-            match += '{"match":{"beats.name" : {}}},\n'.format(machine) #pylint: disable = W1303
+        for machine in machines:
+            match += '{"match":{"beats.name" : {}}},\n'.format(machine['instance-id']) #pylint: disable = W1303
         match = match[:-2]
         result = elasticsearch.search(
             index='metricbeat-*',

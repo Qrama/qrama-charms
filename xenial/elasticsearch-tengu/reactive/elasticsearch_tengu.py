@@ -28,6 +28,7 @@ from charms.reactive import (
 from charmhelpers.core import templating, hookenv
 from charmhelpers.core.hookenv import service_name
 from charmhelpers.core.host import service_restart
+from charmhelpers.contrib.python.packages import pip_install
 
 from jujubigdata import utils
 
@@ -42,8 +43,13 @@ CHARMDIR = hookenv.charm_dir()
 def install_tengu_monitor():
     hookenv.log('Installing Webserver')
     apt.queue_install(['nginx', 'apache2-utils'])
+    pip_install('ipgetter')
     hookenv.log('Sending IP request')
-    if send_request() == 200:
+    conf = hookenv.config()
+    sojobo = conf['sojobo-ip']
+    api_key = conf['api-key']
+    cont_type = conf['controller-type']
+    if send_request(sojobo, api_key, cont_type) == 200:
         set_state('tengu-monitor.installed')
         hookenv.status_set('active', 'ready')
     else:
@@ -80,21 +86,21 @@ def setpythonpath():
     with utils.environment_edit_in_place('/etc/environment') as env:
         env['PYTHONPATH'] = CHARMDIR
 
-def send_request():
-    conf = hookenv.config()
-    sojobo = conf['sojobo-ip']
+def send_request(sojobo, api_key, controller_type):
     # send request to API and add sojobo-ip to FW rules
+    if controller_type == 'MAAS':
+        charm_ip = socket.gethostbyname(socket.gethostname())
+    else:
+        import ipgetter
+        charm_ip = ipgetter.myip()
     add_sojobo_to_fw(sojobo)
     url = 'http://{}:5000/monitoring/ping'.format(sojobo)
-    api_key = conf['api-key']
-    charm_ip = socket.gethostbyname(socket.gethostname())
     body = {
-        'api_key' : api_key,
         'charm-ip' : charm_ip,
         'service-name' : service_name()
         }
-    res = requests.put(url, data=json.dumps(body), headers={'Content-Type':'application/json'})
-    print(res.text)
+    myheaders = {'Content-Type':'application/json', 'api_key' : api_key}
+    res = requests.put(url, data=json.dumps(body), headers=myheaders)
     return res.status_code
 
 def add_sojobo_to_fw(sojobo_ip):

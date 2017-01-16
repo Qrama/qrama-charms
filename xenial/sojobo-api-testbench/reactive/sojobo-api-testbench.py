@@ -26,7 +26,7 @@ from charmhelpers.core.host import service_restart
 
 @when_not('sojobo-api-testbench.installed')
 def install():
-    api_dir = requests.get('http://localhost:5000').json()['message']['api_dir']
+    api_dir = requests.get('http://localhost:5000').json()['api_dir']
     copyfile('{}/files/sojobo_api_testbench.py'.format(charm_dir()), '{}/sojobo_api_testbench.py'.format(api_dir))
     copyfile('{}/files/menu.py'.format(charm_dir()), '{}/menu.py'.format(api_dir))
     copyfile('{}/files/api/api_tests.py'.format(charm_dir()), '{}/api/api_tests.py'.format(api_dir))
@@ -39,7 +39,7 @@ def install():
 
 @hook('stop')
 def remove_controller():
-    api_dir = requests.get('http://localhost:5000').json()['message']['api_dir']
+    api_dir = requests.get('http://localhost:5000').json()['api_dir']
     remove('{}/sojobo_api_testbench.py'.format(api_dir))
     remove('{}/api/api_tests.py'.format(api_dir))
     rmtree('{}/tests'.format(api_dir))

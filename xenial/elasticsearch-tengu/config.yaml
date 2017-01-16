@@ -120,3 +120,10 @@
     "default": "80"
     "description": |
       port used where the webserver will be available. This is default set to 80.
+  "controller-type":
+    "type": "string"
+    "default": "aws"
+    "description": |
+      type of controller where this charm will be deployed. Possible options are
+      aws, google or MAAS, This value will be generated when model will be
+      created. DO NOT CHANCE THIS!

@@ -43,7 +43,7 @@
     "config.yaml": [
       "elasticsearch-tengu", 
       "dynamic", 
-      "0e9030692e0393c6f1c61017820e519788a25d1b8c6f670d9166fda64a487aab"
+      "26d4faed9c3ad26a73effc3eab8515ab3a35f3647c01fd1694e59705ac94a40e"
     ], 
     "copyright": [
       "layer:java", 
@@ -273,7 +273,7 @@
     "reactive/elasticsearch_tengu.py": [
       "elasticsearch-tengu", 
       "static", 
-      "20993edb6261753b7cc82bf0dd444c49834db35c773c53f6b992422eb7283832"
+      "d3916cebd3a0ea6a0274c7715d7ee00627d4fa730490ad78a7e24d2fbd1cca22"
     ], 
     "reactive/java.py": [
       "layer:java", 
@@ -345,10 +345,10 @@
       "dynamic", 
       "dbade544066885c2db48d18eca4512c89ca5c38c81ff8bd5b8ff228166dedb72"
     ], 
-    "wheelhouse/netaddr-0.7.18.tar.gz": [
+    "wheelhouse/netaddr-0.7.19.tar.gz": [
       "layer:basic", 
       "dynamic", 
-      "a1f5c9fcf75ac2579b9995c843dade33009543c04f218ff7c007b3c81695bd19"
+      "38aeec7cdd035081d3a4c306394b19d677623bf76fa0913f6695127c7753aefd"
     ], 
     "wheelhouse/path.py-10.0.tar.gz": [
       "layer:juju-layer-elasticsearch-base", 

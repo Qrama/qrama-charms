@@ -48,7 +48,7 @@
     "files/api_monitoring.py": [
       "monitoring-api", 
       "static", 
-      "08ae1fccd9115c26248851606fc605b264a8a7bf37d7198851abb2afd916c629"
+      "1a128042b4d333b64f6031afe6408591e20a63b78f32cb1f79813402db893f12"
     ], 
     "files/elastic_ip.yaml": [
       "monitoring-api", 
@@ -58,7 +58,7 @@
     "files/w_monitoring.py": [
       "monitoring-api", 
       "static", 
-      "f9de2e5e89f0a2bec2f12ef716a1be7d7ad9cc685d1a4b2e3a459f4c6ee99d40"
+      "c776f90d7a35bd5cc0493266edbf515c9dc85949a423d6305486bc990224816a"
     ], 
     "hooks/config-changed": [
       "layer:basic", 
@@ -195,10 +195,10 @@
       "dynamic", 
       "b2a475aff349a1c6532de0f9b4df5ee456b97a1e1755695afd8747dbc51bb710"
     ], 
-    "wheelhouse/netaddr-0.7.18.tar.gz": [
+    "wheelhouse/netaddr-0.7.19.tar.gz": [
       "layer:basic", 
       "dynamic", 
-      "a1f5c9fcf75ac2579b9995c843dade33009543c04f218ff7c007b3c81695bd19"
+      "38aeec7cdd035081d3a4c306394b19d677623bf76fa0913f6695127c7753aefd"
     ], 
     "wheelhouse/pip-8.1.2.tar.gz": [
       "layer:basic", 

@@ -47,16 +47,17 @@ def send_ping_request():
     return request
 
 def get_model_monitor():
-    url = '{}/monitoring/{}/{}'.format(URL, 'aws', 'sepa')
-    myparams = {'api_key' : APIKEY}
-    request = requests.get(url, params=myparams, auth=('admin', USERS['admin']))
+    url = '{}/monitoring/controllers/{}/models/{}'.format(URL, 'aws', 'default')
+    myparams = {'api-key' : APIKEY}
+    request = requests.get(url, headers=myparams, auth=('admin', USERS['admin']))
     print(request)
     return request
 
 def get_model_monitor_application(application):
-    url = '{}/monitoring/{}/{}/{}/{}'.format(URL, 'aws', 'sepa', 'application', application)
-    myparams = {'api_key' : APIKEY}
-    request = requests.get(url, params=myparams, auth=('admin', USERS['admin']))
+    url = '{}/monitoring/controllers/{}/models/{}/applications/{}'.format(URL, 'aws', 'default', application)
+    myparams = {'api-key' : APIKEY}
+    request = requests.get(url, headers=myparams, auth=('admin', USERS['admin']))
+    print(request.text)
     return request
 
 if __name__ == '__main__':
