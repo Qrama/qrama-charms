@@ -1,0 +1,27 @@
+"options":
+  "extra_packages":
+    "description": "Space separated list of extra deb packages to install.\n"
+    "type": "string"
+    "default": ""
+  "package_status":
+    "default": "install"
+    "type": "string"
+    "description": "The status of service-affecting packages will be set to this value\
+      \ in the dpkg database. Valid values are \"install\" and \"hold\".\n"
+  "install_sources":
+    "description": "apt repository to fetch beats from"
+    "type": "string"
+    "default": "deb https://artifacts.elastic.co/packages/5.x/apt stable main"
+  "install_keys":
+    "description": "repository key"
+    "type": "string"
+    "default": "D88E42B4"
+  "procs":
+    "type": "string"
+    "default": ".*"
+    "description": "Process regex to pass to the monitor. To disable process filtering,\
+      \ set ^$"
+  "period":
+    "type": "int"
+    "default": !!int "10"
+    "description": "how often in seconds to read system-wide and per-process statistics"

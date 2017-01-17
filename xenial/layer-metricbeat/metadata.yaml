@@ -1,0 +1,22 @@
+"summary": "Metricbeat is a lightweight Shipper for Metrics"
+"maintainer": "Sebastien Pattyn <sebastien.pattyn@qrama.io>"
+"description": |
+  This charm deploys Metricbeat. Metricbeat is a lightweight Shipper for
+  Metrics. It Collects metrics from your systems and services.
+  From CPU to memory, Redis to Nginx, and much more...
+"tags":
+- "logging"
+- "monitoring"
+- "logging"
+- "monitoring"
+"requires":
+  "beats-host":
+    "interface": "juju-info"
+    "scope": "container"
+  "logstash":
+    "interface": "elastic-beats"
+  "elasticsearch":
+    "interface": "elasticsearch"
+"lname": "metricbeat"
+"series": ["xenial"]
+"subordinate": !!bool "true"
