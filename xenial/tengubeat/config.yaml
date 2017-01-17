@@ -1,0 +1,63 @@
+"options":
+  "extra_packages":
+    "description": "Space separated list of extra deb packages to install.\n"
+    "type": "string"
+    "default": ""
+  "package_status":
+    "default": "install"
+    "type": "string"
+    "description": "The status of service-affecting packages will be set to this value\
+      \ in the dpkg database. Valid values are \"install\" and \"hold\".\n"
+  "install_sources":
+    "description": "apt repository to fetch beats from"
+    "type": "string"
+    "default": "deb https://artifacts.elastic.co/packages/5.x/apt stable main"
+  "install_keys":
+    "description": "repository key"
+    "type": "string"
+    "default": "D88E42B4"
+  "procs":
+    "type": "string"
+    "default": ".*"
+    "description": "Process regex to pass to the monitor. To disable process filtering,\
+      \ set ^$"
+  "period":
+    "type": "int"
+    "default": !!int "10"
+    "description": "how often in seconds to read system-wide and per-process statistics"
+  "controller":
+    "type": "string"
+    "default": "aws"
+    "description": |
+      Controller where this charm will be deployed. This value will be generated
+      when model will be created. DO NOT CHANCE THIS!
+  "model":
+    "type": "string"
+    "default": "default"
+    "description": |
+      Model where this charm will be deployed. This value will be generated
+      when model will be created. DO NOT CHANCE THIS!
+  "api-key":
+    "type": "string"
+    "default": "ce379ddaa7f7008cd0c6fc86d38ad378bb2b5ac6e6e335b844354e8bfa56f686"
+    "description": |
+      the API key that is needed to send a request to the sojobo. This value
+      will be generated when model will be created. DO NOT CHANCE THIS!
+  "sojobo-ip":
+    "type": "string"
+    "default": "10.132.30.102"
+    "description": |
+      IP or url of the sojobo-api. This value will be generated
+      when model will be created. DO NOT CHANCE THIS!
+  "user":
+    "type": "string"
+    "default": "admin"
+    "description": |
+      IP or url of the sojobo-api. This value will be generated
+      when model will be created. DO NOT CHANCE THIS!
+  "pass":
+    "type": "string"
+    "default": "admin"
+    "description": |
+      IP or url of the sojobo-api. This value will be generated
+      when model will be created. DO NOT CHANCE THIS!
