@@ -37,7 +37,7 @@
     "config.yaml": [
       "tengubeat", 
       "dynamic", 
-      "8313436a22dadb765be4a441f537b5ea8a365242f530b1a686b2710dd83d9afb"
+      "ead90f4dbdf752eef39a061ad88b8b816133ee3fedfdbd9e4206862db3bd69b7"
     ], 
     "copyright": [
       "layer:apt", 
@@ -247,7 +247,7 @@
     "reactive/metricbeat.py": [
       "tengubeat", 
       "static", 
-      "31e9fbd30130d3d935fcc173248cc6d4a7c6185cab784383d4c05d1752f0d675"
+      "9569fb361b499ff85047b2a800d7a20baaa1e967f9654088b2430fd0f77c44e1"
     ], 
     "requirements.txt": [
       "layer:basic", 

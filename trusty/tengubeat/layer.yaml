@@ -3,7 +3,7 @@
     "use_venv": !!bool "true"
     "packages": []
     "include_system_packages": !!bool "false"
-  "metricbeat": {}
+  "tengubeat": {}
   "beats-base": {}
   "apt":
     "version_package": ""
@@ -15,6 +15,5 @@
 - "interface:elastic-beats"
 - "interface:elasticsearch"
 - "layer:beats-base"
-- "interface:elasticsearch"
-"repo": "git@github.com/sebastienpattyn93/layer-metricbeat.git"
 "is": "metricbeat"
+"repo": "git@github.com/sebastienpattyn93/tengu-charms.git"
