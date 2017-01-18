@@ -37,7 +37,7 @@
     "config.yaml": [
       "tengubeat", 
       "dynamic", 
-      "ead90f4dbdf752eef39a061ad88b8b816133ee3fedfdbd9e4206862db3bd69b7"
+      "36935b248785060f82d55f8385297f86b44e5ac1a771c3954cd3fd0ce4a9dc57"
     ], 
     "copyright": [
       "layer:apt", 
@@ -257,7 +257,7 @@
     "templates/metricbeat.yml": [
       "tengubeat", 
       "static", 
-      "668846b5f4a035c222c8c0d16ee58dfd85adb100d6d840559bc7edc47107b46a"
+      "0f4cf2fade5557d592113aa03f236186df549de9ec5230be11707192d04ba70a"
     ], 
     "tests/00-setup": [
       "tengubeat", 

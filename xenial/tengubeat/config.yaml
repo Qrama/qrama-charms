@@ -45,7 +45,7 @@
       will be generated when model will be created. DO NOT CHANCE THIS!
   "sojobo-ip":
     "type": "string"
-    "default": "10.132.30.102"
+    "default": "104.196.25.210"
     "description": |
       IP or url of the sojobo-api. This value will be generated
       when model will be created. DO NOT CHANCE THIS!
