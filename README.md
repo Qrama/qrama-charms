@@ -2,9 +2,11 @@
 This repository contains the all the qrama charms
 
 ## how to deploy 
-- make sure you clone this repo
-    git clone https://github.com/Qrama/qrama-charms.git
-    
+- make sure you clone this repo:
+```shell
+git clone https://github.com/Qrama/qrama-charms.git
+```
+
 #### Sojobo-api
 
     juju deploy path/to/charm <charm name>
