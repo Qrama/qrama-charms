@@ -24,6 +24,7 @@ deployment:
 
     cd qrama-charms
     juju deploy ./xenial/elasticsearch-tengu <charm-name> --resource deb="./resources/elasticsearch-5.1.1.deb"
+    juju expose <charm-name> 
     
 The charm-name has to be of the following format: [controller-name]-[model-name]-est
 
