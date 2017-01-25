@@ -32,6 +32,7 @@ def metricbeat():
     status_set('maintenance', 'Installing Metricbeat.')
     charms.apt.queue_install(['metricbeat'])# pylint: disable=E
     pip_install(['requests'])
+    service_restart('metricbeat')
     set_state('metricbeat.installed')
     set_state('beat.render')
 
@@ -52,6 +53,7 @@ def reinstall_metricbeat():
 @when_not('metricbeat.autostarted')
 def enlist_metricbeat():
     enable_beat_on_boot('metricbeat')
+    service_restart('metricbeat')
     set_state('metricbeat.autostarted')
 
 @when('apt.installed.metricbeat')
@@ -63,6 +65,7 @@ def push_metricbeat_index(elasticsearch):
         host_string = "{}:{}".format(host['host'], host['port'])
     push_beat_index(host_string, 'metricbeat')
     set_state('metricbeat.index.pushed')
+    service_restart('metricbeat')
 
 def render_without_context(source, target):
     ''' Render beat template from global state context '''

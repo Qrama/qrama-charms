@@ -37,7 +37,7 @@
     "config.yaml": [
       "tengubeat", 
       "dynamic", 
-      "36935b248785060f82d55f8385297f86b44e5ac1a771c3954cd3fd0ce4a9dc57"
+      "66fbfee97a2fac299874dbf485fc0a0848540a11406de511607ab8ecf346cb80"
     ], 
     "copyright": [
       "layer:apt", 
@@ -227,7 +227,7 @@
     "metadata.yaml": [
       "tengubeat", 
       "dynamic", 
-      "654d512d8c505feabef717ac37a0866e56b0d143abc5cf7199657e47dae59719"
+      "fa7c68a0e2bd217a5a5510af99bf1dbe509229623d177972f1b0f7b5746156b0"
     ], 
     "reactive/__init__.py": [
       "layer:basic", 
@@ -247,7 +247,7 @@
     "reactive/metricbeat.py": [
       "tengubeat", 
       "static", 
-      "9569fb361b499ff85047b2a800d7a20baaa1e967f9654088b2430fd0f77c44e1"
+      "bbd889bac80a4de8de837f314fb985317df6121c43248356662144a976191557"
     ], 
     "requirements.txt": [
       "layer:basic", 
@@ -294,10 +294,10 @@
       "dynamic", 
       "cacecf0baa674d356641f1d406b8bff1d756d739c46b869a54de515d08e6fc9c"
     ], 
-    "wheelhouse/charmhelpers-0.10.0.tar.gz": [
+    "wheelhouse/charmhelpers-0.11.0.tar.gz": [
       "layer:beats-base", 
       "dynamic", 
-      "4d2ae29bdc925d3cf9be8d50d85e32a6b65e5b718bd383bd4899769b288ed512"
+      "72e776a3fab33289f9da1aeba8f319f0a53471eca660e9a6504db3c446af20a3"
     ], 
     "wheelhouse/charms.reactive-0.4.5.tar.gz": [
       "layer:basic", 

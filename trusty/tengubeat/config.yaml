@@ -39,7 +39,7 @@
       when model will be created. DO NOT CHANCE THIS!
   "api-key":
     "type": "string"
-    "default": "5a3f7f18ef97e7040e39799a145aa02e640627d903fba36a265c61c39781539f"
+    "default": "96d4190c2629b52c5ff3750db59c1489d6f65636af71c69f7b20ba9a39ac2661"
     "description": |
       the API key that is needed to send a request to the sojobo. This value
       will be generated when model will be created. DO NOT CHANCE THIS!
