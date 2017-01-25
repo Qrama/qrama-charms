@@ -7,6 +7,9 @@ services:
     charm: ./xenial/elasticsearch-tengu
     num_units: 1
     to: 0
+    options:
+      api-key: {{ api-key }}
+      sojobo-ip: {{ sojobo-ip }}
   trusty-tengubeat:
     charm: ./trusty/tengubeat
   xenial-tengubeat:
