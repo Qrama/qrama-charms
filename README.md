@@ -17,8 +17,10 @@ deploy the other necessary subordinatecharms:
     juju add-relation monitor-api <charm-name>
 
 #### Elasticsearch-Tengu
+ for a manual deployment a few config options have to be changed:
  in `config.yaml`:
  - change api-key and sojobo-ip options to the right values
+ - choose the controller-type where you are going to deploy this charm
 
 deployment:
 
@@ -28,7 +30,12 @@ deployment:
     
 The charm-name has to be of the following format: [controller-name]-[model-name]-est
 
-#### Metricbeats
+#### Tengubeats
+for a manual deployment a few config options have to be changed:
+in `config.yaml`:
+ - change api-key and sojobo-ip options to the right values
+ - change controller and model
+
 Trusty:
 
     cd qrama-charms
