@@ -10,8 +10,14 @@ services:
     options:
       api-key: {{ api-key }}
       sojobo-ip: {{ sojobo-ip }}
+      controller-type: {{ controller-type }}
   trusty-tengubeat:
     charm: ./trusty/tengubeat
+    options:
+      api-key: {{ api-key }}
+      sojobo-ip: {{ sojobo-ip }}
+      model: {{ model }}
+      controller: {{ controller }}
   xenial-tengubeat:
     charm: ./xenial/tengubeat
 series: xenial
