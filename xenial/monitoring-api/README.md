@@ -1,7 +1,7 @@
 # Info
 This is a subordinate charm for the Sojobo-api. This charm will make it possible
-to connect with every elasticsearch in your juju environment so all the
-monitoring can be accessed on one place.
+to connect with every elasticsearch-tengu charm in your juju environment so all the
+monitoring can be accessed at one place. Documentation can be found <a href="https://github.com/Qrama/monitoring-api/blob/master/docs.md">here </a>
 
 # Usage
 

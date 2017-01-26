@@ -29,6 +29,7 @@ def check_authentication(api_key):
     if api_key != apikey:
         abort(errors.unauthorized())
 
+
 # def connect_to_es_webserver(es_ip):
 #     conf = config()
 #     username = conf['username']
@@ -40,14 +41,15 @@ def check_authentication(api_key):
 #         )
     # return elasticsearch
 
+
 def update_ip_list(file_path, data):
-    charm_name = data['service-name']
-    controller = charm_name.split('-')[0]
-    model = charm_name.split('-')[1]
+    controller = data['controller']
+    model = data['model']
     es_ip = str(data['charm-ip'])
     es_data = {controller:{model: es_ip}}
     with open(file_path, 'a') as yaml_file:
         yaml.dump(es_data, yaml_file, default_flow_style=False)
+
 
 def connect_to_elasticsearch(es_ip):
     elasticsearch = Elasticsearch(
@@ -56,6 +58,7 @@ def connect_to_elasticsearch(es_ip):
         )
     return elasticsearch
 
+
 def receive_ip_address(controller, model): #pylint: disable = W0613
     file_path = '{}/elastic_ip.yaml'.format(get_monitor_dir())
     with open(file_path) as data:
@@ -63,22 +66,23 @@ def receive_ip_address(controller, model): #pylint: disable = W0613
         es_ip = es_data[controller][model]
     return es_ip
 
+
 def get_machines_by_application(controller, model, application, req):
     url = 'http://127.0.0.1:5000/tengu/controllers/{}/models/{}/applications/{}'.format(
         controller, model, application
         )
     res = requests.get(url, headers={'api-key': req.headers['api-key']}, auth=(req.authorization.username, req.authorization.password))
-    result = {}
+    result = []
     jsonres = json.loads(res.text)
-    for unit in jsonres['message']['units']:
-        result[unit['name']] = {
-            'instance-id':unit['instance-id']
-        }
+    for unit in jsonres['units']:
+        result.append({'name': unit['name'], 'instance-id':unit['instance-id']})
     return result
+
 
 def get_monitor_dir():
     file_path = '{}/monitoring'.format(juju.get_api_dir())
     return file_path
+
 
 def reformat_json(old_json):
     data = {}
@@ -89,3 +93,29 @@ def reformat_json(old_json):
             'metrics': hit['_source']['system']
         }
     return data
+
+
+def execute_specific_query(controller, model, match):
+    es_ip = receive_ip_address(controller, model)
+    elasticsearch = connect_to_elasticsearch(es_ip)
+    result = elasticsearch.search(
+        index='metricbeat-*',
+        body={"query":{"query_string":{"query": match, "analyze_wildcard":True}}}
+        )
+    return result
+
+
+def add_model(token):
+    return None
+
+
+def remove_model(token):
+    return None
+
+
+def add_application(token, application):
+    return None
+
+
+def remove_application(token, application):
+    return None

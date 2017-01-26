@@ -39,6 +39,7 @@ def get_elasticsearch_ip():
         code, response = errors.invalid_data()
     return create_response(code, response)
 
+
 @MONITOR.route('/controllers/<controller>/models/<model>', methods=['GET'])
 def get_model_monitor(controller, model):
     try:
@@ -52,22 +53,99 @@ def get_model_monitor(controller, model):
         code, response = errors.invalid_data()
     return create_response(code, response)
 
+
+@MONITOR.route('/controllers/<controller>/models/<model>', methods=['PUT'])
+def add_monitoring_model(controller, model):
+    try:
+        token = juju.authenticate(request.headers['api-key'], request.authorization,
+                                  juju.check_input(controller), juju.check_input(model))
+        if token.m_access == 'admin':
+            monitoring.add_model(token)
+            code, response = 200, juju.get_model_info(token)
+        else:
+            code, response = errors.no_permission()
+    except KeyError:
+        code, response = errors.invalid_data()
+    return create_response(code, response)
+
+
+@MONITOR.route('/controllers/<controller>/models/<model>', methods=['DELETE'])
+def remove_monitoring_model(controller, model):
+    try:
+        token = juju.authenticate(request.headers['api-key'], request.authorization,
+                                  juju.check_input(controller), juju.check_input(model))
+        if token.m_access == 'admin':
+            monitoring.remove_model(token)
+            code, response = 200, juju.get_model_info(token)
+        else:
+            code, response = errors.no_permission()
+    except KeyError:
+        code, response = errors.invalid_data()
+    return create_response(code, response)
+
+
 @MONITOR.route('/controllers/<controller>/models/<model>/applications/<application>', methods=['GET'])
 def get_application_monitor(controller, model, application):
     try:
         juju.authenticate(request.headers['api-key'], request.authorization, controller, model)
-        es_ip = monitoring.receive_ip_address(controller, model)
-        elasticsearch = monitoring.connect_to_elasticsearch(es_ip)
+        match = "fields.application: {}*".format(application)
+        reformat_result = monitoring.reformat_json(monitoring.execute_specific_query(controller, model, match))
+        code, response = 200, reformat_result
+    except KeyError:
+        code, response = errors.invalid_data()
+    return create_response(code, response)
+
+
+@MONITOR.route('/controllers/<controller>/models/<model>/monitoring/<application>', methods=['PUT'])
+def add_monitoring_application(controller, model, application):
+    try:
+        token = juju.authenticate(request.headers['api-key'], request.authorization,
+                                  juju.check_input(controller), juju.check_input(model))
+        if token.m_access == 'admin':
+            app = juju.check_input(application)
+            if juju.app_exists(token, app):
+                monitoring.add_application(token, app)
+                code, response = 200, juju.get_application_info(token, app)
+            else:
+                code, response = errors.does_not_exist('application')
+        else:
+            code, response = errors.no_permission()
+    except KeyError:
+        code, response = errors.invalid_data()
+    return create_response(code, response)
+
+
+@MONITOR.route('/controllers/<controller>/models/<model>/monitoring/<application>', methods=['DELETE'])
+def remove_monitoring_application(controller, model, application):
+    try:
+        token = juju.authenticate(request.headers['api-key'], request.authorization,
+                                  juju.check_input(controller), juju.check_input(model))
+        if token.m_access == 'admin':
+            app = juju.check_input(application)
+            if juju.app_exists(token, app):
+                monitoring.remove_application(token, app)
+                code, response = 200, juju.get_application_info(token, app)
+            else:
+                code, response = errors.does_not_exist('application')
+        else:
+            code, response = errors.no_permission()
+    except KeyError:
+        code, response = errors.invalid_data()
+    return create_response(code, response)
+
+
+@MONITOR.route('/controllers/<controller>/models/<model>/applications/<application>/units/<unitnr>', methods=['GET'])
+def get_unit_monitor(controller, model, application, unitnr):
+    try:
+        juju.authenticate(request.headers['api-key'], request.authorization, controller, model)
         machines = monitoring.get_machines_by_application(controller, model, application, request)
-        match = ''
+        unit = ''
         for machine in machines:
-            match += '{"match":{"beats.name" : {}}},\n'.format(machine['instance-id']) #pylint: disable = W1303
-        match = match[:-2]
-        result = elasticsearch.search(
-            index='metricbeat-*',
-            body={"query": match}
-            )
-        code, response = 200, result
+            if machine['name'] == "{}/{}".format(application, unitnr):
+                unit = machine['instance-id']
+        match = "fields.instance-id: {}*".format(unit)
+        reformat_result = monitoring.reformat_json(monitoring.execute_specific_query(controller, model, match))
+        code, response = 200, reformat_result
     except KeyError:
         code, response = errors.invalid_data()
     return create_response(code, response)

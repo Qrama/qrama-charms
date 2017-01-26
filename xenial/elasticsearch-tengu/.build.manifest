@@ -33,7 +33,7 @@
     "README.md": [
       "elasticsearch-tengu", 
       "static", 
-      "23456966c041defac409c53fe1804fe5abc18cf5b696c7b89db13c1726ba6acd"
+      "cc7cbb3ff62c36c5f099d1780d0eed17bbae1599ce5a229697a076e827292915"
     ], 
     "bin/layer_option": [
       "layer:basic", 
@@ -43,7 +43,7 @@
     "config.yaml": [
       "elasticsearch-tengu", 
       "dynamic", 
-      "26d4faed9c3ad26a73effc3eab8515ab3a35f3647c01fd1694e59705ac94a40e"
+      "825fe4ac48fa7fcd4dd5da33e198cf666a9f239ee68c9a7390196aa45f46141d"
     ], 
     "copyright": [
       "layer:java", 
@@ -273,7 +273,7 @@
     "reactive/elasticsearch_tengu.py": [
       "elasticsearch-tengu", 
       "static", 
-      "d3916cebd3a0ea6a0274c7715d7ee00627d4fa730490ad78a7e24d2fbd1cca22"
+      "2c9046ec18379465aa7fc0efb361c5c468403159dc1d69fc80220bce0d92aa43"
     ], 
     "reactive/java.py": [
       "layer:java", 
@@ -325,10 +325,10 @@
       "dynamic", 
       "cacecf0baa674d356641f1d406b8bff1d756d739c46b869a54de515d08e6fc9c"
     ], 
-    "wheelhouse/charmhelpers-0.10.0.tar.gz": [
+    "wheelhouse/charmhelpers-0.11.0.tar.gz": [
       "layer:basic", 
       "dynamic", 
-      "4d2ae29bdc925d3cf9be8d50d85e32a6b65e5b718bd383bd4899769b288ed512"
+      "72e776a3fab33289f9da1aeba8f319f0a53471eca660e9a6504db3c446af20a3"
     ], 
     "wheelhouse/charms.reactive-0.4.5.tar.gz": [
       "layer:basic", 
@@ -350,10 +350,10 @@
       "dynamic", 
       "38aeec7cdd035081d3a4c306394b19d677623bf76fa0913f6695127c7753aefd"
     ], 
-    "wheelhouse/path.py-10.0.tar.gz": [
+    "wheelhouse/path.py-10.1.tar.gz": [
       "layer:juju-layer-elasticsearch-base", 
       "dynamic", 
-      "ba984a2b536158a8841dd33150fce16bcf04210e83f92da674cad0a8a8f61e00"
+      "8b0ee56f6c1421a9038823926ee8da354ce70933424b408558bc6b48496587f3"
     ], 
     "wheelhouse/pip-8.1.2.tar.gz": [
       "layer:basic", 

@@ -28,7 +28,7 @@
     "README.md": [
       "monitoring-api", 
       "static", 
-      "78150c414b43eee04755973141220c489269ee6e9d925171b92720db1e88bad9"
+      "db18015b430c1a1fc56e903cc31620305a7592c0893cd5d7cd9c8e4171b287ba"
     ], 
     "bin/layer_option": [
       "layer:basic", 
@@ -45,10 +45,15 @@
       "static", 
       "1e2afbd75c71affa132ae7ee3327cb29b5e4b9d9705f27dfd03857c326f50c5c"
     ], 
+    "docs.md": [
+      "monitoring-api", 
+      "static", 
+      "5198d7ee1fa8b2045d6a9dd21d0b894a2ee8ef9b8f9a67def8b8900c3e9e35b9"
+    ], 
     "files/api_monitoring.py": [
       "monitoring-api", 
       "static", 
-      "341319e428265a26e6952d7e07f01bdffa2afc48d848be4b4beeac04282b8612"
+      "18e8c8df213cbaed057b47f6e9b04c3eced47bf26500dddcc071911b5327095c"
     ], 
     "files/elastic_ip.yaml": [
       "monitoring-api", 
@@ -58,7 +63,7 @@
     "files/w_monitoring.py": [
       "monitoring-api", 
       "static", 
-      "c776f90d7a35bd5cc0493266edbf515c9dc85949a423d6305486bc990224816a"
+      "e45cddbbf578d8be2a15704ff4553ea009a9fef8de80393accfb73c4d3dcb5cd"
     ], 
     "hooks/config-changed": [
       "layer:basic", 
@@ -185,10 +190,10 @@
       "dynamic", 
       "cacecf0baa674d356641f1d406b8bff1d756d739c46b869a54de515d08e6fc9c"
     ], 
-    "wheelhouse/charmhelpers-0.10.0.tar.gz": [
+    "wheelhouse/charmhelpers-0.11.0.tar.gz": [
       "layer:basic", 
       "dynamic", 
-      "4d2ae29bdc925d3cf9be8d50d85e32a6b65e5b718bd383bd4899769b288ed512"
+      "72e776a3fab33289f9da1aeba8f319f0a53471eca660e9a6504db3c446af20a3"
     ], 
     "wheelhouse/charms.reactive-0.4.5.tar.gz": [
       "layer:basic", 

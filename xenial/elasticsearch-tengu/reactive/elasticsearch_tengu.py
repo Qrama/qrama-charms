@@ -15,7 +15,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 # pylint: disable=c0111,c0103,c0301
 import json
-import socket
 import subprocess as sp
 import requests
 
@@ -26,9 +25,8 @@ from charms.reactive import (
     set_state,
 )
 from charmhelpers.core import templating, hookenv
-from charmhelpers.core.hookenv import service_name
+from charmhelpers.core.hookenv import unit_public_ip, unit_private_ip
 from charmhelpers.core.host import service_restart
-from charmhelpers.contrib.python.packages import pip_install
 
 from jujubigdata import utils
 
@@ -43,7 +41,6 @@ CHARMDIR = hookenv.charm_dir()
 def install_tengu_monitor():
     hookenv.log('Installing Webserver')
     apt.queue_install(['nginx', 'apache2-utils'])
-    pip_install('ipgetter')
     hookenv.log('Sending IP request')
     conf = hookenv.config()
     sojobo = conf['sojobo-ip']
@@ -54,18 +51,19 @@ def install_tengu_monitor():
         hookenv.status_set('active', 'ready')
     else:
         hookenv.status_set('blocked', 'Unable to reach SOJOBO!')
+    set_state('tengu-monitor.installed')
 
 @when('tengu-monitor.installed')
 @when_not('tengu-monitor.configured')
 def configure_tengu_monitor():
-    conf = hookenv.config()
-    passphrase = conf['pass']
-    username = conf['username']
-    setpythonpath()
-    sp.check_output(
-        ['htpasswd', '-c', '/etc/nginx/.htpasswd', username],
-        input='{}\n{}\n'.format(passphrase, passphrase), universal_newlines=True)
-    render_config_template()
+    #conf = hookenv.config()
+    # passphrase = conf['pass']
+    # username = conf['username']
+    # setpythonpath()
+    # sp.check_output(
+    #     ['htpasswd', '-c', '/etc/nginx/.htpasswd', username],
+    #     input='{}\n{}\n'.format(passphrase, passphrase), universal_newlines=True)
+    # render_config_template()
     service_restart('nginx')
     hookenv.status_set('active', 'ready')
     set_state('tengu-monitor.configured')
@@ -86,17 +84,18 @@ def setpythonpath():
         env['PYTHONPATH'] = CHARMDIR
 
 def send_request(sojobo, api_key, controller_type):
+    conf = hookenv.config()
     # send request to API and add sojobo-ip to FW rules
     if controller_type == 'MAAS':
-        charm_ip = socket.gethostbyname(socket.gethostname())
+        charm_ip = unit_private_ip()
     else:
-        import ipgetter
-        charm_ip = ipgetter.myip()
+        charm_ip = unit_public_ip()
     add_sojobo_to_fw(sojobo)
     url = 'http://{}:5000/monitoring/ping'.format(sojobo)
     body = {
         'charm-ip' : charm_ip,
-        'service-name' : service_name()
+        'controller' : conf['controller'],
+        'model' : conf['model']
         }
     myheaders = {'Content-Type':'application/json', 'api-key' : api_key}
     res = requests.put(url, data=json.dumps(body), headers=myheaders)
