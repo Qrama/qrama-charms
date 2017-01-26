@@ -30,8 +30,8 @@ services:
       controller: {{ controller }}
 series: xenial
 relations:
-  - - "{{ est-name }}:client"
+  - - "elasticsearch-tengu:client"
     - "trusty-tengubeat:elasticsearch"
-  - - "{{ est-name }}:client"
+  - - "elasticsearch-tengu:client"
     - "xenial-tengubeat:elasticsearch"
 
