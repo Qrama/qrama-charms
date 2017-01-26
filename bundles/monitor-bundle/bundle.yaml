@@ -1,12 +1,13 @@
-﻿machines:
-  '0':
-    constraints: 'arch=amd64'
+machines:
+  "0":
+    constraints: "arch=amd64"
     series: xenial
 services:
   elasticsearch-tengu:
-    charm: /home/ubuntu/local_charms/xenial/elasticsearch-tengu
+    charm: "/home/ubuntu/local_charms/xenial/elasticsearch-tengu"
     num_units: 1
-    to: 0
+    to:
+      - "0"
     options:
       api-key: {{ api-key }}
       sojobo-ip: {{ sojobo-ip }}
@@ -14,14 +15,14 @@ services:
       controller: {{ controller }}
       model: {{ model }}
   trusty-tengubeat:
-    charm: /home/ubuntu/local_charms/trusty/tengubeat
+    charm: "/home/ubuntu/local_charms/trusty/tengubeat"
     options:
       api-key: {{ api-key }}
       sojobo-ip: {{ sojobo-ip }}
       model: {{ model }}
       controller: {{ controller }}
   xenial-tengubeat:
-    charm: /home/ubuntu/local_charms/xenial/tengubeat
+    charm: "/home/ubuntu/local_charms/xenial/tengubeat"
     options:
       api-key: {{ api-key }}
       sojobo-ip: {{ sojobo-ip }}
@@ -29,7 +30,8 @@ services:
       controller: {{ controller }}
 series: xenial
 relations:
-  - - “{{ est-name }}:client”
-    - “trusty-tengubeat:elasticsearch”
-  - - “{{ est-name }}:client”
-    - “xenial-tengubeat:elasticsearch”
+  - - "{{ est-name }}:client"
+    - "trusty-tengubeat:elasticsearch"
+  - - "{{ est-name }}:client"
+    - "xenial-tengubeat:elasticsearch"
+
