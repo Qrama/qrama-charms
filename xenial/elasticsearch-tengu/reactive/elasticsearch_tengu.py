@@ -51,8 +51,7 @@ def install_tengu_monitor():
         hookenv.status_set('active', 'ready')
     else:
         hookenv.status_set('blocked', 'Unable to reach SOJOBO!')
-    set_state('tengu-monitor.installed')
-
+ 
 @when('tengu-monitor.installed')
 @when_not('tengu-monitor.configured')
 def configure_tengu_monitor():
