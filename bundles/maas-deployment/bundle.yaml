@@ -7,6 +7,7 @@ services:
   sojobo-api:
     charm: "/home/ubuntu/local_charms/xenial/sojobo-api"
     num_units: 1
+    expose: true
     to:
       - "0"
   maas-controller:
