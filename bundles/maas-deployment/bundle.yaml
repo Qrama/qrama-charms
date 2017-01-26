@@ -5,11 +5,14 @@
 series: xenial
 services:
   sojobo-api:
-    charm: "/home/sebastien/qrama/qrama-charms/xenial/sojobo-api"
+    charm: "/home/ubuntu/local_charms/xenial/sojobo-api"
     num_units: 1
     to:
       - "0"
   maas-controller:
-    charm: "/home/sebastien/qrama/qrama-charms/xenial/controller-maas"
+    charm: "/home/ubuntu/local_charms/xenial/controller-maas"
+  monitoring-api:
+    charm: "/home/ubuntu/local_charms/xenial/monitoring-api"
 relations:
   - [sojobo-api, maas-controller]
+  - [sojobo-api, monitoring-api]
