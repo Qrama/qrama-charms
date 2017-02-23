@@ -1,0 +1,12 @@
+"name": "mongo-db"
+"summary": "This Charm installs MongoDB with authentication enabled and an admin user\
+  \ created"
+"maintainer": "Mathijs Moerman <mathijs.moerman@qrama.io>"
+"description": ""
+"tags":
+- "database"
+"provides":
+  "mongodb":
+    "interface": "mongodb"
+"series": ["xenial"]
+"subordinate": !!bool "false"

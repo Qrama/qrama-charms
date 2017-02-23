@@ -1,0 +1,21 @@
+"options":
+  "apt":
+    "packages": ["python", "python3-lxml"]
+    "version_package": ""
+    "full_version": !!bool "false"
+  "crm-backend": {}
+  "nginx-passenger": {}
+  "basic":
+    "use_venv": !!bool "false"
+    "packages": []
+    "include_system_packages": !!bool "false"
+"includes":
+- "layer:basic"
+- "layer:apt"
+- "interface:http"
+- "layer:basic"
+- "layer:apt"
+- "layer:nginx-passenger"
+- "interface:mongodb"
+"repo": "git@github.com:Qrama/crm-backend.git"
+"is": "crm-backend"

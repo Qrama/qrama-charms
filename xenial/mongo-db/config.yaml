@@ -1,0 +1,84 @@
+"options":
+  "extra_packages":
+    "description": "Space separated list of extra deb packages to install.\n"
+    "type": "string"
+    "default": ""
+  "package_status":
+    "default": "install"
+    "type": "string"
+    "description": "The status of service-affecting packages will be set to this value\
+      \ in the dpkg database. Valid values are \"install\" and \"hold\".\n"
+  "install_sources":
+    "description": |
+      list of extra apt sources, per charm-helpers standard
+      format (a yaml list of strings encoded as a string). each source
+      may be either a line that can be added directly to
+      sources.list(5), or in the form ppa:<user>/<ppa-name> for adding
+      personal package archives, or a distribution component to enable.
+    "type": "string"
+    "default": |
+      - 'deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse'
+  "install_keys":
+    "description": |
+      list of signing keys for install_sources package sources, per
+      charmhelpers standard format (a yaml list of strings encoded as
+      a string). the keys should be the full ascii armoured gpg public
+      keys. while gpg key ids are also supported and looked up on a
+      keyserver, operators should be aware that this mechanism is
+      insecure. null can be used if a standard package signing key is
+      used that will already be installed on the machine, and for ppa
+      sources where the package signing key is securely retrieved from
+      launchpad.
+    "type": "string"
+    "default": |
+      - |
+          -----BEGIN PGP PUBLIC KEY BLOCK-----
+          Version: GnuPG v1.4.11 (GNU/Linux)
+
+          mQINBFaUNhsBEACkTlpL9xCrlirl77tahFzzd9ccTc5wP+M3oob18GIaMYKicjbR
+          h6J6ytCiXCkl65zYKvQdLkt8qlkBVc5DxGeJvD41IY3NzGPz+BZ9pFFBndAE+JEP
+          ng0ULLxzUDmWXIoukdHqf92BSizTFd2A8v+YGuwOkNBdPi/BHkwiViAaAKDZm/4k
+          9LZeOF0v7gZF89QD75NrSCKo5SGFRb8Cxi4KR4cS/jPuQVjd+B9fWkc74BUWE91t
+          3R87Uypd+1qnmoN6cOssLZ4s8n/cyOCkVphGmk1tDDhbEsI4knOqtPXaBHiC4lVI
+          ghpTHEDUuDfbQ7scySae8/YItTC/vVGngiJmZSfZU5AvVspe6rfkHQHqZs3gYMqj
+          XPl7acviEAZ7OiMp9diq6Kgp+xLRvRGL+jtUjLkP5O4gJlnxCm7YWrYfYA/vHULD
+          MyIGSBzuESGxL+Ygz+Dc0Aim9NPM5KhpV5FoAXNt50cn6n1adIwbUciRY0zBXKAI
+          Vj6D+j3e0ozsO+GGEpmQFAIo1h7CEn8VV61WaLz2F60LKR8d/DEMZ7SY8uznbzkm
+          TJCeCp/pTnPeGwkyJmJ78LAaKw2tSCeEAfRlnzPeQeanOnEX/wnAjHHAHewvGgQe
+          GW1QkEdy8zNmfODDf9wqknBShaFRHAOAQFEgBAkYHuT4SgHqW8TVDtF3CQARAQAB
+          tDdNb25nb0RCIDMuNCBSZWxlYXNlIFNpZ25pbmcgS2V5IDxwYWNrYWdpbmdAbW9u
+          Z29kYi5jb20+iQI+BBMBAgAoBQJWlDYbAhsDBQkDwmcABgsJCAcDAgYVCAIJCgsE
+          FgIDAQIeAQIXgAAKCRC8cR+boVcDxmtEEACSjnZcwcozGYS/8peH2P8yPxD2mXVQ
+          AJ8Pss+YBo8hpRaiA7BEY+FFthbSYEX8XRR/Bg9HjDk9CNXc221I0WcTRv3Sb718
+          QutRd4ppdGtusgTHjUdYNDzctExU90vtJRvwI2oiz2YA8dM7mtTzUFpR4IQGopB4
+          PmjEls6hkebTjjSaO9UmcLyip+S+rTZ9c8UQvBH7rNoe4QacmGi/l/uUo/q4J7nE
+          jtjpsemUK7LWY7YtB21F/hH3OrQkgQAoVv2q2xSaiLJeWsr33jgd4o4/d3QN1t/P
+          GkNIOEBdO/hM8uOj+hGD+tDphHzd9jGjALqV6lC2k9zNXyAFnTUwp0NL74hODv6z
+          daihKu4fTRU7S0eYSGc2sQDPiiQF5YkxAHqADnPmR2ZpBVVtbUNB31BDOYjTzRwq
+          tkLKRCgI29Kgut0Uhvq+/Hx+0485ndgzcqeaLhslUagZy1bXN3sDW4QYN2tPvP+P
+          2JDtGydsYGZCWA0FBRFdsSbruBSK/BkEpGhq97bE9vclfVchb989A47lgErusw5C
+          xtLxUGPmVc2dYmHJLUkgHszdcTLHwy8/arYMehG7RVzAEG55AueLsc9B0vSI0E6r
+          lvalHgoCttCynEzM4Ol1rcG9XtlCyKk4AeimYLE/cxlckDoIVVwrFXrRrhB41Asw
+          rP4l4xtk+nWHpg==
+          =F42J
+          -----END PGP PUBLIC KEY BLOCK-----
+  "admin_usr":
+    "description": |
+      The username of the root user
+    "type": "string"
+    "default": "root"
+  "admin_pass":
+    "description": |
+      The password of the root user
+    "type": "string"
+    "default": "root1234"
+  "log_lvl":
+    "description": |
+      The verbosity of the loglevel of MongoDB. Values between 0 to 5 are allowed
+    "type": "int"
+    "default": !!int "0"
+  "port":
+    "description": |
+      The port on which MongoDB will be served
+    "type": "int"
+    "default": !!int "27017"
