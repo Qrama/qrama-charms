@@ -1,19 +1,34 @@
-﻿machines:
-  '0':
-    constraints: 'arch=amd64'
+machines:
+  "0":
     series: xenial
+    constraints: "arch=amd64"
+  "1":
+    series: xenial
+    constraints: "arch=amd64"
 series: xenial
 services:
-  sojobo-api:
-    charm: "/home/ubuntu/local_charms/xenial/sojobo-api"
-    num_units: 1
+  tengu-ui:
+    charm: "cs:~sebastienpattyn/tengu-ui-0"
     expose: true
+    num_units: 1
     to:
       - "0"
+  sojobo-api:
+    charm: "~sebastienpattyn/sojobo-api-0"
+    expose: true
+    num_units: 1
+    to:
+      - "1"
   google-controller:
-    charm: "/home/ubuntu/local_charms/xenial/controller-google"
+    charm: "cs:~sebastienpattyn/controller-google-0"
   monitoring-api:
-    charm: "/home/ubuntu/local_charms/xenial/monitoring-api"
-relations:relations:
+    charm: "cs:~sebastienpattyn/monitoring-api-1"
+  metering-script:
+    charm: "cs:~sebastienpattyn/metering-script-0"
+    options:
+      client-id: "58c2ad409cceaf465291dbb8"
+relations:
+  - [sojobo-api, tengu-ui]
   - [sojobo-api, google-controller]
   - [sojobo-api, monitoring-api]
+  - [sojobo-api, metering-script]
