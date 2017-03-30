@@ -1,107 +1,27 @@
 {
   "layers": [
+    "layer:beats-base", 
     "layer:basic", 
     "layer:apt", 
-    "layer:beats-base", 
     "tengubeat", 
     "interface:elastic-beats", 
     "interface:elasticsearch", 
     "build"
   ], 
   "signatures": {
-    ".build.manifest": [
-      "build", 
-      "dynamic", 
-      "unchecked"
-    ], 
-    ".gitignore": [
-      "layer:beats-base", 
-      "static", 
-      "f344b408d936da4844a755a61fd5eba2bcc276ef92dda2fd8a4bbb0a3d77aeb5"
-    ], 
-    "Makefile": [
-      "layer:basic", 
-      "static", 
-      "b7ab3a34e5faf79b96a8632039a0ad0aa87f2a9b5f0ba604e007cafb22190301"
-    ], 
-    "README.md": [
+    "tests/10-deploy": [
       "tengubeat", 
       "static", 
-      "1509917d6fbc23791b3d71669806674ad6301c5d9db75e1b575cef1238131e36"
+      "9fe2b5e2fbc874998eeefb210c08d7f24746f993feb3c50a5560f033f79fa007"
     ], 
     "bin/layer_option": [
       "layer:basic", 
       "static", 
       "621b556cd208005e131e9f648859294347da9376609745a73ca2e808dd2032f9"
     ], 
-    "config.yaml": [
-      "tengubeat", 
-      "dynamic", 
-      "66fbfee97a2fac299874dbf485fc0a0848540a11406de511607ab8ecf346cb80"
-    ], 
-    "copyright": [
-      "layer:apt", 
-      "static", 
-      "5123b2d0220fefb4424a463216fb41a6dd7cfad49c9799ba7037f1e74a2fd6bc"
-    ], 
-    "hooks/beats-host-relation-joined": [
-      "layer:beats-base", 
-      "static", 
-      "4813ddee930ff6a6e4bfe663f1d63f2e39681ce0d09846c4738fd9d2361a6da9"
-    ], 
-    "hooks/config-changed": [
-      "layer:basic", 
-      "static", 
-      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
-    ], 
-    "hooks/elasticsearch-relation-broken": [
-      "interface:elasticsearch", 
-      "dynamic", 
-      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
-    ], 
-    "hooks/elasticsearch-relation-changed": [
-      "interface:elasticsearch", 
-      "dynamic", 
-      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
-    ], 
-    "hooks/elasticsearch-relation-departed": [
-      "interface:elasticsearch", 
-      "dynamic", 
-      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
-    ], 
-    "hooks/elasticsearch-relation-joined": [
-      "interface:elasticsearch", 
-      "dynamic", 
-      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
-    ], 
-    "hooks/hook.template": [
-      "layer:basic", 
-      "static", 
-      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
-    ], 
-    "hooks/install": [
-      "layer:basic", 
-      "static", 
-      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
-    ], 
-    "hooks/leader-elected": [
-      "layer:basic", 
-      "static", 
-      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
-    ], 
     "hooks/leader-settings-changed": [
       "layer:basic", 
       "static", 
-      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
-    ], 
-    "hooks/logstash-relation-broken": [
-      "interface:elastic-beats", 
-      "dynamic", 
-      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
-    ], 
-    "hooks/logstash-relation-changed": [
-      "interface:elastic-beats", 
-      "dynamic", 
       "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
     ], 
     "hooks/logstash-relation-departed": [
@@ -109,55 +29,235 @@
       "dynamic", 
       "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
     ], 
-    "hooks/logstash-relation-joined": [
-      "interface:elastic-beats", 
-      "dynamic", 
+    "lib/charms/layer/execd.py": [
+      "layer:basic", 
+      "static", 
+      "c0eb4c90e93a14f04d851f78bc6592e093226321fbe328125958633397aed014"
+    ], 
+    "hooks/leader-elected": [
+      "layer:basic", 
+      "static", 
       "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
+    ], 
+    "Makefile": [
+      "layer:basic", 
+      "static", 
+      "b7ab3a34e5faf79b96a8632039a0ad0aa87f2a9b5f0ba604e007cafb22190301"
+    ], 
+    "reactive/__init__.py": [
+      "layer:basic", 
+      "static", 
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     ], 
     "hooks/relations/elastic-beats/.DS_Store": [
       "interface:elastic-beats", 
       "static", 
       "17c58553e95488bc81170da5e3fee6814b3fb6792bc28403b9472eb363a1adc7"
     ], 
-    "hooks/relations/elastic-beats/__init__.py": [
-      "interface:elastic-beats", 
+    "hooks/relations/elasticsearch/README.md": [
+      "interface:elasticsearch", 
       "static", 
-      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      "43cec723f2941974dfa32bdbde89cf09f2f05d238decc78800cfdb1871b3ee1c"
     ], 
-    "hooks/relations/elastic-beats/interface.yaml": [
-      "interface:elastic-beats", 
+    "tests/00-setup": [
+      "tengubeat", 
       "static", 
-      "6d4f643ac1898cd0c0bf2b4a1c269ab88a1eaa5cc2faddc6bdac855484718015"
+      "111c079b81d260bbcd716dcf41672372a4cf4aaa14154b6c3055deeedae37a06"
     ], 
-    "hooks/relations/elastic-beats/provides.py": [
-      "interface:elastic-beats", 
+    "hooks/update-status": [
+      "layer:basic", 
       "static", 
-      "e800c119e7bba3c046bd7b5ee4e74d4075f9cdb7998df2864e9265dc4bf9596c"
+      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
+    ], 
+    ".build.manifest": [
+      "build", 
+      "dynamic", 
+      "unchecked"
+    ], 
+    "hooks/elasticsearch-relation-departed": [
+      "interface:elasticsearch", 
+      "dynamic", 
+      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
+    ], 
+    "hooks/upgrade-charm": [
+      "layer:basic", 
+      "static", 
+      "8b9c153a61cc78067af8d016a8fa1c764caad3a40c82bb0b5121fc4c4c6a04f1"
+    ], 
+    "wheelhouse/Tempita-0.5.2.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "cacecf0baa674d356641f1d406b8bff1d756d739c46b869a54de515d08e6fc9c"
+    ], 
+    "wheelhouse/charms.templating.jinja2-1.0.2.tar.gz": [
+      "layer:beats-base", 
+      "dynamic", 
+      "8193c6a1d40bdb66fe272c359b4e4780501c658acfaf2b1118c4230927815fe2"
     ], 
     "hooks/relations/elastic-beats/requires.py": [
       "interface:elastic-beats", 
       "static", 
       "ef32b51f3a4f353bd3c261ef8c54219df1a6262eaa9f76b8fc1efbc0ce076b54"
     ], 
-    "hooks/relations/elasticsearch/README.md": [
-      "interface:elasticsearch", 
+    "tox.ini": [
+      "layer:basic", 
       "static", 
-      "3a48fb50a9380bd227ed25b69e5d7013a3756209d376b5ad2b61b919a1a4e350"
+      "00b57a776ac313e92a52daa05d1fdb6056c21b3105b643d32610fd937664321b"
     ], 
-    "hooks/relations/elasticsearch/__init__.py": [
+    "metadata.yaml": [
+      "tengubeat", 
+      "dynamic", 
+      "44bf876a261c8bbe6bba291acfdf85c260bd253ddaee26f0cb8c7f9b276e29ea"
+    ], 
+    "copyright": [
+      "layer:apt", 
+      "static", 
+      "5123b2d0220fefb4424a463216fb41a6dd7cfad49c9799ba7037f1e74a2fd6bc"
+    ], 
+    "hooks/logstash-relation-joined": [
+      "interface:elastic-beats", 
+      "dynamic", 
+      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
+    ], 
+    "wheelhouse/PyYAML-3.12.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "592766c6303207a20efc445587778322d7f73b161bd994f227adaa341ba212ab"
+    ], 
+    ".gitignore": [
+      "layer:apt", 
+      "static", 
+      "54c2eac10d7d0187b02c271ac7a3767bb3d365d562cfb8c1548efb4e84f7b2d5"
+    ], 
+    "hooks/install": [
+      "layer:basic", 
+      "static", 
+      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
+    ], 
+    "wheelhouse/Jinja2-2.9.5.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "702a24d992f856fa8d5a7a36db6128198d0c21e1da34448ca236c42e92384825"
+    ], 
+    "hooks/elasticsearch-relation-joined": [
       "interface:elasticsearch", 
+      "dynamic", 
+      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
+    ], 
+    "wheelhouse/pyaml-16.12.2.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "b865e4f53a85f4d8a092e7701f759a3237fb3ee8a928627401914aafadc00907"
+    ], 
+    "hooks/relations/elastic-beats/interface.yaml": [
+      "interface:elastic-beats", 
+      "static", 
+      "6d4f643ac1898cd0c0bf2b4a1c269ab88a1eaa5cc2faddc6bdac855484718015"
+    ], 
+    "hooks/config-changed": [
+      "layer:basic", 
+      "static", 
+      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
+    ], 
+    "hooks/hook.template": [
+      "layer:basic", 
+      "static", 
+      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
+    ], 
+    "hooks/stop": [
+      "layer:basic", 
+      "static", 
+      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
+    ], 
+    "reactive/apt.py": [
+      "layer:apt", 
+      "static", 
+      "6dad3fc2032bc4367b3669def96a45609222a745fd28763992725e377d7c974c"
+    ], 
+    "hooks/logstash-relation-changed": [
+      "interface:elastic-beats", 
+      "dynamic", 
+      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
+    ], 
+    "lib/charms/layer/basic.py": [
+      "layer:basic", 
+      "static", 
+      "14905051850da09eb6b2b2a0032175b1c2efeb11109cbd01790d4e4c3b8a41ea"
+    ], 
+    "wheelhouse/netaddr-0.7.19.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "38aeec7cdd035081d3a4c306394b19d677623bf76fa0913f6695127c7753aefd"
+    ], 
+    "hooks/relations/elastic-beats/__init__.py": [
+      "interface:elastic-beats", 
       "static", 
       "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    ], 
+    "reactive/metricbeat.py": [
+      "tengubeat", 
+      "static", 
+      "99d601f338a9b359deef3676f35c8daaf7a1f124a8b02253dfc903e8a376267b"
     ], 
     "hooks/relations/elasticsearch/interface.yaml": [
       "interface:elasticsearch", 
       "static", 
       "63c130a3ddb7b4d576de07ae2c04a3f9c1a0bd4721019a7cbbbea21f937a1f76"
     ], 
+    "lib/charms/layer/__init__.py": [
+      "layer:basic", 
+      "static", 
+      "4ffd74384bd81d737572acf2d14fe55431eab8f49d6212d9aabedf24e1d992b2"
+    ], 
+    "hooks/relations/elastic-beats/provides.py": [
+      "interface:elastic-beats", 
+      "static", 
+      "e800c119e7bba3c046bd7b5ee4e74d4075f9cdb7998df2864e9265dc4bf9596c"
+    ], 
+    "wheelhouse/pip-8.1.2.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "4d24b03ffa67638a3fa931c09fd9e0273ffa904e95ebebe7d4b1a54c93d7b732"
+    ], 
+    "hooks/logstash-relation-broken": [
+      "interface:elastic-beats", 
+      "dynamic", 
+      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
+    ], 
+    "hooks/beats-host-relation-joined": [
+      "layer:beats-base", 
+      "static", 
+      "4813ddee930ff6a6e4bfe663f1d63f2e39681ce0d09846c4738fd9d2361a6da9"
+    ], 
+    "lib/charms/__init__.py": [
+      "layer:apt", 
+      "static", 
+      "4032724b98ed267185b12b8ec78dd9bcb0423ab1c89a6f0dad99397fd51159d9"
+    ], 
+    "wheelhouse/charmhelpers-0.14.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "d2525bd5b1372ff098678f8ca7aa56f4bcdd62effabc92d48b6650f3c4b9251b"
+    ], 
+    "README.md": [
+      "tengubeat", 
+      "static", 
+      "1509917d6fbc23791b3d71669806674ad6301c5d9db75e1b575cef1238131e36"
+    ], 
+    "icon.svg": [
+      "tengubeat", 
+      "static", 
+      "8c498d78ae86cc7adde1056889fd34c95e0e63d5ba1470a66af8c2341da0034f"
+    ], 
     "hooks/relations/elasticsearch/provides.py": [
       "interface:elasticsearch", 
       "static", 
       "3b89a395bf31ff038c54b37169e8ed1e68259a64c249de316099e25c5375ce2a"
+    ], 
+    "reactive/beats_base.py": [
+      "layer:beats-base", 
+      "static", 
+      "fe8daffb81e8dba87055af5899b117a2c35869b919daa049a28c913fed7b7181"
     ], 
     "hooks/relations/elasticsearch/requires.py": [
       "interface:elasticsearch", 
@@ -169,165 +269,65 @@
       "static", 
       "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
     ], 
-    "hooks/stop": [
+    "wheelhouse/MarkupSafe-1.0.tar.gz": [
       "layer:basic", 
-      "static", 
-      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
-    ], 
-    "hooks/update-status": [
-      "layer:basic", 
-      "static", 
-      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
-    ], 
-    "hooks/upgrade-charm": [
-      "layer:basic", 
-      "static", 
-      "8b9c153a61cc78067af8d016a8fa1c764caad3a40c82bb0b5121fc4c4c6a04f1"
-    ], 
-    "icon.svg": [
-      "tengubeat", 
-      "static", 
-      "8c498d78ae86cc7adde1056889fd34c95e0e63d5ba1470a66af8c2341da0034f"
-    ], 
-    "layer.yaml": [
-      "tengubeat", 
       "dynamic", 
-      "b3e214a7e10875eafbff37af4c084c70f647527f28ddb38588755e71c30cf5ba"
-    ], 
-    "lib/charms/__init__.py": [
-      "layer:apt", 
-      "static", 
-      "4032724b98ed267185b12b8ec78dd9bcb0423ab1c89a6f0dad99397fd51159d9"
-    ], 
-    "lib/charms/apt.py": [
-      "layer:apt", 
-      "static", 
-      "f074d981409c3860547f8c45cde9c3ce4a80985a5ee94755981cd10117dc76e4"
-    ], 
-    "lib/charms/layer/__init__.py": [
-      "layer:basic", 
-      "static", 
-      "4ffd74384bd81d737572acf2d14fe55431eab8f49d6212d9aabedf24e1d992b2"
-    ], 
-    "lib/charms/layer/basic.py": [
-      "layer:basic", 
-      "static", 
-      "e91f75ca77b31ff3b5b78ca095ca4487d60095ccb1f6e29b8c901a0048ed1ac1"
-    ], 
-    "lib/charms/layer/execd.py": [
-      "layer:basic", 
-      "static", 
-      "c0eb4c90e93a14f04d851f78bc6592e093226321fbe328125958633397aed014"
-    ], 
-    "lib/elasticbeats.py": [
-      "layer:beats-base", 
-      "static", 
-      "72c11bb63757ffa6b5101f40c55725a57db93c58de9e5dc70378b51a9f60aaf5"
-    ], 
-    "metadata.yaml": [
-      "tengubeat", 
-      "dynamic", 
-      "fa7c68a0e2bd217a5a5510af99bf1dbe509229623d177972f1b0f7b5746156b0"
-    ], 
-    "reactive/__init__.py": [
-      "layer:basic", 
-      "static", 
-      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-    ], 
-    "reactive/apt.py": [
-      "layer:apt", 
-      "static", 
-      "6dad3fc2032bc4367b3669def96a45609222a745fd28763992725e377d7c974c"
-    ], 
-    "reactive/beats_base.py": [
-      "layer:beats-base", 
-      "static", 
-      "fe8daffb81e8dba87055af5899b117a2c35869b919daa049a28c913fed7b7181"
-    ], 
-    "reactive/metricbeat.py": [
-      "tengubeat", 
-      "static", 
-      "bbd889bac80a4de8de837f314fb985317df6121c43248356662144a976191557"
-    ], 
-    "requirements.txt": [
-      "layer:basic", 
-      "static", 
-      "0f1c70d27e26005a96d66ad54482877ae20f7737693c833e29dd72bd6ac24892"
-    ], 
-    "templates/metricbeat.yml": [
-      "tengubeat", 
-      "static", 
-      "0f4cf2fade5557d592113aa03f236186df549de9ec5230be11707192d04ba70a"
-    ], 
-    "tests/00-setup": [
-      "tengubeat", 
-      "static", 
-      "111c079b81d260bbcd716dcf41672372a4cf4aaa14154b6c3055deeedae37a06"
-    ], 
-    "tests/10-deploy": [
-      "tengubeat", 
-      "static", 
-      "9fe2b5e2fbc874998eeefb210c08d7f24746f993feb3c50a5560f033f79fa007"
-    ], 
-    "tox.ini": [
-      "layer:basic", 
-      "static", 
-      "00b57a776ac313e92a52daa05d1fdb6056c21b3105b643d32610fd937664321b"
-    ], 
-    "wheelhouse/Jinja2-2.9.4.tar.gz": [
-      "layer:beats-base", 
-      "dynamic", 
-      "aab8d8ca9f45624f1e77f2844bf3c144d180e97da8824c2a6d7552ad039b5442"
-    ], 
-    "wheelhouse/MarkupSafe-0.23.tar.gz": [
-      "layer:beats-base", 
-      "dynamic", 
-      "a4ec1aff59b95a14b45eb2e23761a0179e98319da5a7eb76b56ea8cdc7b871c3"
-    ], 
-    "wheelhouse/PyYAML-3.12.tar.gz": [
-      "layer:beats-base", 
-      "dynamic", 
-      "592766c6303207a20efc445587778322d7f73b161bd994f227adaa341ba212ab"
-    ], 
-    "wheelhouse/Tempita-0.5.2.tar.gz": [
-      "layer:beats-base", 
-      "dynamic", 
-      "cacecf0baa674d356641f1d406b8bff1d756d739c46b869a54de515d08e6fc9c"
-    ], 
-    "wheelhouse/charmhelpers-0.11.0.tar.gz": [
-      "layer:beats-base", 
-      "dynamic", 
-      "72e776a3fab33289f9da1aeba8f319f0a53471eca660e9a6504db3c446af20a3"
+      "a6be69091dac236ea9c6bc7d012beab42010fa914c459791d627dad4910eb665"
     ], 
     "wheelhouse/charms.reactive-0.4.5.tar.gz": [
       "layer:basic", 
       "dynamic", 
       "b2a475aff349a1c6532de0f9b4df5ee456b97a1e1755695afd8747dbc51bb710"
     ], 
-    "wheelhouse/charms.templating.jinja2-1.0.2.tar.gz": [
-      "layer:beats-base", 
-      "dynamic", 
-      "8193c6a1d40bdb66fe272c359b4e4780501c658acfaf2b1118c4230927815fe2"
-    ], 
-    "wheelhouse/netaddr-0.7.19.tar.gz": [
-      "layer:beats-base", 
-      "dynamic", 
-      "38aeec7cdd035081d3a4c306394b19d677623bf76fa0913f6695127c7753aefd"
-    ], 
-    "wheelhouse/pip-8.1.2.tar.gz": [
-      "layer:basic", 
-      "dynamic", 
-      "4d24b03ffa67638a3fa931c09fd9e0273ffa904e95ebebe7d4b1a54c93d7b732"
-    ], 
-    "wheelhouse/pyaml-16.12.2.tar.gz": [
-      "layer:basic", 
-      "dynamic", 
-      "b865e4f53a85f4d8a092e7701f759a3237fb3ee8a928627401914aafadc00907"
-    ], 
     "wheelhouse/six-1.10.0.tar.gz": [
-      "layer:beats-base", 
+      "layer:basic", 
       "dynamic", 
       "105f8d68616f8248e24bf0e9372ef04d3cc10104f1980f54d57b2ce73a5ad56a"
+    ], 
+    "hooks/elasticsearch-relation-changed": [
+      "interface:elasticsearch", 
+      "dynamic", 
+      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
+    ], 
+    "layer.yaml": [
+      "tengubeat", 
+      "dynamic", 
+      "1aaacf9da152ce5bf9a1792b76d3131593ce4a7cfa1dc4f30dd48f0a64442856"
+    ], 
+    "config.yaml": [
+      "tengubeat", 
+      "dynamic", 
+      "85d541fb670dfd5aeaedaefd2746a561427225381f906b025b91051fbece120d"
+    ], 
+    "hooks/elasticsearch-relation-broken": [
+      "interface:elasticsearch", 
+      "dynamic", 
+      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
+    ], 
+    "lib/elasticbeats.py": [
+      "layer:beats-base", 
+      "static", 
+      "72c11bb63757ffa6b5101f40c55725a57db93c58de9e5dc70378b51a9f60aaf5"
+    ], 
+    "templates/metricbeat.yml": [
+      "tengubeat", 
+      "static", 
+      "0f4cf2fade5557d592113aa03f236186df549de9ec5230be11707192d04ba70a"
+    ], 
+    "hooks/relations/elasticsearch/__init__.py": [
+      "interface:elasticsearch", 
+      "static", 
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    ], 
+    "requirements.txt": [
+      "layer:basic", 
+      "static", 
+      "0f1c70d27e26005a96d66ad54482877ae20f7737693c833e29dd72bd6ac24892"
+    ], 
+    "lib/charms/apt.py": [
+      "layer:apt", 
+      "static", 
+      "f074d981409c3860547f8c45cde9c3ce4a80985a5ee94755981cd10117dc76e4"
     ]
   }
 }

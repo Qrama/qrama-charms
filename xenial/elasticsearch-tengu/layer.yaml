@@ -1,24 +1,24 @@
+"includes":
+- "layer:basic"
+- "layer:apt"
+- "layer:java"
+- "interface:elasticsearch"
+- "layer:basic"
+- "layer:apt"
+- "layer:juju-layer-elasticsearch-base"
+"repo": "https://github.com/Qrama/elasticsearch-tengu.git"
 "options":
-  "java": {}
-  "elasticsearch-tengu": {}
-  "juju-layer-elasticsearch-base": {}
   "apt":
+    "packages":
+    - "python3-pip"
     "version_package": ""
-    "packages": []
     "full_version": !!bool "false"
+  "elasticsearch-tengu": {}
+  "java": {}
+  "juju-layer-elasticsearch-base": {}
   "basic":
     "use_venv": !!bool "false"
     "packages": []
     "include_system_packages": !!bool "false"
 "name": "java"
-"includes":
-- "layer:basic"
-- "layer:apt"
-- "layer:basic"
-- "layer:apt"
-- "layer:java"
-- "interface:java"
-- "interface:elasticsearch"
-- "layer:juju-layer-elasticsearch-base"
-"repo": "https://github.com/Qrama/elasticsearch-tengu.git"
 "is": "elasticsearch-tengu"

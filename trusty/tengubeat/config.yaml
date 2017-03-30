@@ -1,4 +1,12 @@
 "options":
+  "install_sources":
+    "type": "string"
+    "default": "deb https://artifacts.elastic.co/packages/5.x/apt stable main"
+    "description": "apt repository to fetch beats from"
+  "install_keys":
+    "type": "string"
+    "default": "D88E42B4"
+    "description": "repository key"
   "extra_packages":
     "description": "Space separated list of extra deb packages to install.\n"
     "type": "string"
@@ -8,14 +16,6 @@
     "type": "string"
     "description": "The status of service-affecting packages will be set to this value\
       \ in the dpkg database. Valid values are \"install\" and \"hold\".\n"
-  "install_sources":
-    "description": "apt repository to fetch beats from"
-    "type": "string"
-    "default": "deb https://artifacts.elastic.co/packages/5.x/apt stable main"
-  "install_keys":
-    "description": "repository key"
-    "type": "string"
-    "default": "D88E42B4"
   "procs":
     "type": "string"
     "default": ".*"
@@ -45,10 +45,9 @@
       will be generated when model will be created. DO NOT CHANCE THIS!
   "sojobo-ip":
     "type": "string"
-    "default": "104.196.25.210"
+    "default": "http://10.132.30.102"
     "description": |
-      IP or url of the sojobo-api. This value will be generated
-      when model will be created. DO NOT CHANCE THIS!
+      IP or url of the sojobo-api, includes http:// or https:// prefix! DO NOT CHANGE THIS!
   "user":
     "type": "string"
     "default": "admin"

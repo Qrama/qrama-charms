@@ -56,14 +56,15 @@ includes: ['interface:elasticsearch']
   `reactive/code.py`
 
 ```python
-@when('client.connected')
-def connect_to_client(client):
+@when('client.connected', 'elasticsearch.configured')
+def connect_to_client(connected_clients):
     conf = config()
     cluster_name = conf['cluster-name']
     port = conf['port']
-    client.configure(port,cluster_name)
-    for c in client.list_connected_clients_data():
-        host_ip = c.get_remote_ip()
+    connected_clients.configure(port, cluster_name)
+    clients = connected_clients.list_connected_clients_data
+    for c in clients:
+        //do something
 ```
 
 ### States

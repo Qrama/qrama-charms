@@ -11,6 +11,8 @@ from apt.debfile import DebPackage
 
 from jujubigdata import utils
 from charms import apt #pylint: disable=E0611
+from charmhelpers.contrib.python.packages import pip_install
+from charmhelpers.core.templating import render
 from charms.reactive import (
     when,
     when_not,
@@ -38,6 +40,9 @@ from charms.layer.elasticsearch_base import (#pylint: disable=E0611,E0401,C0412
 @when('java.installed')
 @when_not('elasticsearch.installed')
 def check_install_path():
+    # Install package to check memory size to set correct heap size
+    for pkg in ['psutil']:
+        pip_install(pkg)
     # Make sure we've got the resource.
     try:
         status_set('maintenance', 'Checking for resources')
@@ -84,6 +89,7 @@ def deb_install():
 @when('elasticsearch.installed')
 def configure_elasticsearch():
     status_set('maintenance', 'Configuring elasticsearch')
+    from psutil import virtual_memory
     # check if Firewall has to be enabled
     init_fw()
     conf = config()
@@ -97,6 +103,8 @@ def configure_elasticsearch():
     uid = pwd.getpwnam("root").pw_uid
     gid = grp.getgrnam("elasticsearch").gr_gid
     os.chown(path, uid, gid)
+    heap_size = int(virtual_memory().total/1024./1024./2.)
+    render('jvm.options', '/etc/elasticsearch/jvm.options', {'heap_size': '{}m'.format(heap_size)})
     set_state('elasticsearch.configured')
     restart()
 
@@ -174,7 +182,6 @@ def connect_to_client(connected_clients):
 
 @when('client.broken')
 def remove_client(broken_clients):
-    #
     clients = broken_clients.list_connected_clients_data
     for c in clients:
         if c is not None:
@@ -198,6 +205,7 @@ def init_fw():
         sp.check_output(['ufw', 'disable'])
 
 def add_fw_exception(host_ip):
+    host_ip = host_ip.split('//')[1]
     sp.check_call([
         'ufw', 'allow', 'proto', 'tcp', 'from', host_ip,
         'to', 'any', 'port', '9200'])

@@ -1,10 +1,10 @@
 "name": "tengubeat"
-"summary": "Metricbeat is a lightweight Shipper for Metrics"
+"summary": "This charm deployes the tengubeat"
 "maintainer": "Sebastien Pattyn <sebastien.pattyn@qrama.io>"
-"description": |
-  This charm deploys Metricbeat. Metricbeat is a lightweight Shipper for
-  Metrics. It Collects metrics from your systems and services.
-  From CPU to memory, Redis to Nginx, and much more...
+"description": "This charm deploys Metricbeat. Metricbeat is a lightweight Shipper\
+  \ for\nMetrics. It Collects metrics from your systems and services.\nFrom CPU to\
+  \ memory, Redis to Nginx, and much more\u2026 this charm also configures the necessary\
+  \ tools and options to work with the Sojobo and Elasticsearch-tengu\n"
 "tags":
 - "logging"
 - "monitoring"
@@ -18,5 +18,5 @@
     "interface": "elastic-beats"
   "elasticsearch":
     "interface": "elasticsearch"
-"series": ["xenial"]
+"series": ["trusty", "xenial"]
 "subordinate": !!bool "true"

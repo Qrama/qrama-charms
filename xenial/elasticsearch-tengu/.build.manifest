@@ -1,84 +1,168 @@
 {
   "layers": [
+    "layer:juju-layer-elasticsearch-base", 
     "layer:basic", 
     "layer:apt", 
     "layer:java", 
-    "layer:juju-layer-elasticsearch-base", 
     "elasticsearch-tengu", 
-    "interface:java", 
     "interface:elasticsearch", 
     "build"
   ], 
   "signatures": {
-    ".build.manifest": [
-      "build", 
-      "dynamic", 
-      "unchecked"
-    ], 
-    ".gitignore": [
-      "layer:juju-layer-elasticsearch-base", 
-      "static", 
-      "71e328b2e78a1cf5743111f089b3136afeb87f6cbe792049de5d098f3d5ae608"
-    ], 
-    "LICENSE": [
-      "layer:juju-layer-elasticsearch-base", 
-      "static", 
-      "76a97c878c9c7a8321bb395c2b44d3fe2f8d81314d219b20138ed0e2dddd5182"
-    ], 
-    "Makefile": [
-      "layer:juju-layer-elasticsearch-base", 
-      "static", 
-      "64af52e91708443f6ff58252c13432049dadf40f3e180e270ef3e0e166209e2e"
-    ], 
-    "README.md": [
+    "tests/10-deploy": [
       "elasticsearch-tengu", 
       "static", 
-      "cc7cbb3ff62c36c5f099d1780d0eed17bbae1599ce5a229697a076e827292915"
+      "d45df063ae79a5d00201ed20b80d23b91ef611ac4534133ef2e6dd2c135715cb"
     ], 
-    "bin/layer_option": [
+    "wheelhouse/path.py-10.1.tar.gz": [
+      "layer:java", 
+      "dynamic", 
+      "8b0ee56f6c1421a9038823926ee8da354ce70933424b408558bc6b48496587f3"
+    ], 
+    "hooks/leader-settings-changed": [
       "layer:basic", 
       "static", 
-      "621b556cd208005e131e9f648859294347da9376609745a73ca2e808dd2032f9"
-    ], 
-    "config.yaml": [
-      "elasticsearch-tengu", 
-      "dynamic", 
-      "825fe4ac48fa7fcd4dd5da33e198cf666a9f239ee68c9a7390196aa45f46141d"
-    ], 
-    "copyright": [
-      "layer:java", 
-      "static", 
-      "188b8b4aa4477e8d2a0b4c290c451326456a0ddf58e1f314c3f5bf151ddbd8a8"
-    ], 
-    "files/jdk-8u77-linux-x64.tar.gz.source": [
-      "layer:java", 
-      "static", 
-      "b1e2a2f66e8738adb603000541964b9ae4dd76cdde422beca9a7789661d32266"
-    ], 
-    "files/server-jre-8u77-linux-x64.tar.gz.source": [
-      "layer:java", 
-      "static", 
-      "832ce806d4576db6906ec7c1e0e6c3bb6dbd02bfef71e352116cbcdb5e216453"
-    ], 
-    "hooks/client-relation-broken": [
-      "interface:elasticsearch", 
-      "dynamic", 
-      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
-    ], 
-    "hooks/client-relation-changed": [
-      "interface:elasticsearch", 
-      "dynamic", 
-      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
-    ], 
-    "hooks/client-relation-departed": [
-      "interface:elasticsearch", 
-      "dynamic", 
       "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
     ], 
     "hooks/client-relation-joined": [
       "interface:elasticsearch", 
       "dynamic", 
       "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
+    ], 
+    "LICENSE": [
+      "layer:java", 
+      "static", 
+      "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1"
+    ], 
+    "hooks/client-relation-broken": [
+      "interface:elasticsearch", 
+      "dynamic", 
+      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
+    ], 
+    "lib/charms/layer/execd.py": [
+      "layer:basic", 
+      "static", 
+      "c0eb4c90e93a14f04d851f78bc6592e093226321fbe328125958633397aed014"
+    ], 
+    "hooks/leader-elected": [
+      "layer:basic", 
+      "static", 
+      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
+    ], 
+    "wheelhouse/jujuresources-0.4.0.tar.gz": [
+      "layer:java", 
+      "dynamic", 
+      "dbade544066885c2db48d18eca4512c89ca5c38c81ff8bd5b8ff228166dedb72"
+    ], 
+    "Makefile": [
+      "layer:basic", 
+      "static", 
+      "b7ab3a34e5faf79b96a8632039a0ad0aa87f2a9b5f0ba604e007cafb22190301"
+    ], 
+    "reactive/__init__.py": [
+      "layer:basic", 
+      "static", 
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    ], 
+    "hooks/relations/elasticsearch/README.md": [
+      "interface:elasticsearch", 
+      "static", 
+      "43cec723f2941974dfa32bdbde89cf09f2f05d238decc78800cfdb1871b3ee1c"
+    ], 
+    "tests/00-setup": [
+      "elasticsearch-tengu", 
+      "static", 
+      "111c079b81d260bbcd716dcf41672372a4cf4aaa14154b6c3055deeedae37a06"
+    ], 
+    "hooks/relations/elasticsearch/requires.py": [
+      "interface:elasticsearch", 
+      "static", 
+      "d223ee20cc2f3bbfbbff6ac9d1804aab8d50e3a88f0b73400e229f3004c981b6"
+    ], 
+    "bin/layer_option": [
+      "layer:basic", 
+      "static", 
+      "621b556cd208005e131e9f648859294347da9376609745a73ca2e808dd2032f9"
+    ], 
+    "files/jdk-8u77-linux-x64.tar.gz.source": [
+      "layer:java", 
+      "static", 
+      "b1e2a2f66e8738adb603000541964b9ae4dd76cdde422beca9a7789661d32266"
+    ], 
+    "reactive/elasticsearch_tengu.py": [
+      "elasticsearch-tengu", 
+      "static", 
+      "db7bc019fa69699881b61f0c91a579c56d23f56550e7187b7957fb97346369e2"
+    ], 
+    "hooks/upgrade-charm": [
+      "layer:basic", 
+      "static", 
+      "8b9c153a61cc78067af8d016a8fa1c764caad3a40c82bb0b5121fc4c4c6a04f1"
+    ], 
+    "wheelhouse/Tempita-0.5.2.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "cacecf0baa674d356641f1d406b8bff1d756d739c46b869a54de515d08e6fc9c"
+    ], 
+    "wheelhouse/pyaml-16.12.2.tar.gz": [
+      "layer:java", 
+      "dynamic", 
+      "b865e4f53a85f4d8a092e7701f759a3237fb3ee8a928627401914aafadc00907"
+    ], 
+    "tox.ini": [
+      "layer:basic", 
+      "static", 
+      "00b57a776ac313e92a52daa05d1fdb6056c21b3105b643d32610fd937664321b"
+    ], 
+    "metadata.yaml": [
+      "elasticsearch-tengu", 
+      "dynamic", 
+      "2b810a13933ace898afbef707210996e5c80e84b4f7c098866b72d1ae19e3002"
+    ], 
+    "copyright": [
+      "layer:java", 
+      "static", 
+      "188b8b4aa4477e8d2a0b4c290c451326456a0ddf58e1f314c3f5bf151ddbd8a8"
+    ], 
+    "wheelhouse/PyYAML-3.12.tar.gz": [
+      "layer:java", 
+      "dynamic", 
+      "592766c6303207a20efc445587778322d7f73b161bd994f227adaa341ba212ab"
+    ], 
+    ".gitignore": [
+      "layer:apt", 
+      "static", 
+      "54c2eac10d7d0187b02c271ac7a3767bb3d365d562cfb8c1548efb4e84f7b2d5"
+    ], 
+    "hooks/install": [
+      "layer:basic", 
+      "static", 
+      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
+    ], 
+    "templates/jvm.options": [
+      "layer:juju-layer-elasticsearch-base", 
+      "static", 
+      "dc1e90dffe0c84fc9d6ce2ce9da086ce18a0882f30fd211ec7763977def0a7bc"
+    ], 
+    "wheelhouse/Jinja2-2.9.5.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "702a24d992f856fa8d5a7a36db6128198d0c21e1da34448ca236c42e92384825"
+    ], 
+    "reactive/elasticsearch_base.py": [
+      "layer:juju-layer-elasticsearch-base", 
+      "static", 
+      "00be0815fd51dad7ce0b03bfe968feffee2825a4f6e67c0188a8db34dc704a7a"
+    ], 
+    ".build.manifest": [
+      "build", 
+      "dynamic", 
+      "unchecked"
+    ], 
+    "lib/charms/layer/elasticsearch_base.py": [
+      "layer:juju-layer-elasticsearch-base", 
+      "static", 
+      "020320b7e028a0be0b4e936eb5e2a73299848e29bd2c11c4933b614644dd3028"
     ], 
     "hooks/config-changed": [
       "layer:basic", 
@@ -90,290 +174,160 @@
       "static", 
       "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
     ], 
-    "hooks/install": [
-      "layer:basic", 
-      "static", 
-      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
-    ], 
-    "hooks/java-relation-broken": [
-      "interface:java", 
-      "dynamic", 
-      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
-    ], 
-    "hooks/java-relation-changed": [
-      "interface:java", 
-      "dynamic", 
-      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
-    ], 
-    "hooks/java-relation-departed": [
-      "interface:java", 
-      "dynamic", 
-      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
-    ], 
-    "hooks/java-relation-joined": [
-      "interface:java", 
-      "dynamic", 
-      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
-    ], 
-    "hooks/leader-elected": [
-      "layer:basic", 
-      "static", 
-      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
-    ], 
-    "hooks/leader-settings-changed": [
-      "layer:basic", 
-      "static", 
-      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
-    ], 
-    "hooks/relations/elasticsearch/README.md": [
-      "interface:elasticsearch", 
-      "static", 
-      "3a48fb50a9380bd227ed25b69e5d7013a3756209d376b5ad2b61b919a1a4e350"
-    ], 
-    "hooks/relations/elasticsearch/__init__.py": [
-      "interface:elasticsearch", 
-      "static", 
-      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-    ], 
-    "hooks/relations/elasticsearch/interface.yaml": [
-      "interface:elasticsearch", 
-      "static", 
-      "63c130a3ddb7b4d576de07ae2c04a3f9c1a0bd4721019a7cbbbea21f937a1f76"
-    ], 
-    "hooks/relations/elasticsearch/provides.py": [
-      "interface:elasticsearch", 
-      "static", 
-      "3b89a395bf31ff038c54b37169e8ed1e68259a64c249de316099e25c5375ce2a"
-    ], 
-    "hooks/relations/elasticsearch/requires.py": [
-      "interface:elasticsearch", 
-      "static", 
-      "d223ee20cc2f3bbfbbff6ac9d1804aab8d50e3a88f0b73400e229f3004c981b6"
-    ], 
-    "hooks/relations/java/README.md": [
-      "interface:java", 
-      "static", 
-      "e05a50e7c53988780b496ecd876e752ad61440bf1effc333e9ffdabc19fecdd3"
-    ], 
-    "hooks/relations/java/__init__.py": [
-      "interface:java", 
-      "static", 
-      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-    ], 
-    "hooks/relations/java/copyright": [
-      "interface:java", 
-      "static", 
-      "188b8b4aa4477e8d2a0b4c290c451326456a0ddf58e1f314c3f5bf151ddbd8a8"
-    ], 
-    "hooks/relations/java/interface.yaml": [
-      "interface:java", 
-      "static", 
-      "483a0485f8fc110629f4cc10fffa9fc5fc6a7d8e9fec0816c6980603b3266c88"
-    ], 
-    "hooks/relations/java/provides.py": [
-      "interface:java", 
-      "static", 
-      "f6364ab4c1b22b5b581bd9c40e1985d82ac7a3c3c26c32b76d858cd6032daa6a"
-    ], 
-    "hooks/relations/java/requires.py": [
-      "interface:java", 
-      "static", 
-      "fa2eca6fb016bf3e5073ed88790179f1f82b0eb5daa20f7dbe4c759fca697d12"
-    ], 
-    "hooks/start": [
-      "layer:basic", 
-      "static", 
-      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
-    ], 
     "hooks/stop": [
       "layer:basic", 
       "static", 
       "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
-    ], 
-    "hooks/update-status": [
-      "layer:basic", 
-      "static", 
-      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
-    ], 
-    "hooks/upgrade-charm": [
-      "layer:basic", 
-      "static", 
-      "8b9c153a61cc78067af8d016a8fa1c764caad3a40c82bb0b5121fc4c4c6a04f1"
-    ], 
-    "icon.svg": [
-      "elasticsearch-tengu", 
-      "static", 
-      "cee83e053f02069acac3558b89ad2ed364095c50acdd206926402b7807a444d5"
-    ], 
-    "layer.yaml": [
-      "elasticsearch-tengu", 
-      "dynamic", 
-      "817be29cd435bd31079e00b3b3d78103f28002c3fa7f007f0f9632ddd530022f"
-    ], 
-    "lib/charms/__init__.py": [
-      "layer:apt", 
-      "static", 
-      "4032724b98ed267185b12b8ec78dd9bcb0423ab1c89a6f0dad99397fd51159d9"
-    ], 
-    "lib/charms/apt.py": [
-      "layer:apt", 
-      "static", 
-      "f074d981409c3860547f8c45cde9c3ce4a80985a5ee94755981cd10117dc76e4"
-    ], 
-    "lib/charms/layer/__init__.py": [
-      "layer:basic", 
-      "static", 
-      "4ffd74384bd81d737572acf2d14fe55431eab8f49d6212d9aabedf24e1d992b2"
-    ], 
-    "lib/charms/layer/basic.py": [
-      "layer:basic", 
-      "static", 
-      "e91f75ca77b31ff3b5b78ca095ca4487d60095ccb1f6e29b8c901a0048ed1ac1"
-    ], 
-    "lib/charms/layer/elasticsearch_base.py": [
-      "layer:juju-layer-elasticsearch-base", 
-      "static", 
-      "020320b7e028a0be0b4e936eb5e2a73299848e29bd2c11c4933b614644dd3028"
-    ], 
-    "lib/charms/layer/execd.py": [
-      "layer:basic", 
-      "static", 
-      "c0eb4c90e93a14f04d851f78bc6592e093226321fbe328125958633397aed014"
-    ], 
-    "lib/openjdk.py": [
-      "layer:java", 
-      "static", 
-      "f50887d0848248e24aee28752e6713bfabd5d97d5be34b86a3aa1783dbaf485f"
-    ], 
-    "lib/oracle.py": [
-      "layer:java", 
-      "static", 
-      "e5627dc208c98b449263366fdf4726ba4ccc564f5b152d723a8dcf9296061e19"
-    ], 
-    "metadata.yaml": [
-      "elasticsearch-tengu", 
-      "dynamic", 
-      "2b810a13933ace898afbef707210996e5c80e84b4f7c098866b72d1ae19e3002"
-    ], 
-    "reactive/__init__.py": [
-      "layer:basic", 
-      "static", 
-      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     ], 
     "reactive/apt.py": [
       "layer:apt", 
       "static", 
       "6dad3fc2032bc4367b3669def96a45609222a745fd28763992725e377d7c974c"
     ], 
-    "reactive/elasticsearch_base.py": [
-      "layer:juju-layer-elasticsearch-base", 
-      "static", 
-      "1413d4681eb5abdd6b3f8e3b3f77ab503cc34dc1b9b03cfeea535d19f988eb72"
-    ], 
-    "reactive/elasticsearch_tengu.py": [
-      "elasticsearch-tengu", 
-      "static", 
-      "2c9046ec18379465aa7fc0efb361c5c468403159dc1d69fc80220bce0d92aa43"
-    ], 
-    "reactive/java.py": [
-      "layer:java", 
-      "static", 
-      "1d5414549f82b6aa0a42b7a6dbfbe1a4550cfc6268b092f15cf22849b5b03f5b"
-    ], 
-    "requirements.txt": [
+    "lib/charms/layer/basic.py": [
       "layer:basic", 
       "static", 
-      "0f1c70d27e26005a96d66ad54482877ae20f7737693c833e29dd72bd6ac24892"
-    ], 
-    "templates/nginx_conf": [
-      "elasticsearch-tengu", 
-      "static", 
-      "36dad7ae1924100266b3de34d73047d21cdae664b825ab6bc4045c1baf7a5bcb"
-    ], 
-    "tests/00-setup": [
-      "elasticsearch-tengu", 
-      "static", 
-      "111c079b81d260bbcd716dcf41672372a4cf4aaa14154b6c3055deeedae37a06"
-    ], 
-    "tests/10-deploy": [
-      "elasticsearch-tengu", 
-      "static", 
-      "d45df063ae79a5d00201ed20b80d23b91ef611ac4534133ef2e6dd2c135715cb"
-    ], 
-    "tox.ini": [
-      "layer:juju-layer-elasticsearch-base", 
-      "static", 
-      "b6f262c59da6949be645bdfefda43c9f90b351170718e60760b0d2a8579f12df"
-    ], 
-    "wheelhouse/Jinja2-2.9.4.tar.gz": [
-      "layer:basic", 
-      "dynamic", 
-      "aab8d8ca9f45624f1e77f2844bf3c144d180e97da8824c2a6d7552ad039b5442"
-    ], 
-    "wheelhouse/MarkupSafe-0.23.tar.gz": [
-      "layer:basic", 
-      "dynamic", 
-      "a4ec1aff59b95a14b45eb2e23761a0179e98319da5a7eb76b56ea8cdc7b871c3"
-    ], 
-    "wheelhouse/PyYAML-3.12.tar.gz": [
-      "layer:juju-layer-elasticsearch-base", 
-      "dynamic", 
-      "592766c6303207a20efc445587778322d7f73b161bd994f227adaa341ba212ab"
-    ], 
-    "wheelhouse/Tempita-0.5.2.tar.gz": [
-      "layer:basic", 
-      "dynamic", 
-      "cacecf0baa674d356641f1d406b8bff1d756d739c46b869a54de515d08e6fc9c"
-    ], 
-    "wheelhouse/charmhelpers-0.11.0.tar.gz": [
-      "layer:basic", 
-      "dynamic", 
-      "72e776a3fab33289f9da1aeba8f319f0a53471eca660e9a6504db3c446af20a3"
-    ], 
-    "wheelhouse/charms.reactive-0.4.5.tar.gz": [
-      "layer:basic", 
-      "dynamic", 
-      "b2a475aff349a1c6532de0f9b4df5ee456b97a1e1755695afd8747dbc51bb710"
-    ], 
-    "wheelhouse/jujubigdata-6.4.4.tar.gz": [
-      "layer:juju-layer-elasticsearch-base", 
-      "dynamic", 
-      "b3c3650ee41354220e7cc71a033588cca64a5a9b504bffd2490a6da2dd162924"
-    ], 
-    "wheelhouse/jujuresources-0.4.0.tar.gz": [
-      "layer:juju-layer-elasticsearch-base", 
-      "dynamic", 
-      "dbade544066885c2db48d18eca4512c89ca5c38c81ff8bd5b8ff228166dedb72"
+      "14905051850da09eb6b2b2a0032175b1c2efeb11109cbd01790d4e4c3b8a41ea"
     ], 
     "wheelhouse/netaddr-0.7.19.tar.gz": [
       "layer:basic", 
       "dynamic", 
       "38aeec7cdd035081d3a4c306394b19d677623bf76fa0913f6695127c7753aefd"
     ], 
-    "wheelhouse/path.py-10.1.tar.gz": [
-      "layer:juju-layer-elasticsearch-base", 
+    "hooks/client-relation-changed": [
+      "interface:elasticsearch", 
       "dynamic", 
-      "8b0ee56f6c1421a9038823926ee8da354ce70933424b408558bc6b48496587f3"
+      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
+    ], 
+    "hooks/relations/elasticsearch/interface.yaml": [
+      "interface:elasticsearch", 
+      "static", 
+      "63c130a3ddb7b4d576de07ae2c04a3f9c1a0bd4721019a7cbbbea21f937a1f76"
+    ], 
+    "lib/charms/layer/__init__.py": [
+      "layer:basic", 
+      "static", 
+      "4ffd74384bd81d737572acf2d14fe55431eab8f49d6212d9aabedf24e1d992b2"
+    ], 
+    "reactive/java.py": [
+      "layer:java", 
+      "static", 
+      "1d5414549f82b6aa0a42b7a6dbfbe1a4550cfc6268b092f15cf22849b5b03f5b"
     ], 
     "wheelhouse/pip-8.1.2.tar.gz": [
       "layer:basic", 
       "dynamic", 
       "4d24b03ffa67638a3fa931c09fd9e0273ffa904e95ebebe7d4b1a54c93d7b732"
     ], 
-    "wheelhouse/pyaml-16.12.2.tar.gz": [
-      "layer:juju-layer-elasticsearch-base", 
+    "lib/openjdk.py": [
+      "layer:java", 
+      "static", 
+      "f50887d0848248e24aee28752e6713bfabd5d97d5be34b86a3aa1783dbaf485f"
+    ], 
+    "hooks/update-status": [
+      "layer:basic", 
+      "static", 
+      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
+    ], 
+    "lib/charms/__init__.py": [
+      "layer:apt", 
+      "static", 
+      "4032724b98ed267185b12b8ec78dd9bcb0423ab1c89a6f0dad99397fd51159d9"
+    ], 
+    "wheelhouse/charmhelpers-0.14.0.tar.gz": [
+      "layer:basic", 
       "dynamic", 
-      "b865e4f53a85f4d8a092e7701f759a3237fb3ee8a928627401914aafadc00907"
+      "d2525bd5b1372ff098678f8ca7aa56f4bcdd62effabc92d48b6650f3c4b9251b"
+    ], 
+    "README.md": [
+      "elasticsearch-tengu", 
+      "static", 
+      "cc7cbb3ff62c36c5f099d1780d0eed17bbae1599ce5a229697a076e827292915"
+    ], 
+    "files/server-jre-8u77-linux-x64.tar.gz.source": [
+      "layer:java", 
+      "static", 
+      "832ce806d4576db6906ec7c1e0e6c3bb6dbd02bfef71e352116cbcdb5e216453"
+    ], 
+    "hooks/client-relation-departed": [
+      "interface:elasticsearch", 
+      "dynamic", 
+      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
+    ], 
+    "lib/oracle.py": [
+      "layer:java", 
+      "static", 
+      "e5627dc208c98b449263366fdf4726ba4ccc564f5b152d723a8dcf9296061e19"
+    ], 
+    "icon.svg": [
+      "elasticsearch-tengu", 
+      "static", 
+      "cee83e053f02069acac3558b89ad2ed364095c50acdd206926402b7807a444d5"
+    ], 
+    "hooks/relations/elasticsearch/provides.py": [
+      "interface:elasticsearch", 
+      "static", 
+      "3b89a395bf31ff038c54b37169e8ed1e68259a64c249de316099e25c5375ce2a"
     ], 
     "wheelhouse/setuptools_scm-1.15.0.tar.gz": [
-      "layer:juju-layer-elasticsearch-base", 
+      "layer:java", 
       "dynamic", 
       "daf12d05aa2155a46aa357453757ffdc47d87f839e62114f042bceac6a619e2f"
     ], 
+    "hooks/start": [
+      "layer:basic", 
+      "static", 
+      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
+    ], 
+    "wheelhouse/MarkupSafe-1.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "a6be69091dac236ea9c6bc7d012beab42010fa914c459791d627dad4910eb665"
+    ], 
+    "wheelhouse/jujubigdata-6.4.4.tar.gz": [
+      "layer:java", 
+      "dynamic", 
+      "b3c3650ee41354220e7cc71a033588cca64a5a9b504bffd2490a6da2dd162924"
+    ], 
+    "wheelhouse/charms.reactive-0.4.5.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "b2a475aff349a1c6532de0f9b4df5ee456b97a1e1755695afd8747dbc51bb710"
+    ], 
     "wheelhouse/six-1.10.0.tar.gz": [
-      "layer:juju-layer-elasticsearch-base", 
+      "layer:java", 
       "dynamic", 
       "105f8d68616f8248e24bf0e9372ef04d3cc10104f1980f54d57b2ce73a5ad56a"
+    ], 
+    "layer.yaml": [
+      "elasticsearch-tengu", 
+      "dynamic", 
+      "728ec924501c11b0c6d354a3b18f96d98b1c2085a6ce810f87fd42fcd4908209"
+    ], 
+    "config.yaml": [
+      "elasticsearch-tengu", 
+      "dynamic", 
+      "a120c26ae89bb5245220a7d9480f68f2bb16e065288a2b4987a4ab74af86faaf"
+    ], 
+    "templates/nginx_conf": [
+      "elasticsearch-tengu", 
+      "static", 
+      "36dad7ae1924100266b3de34d73047d21cdae664b825ab6bc4045c1baf7a5bcb"
+    ], 
+    "hooks/relations/elasticsearch/__init__.py": [
+      "interface:elasticsearch", 
+      "static", 
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    ], 
+    "requirements.txt": [
+      "layer:basic", 
+      "static", 
+      "0f1c70d27e26005a96d66ad54482877ae20f7737693c833e29dd72bd6ac24892"
+    ], 
+    "lib/charms/apt.py": [
+      "layer:apt", 
+      "static", 
+      "f074d981409c3860547f8c45cde9c3ce4a80985a5ee94755981cd10117dc76e4"
     ]
   }
 }

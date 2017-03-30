@@ -1,3 +1,9 @@
+"includes":
+- "layer:basic"
+- "layer:apt"
+- "interface:elastic-beats"
+- "interface:elasticsearch"
+- "layer:beats-base"
 "options":
   "basic":
     "use_venv": !!bool "true"
@@ -9,11 +15,5 @@
     "version_package": ""
     "packages": []
     "full_version": !!bool "false"
-"includes":
-- "layer:basic"
-- "layer:apt"
-- "interface:elastic-beats"
-- "interface:elasticsearch"
-- "layer:beats-base"
-"is": "metricbeat"
-"repo": "git@github.com/sebastienpattyn93/tengu-charms.git"
+"is": "tengubeat"
+"repo": "https://github.com/Qrama/layer-tengubeat.git"

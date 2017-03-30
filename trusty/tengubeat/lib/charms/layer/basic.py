@@ -2,7 +2,8 @@ import os
 import sys
 import shutil
 from glob import glob
-from subprocess import check_call
+from subprocess import check_call, CalledProcessError
+from time import sleep
 
 from charms.layer.execd import execd_preinstall
 
@@ -47,7 +48,12 @@ def bootstrap_charm_deps():
                 "allow_hosts = ''\n",
                 "find_links = file://{}/wheelhouse/\n".format(charm_dir),
             ])
-        apt_install(['python3-pip', 'python3-setuptools', 'python3-yaml'])
+        apt_install([
+            'python3-pip',
+            'python3-setuptools',
+            'python3-yaml',
+            'python3-dev',
+        ])
         from charms import layer
         cfg = layer.options('basic')
         # include packages defined in layer.yaml
@@ -130,7 +136,7 @@ def reload_interpreter(python):
     Newly installed modules in namespace packages sometimes seemt to
     not be picked up by Python 3.
     """
-    os.execle(python, python, sys.argv[0], os.environ)
+    os.execve(python, [python] + list(sys.argv), os.environ)
 
 
 def apt_install(packages):
@@ -152,7 +158,15 @@ def apt_install(packages):
            '--option=Dpkg::Options::=--force-confold',
            '--assume-yes',
            'install']
-    check_call(cmd + packages, env=env)
+    for attempt in range(3):
+        try:
+            check_call(cmd + packages, env=env)
+        except CalledProcessError:
+            if attempt == 2:  # third attempt
+                raise
+            sleep(5)
+        else:
+            break
 
 
 def init_config_states():

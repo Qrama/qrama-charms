@@ -1,3 +1,2 @@
-bdist
-.*.swp
-.tox/
+*~
+*.pyc

@@ -51,7 +51,7 @@ def install_tengu_monitor():
         hookenv.status_set('active', 'ready')
     else:
         hookenv.status_set('blocked', 'Unable to reach SOJOBO!')
- 
+
 @when('tengu-monitor.installed')
 @when_not('tengu-monitor.configured')
 def configure_tengu_monitor():
@@ -90,7 +90,7 @@ def send_request(sojobo, api_key, controller_type):
     else:
         charm_ip = unit_public_ip()
     add_sojobo_to_fw(sojobo)
-    url = 'http://{}:5000/monitoring/ping'.format(sojobo)
+    url = '{}/monitoring/ping'.format(sojobo)
     body = {
         'charm-ip' : charm_ip,
         'controller' : conf['controller'],
@@ -101,6 +101,7 @@ def send_request(sojobo, api_key, controller_type):
     return res.status_code
 
 def add_sojobo_to_fw(sojobo_ip):
+    sojobo_ip = sojobo_ip.split('//')[1]
     sp.check_call([
         'ufw', 'allow', 'proto', 'tcp', 'from', sojobo_ip,
         'to', 'any', 'port', '9200'])

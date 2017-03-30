@@ -94,7 +94,7 @@ def render_without_context(source, target):
 def get_instance_id(unitname):
     import requests
     conf = config()
-    url = 'http://{}:5000/tengu/controllers/{}/models/{}/applications/{}/units/{}'.format(conf['sojobo-ip'], conf['controller'], conf['model'], unitname.split('/')[0], unitname.split('/')[1])
+    url = '{}/tengu/controllers/{}/models/{}/applications/{}/units/{}'.format(conf['sojobo-ip'], conf['controller'], conf['model'], unitname.split('/')[0], unitname.split('/')[1])
     myheaders = {'api-key' : conf['api-key']}
     unit = requests.get(url, headers=myheaders, auth=(conf['user'], conf['pass']))
     instance = json.loads(unit.text)['instance-id']
