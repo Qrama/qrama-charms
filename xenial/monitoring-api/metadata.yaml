@@ -6,8 +6,8 @@
   the SOJOBO api can use this as a blueprint.
 "tags": ["misc"]
 "requires":
-  "sojobo-api":
-    "interface": "juju-info"
+  "sojobo":
+    "interface": "sojobo"
     "scope": "container"
 "series": ["xenial"]
 "subordinate": !!bool "true"

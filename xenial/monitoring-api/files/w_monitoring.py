@@ -17,11 +17,21 @@
 import json
 import yaml
 import requests
+from sojobo_api import settings
 
 from elasticsearch import Elasticsearch #pylint: disable = e0401
 
 from flask import  abort
-from api import w_errors as errors, w_juju as juju #pylint: disable = e0401
+from sojobo_api.api import w_errors as errors, w_juju as juju #pylint: disable = e0401
+
+
+def monitor_names():
+    return {'db': 'monitor-tengu', 'xenial': 'xenial-tengubeat', 'trusty': 'trusty-tengubeat'}
+
+
+def get_series():
+    return ['xenial', 'trusty']
+
 
 def check_authentication(api_key):
     with open('{}/api-key'.format(juju.get_api_dir()), 'r') as key:
@@ -68,8 +78,8 @@ def receive_ip_address(controller, model): #pylint: disable = W0613
 
 
 def get_machines_by_application(controller, model, application, req):
-    url = 'http://127.0.0.1:5000/tengu/controllers/{}/models/{}/applications/{}'.format(
-        controller, model, application
+    url = '{}/tengu/controllers/{}/models/{}/applications/{}'.format(
+        settings.SOJOBO_IP, controller, model, application
         )
     res = requests.get(url, headers={'api-key': req.headers['api-key']}, auth=(req.authorization.username, req.authorization.password))
     result = []
@@ -80,7 +90,7 @@ def get_machines_by_application(controller, model, application, req):
 
 
 def get_monitor_dir():
-    file_path = '{}/monitoring'.format(juju.get_api_dir())
+    file_path = '{}/monitoring'.format(settings.SOJOBO_API_DIR)
     return file_path
 
 
@@ -105,17 +115,41 @@ def execute_specific_query(controller, model, match):
     return result
 
 
-def add_model(token):
-    return None
-
-
-def remove_model(token):
-    return None
-
-
 def add_application(token, application):
-    return None
+    serie = juju.get_application_info(token, application)['series']
+    names = monitor_names()
+    if serie in get_series():
+        if juju.app_exists(token, names['db']):
+            juju.add_relation(token, application, monitor_names()[serie])
+            result = 'OK'
+        else:
+            with open('{}/monitoring.yaml'.format(get_monitor_dir()), 'r') as ybundle:
+                bundle = yaml.load(ybundle)
+            data1 = {'api-key': juju.get_api_key(), 'sojobo-ip': settings.SOJOBO_IP, 'controller': token.c_name,
+                     'model': token.m_name, 'user': settings.JUJU_ADMIN_USER, 'pass': settings.JUJU_ADMIN_PASSWORD}
+            data2 = {'api-key': juju.get_api_key(), 'sojobo-ip': settings.SOJOBO_IP, 'controller': token.c_name,
+                     'model': token.m_name, 'controller-type': token.c_token.type}
+            relations = []
+            for series in get_series():
+                bundle['services'][names[series]]['charm'] = '{}/qrama-charms/{}/tengubeat'.format(settings.LOCAL_CHARM_DIR, series)
+                bundle['services'][names[series]]['options'] = data1
+                relations.append(['{}:client'.format(names['db']), '{}:elasticsearch'.format(names[series])])
+            bundle['relations'] = relations
+            bundle['services'][names['db']]['charm'] = '{}/qrama-charms/xenial/elasticsearch-tengu'.format(settings.LOCAL_CHARM_DIR)
+            bundle['services'][names['db']]['options'] = data2
+            juju.deploy_bundle(token, bundle)
+            juju.add_relation(token, application, monitor_names()[serie])
+            result = 'OK'
+    else:
+        result = 'Series not supported'
+    return result
 
 
 def remove_application(token, application):
-    return None
+    series = juju.get_application_info(token, application)['series']
+    if series in get_series():
+        juju.remove_relation(token, application, monitor_names()[series])
+        result = 'OK'
+    else:
+        result = 'Series not supported'
+    return result
