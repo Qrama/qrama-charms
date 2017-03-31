@@ -101,7 +101,7 @@ def send_request(sojobo, api_key, controller_type):
     return res.status_code
 
 def add_sojobo_to_fw(sojobo_ip):
-    sojobo_ip = sojobo_ip.split('//')[1]
+    sojobo_ip = sojobo_ip.split('//')[-1]
     sp.check_call([
         'ufw', 'allow', 'proto', 'tcp', 'from', sojobo_ip,
         'to', 'any', 'port', '9200'])

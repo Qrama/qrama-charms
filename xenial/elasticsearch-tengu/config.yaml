@@ -66,7 +66,7 @@
       the API key that is needed to send a request to the sojobo
   "sojobo-ip":
     "type": "string"
-    "default": "http://35.184.175.11"
+    "default": "http://35.184.240.136"
     "description": |
       IP or url of the sojobo-api, includes http:// or https:// prefix! DO NOT CHANGE THIS!
   "username":

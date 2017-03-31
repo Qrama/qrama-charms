@@ -105,6 +105,7 @@ def configure_elasticsearch():
     os.chown(path, uid, gid)
     heap_size = int(virtual_memory().total/1024./1024./2.)
     render('jvm.options', '/etc/elasticsearch/jvm.options', {'heap_size': '{}m'.format(heap_size)})
+    render('elasticsearch', '/etc/default/elasticsearch', {'heap_size': '{}m'.format(heap_size)})
     set_state('elasticsearch.configured')
     restart()
 
@@ -205,7 +206,7 @@ def init_fw():
         sp.check_output(['ufw', 'disable'])
 
 def add_fw_exception(host_ip):
-    host_ip = host_ip.split('//')[1]
+    host_ip = host_ip.split('//')[-1]
     sp.check_call([
         'ufw', 'allow', 'proto', 'tcp', 'from', host_ip,
         'to', 'any', 'port', '9200'])

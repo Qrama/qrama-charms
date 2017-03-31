@@ -92,7 +92,7 @@
     "reactive/elasticsearch_tengu.py": [
       "elasticsearch-tengu", 
       "static", 
-      "db7bc019fa69699881b61f0c91a579c56d23f56550e7187b7957fb97346369e2"
+      "b2efc50a73a90eb872a38b083807d9f3a2dc7a81bb2cf0112ba3037077a62b15"
     ], 
     "hooks/upgrade-charm": [
       "layer:basic", 
@@ -152,7 +152,7 @@
     "reactive/elasticsearch_base.py": [
       "layer:juju-layer-elasticsearch-base", 
       "static", 
-      "00be0815fd51dad7ce0b03bfe968feffee2825a4f6e67c0188a8db34dc704a7a"
+      "48487f34cc980a606009f886435ddf3f024870e9ea8da77e87b6b74e20894e54"
     ], 
     ".build.manifest": [
       "build", 
@@ -208,6 +208,11 @@
       "layer:basic", 
       "static", 
       "4ffd74384bd81d737572acf2d14fe55431eab8f49d6212d9aabedf24e1d992b2"
+    ], 
+    "templates/elasticsearch": [
+      "layer:juju-layer-elasticsearch-base", 
+      "static", 
+      "edea782cc36a33c5a8dc432719cd13b4d4b441d6e76bc06a3eccbbbe19c55497"
     ], 
     "reactive/java.py": [
       "layer:java", 
@@ -307,7 +312,7 @@
     "config.yaml": [
       "elasticsearch-tengu", 
       "dynamic", 
-      "a120c26ae89bb5245220a7d9480f68f2bb16e065288a2b4987a4ab74af86faaf"
+      "5d7bd7856d192bcf72f3a4377f4861d4c5b415a0f1bfe5397fb8768413366afe"
     ], 
     "templates/nginx_conf": [
       "elasticsearch-tengu", 
