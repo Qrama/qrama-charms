@@ -38,6 +38,7 @@ def metricbeat():
 
 @when('beat.render')
 @when_any('elasticsearch.available', 'logstash.available')
+@when_not('beat.rendered')
 def render_metricbeat_template():
     target = '/etc/metricbeat/metricbeat.yml'
     render_without_context('metricbeat.yml', target)
@@ -45,11 +46,14 @@ def render_metricbeat_template():
     remove_state('beat.render')
     status_set('active', 'metricbeat ready.')
     service_restart('metricbeat')
+    set_state('beat.rendered')
+
 
 @when('config.changed.install_sources')
 @when('config.changed.install_keys')
 def reinstall_metricbeat():
     remove_state('apt.installed.metricbeat')
+
 
 @when('apt.installed.metricbeat')
 @when_not('metricbeat.autostarted')
@@ -57,6 +61,7 @@ def enlist_metricbeat():
     enable_beat_on_boot('metricbeat')
     service_restart('metricbeat')
     set_state('metricbeat.autostarted')
+
 
 @when('apt.installed.metricbeat')
 @when('elasticsearch.available')
