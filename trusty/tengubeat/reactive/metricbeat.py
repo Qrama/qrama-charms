@@ -15,6 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 # pylint: disable=c0111,c0103,c0301
 import json
+import subprocess
 import yaml
 
 from charms.reactive import when, when_any, when_not, set_state, remove_state
@@ -69,7 +70,8 @@ def push_metricbeat_index(elasticsearch):
     hosts = elasticsearch.list_unit_data()
     for host in hosts:
         host_string = "{}:{}".format(host['host'], host['port'])
-    push_beat_index(host_string, 'metricbeat')
+        push_beat_index(host_string, 'metricbeat')
+        subprocess.check_call(['curl', '-XPUT', 'http://{}/metricbeat'.format(host_string)])
     set_state('metricbeat.index.pushed')
     service_restart('metricbeat')
 

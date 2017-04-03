@@ -69,10 +69,10 @@
       "static", 
       "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
     ], 
-    ".build.manifest": [
-      "build", 
+    "wheelhouse/Jinja2-2.9.6.tar.gz": [
+      "layer:basic", 
       "dynamic", 
-      "unchecked"
+      "ddaa01a212cd6d641401cb01b605f4a4d9f37bfc93043d7f760ec70fb99ff9ff"
     ], 
     "hooks/elasticsearch-relation-departed": [
       "interface:elasticsearch", 
@@ -134,10 +134,10 @@
       "static", 
       "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
     ], 
-    "wheelhouse/Jinja2-2.9.5.tar.gz": [
-      "layer:basic", 
+    ".build.manifest": [
+      "build", 
       "dynamic", 
-      "702a24d992f856fa8d5a7a36db6128198d0c21e1da34448ca236c42e92384825"
+      "unchecked"
     ], 
     "hooks/elasticsearch-relation-joined": [
       "interface:elasticsearch", 
@@ -197,27 +197,22 @@
     "reactive/metricbeat.py": [
       "tengubeat", 
       "static", 
-      "c309886f33013bc6f8b9a0e5309a50dce1d45974b5e25f817d3ba0780d367d56"
+      "ef185321f02a8332def8265af35e1453f0bd907706b017d92e23e7e7f3ad8e3e"
     ], 
     "hooks/relations/elasticsearch/interface.yaml": [
       "interface:elasticsearch", 
       "static", 
       "63c130a3ddb7b4d576de07ae2c04a3f9c1a0bd4721019a7cbbbea21f937a1f76"
     ], 
-    "lib/charms/layer/__init__.py": [
-      "layer:basic", 
-      "static", 
-      "4ffd74384bd81d737572acf2d14fe55431eab8f49d6212d9aabedf24e1d992b2"
-    ], 
     "hooks/relations/elastic-beats/provides.py": [
       "interface:elastic-beats", 
       "static", 
       "e800c119e7bba3c046bd7b5ee4e74d4075f9cdb7998df2864e9265dc4bf9596c"
     ], 
-    "wheelhouse/pip-8.1.2.tar.gz": [
-      "layer:basic", 
-      "dynamic", 
-      "4d24b03ffa67638a3fa931c09fd9e0273ffa904e95ebebe7d4b1a54c93d7b732"
+    "templates/metricbeat.yml": [
+      "tengubeat", 
+      "static", 
+      "a2e46e237f76ef11ae3d73100acc294dc7d6acd729b8d96dff5db1878fb5b492"
     ], 
     "hooks/logstash-relation-broken": [
       "interface:elastic-beats", 
@@ -289,15 +284,20 @@
       "dynamic", 
       "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
     ], 
+    "config.yaml": [
+      "tengubeat", 
+      "dynamic", 
+      "85d541fb670dfd5aeaedaefd2746a561427225381f906b025b91051fbece120d"
+    ], 
     "layer.yaml": [
       "tengubeat", 
       "dynamic", 
       "1aaacf9da152ce5bf9a1792b76d3131593ce4a7cfa1dc4f30dd48f0a64442856"
     ], 
-    "config.yaml": [
-      "tengubeat", 
-      "dynamic", 
-      "85d541fb670dfd5aeaedaefd2746a561427225381f906b025b91051fbece120d"
+    "lib/charms/layer/__init__.py": [
+      "layer:basic", 
+      "static", 
+      "4ffd74384bd81d737572acf2d14fe55431eab8f49d6212d9aabedf24e1d992b2"
     ], 
     "hooks/elasticsearch-relation-broken": [
       "interface:elasticsearch", 
@@ -309,10 +309,10 @@
       "static", 
       "72c11bb63757ffa6b5101f40c55725a57db93c58de9e5dc70378b51a9f60aaf5"
     ], 
-    "templates/metricbeat.yml": [
-      "tengubeat", 
-      "static", 
-      "a2e46e237f76ef11ae3d73100acc294dc7d6acd729b8d96dff5db1878fb5b492"
+    "wheelhouse/pip-8.1.2.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "4d24b03ffa67638a3fa931c09fd9e0273ffa904e95ebebe7d4b1a54c93d7b732"
     ], 
     "hooks/relations/elasticsearch/__init__.py": [
       "interface:elasticsearch", 
