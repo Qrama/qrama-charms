@@ -20,12 +20,12 @@ from charms.reactive import when, when_any, when_not, set_state, remove_state
 from charms.templating.jinja2 import render
 import charms.apt# pylint: disable=E
 
-from charmhelpers.core.hookenv import config, status_set
+from charmhelpers.core.hookenv import config, status_set, remote_unit
 from charmhelpers.core.host import service_restart
 from charmhelpers.core.unitdata import kv
 from charmhelpers.contrib.python.packages import pip_install
 
-from elasticbeats import parse_protocols, enable_beat_on_boot, push_beat_index # pylint: disable=E0401
+from elasticbeats import parse_protocols, enable_beat_on_boot, push_beat_index, render_without_context # pylint: disable=E0401
 
 @when_not('apt.installed.metricbeat')
 def metricbeat():
@@ -39,7 +39,9 @@ def metricbeat():
 @when('beat.render')
 @when_any('elasticsearch.available', 'logstash.available')
 def render_metricbeat_template():
-    render_without_context('metricbeat.yml', '/etc/metricbeat/metricbeat.yml')
+    target = '/etc/metricbeat/metricbeat.yml'
+    render_without_context('metricbeat.yml', target)
+    add_extra_context(target)
     remove_state('beat.render')
     status_set('active', 'metricbeat ready.')
     service_restart('metricbeat')
@@ -67,28 +69,13 @@ def push_metricbeat_index(elasticsearch):
     set_state('metricbeat.index.pushed')
     service_restart('metricbeat')
 
-def render_without_context(source, target):
-    ''' Render beat template from global state context '''
-    cache = kv()
-    context = config()
 
-    logstash_hosts = cache.get('beat.logstash')
-    elasticsearch_hosts = cache.get('beat.elasticsearch')
-    unitname = cache.get('principal_name')
-    context['principal_unit'] = unitname
-    context['application'] = unitname.split('/')[0]
+def add_extra_context(target):
+    unitname = remote_unit()
+    application = unitname.split('/')[0]
     instance = get_instance_id(unitname)
-    context['instance'] = instance
-    if logstash_hosts:
-        context.update({'logstash': logstash_hosts})
-    if elasticsearch_hosts:
-        context.update({'elasticsearch': elasticsearch_hosts})
-    if 'protocols' in context.keys():
-        context.update({'protocols': parse_protocols()})
-    # Split the log paths
-    if 'logpath' in context.keys() and not isinstance(context['logpath'], list):  # noqa
-        context['logpath'] = context['logpath'].split(' ')
-    render(source, target, context)
+    with open(target, 'a') as metric:
+        metric.write('fields: application: {}, instance-id: {}'.format(application, instance))
 
 
 def get_instance_id(unitname):

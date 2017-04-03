@@ -30,4 +30,3 @@ output:
 shipper:
   name: {{ principal_unit }}
 {% endif %}
-fields: {application: "{{ application }}", instance-id: "{{ instance }}" }

@@ -197,7 +197,7 @@
     "reactive/metricbeat.py": [
       "tengubeat", 
       "static", 
-      "99d601f338a9b359deef3676f35c8daaf7a1f124a8b02253dfc903e8a376267b"
+      "cd1112ec5832fd74aef0a0da8fc53f40fbb71d672f2e56a0e94059c63cd80b85"
     ], 
     "hooks/relations/elasticsearch/interface.yaml": [
       "interface:elasticsearch", 
@@ -312,7 +312,7 @@
     "templates/metricbeat.yml": [
       "tengubeat", 
       "static", 
-      "0f4cf2fade5557d592113aa03f236186df549de9ec5230be11707192d04ba70a"
+      "a2e46e237f76ef11ae3d73100acc294dc7d6acd729b8d96dff5db1878fb5b492"
     ], 
     "hooks/relations/elasticsearch/__init__.py": [
       "interface:elasticsearch", 
