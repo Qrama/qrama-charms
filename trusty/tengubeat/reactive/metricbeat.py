@@ -15,6 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 # pylint: disable=c0111,c0103,c0301
 import json
+import yaml
 
 from charms.reactive import when, when_any, when_not, set_state, remove_state
 from charms.templating.jinja2 import render
@@ -38,7 +39,6 @@ def metricbeat():
 
 @when('beat.render')
 @when_any('elasticsearch.available', 'logstash.available')
-@when_not('beat.rendered')
 def render_metricbeat_template():
     target = '/etc/metricbeat/metricbeat.yml'
     render_without_context('metricbeat.yml', target)
@@ -46,7 +46,6 @@ def render_metricbeat_template():
     remove_state('beat.render')
     status_set('active', 'metricbeat ready.')
     service_restart('metricbeat')
-    set_state('beat.rendered')
 
 
 @when('config.changed.install_sources')
@@ -76,7 +75,9 @@ def push_metricbeat_index(elasticsearch):
 
 
 def add_extra_context(target):
-    unitname = remote_unit()
+    with open(target, 'r') as metric:
+        data = yaml.load(metric)
+    unitname = data['shipper']['name']
     application = unitname.split('/')[0]
     instance = get_instance_id(unitname)
     with open(target, 'a') as metric:
