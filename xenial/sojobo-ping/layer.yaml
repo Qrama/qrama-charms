@@ -1,0 +1,12 @@
+"options":
+  "sojobo-ping": {}
+  "basic":
+    "use_venv": !!bool "false"
+    "packages": []
+    "include_system_packages": !!bool "false"
+"includes":
+- "layer:basic"
+- "interface:juju-info"
+- "interface:http"
+"repo": "git@github.com:Qrama/prometheus-nginx-proxy-charm.git"
+"is": "sojobo-ping"

@@ -1,0 +1,17 @@
+"options":
+  "apt":
+    "packages": ["prometheus-node-exporter"]
+    "version_package": ""
+    "full_version": !!bool "false"
+  "prometheus-node-exporter": {}
+  "basic":
+    "use_venv": !!bool "false"
+    "packages": []
+    "include_system_packages": !!bool "false"
+"includes":
+- "layer:basic"
+- "layer:apt"
+- "interface:juju-info"
+- "interface:http"
+"repo": "git@github.com:Qrama/prometheus-node-exporter-charm.git"
+"is": "prometheus-node-exporter"

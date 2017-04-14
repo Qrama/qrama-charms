@@ -1,0 +1,16 @@
+"name": "prometheus-node-exporter"
+"summary": "This Charm installs Node-exporter to send machine monitoring to a Prometheus\
+  \ server."
+"maintainer": "Mathijs Moerman <mathijs.moerman@qrama.io>"
+"description": ""
+"tags":
+- "monitoring"
+"requires":
+  "monitoring":
+    "interface": "juju-info"
+    "scope": "container"
+"provides":
+  "prometheus":
+    "interface": "http"
+"series": ["trusty", "xenial"]
+"subordinate": !!bool "true"

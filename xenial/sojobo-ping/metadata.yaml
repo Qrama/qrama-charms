@@ -1,0 +1,15 @@
+"name": "sojobo-ping"
+"summary": "This subordinate charm enables the firewall, opens certain ports and pings\
+  \ the Sojobo"
+"maintainer": "Mathijs Moerman <Mathijs.Moerman@qrama.io>"
+"description": ""
+"tags": ["misc"]
+"requires":
+  "application":
+    "interface": "juju-info"
+    "scope": "container"
+"provides":
+  "reverseproxy":
+    "interface": "http"
+"series": ["trusty", "xenial"]
+"subordinate": !!bool "true"
