@@ -1,0 +1,276 @@
+{
+  "layers": [
+    "layer:basic", 
+    "layer:apt", 
+    "sojobo-monitoring-proxy", 
+    "interface:juju-info", 
+    "build"
+  ], 
+  "signatures": {
+    "wheelhouse/setuptools_scm-1.15.5.tar.gz": [
+      "sojobo-monitoring-proxy", 
+      "dynamic", 
+      "145b2a8a609e0fd66108a92a06fe62d0fb329c0eb944f2d5c7ae3ca24222f29e"
+    ], 
+    "hooks/application-relation-joined": [
+      "interface:juju-info", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "bin/layer_option": [
+      "layer:basic", 
+      "static", 
+      "621b556cd208005e131e9f648859294347da9376609745a73ca2e808dd2032f9"
+    ], 
+    "hooks/leader-settings-changed": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "LICENSE": [
+      "sojobo-monitoring-proxy", 
+      "static", 
+      "589ed823e9a84c56feb95ac58e7cf384626b9cbf4fda2a907bc36e103de1bad2"
+    ], 
+    "lib/charms/layer/execd.py": [
+      "layer:basic", 
+      "static", 
+      "af1f2409869f990cdb33cffc4120fb6713876e8e680ac5f064ea510bbdca1073"
+    ], 
+    "hooks/leader-elected": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "wheelhouse/PyYAML-3.12.tar.gz": [
+      "sojobo-monitoring-proxy", 
+      "dynamic", 
+      "592766c6303207a20efc445587778322d7f73b161bd994f227adaa341ba212ab"
+    ], 
+    "wheelhouse/jujuresources-0.4.0.tar.gz": [
+      "sojobo-monitoring-proxy", 
+      "dynamic", 
+      "dbade544066885c2db48d18eca4512c89ca5c38c81ff8bd5b8ff228166dedb72"
+    ], 
+    "Makefile": [
+      "layer:basic", 
+      "static", 
+      "b7ab3a34e5faf79b96a8632039a0ad0aa87f2a9b5f0ba604e007cafb22190301"
+    ], 
+    "reactive/__init__.py": [
+      "layer:basic", 
+      "static", 
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    ], 
+    "hooks/relations/juju-info/README.md": [
+      "interface:juju-info", 
+      "static", 
+      "4589dd14b868df060bd263d988b3f556738db5ca5f02019b8c4b706501f94b6b"
+    ], 
+    "wheelhouse/Jinja2-2.9.6.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "ddaa01a212cd6d641401cb01b605f4a4d9f37bfc93043d7f760ec70fb99ff9ff"
+    ], 
+    "wheelhouse/path.py-10.3.1.tar.gz": [
+      "sojobo-monitoring-proxy", 
+      "dynamic", 
+      "412706be1cd8ab723c77829f9aa0c4d4b7c7b26c7b1be0275a6841c3cb1001e0"
+    ], 
+    "hooks/upgrade-charm": [
+      "layer:basic", 
+      "static", 
+      "8fb6559bf4d4b7cdf1b857564c1d7265df98e863a4746fcbae092f141e59d97e"
+    ], 
+    "wheelhouse/charmhelpers-0.15.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "dde6d6905a1f71cd3a6ed7cbf92bb4c26159d6a1b5ce8b4e5d2b893de7cc0647"
+    ], 
+    "wheelhouse/Tempita-0.5.2.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "cacecf0baa674d356641f1d406b8bff1d756d739c46b869a54de515d08e6fc9c"
+    ], 
+    "hooks/application-relation-changed": [
+      "interface:juju-info", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/relations/juju-info/__init__.py": [
+      "interface:juju-info", 
+      "static", 
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    ], 
+    "wheelhouse/pyaml-16.12.2.tar.gz": [
+      "sojobo-monitoring-proxy", 
+      "dynamic", 
+      "b865e4f53a85f4d8a092e7701f759a3237fb3ee8a928627401914aafadc00907"
+    ], 
+    "tox.ini": [
+      "layer:basic", 
+      "static", 
+      "00b57a776ac313e92a52daa05d1fdb6056c21b3105b643d32610fd937664321b"
+    ], 
+    "metadata.yaml": [
+      "sojobo-monitoring-proxy", 
+      "dynamic", 
+      "9a9f4313a193abd13bbaf53562f0d3a49d5391abbb8d8359af1bf044764eae5a"
+    ], 
+    "copyright": [
+      "layer:apt", 
+      "static", 
+      "5123b2d0220fefb4424a463216fb41a6dd7cfad49c9799ba7037f1e74a2fd6bc"
+    ], 
+    "hooks/relations/juju-info/requires.py": [
+      "interface:juju-info", 
+      "static", 
+      "a9a1ec6099b0d471e5a2b1456b870cd9d799ab1646d075261593b56340093504"
+    ], 
+    "requirements.txt": [
+      "layer:basic", 
+      "static", 
+      "0f1c70d27e26005a96d66ad54482877ae20f7737693c833e29dd72bd6ac24892"
+    ], 
+    ".gitignore": [
+      "sojobo-monitoring-proxy", 
+      "static", 
+      "f24477a840737ae9a1439e10ec2c1003279b9569cc0e3661bd145df95fd0343a"
+    ], 
+    "hooks/install": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/application-relation-departed": [
+      "interface:juju-info", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/relations/juju-info/interface.yaml": [
+      "interface:juju-info", 
+      "static", 
+      "0d0057ed0bda75157e8314a1259e1a8bb883d2f738ad1b731177e821b5b1b542"
+    ], 
+    "config.yaml": [
+      "sojobo-monitoring-proxy", 
+      "dynamic", 
+      "9a2f9ee82429f60c175ccd22e1f91574d7945f552311d9a1643facde81a1ad90"
+    ], 
+    "lib/charms/layer/__init__.py": [
+      "layer:basic", 
+      "static", 
+      "71a8b901f7e64a6b1b61959fc25819bafc9c9905e37a918615b9f949295095a4"
+    ], 
+    "hooks/stop": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "reactive/apt.py": [
+      "layer:apt", 
+      "static", 
+      "6dad3fc2032bc4367b3669def96a45609222a745fd28763992725e377d7c974c"
+    ], 
+    "lib/charms/layer/basic.py": [
+      "layer:basic", 
+      "static", 
+      "d09706ef3a224eb60d34366a2867c382791aa30157ab5b77eda37f29731df2e2"
+    ], 
+    "wheelhouse/netaddr-0.7.19.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "38aeec7cdd035081d3a4c306394b19d677623bf76fa0913f6695127c7753aefd"
+    ], 
+    "wheelhouse/pip-8.1.2.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "4d24b03ffa67638a3fa931c09fd9e0273ffa904e95ebebe7d4b1a54c93d7b732"
+    ], 
+    "hooks/update-status": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "lib/charms/__init__.py": [
+      "layer:apt", 
+      "static", 
+      "4032724b98ed267185b12b8ec78dd9bcb0423ab1c89a6f0dad99397fd51159d9"
+    ], 
+    "README.md": [
+      "sojobo-monitoring-proxy", 
+      "static", 
+      "1afa9a844441f129f292691c09d6278b1688147d444fd0aef038f8c70025e157"
+    ], 
+    "files/dhparam.pem": [
+      "sojobo-monitoring-proxy", 
+      "static", 
+      "c9f385257d89255a07fd4dc41ca2d3266d61497f0420211314c0cb06d8365203"
+    ], 
+    "reactive/sojobo-monitoring-proxy.py": [
+      "sojobo-monitoring-proxy", 
+      "static", 
+      "5398181f7b5d4c31a6b18a181ca7123ee8a70cde26dc4dccece3c9076f660085"
+    ], 
+    "hooks/start": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "wheelhouse/MarkupSafe-1.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "a6be69091dac236ea9c6bc7d012beab42010fa914c459791d627dad4910eb665"
+    ], 
+    "wheelhouse/jujubigdata-6.4.4.tar.gz": [
+      "sojobo-monitoring-proxy", 
+      "dynamic", 
+      "b3c3650ee41354220e7cc71a033588cca64a5a9b504bffd2490a6da2dd162924"
+    ], 
+    "wheelhouse/charms.reactive-0.4.5.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "b2a475aff349a1c6532de0f9b4df5ee456b97a1e1755695afd8747dbc51bb710"
+    ], 
+    "hooks/application-relation-broken": [
+      "interface:juju-info", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "layer.yaml": [
+      "sojobo-monitoring-proxy", 
+      "dynamic", 
+      "1e998d63bb5ecfce0ea76065e5a0985b431bbd637c8accf740e6f3350309fb0e"
+    ], 
+    "hooks/config-changed": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "templates/proxy.conf": [
+      "sojobo-monitoring-proxy", 
+      "static", 
+      "12df5d55ac13511c19e6a63555c6b29f2c2566d10773c6d38b397d8655b57ac2"
+    ], 
+    ".build.manifest": [
+      "build", 
+      "dynamic", 
+      "unchecked"
+    ], 
+    "hooks/hook.template": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "wheelhouse/six-1.10.0.tar.gz": [
+      "sojobo-monitoring-proxy", 
+      "dynamic", 
+      "105f8d68616f8248e24bf0e9372ef04d3cc10104f1980f54d57b2ce73a5ad56a"
+    ], 
+    "lib/charms/apt.py": [
+      "layer:apt", 
+      "static", 
+      "f074d981409c3860547f8c45cde9c3ce4a80985a5ee94755981cd10117dc76e4"
+    ]
+  }
+}
