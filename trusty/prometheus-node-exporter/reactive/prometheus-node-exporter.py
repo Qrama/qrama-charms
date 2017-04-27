@@ -14,7 +14,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 # pylint: disable=c0111,c0301,c0325,w0406
-from os import mkdir
+from os import mkdir, path
 from subprocess import check_call
 import tarfile
 from charms.reactive import when, when_not, set_state
@@ -23,10 +23,13 @@ from charmhelpers.core.host import service_restart
 from charmhelpers.core.templating import render
 
 
+filesdir = '{}/files'.format(charm_dir())
+
+
 @when_not('node-exporter.installed')
 def install():
-    filesdir = '{}/files'.format(charm_dir())
-    mkdir(filesdir)
+    if not path.isdir(filesdir):
+        mkdir(filesdir)
     # tfile = tarfile.open(resource_get('node-exporter'), 'r')
     tarfiledir = '{}/node_exporter-0.14.0.linux-amd64.tar.gz'.format(filesdir)
     check_call(['wget',
@@ -34,7 +37,8 @@ def install():
                 '-O', tarfiledir])
     tfile = tarfile.open(tarfiledir)
     tfile.extractall(filesdir)
-    check_call(['ln', '-s', '{}/node_exporter-0.14.0.linux-amd64/node_exporter'.format(filesdir), '/usr/bin'])
+    if not path.islink('/usr/bin/node_exporter'):
+        check_call(['ln', '-s', '{}/node_exporter-0.14.0.linux-amd64/node_exporter'.format(filesdir), '/usr/bin'])
     render('node_exporter.conf', '/etc/init/node_exporter.conf', context={})
     render('node_exporter.service', '/etc/systemd/system/node_exporter.service', context={})
     service_restart('node_exporter')

@@ -130,7 +130,7 @@
     "reactive/prometheus-node-exporter.py": [
       "prometheus-node-exporter", 
       "static", 
-      "659b8f04e8bdfcb1aa0e0457394f6f84b073966c849d8a75ac27909560358dc0"
+      "2bf03d342c5699ae74950636fa32c81233ee767f2d2f8b3ca3738718ec890458"
     ], 
     ".gitignore": [
       "prometheus-node-exporter", 
