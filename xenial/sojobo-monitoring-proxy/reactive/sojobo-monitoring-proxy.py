@@ -82,7 +82,7 @@ def setup_nginx():
         check_call(['htpasswd', '-b', ht_dir, credentials[0], credentials[1]])
     render(source='proxy.conf',
            target=os.path.join(os.sep, 'etc', 'nginx', 'sites-enabled', 'default'),
-           context={'fqdn': unit_public_ip(), 'host': 'localhost', 'port': '9100'})
+           context={'fqdn': unit_public_ip(), 'host': 'localhost', 'port': '9090'})
     service_restart('nginx')
 
 
