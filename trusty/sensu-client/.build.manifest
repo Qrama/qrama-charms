@@ -69,7 +69,7 @@
     "config.yaml": [
       "sensu-client", 
       "dynamic", 
-      "b6107d5fed44228c11713d5ee53134d66c973cca7efda245ba12454ec18c7925"
+      "fc94c0f1995f82c8c1cdb3ec96ac82cc23c470e414d0278276e61c5c096e9f16"
     ], 
     "wheelhouse/PyYAML-3.12.tar.gz": [
       "layer:basic", 
