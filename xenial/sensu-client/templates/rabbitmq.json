@@ -1,0 +1,9 @@
+{
+  "rabbitmq": {
+    "host": "{{host}}",
+    "port": {{port}},
+    "vhost": "/sensu",
+    "user": "sensu",
+    "password": "{{password}}"
+  }
+}
