@@ -47,7 +47,7 @@
         -----END PGP PUBLIC KEY BLOCK-----
   "name":
     "type": "string"
-    "default": "itf2017-google/monitored-streaming/application/0"
+    "default": "controller/model/"
     "description": |
       The name of the client. MUST follow above naming scheme. Values must be changed on deployment to the actual names
   "rabbitmq":

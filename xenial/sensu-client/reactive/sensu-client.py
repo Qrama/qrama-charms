@@ -17,9 +17,9 @@
 import os
 from subprocess import call
 from charmhelpers.core.templating import render
-from charmhelpers.core.hookenv import status_set, config, open_port, application_version_set, unit_public_ip, local_unit
+from charmhelpers.core.hookenv import status_set, config, open_port, application_version_set, unit_public_ip
 from charmhelpers.core.host import service_restart
-from charms.reactive import when, when_not, when_any, set_state
+from charms.reactive import when, when_not, set_state
 
 
 CONFIG_DIR = '/etc/sensu/conf.d'
@@ -34,8 +34,10 @@ def setup_sensu():
     if not os.path.isdir('/etc/sensu/ssl'):
         os.mkdir('/etc/sensu/ssl')
         #todo create ssl files from config
+    application = os.environ['JUJU_REMOTE_UNIT']
     render('rabbitmq.json', '{}/rabbitmq.json'.format(CONFIG_DIR), context=rabbitmq)
-    client = {'name': config()['name'], 'public_ip': unit_public_ip(), 'subscriptions': '[\"monitoring\"]'}
+    client = {'name': '{}/{}'.format(config()['name'], application),
+              'public_ip': unit_public_ip(), 'subscriptions': '[\"monitoring\"]'}
     render('client.json', '{}/client.json'.format(CONFIG_DIR), context=client)
     render('transport.json', '{}/transport.json'.format(CONFIG_DIR), context={})
     open_port(3030)

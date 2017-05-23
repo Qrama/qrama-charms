@@ -8,5 +8,5 @@
   "info":
     "interface": "juju-info"
     "scope": "container"
-"series": ["xenial"]
+"series": ["xenial", "trusty"]
 "subordinate": !!bool "true"
