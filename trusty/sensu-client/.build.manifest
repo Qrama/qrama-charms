@@ -69,7 +69,7 @@
     "config.yaml": [
       "sensu-client", 
       "dynamic", 
-      "fc94c0f1995f82c8c1cdb3ec96ac82cc23c470e414d0278276e61c5c096e9f16"
+      "b928843ff396dafe9334ec6d7b68c0676d370a7549aadc1dd86253df6cfa08bc"
     ], 
     "wheelhouse/PyYAML-3.12.tar.gz": [
       "layer:basic", 
@@ -92,9 +92,9 @@
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
     "README.md": [
-      "layer:apt", 
+      "sensu-client", 
       "static", 
-      "f15fa692e2631d913c49fdb90f873da33efa1bcc167fbcea22fb3b48ff7ff627"
+      "6a98f78717b1d50d8625d7cab7e593dfa575ef3aed775ae669681d5f61bad1dc"
     ], 
     "lib/charms/layer/__init__.py": [
       "layer:basic", 
@@ -104,7 +104,7 @@
     "reactive/sensu-client.py": [
       "sensu-client", 
       "static", 
-      "cc8da1d0a5f053c640c8327d07c980f3e56591b83dcf869e0396169df09b9ce2"
+      "5f3c5cbcf0c3afb28a1966681d4ec728e02464c3fe0157a2b0a33928cc02397e"
     ], 
     "lib/charms/layer/execd.py": [
       "layer:basic", 
@@ -179,7 +179,7 @@
     "templates/client.json": [
       "sensu-client", 
       "static", 
-      "9f270fa07656b2c719620e874d4a84e5099e27c28b297ca451b780a3e746728d"
+      "c59dc529d1876979cbac5e6a1384960b99e7ebffd741bf27dc57f4a0598197df"
     ], 
     "templates/transport.json": [
       "sensu-client", 

@@ -15,7 +15,7 @@
       \ for adding Personal Package Archives, or a distribution component to enable.\n"
     "type": "string"
     "default": |
-      - deb https://sensu.global.ssl.fastly.net/apt trusty main
+      - deb https://sensu.global.ssl.fastly.net/apt xenial main
   "install_keys":
     "description": "List of signing keys for install_sources package sources, per\
       \ charmhelpers standard format (a yaml list of strings encoded as a string).\
@@ -47,7 +47,7 @@
         -----END PGP PUBLIC KEY BLOCK-----
   "name":
     "type": "string"
-    "default": "itf2017-google/monitored-streaming/application/0"
+    "default": "controller/model/"
     "description": |
       The name of the client. MUST follow above naming scheme. Values must be changed on deployment to the actual names
   "rabbitmq":
