@@ -55,7 +55,7 @@
     "templates/rabbitmq.json": [
       "sensu-client", 
       "static", 
-      "bcfb2fa943ce454204241eaf4a8c727e87f9d84e13abfb902eda955835de76ec"
+      "8aa20180e9df139ed3a1c42326202c8ef9f13a3d7e90bcc62d2922f94e689d6c"
     ], 
     "hooks/relations/juju-info/README.md": [
       "interface:juju-info", 
@@ -245,7 +245,7 @@
     "reactive/sensu-client.py": [
       "sensu-client", 
       "static", 
-      "0e4f62d8ff5dadec6ce569f54013816cc45f15b0e79e089b4ff2da6e5a3d039e"
+      "426f0b08f6cf46bc0ce34f06442742bc1a1c0c25438a21eef0c1b6f20004ae9e"
     ], 
     "hooks/hook.template": [
       "layer:basic", 

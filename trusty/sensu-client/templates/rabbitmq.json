@@ -4,6 +4,12 @@
     "port": {{port}},
     "vhost": "/sensu",
     "user": "sensu",
-    "password": "{{password}}"
+    "password": "{{password}}",
+    "heartbeat": 30,
+    "prefetch": 50,
+    "ssl": {
+      "cert_chain_file": "{{ssl_cert}}",
+      "private_key_file": "{{ssl_key}}"
+    }
   }
 }

@@ -25,6 +25,7 @@ from charms.reactive import when, when_not, set_state
 CONFIG_DIR = '/etc/sensu/conf.d'
 SSL_DIR = '/etc/sensu/ssl'
 
+
 @when('apt.installed.sensu', 'info.available')
 @when_not('sensu.monitoring')
 def setup_sensu(info):
@@ -36,6 +37,7 @@ def setup_sensu(info):
         ssl_cert.write(config()['ssl_cert'])
     rabbitmq = {'host': config()['rabbitmq'].split(':')[0],
                 'port': config()['rabbitmq'].split(':')[1],
+                'password': config()['password'],
                 'ssl_cert': '{}/ssl_cert.pem'.format(SSL_DIR),
                 'ssl_key': '{}/ssl_key.pem'.format(SSL_DIR)}
     application = os.environ['JUJU_REMOTE_UNIT']
