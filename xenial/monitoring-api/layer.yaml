@@ -7,5 +7,6 @@
 "includes":
 - "layer:basic"
 - "interface:sojobo"
+- "interface:http"
 "repo": "git@github.com:Qrama/monitoring-api.git"
 "is": "monitoring-api"

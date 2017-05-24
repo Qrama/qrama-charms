@@ -1,0 +1,276 @@
+<div ng-controller="ModelMonitoringController" fullscreen="fullscreen">
+  <div class="outer">
+    <div class="code-bar">
+      <ul class="actions list-inline">
+        <li dropdown="" ng-show="frame.type == &quot;http&quot;" class="dropdown"><a dropdown-toggle="" class="button sl sl-download-drive dropdown-toggle"></a>
+          <ul class="dropdown-menu">
+            <li><a exportable ng-click="exportJSON(frame.response)">Download JSON</a></li>
+          </ul>
+        </li>
+        <li dropdown="" ng-show="frame.type == &quot;shell&quot;" class="dropdown"><a dropdown-toggle="" class="button sl sl-download-drive dropdown-toggle"></a>
+          <ul class="dropdown-menu">
+            <li><a exportable ng-click="exportText(frame.response)">Download TXT</a></li>
+          </ul>
+        </li>
+        <li dropdown="" ng-show="frame.type == &quot;cypher&quot;" class="dropdown"><a dropdown-toggle="" tooltip-placement="bottom" tooltip="Export to file" class="button sl sl-download-drive dropdown-toggle"></a>
+          <ul class="dropdown-menu">
+            <li><a exportable ng-click="exportGraphSVG()" ng-show="isActive(&quot;graph&quot;)">Export SVG</a><a exportable ng-click="exportPlanSVG()" ng-show="isActive(&quot;plan&quot;)">Export SVG</a><a exportable ng-click="exportGraphPNG()" ng-show="isActive(&quot;graph&quot;)">Export PNG</a><a exportable ng-click="exportPlanPNG()" ng-show="isActive(&quot;plan&quot;)">Export PNG</a><a exportable ng-click="exportJSON(frame.response.raw.summary ? frame.response.raw : frame.response.table._response)">Export JSON</a><a ng-hide="frame.response.protocol=='bolt'" exportable ng-click="exportCSV(frame.response.table)">Export CSV</a></li>
+          </ul>
+        </li>
+        <li><a ng-click="pin(frame)" ng-class="{pinned: pinned}" tooltip-placement="bottom" tooltip="Pin at top" class="button sl sl-pin"></a></li>
+        <li><a ng-click="toggleFullscreen(true)" tooltip-placement="bottom" tooltip="Fullscreen" ng-show="frame.fullscreenable" class="button sl sl-scale-spread"></a></li>
+        <li><a ng-click="frames.close(frame)" tooltip-placement="bottom" tooltip="Cancel and close" class="button sl sl-delete"></a></li>
+      </ul>
+      <div class="status"><span ng-if="frame.type == &quot;cypher&quot;" class="prompt code">$</span><span click-to-code="frame.input" class="code mono">{{frame.input | uncomment}}</span></div><a ng-click="toggleFullscreen(false)" tooltip="Close Fullscreen" tooltip-placement="bottom" class="close-fullscreen sl sl-scale-reduce"></a>
+    </div>
+    <div class="left-frame-toggle">
+      <div ng-if="availableModes.length &gt; 0" class="left-toggle-menu toggle">
+        <div class="btn-group toggle-buttons">
+          <div ng-show="isAvailable('waiting')" class="button-holder">
+            <button ng-class="{active: isActive(&quot;waiting&quot;)}" ng-click="setActive(&quot;waiting&quot;)" class="btn"><i class="fa fa-hourglass"></i><span class="mini-menu-item-text">Waiting</span></button><br>
+          </div>
+          <div ng-show="isAvailable('install')" class="button-holder">
+            <button ng-class="{active: isActive(&quot;install&quot;)}" ng-click="setActive(&quot;install&quot;)" class="btn"><i class="fa fa-bar-chart"></i><span class="mini-menu-item-text">
+                 
+                Add<br>Monitoring</span></button><br>
+          </div>
+          <div ng-show="isAvailable('up')" class="button-holder">
+            <button ng-class="{active: isActive(&quot;up&quot;)}" ng-click="setActive(&quot;up&quot;)" class="btn"><i class="fa fa-info"></i><span class="mini-menu-item-text">state</span></button><br>
+          </div>
+          <div ng-show="isAvailable('cpu')" class="button-holder">
+            <button ng-class="{active: isActive(&quot;cpu&quot;)}" ng-click="setActive(&quot;cpu&quot;)" class="btn"><i class="fa fa-dashboard"></i><span class="mini-menu-item-text">CPU</span></button><br>
+          </div>
+          <div ng-show="isAvailable('mem')" class="button-holder">
+            <button ng-class="{active: isActive(&quot;mem&quot;)}" ng-click="setActive(&quot;mem&quot;)" class="btn"><i class="fa fa-ticket"></i><span class="mini-menu-item-text">Memory</span></button><br>
+          </div>
+          <div ng-show="isAvailable('fs')" class="button-holder">
+            <button ng-class="{active: isActive(&quot;fs&quot;)}" ng-click="setActive(&quot;fs&quot;)" class="btn"><i class="fa fa-tasks"></i><span class="mini-menu-item-text">
+                 
+                File<br>System</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div ng-class="{&quot;no-left-menu&quot;: availableModes.length &lt; 1}" class="right-inner-frame no-indicator">
+      <div class="inner">
+        <div ng-class="{error: frame.hasErrors}" class="view-result">
+          <div ng-show="isActive(&quot;waiting&quot;) &amp;&amp; !frame.isTerminating" class="view-result-raw result">
+            <div class="raw-holder">
+              <article class="help no-data has-status-bar">
+                <p class="lead">
+                  .fa.fa-spinner.fa-spin.fa-2x 
+                  We are loading your monitoring info.
+                </p><br><br>
+              </article>
+            </div>
+            <div ng-show="frame.hasErrors" class="status-bar error">
+              <div class="status">
+                <div class="fa fa-exclamation-triangle icon-warning-sign">&nbsp;</div>{{frame.errorText}}
+              </div>
+            </div>
+            <div ng-show="!frame.hasErrors" class="status-bar">
+              <div class="status"><span ng-show="frame.hasErrors">Execution error</span>
+                <p ng-hide="frame.hasErrors"><span>{{rawStatistics(frame)}}</span></p>
+              </div>
+            </div>
+          </div>
+          <div ng-show="isActive(&quot;install&quot;) &amp;&amp; !frame.isTerminating" class="view-result-raw result">
+            <div class="raw-holder">
+              <article class="help no-data has-status-bar">
+                <h3>This application is not yet being monitored. </h3>
+                <p class="lead">Would you like to add monitoring for this application?<br>This can take a up to few minutes.</p>
+                <button id="add_monitoring" ng-hide="status == 'monitoring-add'" ng-click="addMonitoring()" style="margin: 0" class="btn btn-default">Add Monitoring</button>
+                <div ng-show="status == 'monitoring-add'" class="fa fa-spinner fa-spin fa-2x"></div><br><br>
+              </article>
+            </div>
+            <div ng-show="frame.hasErrors" class="status-bar error">
+              <div class="status">
+                <div class="fa fa-exclamation-triangle icon-warning-sign">&nbsp;</div>{{frame.errorText}}
+              </div>
+            </div>
+            <div ng-show="!frame.hasErrors" class="status-bar">
+              <div class="status"><span ng-show="frame.hasErrors">Execution error</span>
+                <p ng-hide="frame.hasErrors"><span>{{rawStatistics(frame)}}</span></p>
+              </div>
+            </div>
+          </div>
+          <div ng-show="isActive(&quot;up&quot;) &amp;&amp; !frame.isTerminating" class="view-result-raw result">
+            <div class="raw-holder">
+              <article ng-hide="upData" class="help no-data has-status-bar">
+                <h3>The monitoring information is being retrieved.</h3>
+                <p class="lead">Please wait a little longer.</p><br><br>
+              </article>
+              <article ng-show="upData" class="help no-data has-status-bar">
+                <h3>The state of your application's units</h3>
+                <p class="lead">Check whether your units are up or down.</p><br><br>
+                <div ng-repeat="(name, value) in upData" class="row">
+                  <div class="col-md-3">
+                    <div ng-if="value" class="panel panel-success">
+                      <div class="panel-heading">
+                        <div class="row">
+                          <div class="col-xs-3"><i class="fa fa-arrow-up fa-5x"></i></div>
+                          <div class="col-xs-9 text-right">
+                            <div class="h2">up</div>
+                            <div>{{name}}</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div ng-if="!value" class="panel panel-danger">
+                      <div class="panel-heading">
+                        <div class="row">
+                          <div class="col-xs-3"><i class="fa fa-arrow-down fa-5x"></i></div>
+                          <div class="col-xs-9 text-right">
+                            <div class="h2">down</div>
+                            <div>{{name}}</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div><br><br>
+              </article>
+            </div>
+            <div ng-show="frame.hasErrors" class="status-bar error">
+              <div class="status">
+                <div class="fa fa-exclamation-triangle icon-warning-sign">&nbsp;</div>{{frame.errorText}}
+              </div>
+            </div>
+            <div ng-show="!frame.hasErrors" class="status-bar">
+              <div class="status"><span ng-show="frame.hasErrors">Execution error</span>
+                <p ng-hide="frame.hasErrors"><span>{{rawStatistics(frame)}}</span></p>
+              </div>
+            </div>
+          </div>
+          <div ng-show="isActive(&quot;cpu&quot;) &amp;&amp; !frame.isTerminating" class="view-result-raw result">
+            <div class="raw-holder">
+              <article ng-hide="cpuData" class="help no-data has-status-bar">
+                <h3>The monitoring information is being retrieved.</h3>
+                <p class="lead">Please wait a little longer.</p><br><br>
+              </article>
+              <article ng-show="cpuData" class="help no-data has-status-bar">
+                <h3>The CPU usage of your application's units</h3>
+                <p class="lead">Currently the number is the usage of all CPU cores combined.</p><br>
+                <div ng-repeat="(name, value) in cpuData" class="row">
+                  <div class="col-md-4">
+                    <div class="panel panel-info">
+                      <div class="panel-heading">
+                        <div class="row">
+                          <div class="col-xs-3"><i class="fa fa-dashboard fa-5x"></i></div>
+                          <div class="col-xs-9 text-right"><b class="h3">
+                               
+                              {{value.cpu[0]}} %<br><i>{{value.nr}} CPU</i></b>
+                            <div>{{name}}</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div><br><br>
+              </article>
+            </div>
+            <div ng-show="frame.hasErrors" class="status-bar error">
+              <div class="status">
+                <div class="fa fa-exclamation-triangle icon-warning-sign">&nbsp;</div>{{frame.errorText}}
+              </div>
+            </div>
+            <div ng-show="!frame.hasErrors" class="status-bar">
+              <div class="status"><span ng-show="frame.hasErrors">Execution error</span>
+                <p ng-hide="frame.hasErrors"><span>{{rawStatistics(frame)}}</span></p>
+              </div>
+            </div>
+          </div>
+          <div ng-show="isActive(&quot;mem&quot;) &amp;&amp; !frame.isTerminating" class="view-result-raw result">
+            <div class="raw-holder">
+              <article ng-hide="memData" class="help no-data has-status-bar">
+                <h3>The monitoring information is being retrieved.</h3>
+                <p class="lead">Please wait a little longer.</p><br><br>
+              </article>
+              <article ng-show="memData" class="help no-data has-status-bar">
+                <h3>The Memory usage of your application's units</h3>
+                <p class="lead">Currently you see the used memory and total memory in MiB.</p><br>
+                <div ng-repeat="(name, value) in memData" class="row">
+                  <div class="col-md-6">
+                    <div ng-class="memState(value)" class="panel">
+                      <div class="panel-heading">
+                        <div class="row">
+                          <div class="col-xs-3"><i class="fa fa-ticket fa-5x"></i></div>
+                          <div class="col-xs-9 text-right"><b class="h3">{{value.used}} MiB / {{value.total}} MiB</b>
+                            <div>{{name}}</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div><br><br>
+              </article>
+            </div>
+            <div ng-show="frame.hasErrors" class="status-bar error">
+              <div class="status">
+                <div class="fa fa-exclamation-triangle icon-warning-sign">&nbsp;</div>{{frame.errorText}}
+              </div>
+            </div>
+            <div ng-show="!frame.hasErrors" class="status-bar">
+              <div class="status"><span ng-show="frame.hasErrors">Execution error</span>
+                <p ng-hide="frame.hasErrors"><span>{{rawStatistics(frame)}}</span></p>
+              </div>
+            </div>
+          </div>
+          <div ng-show="isActive(&quot;fs&quot;) &amp;&amp; !frame.isTerminating" class="view-result-raw result">
+            <div class="raw-holder">
+              <article ng-hide="data" class="help no-data has-status-bar">
+                <h3>The monitoring information is being retrieved.</h3>
+                <p class="lead">Please wait a little longer.</p><br><br>
+              </article>
+              <article ng-show="data" class="help no-data has-status-bar">
+                <h3>The free diskspace of your application's units</h3>
+                <p class="lead">Check whether your units still have free diskspace.</p><br>
+                <div ng-repeat="(name, value) in fsData" class="row">
+                  <div class="col-md-6">
+                    <div ng-class="fsState(value)" class="panel">
+                      <div class="panel-heading">
+                        <div class="row">
+                          <div class="col-xs-3"><i class="fa fa-tasks fa-5x"></i></div>
+                          <div ng-show="value.usage != null" class="col-xs-9 text-right"><b class="h3">usage under {{value.usage[0]}} %</b>
+                            <div>{{name}}</div>
+                          </div>
+                          <div ng-show="value.usage == null" class="col-xs-7 text-right"><b class="h3">usage too high</b>
+                            <div>{{name}}</div>
+                          </div>
+                          <div ng-show="value.usage == null" class="col-xs-2 text-right"><a tooltip="{{value.report}}" tooltip-placement="right" class="fa fa-question-circle"></a></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div><br><br>
+              </article>
+            </div>
+            <div ng-show="frame.hasErrors" class="status-bar error">
+              <div class="status">
+                <div class="fa fa-exclamation-triangle icon-warning-sign">&nbsp;</div>{{frame.errorText}}
+              </div>
+            </div>
+            <div ng-show="!frame.hasErrors" class="status-bar">
+              <div class="status"><span ng-show="frame.hasErrors">Execution error</span>
+                <p ng-hide="frame.hasErrors"><span>{{rawStatistics(frame)}}</span></p>
+              </div>
+            </div>
+          </div>
+          <footer ng-hide="status == 'error'" class="tight">
+            <div class="actions">
+              <div ng-click="toggleAutoRefresh()" class="toggle toggle-footer-margin"><a class="toggle-text">Auto-refresh</a>
+                <div class="switch">
+                  <label>
+                    <div ng-class="{right: autoRefresh}" class="switch-inner"><span class="right-text">ON</span>
+                      <div class="handle"></div><span class="left-text">OFF</span>
+                    </div>
+                  </label>
+                </div>
+              </div><a ng-click="refresh()" class="button fa fa-refresh"></a>
+            </div>
+          </footer>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

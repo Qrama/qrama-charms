@@ -1,0 +1,226 @@
+<div ng-controller="ControllerCreateController">
+  <div class="outer">
+    <div class="code-bar">
+      <ul class="actions list-inline">
+        <li dropdown="" ng-show="frame.type == &quot;http&quot;" class="dropdown"><a dropdown-toggle="" class="button sl sl-download-drive dropdown-toggle"></a>
+          <ul class="dropdown-menu">
+            <li><a exportable ng-click="exportJSON(frame.response)">Download JSON</a></li>
+          </ul>
+        </li>
+        <li dropdown="" ng-show="frame.type == &quot;shell&quot;" class="dropdown"><a dropdown-toggle="" class="button sl sl-download-drive dropdown-toggle"></a>
+          <ul class="dropdown-menu">
+            <li><a exportable ng-click="exportText(frame.response)">Download TXT</a></li>
+          </ul>
+        </li>
+        <li dropdown="" ng-show="frame.type == &quot;cypher&quot;" class="dropdown"><a dropdown-toggle="" tooltip-placement="bottom" tooltip="Export to file" class="button sl sl-download-drive dropdown-toggle"></a>
+          <ul class="dropdown-menu">
+            <li><a exportable ng-click="exportGraphSVG()" ng-show="isActive(&quot;graph&quot;)">Export SVG</a><a exportable ng-click="exportPlanSVG()" ng-show="isActive(&quot;plan&quot;)">Export SVG</a><a exportable ng-click="exportGraphPNG()" ng-show="isActive(&quot;graph&quot;)">Export PNG</a><a exportable ng-click="exportPlanPNG()" ng-show="isActive(&quot;plan&quot;)">Export PNG</a><a exportable ng-click="exportJSON(frame.response.raw.summary ? frame.response.raw : frame.response.table._response)">Export JSON</a><a ng-hide="frame.response.protocol=='bolt'" exportable ng-click="exportCSV(frame.response.table)">Export CSV</a></li>
+          </ul>
+        </li>
+        <li><a ng-click="pin(frame)" ng-class="{pinned: pinned}" tooltip-placement="bottom" tooltip="Pin at top" class="button sl sl-pin"></a></li>
+        <li><a ng-click="toggleFullscreen(true)" tooltip-placement="bottom" tooltip="Fullscreen" ng-show="frame.fullscreenable" class="button sl sl-scale-spread"></a></li>
+        <li><a ng-click="frames.close(frame)" tooltip-placement="bottom" tooltip="Cancel and close" class="button sl sl-delete"></a></li>
+      </ul>
+      <div class="status"><span ng-if="frame.type == &quot;cypher&quot;" class="prompt code">$</span><span click-to-code="frame.input" class="code mono">{{frame.input | uncomment}}</span></div><a ng-click="toggleFullscreen(false)" tooltip="Close Fullscreen" tooltip-placement="bottom" class="close-fullscreen sl sl-scale-reduce"></a>
+    </div>
+    <div class="left-frame-toggle">
+      <div ng-if="availableModes.length &gt; 0" class="left-toggle-menu toggle">
+        <div class="btn-group toggle-buttons">
+          <div ng-show="isAvailable('aws')" class="button-holder">
+            <button ng-class="{active: isActive(&quot;aws&quot;)}" ng-click="setActive(&quot;aws&quot;)" class="btn"><i><img ng-src="images/aws.svg"></i><span class="mini-menu-item-text">AWS</span></button><br>
+          </div>
+          <div ng-show="isAvailable('google')" class="button-holder">
+            <button ng-class="{active: isActive(&quot;google&quot;)}" ng-click="setActive(&quot;google&quot;)" class="btn"><i><img ng-src="images/google.svg"></i><span class="mini-menu-item-text">Google</span></button><br>
+          </div>
+          <div ng-show="isAvailable('creating')" class="button-holder">
+            <button ng-class="{active: isActive(&quot;creating&quot;)}" ng-click="setActive(&quot;creating&quot;)" class="btn"><i class="fa fa-spinner fa-spin fa-2x"></i><span class="mini-menu-item-text">Busy</span></button><br>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div ng-class="{&quot;no-left-menu&quot;: availableModes.length &lt; 1}" class="right-inner-frame no-indicator">
+      <div class="inner">
+        <div ng-class="{error: frame.hasErrors}" class="view-result">
+          <div ng-show="isActive(&quot;aws&quot;) &amp;&amp; !frame.isTerminating" class="view-result-raw result">
+            <div class="raw-holder">
+              <article ng-show="status == null" class="help no-data has-status-bar">
+                <h3>We are preparing the creation of your Environment</h3>
+                <p class="fa fa-spinner fa-spin fa-2x"></p><br><br>
+              </article>
+              <article ng-show="status == 'start' || status == 'creating.controller'" class="help no-data has-status-bar">
+                <div class="container-fluid">
+                  <div class="section row-fluid summary">
+                    <h3>Create a new Environment on Amazon</h3>
+                    <p class="lead">
+                      You have to set the name of the new Environment. You also 
+                      have to tell us in which Amazon region the Environment has to be 
+                      set up. Next to this, you also have to give the Access Key and
+                      Secret Key. Be aware that this account has sufficient permissions.
+                    </p><br><br>
+                  </div>
+                  <div class="section row-fluid summary">
+                    <div class="form">
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <p>Name of the new Environment</p>
+                          <input type="text" id="controller" on-enter="focus" on-enter-target-id="region" ng-model="controller" style="margin: 0" tabindex="1" class="form-control"><br>
+                        </div>
+                        <div class="col-sm-6">
+                          <p>The full Region name</p>
+                          <input type="text" id="region" on-enter="focus" on-enter-target-id="access_key" ng-model="region" style="margin: 0" tabindex="2" class="form-control"><br>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <p>Your AWS Access Key</p>
+                          <input type="text" id="access_key" on-enter="focus" on-enter-target-id="secret_key" ng-model="access_key" style="margin: 0" tabindex="3" class="form-control"><br>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <p>Your AWS Secret Key</p>
+                          <input type="text" id="secret_key" on-enter="focus" on-enter-target-id="region" ng-model="secret_key" style="margin: 0" tabindex="4" class="form-control"><br><br>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <button id="bootstrap_controller" ng-hide="status == 'creating.controller'" ng-click="createController('aws')" style="margin: 0" class="btn btn-default">Start</button>
+                          <div ng-show="status == 'creating.controller'" class="fa fa-spinner fa-spin fa-2x"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+        <div ng-class="{error: frame.detailedErrorText, loading: frame.isLoading}" ng-show="isActive(&quot;aws&quot;)" class="status-bar">
+          <div ng-show="frame.detailedErrorText" class="status">
+            <div class="fa fa-exclamation-triangle icon-warning-sign">&nbsp;</div>{{frame.detailedErrorText}}
+            <div ng-hide="frame.hasErrors">
+              <div ng-show="frame.response">
+                <div class="fa fa-ok"></div>Logged in as {{frame.response.name}} ({{frame.response.identities[0].provider}})
+              </div>
+            </div>
+          </div><span ng-show="frame.isLoading">
+            <div class="fa fa-spinner fa-spin"></div>Loading user info...</span><br>
+        </div>
+      </div>
+    </div>
+    <div ng-class="{&quot;no-left-menu&quot;: availableModes.length &lt; 1}" class="right-inner-frame no-indicator">
+      <div class="inner">
+        <div ng-class="{error: frame.hasErrors}" class="view-result">
+          <div ng-show="isActive(&quot;google&quot;) &amp;&amp; !frame.isTerminating" class="view-result-raw result">
+            <div class="raw-holder">
+              <article ng-show="status == null" class="help no-data has-status-bar">
+                <h3>We are preparing the creation of your Environment</h3>
+                <p class="fa fa-spinner fa-spin fa-2x"></p><br><br>
+              </article>
+              <article ng-show="status == 'start' || status == 'creating.controller'" class="help no-data has-status-bar">
+                <div class="container-fluid">
+                  <div class="section row-fluid summary">
+                    <h3>Create a new Environment on Google Cloud</h3>
+                    <p class="lead">
+                      You have to set the name of the new Environment. You also 
+                      have to tell us in which GCE region the Environment has to be 
+                      set up. Next to this, you also have to copy-paste the json you 
+                      received when creating the account for this Environment.<br><br>
+                    </p>
+                  </div>
+                  <div class="section row-fluid summary">
+                    <div class="form">
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <p>Name of the new Environment</p>
+                          <input type="text" id="controller" on-enter="focus" on-enter-target-id="region" ng-model="controller" style="margin: 0" tabindex="1" class="form-control"><br>
+                        </div>
+                        <div class="col-sm-6">
+                          <p>The full Region name</p>
+                          <input type="text" id="region" on-enter="focus" on-enter-target-id="access_key" ng-model="region" style="margin: 0" tabindex="2" class="form-control"><br>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <p>Your Google credentials.</p><small>Simply copy paste your JSON.</small>
+                          <textarea id="credentials" on-enter="focus" on-enter-target-id="bootstrap_controller" ng-model="credentials" style="margin: 0" tabindex="4" class="form-control"></textarea><br><br>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <button id="bootstrap_controller" ng-hide="status == 'creating.controller'" ng-click="createController('google')" style="margin: 0" class="btn btn-default">Start</button>
+                          <div ng-show="status == 'creating.controller'" class="fa fa-spinner fa-spin fa-2x"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+        <div ng-class="{error: frame.detailedErrorText, loading: frame.isLoading}" ng-show="isActive(&quot;google&quot;)" class="status-bar">
+          <div ng-show="frame.detailedErrorText" class="status">
+            <div class="fa fa-exclamation-triangle icon-warning-sign">&nbsp;</div>{{frame.detailedErrorText}}
+            <div ng-hide="frame.hasErrors">
+              <div ng-show="frame.response">
+                <div class="fa fa-ok"></div>Logged in as {{frame.response.name}} ({{frame.response.identities[0].provider}})
+              </div>
+            </div>
+          </div><span ng-show="frame.isLoading">
+            <div class="fa fa-spinner fa-spin"></div>Loading user info...</span><br>
+        </div>
+      </div>
+    </div>
+    <div ng-class="{&quot;no-left-menu&quot;: availableModes.length &lt; 1}" class="right-inner-frame no-indicator">
+      <div class="inner">
+        <div ng-class="{error: frame.hasErrors}" class="view-result">
+          <div ng-show="isActive(&quot;creating&quot;) &amp;&amp; !frame.isTerminating" class="view-result-raw result">
+            <div class="raw-holder">
+              <article ng-show="status == null" class="help no-data has-status-bar">
+                <h3>We are preparing the creation of your Environment</h3>
+                <p class="fa fa-spinner fa-spin fa-2x"></p><br><br>
+              </article>
+              <article ng-show="status == 'finished'" class="help no-data has-status-bar">
+                <p class="lead">
+                  The Environment <code>{{controller}}</code> is being created. 
+                  This might take a while. Sit back and relax.
+                </p>
+                <div class="section row-fluid summary">
+                  <h4>What's next?</h4>
+                  <p>Check the status of your deployment: <code ng-click="checkStatus()">:tengu model status {{newModel}}@{{controller}}</code>
+                    </p><p>
+                      <ul>
+                        <li>
+                           
+                          Here you can see the link to your model's Juju GUI. You can easily login using the same user credentials
+                          you used to create the model.
+                        </li>
+                        <li>
+                           
+                          You can also see a graph model of your deployed model and services. And inspect the status of the different
+                          services.
+                        </li>
+                      </ul>
+                    </p>
+                  
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+        <div ng-class="{error: frame.detailedErrorText, loading: frame.isLoading}" ng-show="isActive(&quot;creating&quot;)" class="status-bar">
+          <div ng-show="frame.detailedErrorText" class="status">
+            <div class="fa fa-exclamation-triangle icon-warning-sign">&nbsp;</div>{{frame.detailedErrorText}}
+            <div ng-hide="frame.hasErrors">
+              <div ng-show="frame.response">
+                <div class="fa fa-ok"></div>Logged in as {{frame.response.name}} ({{frame.response.identities[0].provider}})
+              </div>
+            </div>
+          </div><span ng-show="frame.isLoading">
+            <div class="fa fa-spinner fa-spin"></div>Loading user info...</span><br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

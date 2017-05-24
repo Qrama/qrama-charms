@@ -34,5 +34,5 @@ class MongoDBProvides(RelationBase):
 
     def configure(self, usr, pwd, host, port):
         for conv in self.conversations():
-            conv.set_remote(data={'uri': 'mongodb://{}:{}@{}:{}/{}'.format(usr, pwd, host, port, usr),
-                                  'usr': usr, 'pwd': pwd, 'host': host, 'port': port, 'db': usr})
+            conv.set_remote(data={'uri': 'mongodb://{}:{}@{}:{}'.format(usr, pwd, host, port),
+                                  'usr': usr, 'pwd': pwd, 'host': host, 'port': port})

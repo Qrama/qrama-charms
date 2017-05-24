@@ -1,0 +1,77 @@
+<article ng-controller="TenguCtrl" class="guide">
+  <div class="container-fluid">
+    <div class="section row-fluid summary">
+      <div class="summary col-sm-3">
+        <h3>Welcome to Tengu</h3>
+        <div class="box-max"><img src="images/tengu.png" class="img-responsive">
+          <p class="lead text-center">{{ tengu.version }} - {{ tengu.edition }}</p>
+        </div>
+      </div>
+      <div ng-hide="static_is_authenticated" class="details col-sm-9">
+        <p class="lead">
+          Access to Tengu's Sojobo requires you to sign in. If you do not 
+          have any credentials voor the Sojobo, you can register via <code exec-topic="signin">signin</code>. After this the journey can begin.
+        </p><br><br>
+      </div>
+      <div ng-show="static_is_authenticated" class="details col-sm-9">
+        <div class="teaser teaser-md-3">
+          <h3>Stream Processing</h3>
+          <p class="lead">Process continuous streams of data with Apache Storm.</p>
+          <div class="icon-holder"><img src="images/storm-icon.png" class="icon">
+            <ul class="topic-bullets">
+              <li>easy data-sink API</li>
+              <li>predefined Storm topology</li>
+              <li>data will flow into Neo4J</li>
+            </ul>
+            <div class="clearfix"></div>
+          </div>
+          <button tengu-bundle="streaming" class="btn btn-cta">Go with the flow</button>
+        </div>
+        <div class="teaser teaser-md-3">
+          <h3>Batch Processing</h3>
+          <p class="lead">Analyse large files with Apache Spark.</p>
+          <div class="icon-holder"><img src="images/spark-icon.png" class="icon">
+            <ul class="topic-bullets">
+              <li>get several Spark slaves</li>
+              <li>all spark libraries are ready to GO</li>
+              <li>start developing with the integrated Zeppelin</li>
+            </ul>
+            <div class="clearfix"></div>
+          </div>
+          <button tengu-bundle="microbatch" class="btn btn-cta">Flashing</button>
+        </div>
+      </div><!--
+      <div class="teaser teaser-3">
+        <h3>City of Things</h3>
+        <p class="lead">City of Things brings the Internet of Things to the city.</p>
+        <div class="icon-holder"><img src="images/cityot.png" class="icon"/>
+          <ul class="topic-bullets">
+            <li>currently in Proof-of-Concept phase</li>
+            <li>capturing sensor data from all over the place</li>
+            <li>sensor data is stored in Kafka and MongoDB</li>
+          </ul>
+          <div class="clearfix"></div>
+        </div>
+        <button tengu-bundle="cityot" class="btn btn-cta">Visit us</button>
+      </div>--><!--
+      <div class="teaser teaser-3">
+        <h3>Lambda Architecture</h3>
+        <p class="lead">More than a letter of the Greek alphabet.</p>
+        <div class="icon-holder"><img src="images/lambda.png" class="icon"/>
+          <ul class="topic-bullets">
+            <li>backed by Apache Storm and Spark</li>
+            <li>data is stored in HDFS and MongoDB</li>
+            <li>Tengu takes care of all synchronization</li>
+          </ul>
+          <div class="clearfix"></div>
+        </div>
+        <button play-topic="no_yet" class="btn btn-cta">Really real time</button>
+      </div>-->
+      <div ng-class="{error: frame.detailedErrorText, loading: frame.isLoading}" class="status-bar">
+        <div ng-show="frame.detailedErrorText" class="status">
+          <div class="fa fa-exclamation-triangle icon-warning-sign">&nbsp;</div>{{frame.detailedErrorText}}
+        </div>
+      </div>
+    </div>
+  </div>
+</article>

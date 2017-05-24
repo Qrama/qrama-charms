@@ -1,0 +1,16 @@
+"name": "sensu-base"
+"summary": "This Charm sets up the Sensu Server and Sensu API."
+"maintainer": "Mathijs Moerman <mathijs.moerman@qrama.io>"
+"description": ""
+"tags":
+- "monitoring"
+"requires":
+  "rabbitmq":
+    "interface": "rabbitmq"
+  "redis":
+    "interface": "redis"
+"provides":
+  "proxy":
+    "interface": "http"
+"series": ["xenial"]
+"subordinate": !!bool "false"

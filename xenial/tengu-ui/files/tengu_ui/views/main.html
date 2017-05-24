@@ -1,0 +1,275 @@
+<div id="leftbar" ng-controller="SidebarCtrl">
+  <div id="nav">
+    <ul class="nav bottom">
+      <li ng-class="{active: showingDrawer(&quot;profile&quot;) }" tooltip="Cloud Services" tooltip-placement="right" tooltip-enable="!showingDrawer(&quot;profile&quot;)" class="nav-user"><a ng-click="toggleDrawer(&quot;profile&quot;)" class="cloud"><!--
+          <div ng-style="{&quot;background-image&quot;: &quot;url(&quot;+currentUser.picture+&quot;)&quot;}" ng-if="currentUser.picture &amp;&amp; syncService.hasConnection" class="avatar">&nbsp;</div><i style="" ng-if="syncService.hasConnection" class="sl sl-cloud"></i><i style="" ng-if="!syncService.hasConnection" class="sl sl-cloud-delete error"></i>-->
+          <div ng-style="{&quot;background-image&quot;: &quot;url(&quot;+currentUser.picture+&quot;)&quot;}" ng-if="currentUser.picture" class="avatar">&nbsp;</div><i style="" ng-if="currentUser" class="sl sl-cloud"></i><i style="" ng-if="!currentUser" class="sl sl-cloud-delete error"></i></a></li>
+      <li ng-class="{active: showingDrawer(&quot;preferences&quot;) }" tooltip="Browser Settings" tooltip-placement="right" tooltip-enable="!showingDrawer(&quot;preferences&quot;)"><a ng-click="toggleDrawer(&quot;preferences&quot;)" class="preferences sl sl-setting-gear"></a></li>
+      <li ng-class="{active: showingDrawer(&quot;credits&quot;) }" tooltip="About Tengu" tooltip-placement="right" tooltip-enable="!showingDrawer(&quot;credits&quot;)">
+        <!--a.credits.nw.nw-neo4j-outline-32px(ng-click='toggleDrawer("credits")')--><a ng-click="toggleDrawer(&quot;credits&quot;)" class="credits s1 sl-chat-bubble"></a>
+      </li>
+    </ul>
+  </div>
+  <div id="drawer" ng-switch on="whichDrawer">
+    <!--div.pane.animate-drawer(ng-switch-when="database")-->
+    <!--  include drawer-tengu-->
+    <!--div.pane.animate-drawer(ng-switch-when="scripts")-->
+    <!--  include drawer-scripts-->
+    <div ng-switch-when="info" class="pane animate-drawer">
+      <div class="inner">
+        <h4>Documentation</h4>
+        <h5>Introduction</h5>
+        <ul>
+          <li><a play-topic="tengu">Try the predefined Tengu setups</a></li>
+        </ul>
+        <h5>Reference Library</h5>
+        <ul class="undecorated">
+          <li><a href="http://tengu.io/">Tengu Website</a></li><!--
+          <li><a href="{{ neo4j.version | neo4jDeveloperDoc }}/">Developer Manual</a></li>
+          <li><a href="{{ neo4j.version | neo4jOperationsDoc }}/">Operations Manual</a></li>
+          <li><a href="{{ neo4j.version | neo4jCypherRefcardDoc }}/">Cypher</a></li>
+          <li><a href="http://graphgist.neo4j.com/">GraphGists</a></li>-->
+        </ul>
+        <h5>Examples</h5>
+        <ul>
+          <li><a tengu-model="storm">Stream Processing</a></li>
+          <li><a tengu-model="spark">Batch Processing</a></li>
+        </ul><!--
+        <h5>Help</h5>
+        <ul>
+          <li><a help-topic="help">Help</a></li>
+          <li><a help-topic="cypher">Cypher syntax</a></li>
+          <li><a help-topic="commands">Available commands</a></li>
+          <li><a help-topic="keys">Keyboard shortcuts</a></li>
+        </ul>-->
+      </div>
+    </div>
+    <div ng-switch-when="profile" class="pane animate-drawer">
+      <div class="inner">
+        <h4 class="subtitled">
+          <div ng-if="!currentUser" class="sub">Current Tengu User</div>
+          <div ng-if="currentUser" class="sub">{{currentUser.name}}<small>Connected</small></div>
+        </h4>
+        <h5 ng-if="currentUser">Log out</h5>
+        <div ng-if="currentUser">
+          <p>
+            <button ng-click="CurrentUser.logout(); toggleDrawer('profile') " class="btn btn-popup btn-destructive">Sign out</button>
+          </p>
+        </div>
+        <h5 ng-if="!currentUser">Log In</h5>
+        <div ng-if="!currentUser">
+          <p>
+            <button ng-click="CurrentUser.login(); toggleDrawer('profile') " class="btn btn-popup btn-popup">Sign in</button>
+          </p>
+        </div>
+        <div ng-if="!syncService.hasConnection &amp;&amp; !currentUser" class="connection-error">
+          <p>&nbsp;</p>
+          <p>It is not possible to connect to the Sojobo right now.</p>
+        </div>
+      </div>
+    </div>
+    <div ng-switch-when="preferences" class="pane animate-drawer">
+      <div class="inner">
+        <h4>Browser Settings</h4>
+        <form ng-controller="SettingsCtrl"><!--
+          <div ng-show="showMessengerButton()">
+            <h5>Messaging</h5>
+            <div class="checkbox">
+              <label for="shouldReportUdc">
+                <input id="shouldReportUdc" type="checkbox" ng-model="settings.shouldReportUdc" ng-change="save()"/><span>&nbsp; Share non-sensitive data?</span>
+              </label>
+            </div>
+            <button ng-click="showMessenger()" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-envelope">&nbsp;Messenger</span></button>
+          </div>-->
+          <h5>User Interface</h5>
+          <div class="form-group">
+            <label>Theme</label>
+            <div class="radio">
+              <label>
+                <input type="radio" name="themeRadio" id="theme1" value="normal" ng-model="settings.theme" ng-change="save()" checked="checked"><span tooltip="Colorful default theme." tooltip-placement="right">Normal</span>
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" name="themeRadio" id="theme2" value="dark" ng-model="settings.theme" ng-change="save()"><span tooltip="Low contrast, great in dark surroundings." tooltip-placement="right">Dark</span>
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" name="themeRadio" id="theme3" value="outline" ng-model="settings.theme" ng-change="save()"><span tooltip="Higher contrast, great when presenting." tooltip-placement="right">Outline</span>
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="initCmd" tooltip="This command gets executed when connected." tooltip-placement="top">Initial Command
+              <input id="initCmd" type="string" ng-model="settings.initCmd" ng-change="save()" class="form-control input">
+            </label>
+          </div><!--
+          <h5>Preferences</h5>
+          <div class="checkbox">
+            <label for="shouldReportUdc">
+              <input id="shouldReportUdcPref" type="checkbox" ng-model="settings.shouldReportUdc" ng-change="save()"/><span>&nbsp; Help improve Neo4j?&nbsp;</span><a href="http://neo4j.com/legal/neo4j-user-experience/" class="sl sl-question-mark"></a>
+            </label>
+          </div>
+          <div class="checkbox">
+            <label for="experimentalFeatures">
+              <input id="experimentalFeatures" type="checkbox" ng-model="settings.experimentalFeatures" ng-change="save()"/><span tooltip="Upcoming features that are in beta." tooltip-placement="top">&nbsp; Enable experimental features?</span>
+            </label>
+          </div>
+          <div ng-show="neo4j.enterpriseEdition" class="checkbox">
+            <label for="retainConnectionCredentials">
+              <input id="retainConnectionCredentials" type="checkbox" ng-model="settings.retainConnectionCredentials" ng-change="save()"/><span tooltip="Remember connection credentials in browser." tooltip-placement="right">&nbsp; Retain login credentials</span>
+            </label>
+          </div>
+          <div class="checkbox">
+            <label for="showSampleScripts">
+              <input id="showSampleScripts" type="checkbox" ng-model="settings.showSampleScripts" ng-change="save()"/><span tooltip="Show sample scripts in favorites drawer." tooltip-placement="top">&nbsp; Show sample scripts</span>
+            </label>
+          </div>-->
+          <h5>Network Connection</h5><!--
+          <div class="checkbox">
+            <label for="useBolt">
+              <input id="useBolt" type="checkbox" ng-model="settings.useBolt" ng-change="save(); toggleBoltUsage()"/><span tooltip="Use the Bolt protocol for transport when available." tooltip-placement="top">&nbsp; Use Bolt protocol when available&nbsp;<a ng-click="openBoltHelp()" class="sl sl-question-mark"></a></span>
+            </label>
+          </div>
+          <div class="form-group">
+            <label for="boltHost" tooltip="Set host:port for server Bolt interface." tooltip-placement="top">Bolt host
+              <input id="initCmd" placeholder="{{defaultBoltHost}}:7687" type="string" ng-model="settings.boltHost" ng-change="save(); updateBoltConnection()" class="form-control input"/>
+            </label>
+          </div>-->
+          <div class="form-group">
+            <label for="sojoboUrl" tooltip="You walk up to the Sojobo to release the power of Tengu, please enter the Sojobo's full URL." tooltip-placement="top">Sojobo URL
+              <input id="sojoboUrl" type="string" ng-model="settings.endpoint.tengu" ng-change="save()" class="form-control input">
+            </label>
+          </div>
+          <div class="form-group">
+            <label for="sojoboApiKey" tooltip="The Sojobo is not accessible by everybody, please provide the api-key." tooltip-placement="top">Sojobo Api Key
+              <input id="sojoboApiKey" type="string" ng-model="settings.apiKey" ng-change="save()" class="form-control input">
+            </label>
+          </div>
+          <div class="form-group">
+            <label for="maxExecutionTime" tooltip="Query timeout in seconds." tooltip-placement="top">Max Execution Time
+              <input id="maxExecutionTime" type="number" min="1" ng-model="settings.maxExecutionTime" ng-change="save()" class="form-control input">
+            </label>
+          </div>
+          <div class="form-group">
+            <label for="heartbeat" tooltip="Check connection and update meta data with this interval (in seconds)" tooltip-placement="top">Heartbeat interval
+              <input id="heartbeatInterval" type="number" min="1" ng-model="settings.heartbeat" ng-change="save()" class="form-control input">
+            </label>
+          </div><!--
+          <h5>Result Frames</h5>
+          <div class="form-group">
+            <label for="maxFrames" tooltip="Max number of frames in stream. When reached, old frames gets retired." tooltip-placement="top">Max Frames
+              <input id="maxFrames" type="number" min="1" ng-model="settings.maxFrames" ng-change="save()" class="form-control input"/>
+            </label>
+          </div>
+          <div class="form-group">
+            <label for="maxHistory" tooltip="Max number of history entries. When reached, old entries gets retired." tooltip-placement="top">Max History
+              <input id="maxHistory" type="number" min="1" ng-model="settings.maxHistory" ng-change="save()" class="form-control input"/>
+            </label>
+          </div>
+          <div class="checkbox">
+            <label for="scrollToTop">
+              <input id="scrollToTop" type="checkbox" ng-model="settings.scrollToTop" ng-change="save()"/><span tooltip="Automatically scroll stream to top on new frames." tooltip-placement="right">&nbsp; Scroll To Top</span>
+            </label>
+          </div>
+          <h5>Graph Visualization</h5>
+          <div class="form-group">
+            <label for="initialNodeDisplay" tooltip="Limit number of nodes displayed on first load of the graph visualization." tooltip-placement="top">Initial Node Display
+              <input id="initialNodeDisplay" type="number" min="1" ng-model="settings.initialNodeDisplay" ng-change="save()" class="form-control input"/>
+            </label>
+          </div>
+          <div class="form-group">
+            <label for="maxNeighbours" tooltip="Limit exploratary queries to this limit." tooltip-placement="top">Max Neighbors
+              <input id="maxNeighbours" type="number" min="1" ng-model="settings.maxNeighbours" ng-change="save()" class="form-control input"/>
+            </label>
+          </div>
+          <div class="form-group">
+            <label for="maxRows" tooltip="Max number of rows to render in 'Rows' result view." tooltip-placement="top">Max Rows
+              <input id="maxRows" type="number" min="1" ng-model="settings.maxRows" ng-change="save()" class="form-control input"/>
+            </label>
+          </div>
+          <div class="form-group">
+            <label for="maxRawSize" tooltip="Limit rendering of raw output to this number of characters." tooltip-placement="top">Max Raw Size
+              <input id="maxRawSize" type="number" min="1" ng-model="settings.maxRawSize" ng-change="save()" class="form-control input"/>
+            </label>
+          </div>
+          <div class="form-group">
+            <label for="refreshInterval" tooltip="Refresh auto-refreshing frames on this interval (in seconds)" tooltip-placement="top">Refresh Interval
+              <input id="refreshInterval" type="number" min="1" ng-model="settings.refreshInterval" ng-change="save()" class="form-control input"/>
+            </label>
+          </div>-->
+        </form>
+      </div>
+    </div>
+    <div ng-switch-when="credits" class="pane animate-drawer">
+      <div class="inner">
+        <h4>About Tengu</h4>
+        <h5>Made by<a href="http://tengu.io/" class="no-icon"> Tengu.io</a></h5>
+        <h5>Adaptation of<a href="http://neotechnology.com/" class="no-icon"> Neo4j Community Browser</a></h5>
+        <p>Copyright &copy; 2016–<span>2017</span></p>
+        <h5>License</h5>
+        <p>Visit our <a href="http://tengu.io/" class="no-icon">website </a>for licensing details.
+          <!--a.no-icon(href='http://www.gnu.org/licenses/gpl.html') GPLv3-->
+          <!--|  or-->
+          <!--a.no-icon(href='http://www.gnu.org/licenses/agpl-3.0.html')  AGPL-->
+          <!--|  for Open Source,-->
+          <!--br-->
+          <!--| and-->
+          <!--a.no-icon(href='http://tengu.io/')  ???? -->
+          <!--|  for Commercial.-->
+        </p>
+        <h5>Participate</h5>
+        <ul>
+          <li>Ask questions at<a href="http://stackoverflow.com/questions/tagged/tengu" class="no-icon"> Stack Overflow</a></li>
+          <li>Contribute code on<a href="https://github.com/TenguPaaS" class="no-icon"> Github</a></li>
+        </ul>
+        <h5>Thanks</h5>
+        <p>
+           
+          Tengu wouldn't be possible without a fantastic community. 
+          Thanks for all the feedback, discussions and contributions.
+        </p>
+        <p>Also many thanks to <a href="http://www.iminds.be/" class="no-icon"> iMinds</a> and <a href="http://www.ugent.be/" class="no-icon"> Ghent University</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="main">
+  <div id="editor" ng-controller="EditorCtrl" ng-mousedown="focusEditor($event)" ng-class="{'file-loaded': settings.filemode &amp;&amp; editor.document.id, 'maximize-editor': editor.maximized}">
+    <div ng-if="settings.filemode &amp;&amp; editor.document.id" class="file-bar slide-down">
+      <div class="title">{{editor.document.content | autotitle}}
+      </div>
+      <ul class="file-actions list-inline pull-left">
+        <li ng-class="{'modified': editor.hasChanged()}"><a ng-click="star()" class="fa fa-star">Save</a></li>
+        <li><a ng-click="create()" class="fa fa-plus">New</a></li>
+        <li><a ng-click="clone()" class="fa fa-code-fork">Clone</a></li>
+        <li><a exportable ng-click="exportScript(editor.content)" tooltip="Export to file" class="fa fa-download">Download</a></li>
+      </ul>
+      <ul class="file-actions list-inline pull-right">
+        <li><a ng-click="editor.execScript(editor.content)" class="button fa fa-play"></a></li>
+        <li><a ng-click="editor.setContent(&quot;&quot;)" class="button fa fa-times"></a></li>
+      </ul>
+    </div>
+    <div class="view-editor"><span ng-class="{'one-line': editorOneLine, 'disable-highlighting': disableHighlighting}">
+        <div class="prompt code-style">$</div>
+        <ui-codemirror ui-codemirror-opts="{gutters:['cypher-hints'], theme: 'neo', mode: 'cypher', autofocus: true, lineNumbers: true, lineWrapping: true, onLoad: codemirrorLoaded}" ng-model="editor.content" placeholder="{{motd.tip}}"></ui-codemirror></span>
+      <ul ng-if="!(settings.filemode &amp;&amp; editor.document.id)" class="controls list-inline">
+        <li><a ng-class="{'sl-star-filled': !editor.hasChanged() &amp;&amp; hoveringStar, 'sl-pencil-circle': editor.hasChanged() &amp;&amp; !hoveringStar, 'sl-pencil-filled':editor.hasChanged() &amp;&amp; hoveringStar, active: editorHasContent, 'enabled': editor.document.id, 'changed': editor.hasChanged()}" ng-mouseenter="hoveringStar=true" ng-mouseleave="hoveringStar=false" ng-click="star()" tooltip="Favorite" tooltip-placement="left" class="circled favorites sl sl-star-circle"></a></li>
+        <li ng-if="!settings.filemode"><a ng-click="editor.setContent(&quot;&quot;)" ng-class="{active: editorHasContent, 'sl-delete-filled': hoveringDelete}" ng-mouseenter="hoveringDelete=true" ng-mouseleave="hoveringDelete=false" tooltip="Clear" tooltip-placement="left" class="circled delete sl sl-delete-circle"></a></li>
+        <li><a ng-click="editor.execScript(editor.content)" ng-mouseenter="hoveringPlay=true" ng-mouseleave="hoveringPlay=false" ng-class="{active: editorHasContent, 'sl-play-filled': hoveringPlay}" tooltip="Play" tooltip-placement="left" class="circled play sl sl-play"></a></li>
+      </ul>
+      <div ng-if="editor.showMessage" ng-class="editor.errorCode" class="message-bar error slide-down"><span ng-bind-html="editor.errorMessage">Type <code click-to-code="':help commands'">:help commands</code> for a list of available commands.</span>
+        <div class="actions"><a ng-click="editor.showMessage = null" class="fa fa-times-circle"></a></div>
+      </div>
+      <div ng-if="unauthorized" ng-class="editor.errorCode" class="message-bar info"><span>
+          Ow, it seems that you are not signed in. Most of Tengu's functionality will not be available. 
+          Please use <code click-to-code="':signin'">:signin</code> to sign in. The Sojobo is waiting for you.</span></div>
+      <div ng-if="offline" ng-class="editor.errorCode" class="message-bar error slide-down"><span>Cannot connect to the Tengu mountain. Please check your Network Connection <code help-topic="connection">connection</code>.</span></div>
+    </div>
+  </div>
+  <div frame-stream="frame-stream"></div>
+</div><!--
+<div id="diagnostics" ng-show="showVizDiagnostics">
+  <div>{{ visualizationStats.fps() }} frames/s; costs: {{ visualizationStats.top() }}</div>
+</div>-->

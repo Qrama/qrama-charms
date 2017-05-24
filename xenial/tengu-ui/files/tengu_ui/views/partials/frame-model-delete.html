@@ -1,0 +1,35 @@
+<article ng-controller="ModelDeleteController" class="help">
+  <div class="container-fluid">
+    <div ng-show="status == 'init'" class="section row-fluid summary">
+      <p class="lead">Preparing deleting a model.</p>
+      <p></p>
+    </div>
+    <div ng-show="status == 'confirm' || status == 'deleting'" class="section row-fluid summary">
+      <h3>
+         
+        Delete model <code>{{model}}</code>
+      </h3>
+      <p class="lead">Are you sure you want to delete the model?</p>
+      <div class="form">
+        <div class="row">
+          <div class="col-sm-5">
+            <button id="delete" ng-hide="status == 'deleting'" ng-click="deleteModel()" style="margin: 0" class="btn btn-default">Yes</button>
+            <div ng-show="status == 'deleting'" class="fa fa-spinner fa-spin fa-2x"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div ng-show="status == 'deleted'" class="section row-fluid summary">
+      <h3>Success!</h3>
+      <p class="lead">
+         
+        Model<code>{{model}}</code>was successfuly deleted.
+      </p>
+    </div>
+    <div ng-show="status == 'error'" class="section row-fluid summary">
+      <h3>Something went wrong :(</h3>
+      <p class="lead">While deleting model<code>{{model}}</code>there was an error.</p>
+      <p>{{errorMessage}}</p>
+    </div>
+  </div>
+</article>

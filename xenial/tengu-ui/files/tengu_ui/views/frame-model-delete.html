@@ -1,0 +1,71 @@
+<div>
+  <div class="outer">
+    <div class="code-bar">
+      <ul class="actions list-inline">
+        <li dropdown="" ng-show="frame.type == &quot;http&quot;" class="dropdown"><a dropdown-toggle="" class="button sl sl-download-drive dropdown-toggle"></a>
+          <ul class="dropdown-menu">
+            <li><a exportable ng-click="exportJSON(frame.response)">Download JSON</a></li>
+          </ul>
+        </li>
+        <li dropdown="" ng-show="frame.type == &quot;shell&quot;" class="dropdown"><a dropdown-toggle="" class="button sl sl-download-drive dropdown-toggle"></a>
+          <ul class="dropdown-menu">
+            <li><a exportable ng-click="exportText(frame.response)">Download TXT</a></li>
+          </ul>
+        </li>
+        <li dropdown="" ng-show="frame.type == &quot;cypher&quot;" class="dropdown"><a dropdown-toggle="" tooltip-placement="bottom" tooltip="Export to file" class="button sl sl-download-drive dropdown-toggle"></a>
+          <ul class="dropdown-menu">
+            <li><a exportable ng-click="exportGraphSVG()" ng-show="isActive(&quot;graph&quot;)">Export SVG</a><a exportable ng-click="exportPlanSVG()" ng-show="isActive(&quot;plan&quot;)">Export SVG</a><a exportable ng-click="exportGraphPNG()" ng-show="isActive(&quot;graph&quot;)">Export PNG</a><a exportable ng-click="exportPlanPNG()" ng-show="isActive(&quot;plan&quot;)">Export PNG</a><a exportable ng-click="exportJSON(frame.response.raw.summary ? frame.response.raw : frame.response.table._response)">Export JSON</a><a ng-hide="frame.response.protocol=='bolt'" exportable ng-click="exportCSV(frame.response.table)">Export CSV</a></li>
+          </ul>
+        </li>
+        <li><a ng-click="pin(frame)" ng-class="{pinned: pinned}" tooltip-placement="bottom" tooltip="Pin at top" class="button sl sl-pin"></a></li>
+        <li><a ng-click="toggleFullscreen(true)" tooltip-placement="bottom" tooltip="Fullscreen" ng-show="frame.fullscreenable" class="button sl sl-scale-spread"></a></li>
+        <li><a ng-click="frames.close(frame)" tooltip-placement="bottom" tooltip="Cancel and close" class="button sl sl-delete"></a></li>
+      </ul>
+      <div class="status"><span ng-if="frame.type == &quot;cypher&quot;" class="prompt code">$</span><span click-to-code="frame.input" class="code mono">{{frame.input | uncomment}}</span></div><a ng-click="toggleFullscreen(false)" tooltip="Close Fullscreen" tooltip-placement="bottom" class="close-fullscreen sl sl-scale-reduce"></a>
+    </div>
+    <div class="inner">
+      <div class="view-result">
+        <article ng-controller="ModelDeleteController" class="help">
+          <div class="container-fluid">
+            <div ng-show="status == 'init'" class="section row-fluid summary">
+              <p class="lead">Preparing deleting a model.</p>
+              <p></p>
+            </div>
+            <div ng-show="status == 'confirm' || status == 'deleting'" class="section row-fluid summary">
+              <h3>
+                 
+                Delete model <code>{{model}}</code>
+              </h3>
+              <p class="lead">Are you sure you want to delete the model?</p>
+              <div class="form">
+                <div class="row">
+                  <div class="col-sm-5">
+                    <button id="delete" ng-hide="status == 'deleting'" ng-click="deleteModel()" style="margin: 0" class="btn btn-default">Yes</button>
+                    <div ng-show="status == 'deleting'" class="fa fa-spinner fa-spin fa-2x"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div ng-show="status == 'deleted'" class="section row-fluid summary">
+              <h3>Success!</h3>
+              <p class="lead">
+                 
+                Model<code>{{model}}</code>was successfuly deleted.
+              </p>
+            </div>
+            <div ng-show="status == 'error'" class="section row-fluid summary">
+              <h3>Something went wrong :(</h3>
+              <p class="lead">While deleting model<code>{{model}}</code>there was an error.</p>
+              <p>{{errorMessage}}</p>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div ng-class="{error: frame.detailedErrorText, loading: frame.isLoading}" class="status-bar">
+        <div ng-show="frame.detailedErrorText" class="status">
+          <div class="fa fa-exclamation-triangle icon-warning-sign">&nbsp;</div>{{frame.detailedErrorText}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

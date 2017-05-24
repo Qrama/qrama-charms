@@ -1,0 +1,37 @@
+<article ng-controller="TenguCtrl" class="guide">
+  <div class="container-fluid">
+    <h3>Welcome to the Tengu IMEC demo</h3>
+    <div class="section row-fluid summary">
+      <div class="summary col-sm-3">
+        <div class="box-max"><br><img src="images/tengu.png" class="img-responsive"><img src="images/logo_imec.png" class="img-responsive"><br></div>
+      </div>
+      <div ng-hide="static_is_authenticated" class="details col-sm-9">
+        <p class="lead">
+          Access to Tengu's Sojobo requires your authentication credentials to be present.
+          Please connect to one of the Fed4FIRE Authority Services.
+        </p><br>
+        <button id="connect_button" ng-click="authenticate()" style="margin: 0" class="btn btn-default">Connect</button>
+      </div>
+      <div ng-show="static_is_authenticated" class="details col-sm-9">
+        <div class="teaser teaser-9">
+          <h3>Simple Sensor Analysis</h3>
+          <p class="lead">Process a continuous stream of sensor data with Apache Storm.</p>
+          <div class="icon-holder"><img src="images/sensors.png" class="icon">
+            <ul class="topic-bullets">
+              <li>easy data-sink API with LimeDS</li>
+              <li>apache kafka for data archiving</li>
+              <li>apache storm for data processing</li>
+            </ul>
+            <div class="clearfix"></div>
+          </div>
+          <button tengu-model="imec-demo" class="btn btn-cta">Start sensing</button>
+        </div>
+      </div>
+      <div ng-class="{error: frame.detailedErrorText, loading: frame.isLoading}" class="status-bar">
+        <div ng-show="frame.detailedErrorText" class="status">
+          <div class="fa fa-exclamation-triangle icon-warning-sign">&nbsp;</div>{{frame.detailedErrorText}}
+        </div>
+      </div>
+    </div>
+  </div>
+</article>

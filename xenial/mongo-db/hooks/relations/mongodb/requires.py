@@ -42,5 +42,4 @@ class MongoDBRequires(RelationBase):
                    'usr': conv.get_remote('usr'),
                    'pwd': conv.get_remote('pwd'),
                    'host': conv.get_remote('host'),
-                   'port': conv.get_remote('port'),
-                   'db': conv.get_remote('db')}
+                   'port': conv.get_remote('port')}

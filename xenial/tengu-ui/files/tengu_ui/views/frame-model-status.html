@@ -1,0 +1,179 @@
+<div ng-controller="ModelController" fullscreen="fullscreen">
+  <div class="outer">
+    <div class="code-bar">
+      <ul class="actions list-inline">
+        <li dropdown="" ng-show="frame.type == &quot;http&quot;" class="dropdown"><a dropdown-toggle="" class="button sl sl-download-drive dropdown-toggle"></a>
+          <ul class="dropdown-menu">
+            <li><a exportable ng-click="exportJSON(frame.response)">Download JSON</a></li>
+          </ul>
+        </li>
+        <li dropdown="" ng-show="frame.type == &quot;shell&quot;" class="dropdown"><a dropdown-toggle="" class="button sl sl-download-drive dropdown-toggle"></a>
+          <ul class="dropdown-menu">
+            <li><a exportable ng-click="exportText(frame.response)">Download TXT</a></li>
+          </ul>
+        </li>
+        <li dropdown="" ng-show="frame.type == &quot;cypher&quot;" class="dropdown"><a dropdown-toggle="" tooltip-placement="bottom" tooltip="Export to file" class="button sl sl-download-drive dropdown-toggle"></a>
+          <ul class="dropdown-menu">
+            <li><a exportable ng-click="exportGraphSVG()" ng-show="isActive(&quot;graph&quot;)">Export SVG</a><a exportable ng-click="exportPlanSVG()" ng-show="isActive(&quot;plan&quot;)">Export SVG</a><a exportable ng-click="exportGraphPNG()" ng-show="isActive(&quot;graph&quot;)">Export PNG</a><a exportable ng-click="exportPlanPNG()" ng-show="isActive(&quot;plan&quot;)">Export PNG</a><a exportable ng-click="exportJSON(frame.response.raw.summary ? frame.response.raw : frame.response.table._response)">Export JSON</a><a ng-hide="frame.response.protocol=='bolt'" exportable ng-click="exportCSV(frame.response.table)">Export CSV</a></li>
+          </ul>
+        </li>
+        <li><a ng-click="pin(frame)" ng-class="{pinned: pinned}" tooltip-placement="bottom" tooltip="Pin at top" class="button sl sl-pin"></a></li>
+        <li><a ng-click="toggleFullscreen(true)" tooltip-placement="bottom" tooltip="Fullscreen" ng-show="frame.fullscreenable" class="button sl sl-scale-spread"></a></li>
+        <li><a ng-click="frames.close(frame)" tooltip-placement="bottom" tooltip="Cancel and close" class="button sl sl-delete"></a></li>
+      </ul>
+      <div class="status"><span ng-if="frame.type == &quot;cypher&quot;" class="prompt code">$</span><span click-to-code="frame.input" class="code mono">{{frame.input | uncomment}}</span></div><a ng-click="toggleFullscreen(false)" tooltip="Close Fullscreen" tooltip-placement="bottom" class="close-fullscreen sl sl-scale-reduce"></a>
+    </div>
+    <div class="left-frame-toggle">
+      <div ng-if="availableModes.length &gt; 0" class="left-toggle-menu toggle">
+        <div class="btn-group toggle-buttons">
+          <div ng-show="isAvailable('model')" class="button-holder">
+            <button ng-class="{active: isActive(&quot;model&quot;)}" ng-click="setActive(&quot;model&quot;)" class="btn"><i class="fa fa-info"></i><span class="mini-menu-item-text">Model</span></button><br>
+          </div>
+          <div ng-show="isAvailable('graph')" class="button-holder">
+            <button ng-class="{active: isActive(&quot;graph&quot;)}" ng-click="setActive(&quot;graph&quot;)" class="btn"><i class="nf nf-logo"></i><span class="mini-menu-item-text">Graph</span></button><br>
+          </div>
+          <div ng-show="isAvailable('table')" class="button-holder">
+            <button ng-class="{active: isActive(&quot;table&quot;)}" ng-click="setActive(&quot;table&quot;)" class="btn"><i class="fa fa-table"></i><span class="mini-menu-item-text">Table</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div ng-class="{&quot;no-left-menu&quot;: availableModes.length &lt; 1}" class="right-inner-frame no-indicator">
+      <div class="inner">
+        <div ng-class="{error: frame.hasErrors}" class="view-result">
+          <div ng-show="isActive(&quot;model&quot;) &amp;&amp; !frame.isTerminating" class="view-result-raw result">
+            <div class="raw-holder">
+              <article ng-show="status == 'init'" class="help no-data has-status-bar">
+                <h3>Your Model's information is being retrieved.</h3>
+                <p class="lead">
+                  Please wait a little longer.
+                  You can use the Auto-refresh functionality or submit another retry manually.
+                </p><br><br>
+              </article>
+              <article ng-show="status == 'model-check'" class="help no-data has-status-bar">
+                <h3 ng-show="controller">The Model <code>{{modelName}} </code>deployed on <code>{{controller}} </code>is available.</h3>
+                <h3 ng-hide="controller">
+                   
+                  The Model <code>{{modelName}}</code>is available.
+                </h3>
+                <p class="lead">From the moment the model information is loaded, a graph representation of your model will be available.</p>
+                <p ng-show="modelUI" class="lead">
+                  You can also view the model using the Juju GUI: 
+                  <a target="_blank" href="{{modelUI}}">Juju GUI</a>
+                </p><br><br>
+              </article>
+            </div>
+            <div ng-show="frame.hasErrors" class="status-bar error">
+              <div class="status">
+                <div class="fa fa-exclamation-triangle icon-warning-sign">&nbsp;</div>{{frame.errorText}}
+              </div>
+            </div>
+            <div ng-show="!frame.hasErrors" class="status-bar">
+              <div class="status"><span ng-show="frame.hasErrors">Execution error</span>
+                <p ng-hide="frame.hasErrors"><span>{{rawStatistics(frame)}}</span></p>
+              </div>
+            </div>
+          </div>
+          <div ng-show="isActive(&quot;graph&quot; ) &amp;&amp; !frame.isTerminating" ng-controller="InspectorCtrl" class="view-result-graph result">
+            <article ng-show="!isAvailable(&quot;graph&quot;)" class="help no-data">
+              <p>No graph view available yet.</p>
+            </article>
+            <div ng-show="status == 'model-check'" ng-class="{'one-legend-row': hasLabels || hasTypes, 'two-legend-rows': hasLabels &amp;&amp; hasTypes}" class="graph-holder result">
+              <div ng-controller="LegendCtrl" ng-model="frame.results.graph" class="legend">
+                <div ng-if="labels[&quot;&quot;].count" ng-class="{contracted: labelsContracted}" class="legend-row">
+                  <div overflow-with-toggle="" ng-click="labelsContracted = !labelsContracted" class="row-toggle">
+                    <div ng-class="labelsContracted ? 'fa-caret-left' : 'fa-caret-down'" class="fa overflow-indicator"></div>
+                  </div>
+                  <ul class="list-unstyled list-labels">
+                    <li ng-repeat="(label, node) in labels" ng-class="{active: currentItem == node}">
+                      <div ng-click="onItemClick(node, 'label')" class="contents">
+                        <div ng-style="{&quot;background-color&quot;: node.style.props.color, &quot;color&quot;: node.style.props[&quot;text-color-internal&quot;]}" class="token token-label">{{label || '*'}}<span class="count">({{node.count}})</span></div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div ng-if="types[&quot;&quot;].count" ng-class="{contracted: typesContracted}" class="legend-row">
+                  <div overflow-with-toggle="" ng-click="typesContracted = !typesContracted" class="row-toggle">
+                    <div ng-class="typesContracted ? 'fa-caret-left' : 'fa-caret-down'" class="fa overflow-indicator"></div>
+                  </div>
+                  <ul class="list-unstyled list-relationships">
+                    <li ng-repeat="(type, rel) in types" ng-class="{active: currentItem == node}">
+                      <div ng-click="onItemClick(rel, 'relationshipType')" class="contents">
+                        <div ng-style="{&quot;background-color&quot;: rel.style.props.color, &quot;color&quot;: rel.style.props[&quot;text-color-internal&quot;]}" class="token token-relationship-type">{{type || '*'}}<span class="count">({{rel.count}})</span></div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div ng-controller="FrameNotificationCtrl" class="frame-notifications">
+                <div ng-repeat="notification in notifications | orderBy:'$$id':true" class="repeater">
+                  <div ng-class="{closing: notification.$$is_closing}" class="animation-layer">
+                    <div class="table-wrapper">
+                      <div ng-click="notification.fn()" class="frame-notification notif-{{notification.type}}">
+                        <p>{{notification.message}}</p>
+                        <div class="close-notification"><a ng-click="close(notification); $event.stopPropagation();" class="fa fa-times-circle"></a></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="graph-contents">
+                <svg neo-graph="neo-graph" graph-data="modelGraph" on-item-click="onItemClick($item, &quot;graphItem&quot;)" on-item-mouse-over="onItemHover($item, &quot;graphItem&quot;)" on-item-mouse-out="onItemHover()" on-node-drag-toggle="onNodeDragToggle($item)" on-canvas-clicked="onItemClick()" ng-controller="D3GraphCtrl" style="pointer-events:fill" class="graph"></svg>
+                <div ng-show="isFullScreen()" class="zoom-holder">
+                  <button class="zoom_in faded"><i class="sl sl-zoom-in"></i></button>
+                  <button class="zoom_out"><i class="sl sl-zoom-out"></i></button>
+                </div>
+              </div>
+            </div>
+            <div ng-show="true" class="status-bar">
+              <div class="status">
+                <div ng-if="Inspector.length &gt; 0" ng-class="{contracted: inspectorContracted}" class="inspector-footer">
+                  <div class="inspector-foot-row">
+                    <div update-ui="inspectorChanged" overflow-with-toggle="" ng-click="inspectorContracted = !inspectorContracted" class="row-toggle">
+                      <div ng-class="inspectorContracted ? 'fa-caret-left' : 'fa-caret-down'" class="fa overflow-indicator"></div>
+                    </div>
+                    <ul class="list-unstyled list-items">
+                      <li ng-repeat="row in Inspector.items" ng-include="row.tmpl" onload="item = row.data" class="inspector-footer-row"></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div ng-show="isActive(&quot;table&quot;) &amp;&amp; !frame.isTerminating" class="view-result-table result">
+            <div class="table-holder">
+              <article ng-hide="status == 'model-check'" class="help no-data has-status-bar">
+                <p>No status info yet.</p>
+              </article>
+              <tengu-status-table table-data="model" ng-show="status == 'model-check'"></tengu-status-table>
+            </div>
+            <div class="status-bar">
+              <div class="status"><span ng-show="frame.hasErrors">Execution error</span>
+                <p ng-hide="frame.hasErrors"><span>{{resultStatistics(frame)}}</span>
+                  <div ng-show="isActive(&quot;text&quot;)" class="frame-slider-wrapper"><span>Max column width: </span>
+                    <div class="frame-slider">
+                      <range-slider ng-range-min="slider.min" ng-range-max="slider.max" ng-model="ascii_col_width" class="text-table-slider"></range-slider>
+                    </div>
+                  </div>
+                </p>
+              </div>
+            </div>
+          </div>
+          <footer ng-hide="status == 'error'" class="tight">
+            <div class="actions">
+              <div ng-click="toggleAutoRefresh()" class="toggle toggle-footer-margin"><a class="toggle-text">Auto-refresh</a>
+                <div class="switch">
+                  <label>
+                    <div ng-class="{right: autoRefresh}" class="switch-inner"><span class="right-text">ON</span>
+                      <div class="handle"></div><span class="left-text">OFF</span>
+                    </div>
+                  </label>
+                </div>
+              </div><a ng-click="refresh()" class="button fa fa-refresh"></a>
+            </div>
+          </footer>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+<div ng-if="Inspector.length &gt; 0" ng-class="{contracted: inspectorContracted}" class="inspector-footer">
+  <div class="inspector-foot-row">
+    <div update-ui="inspectorChanged" overflow-with-toggle="" ng-click="inspectorContracted = !inspectorContracted" class="row-toggle">
+      <div ng-class="inspectorContracted ? 'fa-caret-left' : 'fa-caret-down'" class="fa overflow-indicator"></div>
+    </div>
+    <ul class="list-unstyled list-items">
+      <li ng-repeat="row in Inspector.items" ng-include="row.tmpl" onload="item = row.data" class="inspector-footer-row"></li>
+    </ul>
+  </div>
+</div>

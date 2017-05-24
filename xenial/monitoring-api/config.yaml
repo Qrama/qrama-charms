@@ -1,12 +1,21 @@
 "options":
-  "username":
+  "ssl_key":
     "type": "string"
-    "default": "sojobo"
+    "default": "abc"
     "description": |
-      The username used to get access to nginx. This username will be used by the
-      sojobo to get information out of elasticsearch.
-  "pass":
+      private unencrypted key in base64 PEM format (starts "-----BEGIN RSA PRIVATE KEY-----")
+  "ssl_cert":
     "type": "string"
-    "default": "mighty molten volunteers"
+    "default": "def"
     "description": |
-      Encrypted password used for basic auth configuration of nginx.
+      X.509 certificate in base64 PEM format (starts "-----BEGIN CERTIFICATE-----")
+  "rabbitmq":
+    "type": "string"
+    "default": "<ip>:<port>"
+    "description": |
+      URL and port on which the exposed RabbitMQ is available
+  "password":
+    "type": "string"
+    "default": ""
+    "description": |
+      Password for the sensu user for the /sensu vhost on RabbitMQ

@@ -1,0 +1,71 @@
+<article ng-controller="ModelCreateController" class="help">
+  <div class="container-fluid">
+    <div ng-show="status == null" class="section row-fluid summary">
+      <div class="summary col-sm-3">
+        <h3>We are preparing the creation of your model</h3>
+      </div>
+    </div>
+    <div ng-show="status == 'start' || status == 'creating.model'" class="section row-fluid summary">
+      <div class="summary col-sm-3">
+        <h3>Create a new empty model</h3>
+        <p class="lead">
+          You have to set the name of the new model.
+          To be able to log into your nodes, you have to provide an SSH key as well.
+        </p>
+      </div>
+      <div class="details col-sm-9">
+        <div class="form">
+          <div class="row">
+            <div class="col-sm-5">
+              <p>Name of the new Model</p>
+              <input type="text" id="model_name" on-enter="focus" on-enter-target-id="controller" ng-model="newModel" style="margin: 0" tabindex="1" class="form-control"><br>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-5">
+              <p>Name of the Environment</p>
+              <input type="text" id="controller" disabled="true" on-enter="focus" ng-model="controller" style="margin: 0" ng-show="controller &amp;&amp; !controllers" tabindex="2" class="form-control">
+              <select id="controller" on-enter="focus" ng-model="controller" style="margin: 0" ng-show="controllers" tabindex="2" class="form-control">
+                <option ng-repeat="ctrl in controllers | orderBy: ctrl.name" value="{{ctrl.name}}" style="background-image:url('images/{{ctrl.type}}.svg')">{{ctrl.name}} on [{{ctrl.type}}]</option>
+              </select><br><br>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-5">
+              <button id="deploy_bundle" ng-hide="status == 'creating.model'" ng-click="createModel()" style="margin: 0" class="btn btn-default">Start</button>
+              <div ng-show="status == 'creating.model'" class="fa fa-spinner fa-spin fa-2x"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div ng-show="status == 'created.model' || status == 'creating.bundle'" class="section row-fluid summary">
+      <p class="lead">Your model <code>{{newModel}}</code> is created. </p>
+      <p ng-show="status == 'creating.bundle'">
+        We are deploying the different applications of your bundle to your model.
+        This might take a while. Sit back and relax.
+        <div class="fa fa-spinner fa-spin fa-2x"></div>
+      </p>
+    </div>
+    <div ng-show="status == 'finished'" class="section row-fluid summary">
+      <p class="lead">All done!</p>
+      <h4>What's next?</h4>
+      <p>Check the status of your deployment: <code ng-click="checkStatus()">:tengu model status {{newModel}}@{{controller}}</code>
+        </p><p>
+          <ul>
+            <li>
+               
+              Here you can see the link to your model's Juju GUI. You can easily login using the same user credentials
+              you used to create the model.
+            </li>
+            <li>
+               
+              You can also see a graph model of your deployed model and services. And inspect the status of the different
+              services.
+            </li>
+          </ul>
+        </p>
+      
+    </div>
+  </div>
+</article>

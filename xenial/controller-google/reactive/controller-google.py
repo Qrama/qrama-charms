@@ -1,5 +1,5 @@
 # !/usr/bin/env python3
-# Copyright (C) 2016  Qrama
+# Copyright (C) 2017 Qrama
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as published by
@@ -17,24 +17,26 @@
 
 from os import remove
 from shutil import copyfile
-import requests
 
-from charms.reactive import when_not, hook, set_state
+from charms.reactive import when, when_not, set_state, remove_state
 from charmhelpers.core.hookenv import status_set, charm_dir
-from charmhelpers.core.host import service_restart
+from charmhelpers.core.host import service_restart, chownr
 
 
+@when('sojobo.available')
 @when_not('controller-google.installed')
-def install():
-    api_dir = requests.get('http://localhost:5000').json()['api_dir']
+def install(sojobo):
+    api_dir = list(sojobo.connection())[0]['api-dir']
     copyfile('{}/files/controller_google.py'.format(charm_dir()), '{}/controllers/controller_google.py'.format(api_dir))
-    service_restart('sojobo-api')
+    chownr(api_dir, 'sojobo', 'www-data', chowntopdir=True)
+    service_restart('nginx')
     status_set('active', 'data copied')
     set_state('controller-google.installed')
 
 
-@hook('stop')
-def remove_controller():
-    api_dir = requests.get('http://localhost:5000').json()['api_dir']
+@when('sojobo.removed', 'controller-google.installed')
+def remove_controller(sojobo):
+    api_dir = list(sojobo.connection())[0]['api-dir']
     remove('{}/controllers/controller_google.py'.format(api_dir))
-    service_restart('sojobo-api')
+    service_restart('nginx')
+    remove_state('controller-google.installed')

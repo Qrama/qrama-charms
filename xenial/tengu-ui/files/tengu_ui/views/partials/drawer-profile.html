@@ -1,0 +1,22 @@
+<div class="inner">
+  <h4 class="subtitled">
+    <div ng-if="!currentUser" class="sub">Current Tengu User</div>
+    <div ng-if="currentUser" class="sub">{{currentUser.name}}<small>Connected</small></div>
+  </h4>
+  <h5 ng-if="currentUser">Log out</h5>
+  <div ng-if="currentUser">
+    <p>
+      <button ng-click="CurrentUser.logout(); toggleDrawer('profile') " class="btn btn-popup btn-destructive">Sign out</button>
+    </p>
+  </div>
+  <h5 ng-if="!currentUser">Log In</h5>
+  <div ng-if="!currentUser">
+    <p>
+      <button ng-click="CurrentUser.login(); toggleDrawer('profile') " class="btn btn-popup btn-popup">Sign in</button>
+    </p>
+  </div>
+  <div ng-if="!syncService.hasConnection &amp;&amp; !currentUser" class="connection-error">
+    <p>&nbsp;</p>
+    <p>It is not possible to connect to the Sojobo right now.</p>
+  </div>
+</div>

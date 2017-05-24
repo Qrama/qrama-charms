@@ -1,0 +1,16 @@
+"name": "tengu-ui"
+"summary": "This Charm sets up a Tengu UI."
+"maintainer": "Mathijs Moerman <mathijs.moerman@qrama.io>"
+"description": ""
+"tags":
+- "big_data"
+"requires":
+  "sojobo":
+    "interface": "sojobo"
+"provides":
+  "website":
+    "interface": "http"
+"series":
+- "xenial"
+- "xenial"
+"subordinate": !!bool "false"

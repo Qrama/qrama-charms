@@ -1,0 +1,12 @@
+"options":
+  "basic":
+    "packages":
+    - "redis-server"
+    "use_venv": !!bool "false"
+    "include_system_packages": !!bool "false"
+  "redis": {}
+"includes":
+- "layer:basic"
+- "interface:redis"
+"repo": "https://github.com:jamesbeedy/juju-charm-redis"
+"is": "redis"

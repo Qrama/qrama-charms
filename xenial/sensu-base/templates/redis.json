@@ -1,0 +1,7 @@
+{
+  "redis": {
+    "host": "{{host}}",
+    "port": {{port}}{% if password is not none %},
+    "password": "{{password}}"{% endif %}
+  }
+}

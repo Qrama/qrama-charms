@@ -18,23 +18,30 @@ import os
 import shutil
 
 from charms.reactive import when, when_not, set_state, remove_state
-from charmhelpers.core.hookenv import status_set, charm_dir
+from charmhelpers.core.hookenv import status_set, charm_dir, config
 from charmhelpers.core.host import service_restart, chownr
-from charmhelpers.contrib.python.packages import pip_install
+
 
 @when('sojobo.available')
+@when_not('sensuapi.available')
+def waiting_for_api(sojobo):
+    status_set('blocked', 'Waiting for relation with Sensu-Base')
+
+
+@when('sojobo.available', 'sensuapi.available')
 @when_not('monitoring-api.installed')
-def install(sojobo):
+def install(sojobo, sensuapi):
     api_dir = list(sojobo.connection())[0]['api-dir']
     user = list(sojobo.connection())[0]['user']
     shutil.copyfile('{}/files/api_monitoring.py'.format(charm_dir()), '{}/api/api_monitoring.py'.format(api_dir))
     shutil.copyfile('{}/files/w_monitoring.py'.format(charm_dir()), '{}/api/w_monitoring.py'.format(api_dir))
-    os.mkdir('{}/monitoring'.format(api_dir))
-    ip_list_path = '{}/monitoring/elastic_ip.yaml'.format(api_dir)
-    bundle_path = '{}/monitoring/monitoring.yaml'.format(api_dir)
-    shutil.copyfile('{}/files/elastic_ip.yaml'.format(charm_dir()), ip_list_path)
-    shutil.copyfile('{}/files/monitoring.yaml'.format(charm_dir()), bundle_path)
-    pip_install('elasticsearch')
+    host = sensuapi.services()[0]['hosts'][0]
+    with open('{}/settings.py'.format(api_dir), 'a') as settings_file:
+        settings_file.write('\nSENSU_API = \'{}:{}\''.format(host['hostname'], host['port']))
+        settings_file.write('\nSENSU_RABBITMQ = \"\"\"{}\"\"\"'.format(config()['rabbitmq']))
+        settings_file.write('\nSENSU_SSL_KEY = \"\"\"{}\"\"\"'.format(config()['ssl_key']))
+        settings_file.write('\nSENSU_SSL_CERT = \"\"\"{}\"\"\"'.format(config()['ssl_cert']))
+        settings_file.write('\nSENSU_PASSWORD = \"\"\"{}\"\"\"'.format(config()['password']))
     chownr(api_dir, user, 'www-data', chowntopdir=True)
     service_restart('nginx')
     status_set('active', 'data copied')
@@ -47,7 +54,6 @@ def remove_controller(sojobo):
         api_dir = list(sojobo.connection())[0]['api-dir']
         os.remove('{}/api/api_monitoring.py'.format(api_dir))
         os.remove('{}/api/w_monitoring.py'.format(api_dir))
-        shutil.rmtree('{}/monitoring'.format(api_dir))
         service_restart('nginx')
     except FileNotFoundError:
         pass

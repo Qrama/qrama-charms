@@ -87,29 +87,4 @@ def restart():
 
 @when('mongodb.available')
 def configure_db(mongodb):
-    unit = os.environ.get('JUJU_REMOTE_UNIT')
-    if unit is not None:
-        from pymongo import MongoClient
-        client = MongoClient('mongodb://{}:{}@{}:{}'.format(config()['admin_usr'], config()['admin_pass'],
-                                                            unit_private_ip(), config()['port']))
-        name = unit.split('/')[0]
-        db = client[name]
-        users = db.command('usersInfo')
-        exists = False
-        for user in users['users']:
-            if user['user'] == name:
-                exists = True
-                break
-        if not exists:
-            pwd = str(binascii.b2a_hex(os.urandom(16)).decode('utf-8'))
-            db.add_user(name, pwd, roles=[{'role': 'dbOwner', 'db': name}])
-            mongodb.configure(name, pwd, unit_private_ip(), config()['port'])
-
-
-@when('mongodb.removed')
-def remove_user(mongodb):
-    from pymongo import MongoClient
-    client = MongoClient('mongodb://{}:{}@{}:{}'.format(config()['admin_usr'], config()['admin_pass'],
-                                                        unit_private_ip(), config()['port']))
-    db = client[list(mongodb.conversations())[-1]['db']]
-    db.remove_user(list(mongodb.conversations())[-1]['usr'])
+    mongodb.configure(config()['admin_usr'], config()['admin_pass'], unit_private_ip(), config()['port'])

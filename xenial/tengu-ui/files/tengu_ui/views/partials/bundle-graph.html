@@ -1,0 +1,18 @@
+<div ng-controller="BundleGraphCtrl" ng-show="status != 'init'" style="overflow: scroll" class="bundle graph">
+  <svg ng-attr-width="{{width}}" ng-attr-height="{{height}}" class="bundle">
+    <defs>
+      <marker id="end-arrow" viewBox="0 -5 10 10" refX="6" markerWidth="5" markerHeight="5" orient="auto">
+        <path d="M0,-5L10,0L0,5" fill="rgb(0, 140, 193)"></path>
+      </marker>
+    </defs>
+    <g stroke="rgb(0, 140, 193)">
+      <path ng-repeat="link in links" ng-attr-style="{{linkStyle(link)}}" ng-attr-stroke-width="{{link.logical?'5':'1'}}" ng-attr-d="{{linkM(link.source,link.target)}}" class="link"></path>
+    </g>
+    <g ng-repeat="node in nodes" ng-dblclick="clickNode(node)" drag-graph-node="{{node.index}}" ng-attr-transform="translate({{node.x}},{{node.y}})" class="node">
+      <circle ng-attr-r="{{node.r}}" fill="rgba(0, 140, 193, 0.37)" stroke="none">
+        <title>{{node.name}}</title>
+      </circle>
+      <g ng-bind-html="nodeDetails(node)"></g>
+    </g>
+  </svg>
+</div>

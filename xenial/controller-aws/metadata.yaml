@@ -5,8 +5,8 @@
   This subordenate charm copies the necessairy files to enable the use of aws-type clouds and restarts the api.
 "tags": ["misc"]
 "requires":
-  "sojobo-api":
-    "interface": "juju-info"
+  "sojobo":
+    "interface": "sojobo"
     "scope": "container"
 "series": ["xenial"]
 "subordinate": !!bool "true"

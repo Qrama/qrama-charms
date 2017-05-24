@@ -1,0 +1,11 @@
+<div id="nav">
+  <ul class="nav bottom">
+    <li ng-class="{active: showingDrawer(&quot;profile&quot;) }" tooltip="Cloud Services" tooltip-placement="right" tooltip-enable="!showingDrawer(&quot;profile&quot;)" class="nav-user"><a ng-click="toggleDrawer(&quot;profile&quot;)" class="cloud"><!--
+        <div ng-style="{&quot;background-image&quot;: &quot;url(&quot;+currentUser.picture+&quot;)&quot;}" ng-if="currentUser.picture &amp;&amp; syncService.hasConnection" class="avatar">&nbsp;</div><i style="" ng-if="syncService.hasConnection" class="sl sl-cloud"></i><i style="" ng-if="!syncService.hasConnection" class="sl sl-cloud-delete error"></i>-->
+        <div ng-style="{&quot;background-image&quot;: &quot;url(&quot;+currentUser.picture+&quot;)&quot;}" ng-if="currentUser.picture" class="avatar">&nbsp;</div><i style="" ng-if="currentUser" class="sl sl-cloud"></i><i style="" ng-if="!currentUser" class="sl sl-cloud-delete error"></i></a></li>
+    <li ng-class="{active: showingDrawer(&quot;preferences&quot;) }" tooltip="Browser Settings" tooltip-placement="right" tooltip-enable="!showingDrawer(&quot;preferences&quot;)"><a ng-click="toggleDrawer(&quot;preferences&quot;)" class="preferences sl sl-setting-gear"></a></li>
+    <li ng-class="{active: showingDrawer(&quot;credits&quot;) }" tooltip="About Tengu" tooltip-placement="right" tooltip-enable="!showingDrawer(&quot;credits&quot;)">
+      <!--a.credits.nw.nw-neo4j-outline-32px(ng-click='toggleDrawer("credits")')--><a ng-click="toggleDrawer(&quot;credits&quot;)" class="credits s1 sl-chat-bubble"></a>
+    </li>
+  </ul>
+</div>

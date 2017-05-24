@@ -1,0 +1,98 @@
+<div ng-controller="SojoboAuthCtrl">
+  <div class="outer">
+    <div class="code-bar">
+      <ul class="actions list-inline">
+        <li dropdown="" ng-show="frame.type == &quot;http&quot;" class="dropdown"><a dropdown-toggle="" class="button sl sl-download-drive dropdown-toggle"></a>
+          <ul class="dropdown-menu">
+            <li><a exportable ng-click="exportJSON(frame.response)">Download JSON</a></li>
+          </ul>
+        </li>
+        <li dropdown="" ng-show="frame.type == &quot;shell&quot;" class="dropdown"><a dropdown-toggle="" class="button sl sl-download-drive dropdown-toggle"></a>
+          <ul class="dropdown-menu">
+            <li><a exportable ng-click="exportText(frame.response)">Download TXT</a></li>
+          </ul>
+        </li>
+        <li dropdown="" ng-show="frame.type == &quot;cypher&quot;" class="dropdown"><a dropdown-toggle="" tooltip-placement="bottom" tooltip="Export to file" class="button sl sl-download-drive dropdown-toggle"></a>
+          <ul class="dropdown-menu">
+            <li><a exportable ng-click="exportGraphSVG()" ng-show="isActive(&quot;graph&quot;)">Export SVG</a><a exportable ng-click="exportPlanSVG()" ng-show="isActive(&quot;plan&quot;)">Export SVG</a><a exportable ng-click="exportGraphPNG()" ng-show="isActive(&quot;graph&quot;)">Export PNG</a><a exportable ng-click="exportPlanPNG()" ng-show="isActive(&quot;plan&quot;)">Export PNG</a><a exportable ng-click="exportJSON(frame.response.raw.summary ? frame.response.raw : frame.response.table._response)">Export JSON</a><a ng-hide="frame.response.protocol=='bolt'" exportable ng-click="exportCSV(frame.response.table)">Export CSV</a></li>
+          </ul>
+        </li>
+        <li><a ng-click="pin(frame)" ng-class="{pinned: pinned}" tooltip-placement="bottom" tooltip="Pin at top" class="button sl sl-pin"></a></li>
+        <li><a ng-click="toggleFullscreen(true)" tooltip-placement="bottom" tooltip="Fullscreen" ng-show="frame.fullscreenable" class="button sl sl-scale-spread"></a></li>
+        <li><a ng-click="frames.close(frame)" tooltip-placement="bottom" tooltip="Cancel and close" class="button sl sl-delete"></a></li>
+      </ul>
+      <div class="status"><span ng-if="frame.type == &quot;cypher&quot;" class="prompt code">$</span><span click-to-code="frame.input" class="code mono">{{frame.input | uncomment}}</span></div><a ng-click="toggleFullscreen(false)" tooltip="Close Fullscreen" tooltip-placement="bottom" class="close-fullscreen sl sl-scale-reduce"></a>
+    </div>
+    <div class="inner">
+      <div class="view-result">
+        <article class="help">
+          <div class="container-fluid">
+            <div ng-show="!static_is_authenticated" class="section row-fluid summary">
+              <div class="summary col-sm-5">
+                <h3>Please Sign in with your Tengu Account</h3>
+                <p class="lead">
+                  Almost all calls to Tengu's Sojobo require authentication.
+                  If you do not have credentials for Tengu, simply fill in your
+                  username and password and we will register your user.
+                </p>
+              </div>
+              <div class="details col-sm-7">
+                <div class="form">
+                  <div class="row">
+                    <div class="col-sm-5">Username<br>
+                      <input type="text" on-enter="focus" on-enter-target-id="connect_password" focus-on="1" ng-model="username" style="margin: 0" class="form-control"><br>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-5">Password<br>
+                      <input id="connect_password" on-enter="click" on-enter-target-id="connect_button" type="password" ng-model="password" style="margin: 0" class="form-control"><br>
+                    </div>
+                  </div>
+                  <div class="row form-info">
+                    <div class="col-sm-5">Do not search for a default password. There is none ;)</div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-5"><br>
+                      <button id="connect_button" ng-click="signin()" style="margin: 0" class="btn btn-default">Signin</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div ng-show="static_is_authenticated &amp;&amp; static_user" class="section row-fluid summary">
+              <div class="summary col-sm-3">
+                <h3>Connected to the Tengu Sojobo</h3>
+                <p class="lead">Nice to meet you.</p>
+              </div>
+              <div class="details col-sm-9">
+                <p></p>
+                <ul class="big undecorated">
+                  <li><span class="center-tbl-left-col inline">You are connected as user&nbsp;</span><code>{{static_user}}   </code></li>
+                  <li>
+                    <h3>What is next?</h3>
+                    <div class="row">
+                      <p class="lead col-sm-12 topic-bullets"> <a play-topic="tengu">Get started </a>with predefined models.</p>
+                      <p class="lead col-sm-12 topic-bullets">Create an <a click-to-command=":tengu model create">empty model</a></p>
+                      <p class="lead col-sm-12 topic-bullets">Show your <a click-to-command=":tengu user-info">user info</a></p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div ng-class="{error: frame.detailedErrorText, loading: frame.isLoading}" class="status-bar">
+        <div ng-show="frame.detailedErrorText" class="status">
+          <div class="fa fa-exclamation-triangle icon-warning-sign">&nbsp;</div>{{frame.detailedErrorText}}
+          <div ng-hide="frame.hasErrors">
+            <div ng-show="frame.response">
+              <div class="fa fa-ok"></div>Logged in as {{frame.response.name}} ({{frame.response.identities[0].provider}})
+            </div>
+          </div>
+        </div><span ng-show="frame.isLoading">
+          <div class="fa fa-spinner fa-spin"></div>Initated login...</span>
+      </div>
+    </div>
+  </div>
+</div>

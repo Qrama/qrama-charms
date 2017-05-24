@@ -3,6 +3,7 @@
     "layer:basic", 
     "monitoring-api", 
     "interface:sojobo", 
+    "interface:http", 
     "build"
   ], 
   "signatures": {
@@ -19,7 +20,7 @@
     "hooks/leader-settings-changed": [
       "layer:basic", 
       "static", 
-      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
     "LICENSE": [
       "monitoring-api", 
@@ -34,17 +35,17 @@
     "lib/charms/layer/execd.py": [
       "layer:basic", 
       "static", 
-      "c0eb4c90e93a14f04d851f78bc6592e093226321fbe328125958633397aed014"
+      "af1f2409869f990cdb33cffc4120fb6713876e8e680ac5f064ea510bbdca1073"
     ], 
     "hooks/leader-elected": [
       "layer:basic", 
       "static", 
-      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
     "files/w_monitoring.py": [
       "monitoring-api", 
       "static", 
-      "4f44337f04c5d728e70376ae6d054e2247ebc6fa4e28dae281f8ecff5b1705e6"
+      "9449c285c5f221a5d256e9515e089e003022d6c1fbfa21fd3d3e1f179cec4250"
     ], 
     "Makefile": [
       "layer:basic", 
@@ -66,20 +67,30 @@
       "static", 
       "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     ], 
-    ".build.manifest": [
-      "build", 
+    "wheelhouse/Jinja2-2.9.6.tar.gz": [
+      "layer:basic", 
       "dynamic", 
-      "unchecked"
+      "ddaa01a212cd6d641401cb01b605f4a4d9f37bfc93043d7f760ec70fb99ff9ff"
     ], 
     "hooks/upgrade-charm": [
       "layer:basic", 
       "static", 
-      "8b9c153a61cc78067af8d016a8fa1c764caad3a40c82bb0b5121fc4c4c6a04f1"
+      "8fb6559bf4d4b7cdf1b857564c1d7265df98e863a4746fcbae092f141e59d97e"
+    ], 
+    "wheelhouse/charmhelpers-0.15.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "dde6d6905a1f71cd3a6ed7cbf92bb4c26159d6a1b5ce8b4e5d2b893de7cc0647"
     ], 
     "wheelhouse/Tempita-0.5.2.tar.gz": [
       "layer:basic", 
       "dynamic", 
       "cacecf0baa674d356641f1d406b8bff1d756d739c46b869a54de515d08e6fc9c"
+    ], 
+    "templates/monitoring.yaml": [
+      "monitoring-api", 
+      "static", 
+      "dd8b0a5cf80cd95666ff98b129d5268be63d9e5a64db2e6f53fd9c7053c7cb0c"
     ], 
     "hooks/relations/sojobo/LICENSE": [
       "interface:sojobo", 
@@ -94,7 +105,7 @@
     "hooks/sojobo-relation-broken": [
       "interface:sojobo", 
       "dynamic", 
-      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
     "tox.ini": [
       "layer:basic", 
@@ -104,97 +115,107 @@
     "metadata.yaml": [
       "monitoring-api", 
       "dynamic", 
-      "8b232ad466c6f79845c8cceba0b448ad31bfcb4aa916a08c9dc207d183b76736"
+      "6995443ed53267b95577da09a50a941c3d5661dbf46097276d36d27fd9fb5fd3"
     ], 
     "reactive/monitoring_api.py": [
       "monitoring-api", 
       "static", 
-      "9ab6ccd97013d79822d8e58d2f59e7116340e480a83834dc8e2aaf6425f2c5a1"
+      "d2cac96ef34e0caf40a51ca81a00c26989ee290f1667b747d3fbbb4c7b9e42b8"
     ], 
     "copyright": [
       "layer:basic", 
       "static", 
       "f6740d66fd60b60f2533d9fcb53907078d1e20920a0219afce7182e2a1c97629"
     ], 
-    "requirements.txt": [
-      "layer:basic", 
+    "hooks/relations/http/README.md": [
+      "interface:http", 
       "static", 
-      "0f1c70d27e26005a96d66ad54482877ae20f7737693c833e29dd72bd6ac24892"
-    ], 
-    "files/elastic_ip.yaml": [
-      "monitoring-api", 
-      "static", 
-      "f52d711103d50a437830c6fbcd04fb4bab49a0f82f6d26d1c791c6e8488dd090"
-    ], 
-    ".gitignore": [
-      "layer:basic", 
-      "static", 
-      "0da5c4dcda27cd6406e5bb81cbf68ddccaf728ac764ec15053a165c1449d87d9"
-    ], 
-    "hooks/install": [
-      "layer:basic", 
-      "static", 
-      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
-    ], 
-    "wheelhouse/PyYAML-3.12.tar.gz": [
-      "layer:basic", 
-      "dynamic", 
-      "592766c6303207a20efc445587778322d7f73b161bd994f227adaa341ba212ab"
-    ], 
-    "wheelhouse/Jinja2-2.9.5.tar.gz": [
-      "layer:basic", 
-      "dynamic", 
-      "702a24d992f856fa8d5a7a36db6128198d0c21e1da34448ca236c42e92384825"
-    ], 
-    "hooks/sojobo-relation-joined": [
-      "interface:sojobo", 
-      "dynamic", 
-      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
-    ], 
-    "icon.svg": [
-      "monitoring-api", 
-      "static", 
-      "51d5ca465634f1b9e47fd0f79cca06cd5076e2445dbeed110f9a2a025095b9c8"
-    ], 
-    "files/monitoring.yaml": [
-      "monitoring-api", 
-      "static", 
-      "81d11a5027e400381ecc7d4e5708649610a7227161108419085982ae77afa038"
-    ], 
-    "hooks/config-changed": [
-      "layer:basic", 
-      "static", 
-      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
-    ], 
-    "lib/charms/layer/__init__.py": [
-      "layer:basic", 
-      "static", 
-      "4ffd74384bd81d737572acf2d14fe55431eab8f49d6212d9aabedf24e1d992b2"
-    ], 
-    "hooks/stop": [
-      "layer:basic", 
-      "static", 
-      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
-    ], 
-    "lib/charms/layer/basic.py": [
-      "layer:basic", 
-      "static", 
-      "14905051850da09eb6b2b2a0032175b1c2efeb11109cbd01790d4e4c3b8a41ea"
+      "9c95320ad040745374fc03e972077f52c27e07eb0386ec93ae19bd50dca24c0d"
     ], 
     "wheelhouse/netaddr-0.7.19.tar.gz": [
       "layer:basic", 
       "dynamic", 
       "38aeec7cdd035081d3a4c306394b19d677623bf76fa0913f6695127c7753aefd"
     ], 
+    "requirements.txt": [
+      "layer:basic", 
+      "static", 
+      "0f1c70d27e26005a96d66ad54482877ae20f7737693c833e29dd72bd6ac24892"
+    ], 
+    ".gitignore": [
+      "layer:basic", 
+      "static", 
+      "0da5c4dcda27cd6406e5bb81cbf68ddccaf728ac764ec15053a165c1449d87d9"
+    ], 
+    "hooks/relations/http/__init__.py": [
+      "interface:http", 
+      "static", 
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    ], 
+    "hooks/install": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/sensuapi-relation-departed": [
+      "interface:http", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "wheelhouse/PyYAML-3.12.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "592766c6303207a20efc445587778322d7f73b161bd994f227adaa341ba212ab"
+    ], 
+    "hooks/sojobo-relation-joined": [
+      "interface:sojobo", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "icon.svg": [
+      "monitoring-api", 
+      "static", 
+      "51d5ca465634f1b9e47fd0f79cca06cd5076e2445dbeed110f9a2a025095b9c8"
+    ], 
+    "config.yaml": [
+      "monitoring-api", 
+      "dynamic", 
+      "77ebf41a02efc61cd3cae2acb5fb22bb778ad3ad706d76df79b089890ad0b6c3"
+    ], 
+    "lib/charms/layer/__init__.py": [
+      "layer:basic", 
+      "static", 
+      "71a8b901f7e64a6b1b61959fc25819bafc9c9905e37a918615b9f949295095a4"
+    ], 
+    "hooks/stop": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/relations/http/interface.yaml": [
+      "interface:http", 
+      "static", 
+      "d0b64038b85b7791ee4f3a42d73ffc8c208f206f73f899cbf33a519d12f9ad13"
+    ], 
+    "lib/charms/layer/basic.py": [
+      "layer:basic", 
+      "static", 
+      "d09706ef3a224eb60d34366a2867c382791aa30157ab5b77eda37f29731df2e2"
+    ], 
+    "wheelhouse/charms.reactive-0.4.7.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "f023f5aef267786db1be51209610487171ba56e848f7b1c49877b06337000256"
+    ], 
     "hooks/sojobo-relation-departed": [
       "interface:sojobo", 
       "dynamic", 
-      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
     "hooks/sojobo-relation-changed": [
       "interface:sojobo", 
       "dynamic", 
-      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
     "hooks/relations/sojobo/requires.py": [
       "interface:sojobo", 
@@ -209,12 +230,12 @@
     "hooks/update-status": [
       "layer:basic", 
       "static", 
-      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
-    "wheelhouse/charmhelpers-0.14.0.tar.gz": [
-      "layer:basic", 
+    "hooks/sensuapi-relation-changed": [
+      "interface:http", 
       "dynamic", 
-      "d2525bd5b1372ff098678f8ca7aa56f4bcdd62effabc92d48b6650f3c4b9251b"
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
     "README.md": [
       "monitoring-api", 
@@ -226,6 +247,16 @@
       "static", 
       "f24477a840737ae9a1439e10ec2c1003279b9569cc0e3661bd145df95fd0343a"
     ], 
+    "hooks/sensuapi-relation-broken": [
+      "interface:http", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/relations/http/requires.py": [
+      "interface:http", 
+      "static", 
+      "70188554d673bff61578f4e601a78a91efb4736df727507e984be5ca19335f82"
+    ], 
     "hooks/relations/sojobo/provides.py": [
       "interface:sojobo", 
       "static", 
@@ -234,7 +265,7 @@
     "hooks/start": [
       "layer:basic", 
       "static", 
-      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
     "wheelhouse/MarkupSafe-1.0.tar.gz": [
       "layer:basic", 
@@ -246,11 +277,6 @@
       "static", 
       "d6c24cac4947f77772fc6ef1b418e752380da799e795380f52c1330a62b5cf1c"
     ], 
-    "wheelhouse/charms.reactive-0.4.5.tar.gz": [
-      "layer:basic", 
-      "dynamic", 
-      "b2a475aff349a1c6532de0f9b4df5ee456b97a1e1755695afd8747dbc51bb710"
-    ], 
     "hooks/relations/sojobo/interface.yaml": [
       "interface:sojobo", 
       "static", 
@@ -259,27 +285,42 @@
     "layer.yaml": [
       "monitoring-api", 
       "dynamic", 
-      "f734ab9a47b27189ad3813670785d0610ce2dcd698679d0496dc00f643f6eebe"
+      "abd45eedf976fd7d9cc7f1ca531a3c7dd74856c6726c0b6f89497f3e0959027c"
     ], 
-    "config.yaml": [
-      "monitoring-api", 
-      "dynamic", 
-      "0e9142705b56951369a20be8f2bca8652b41c3159e1c22f2f0badbd5992b2349"
+    "hooks/config-changed": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
     "files/api_monitoring.py": [
       "monitoring-api", 
       "static", 
-      "3550fa7c4abe346c9753e62ead3baf49428cb19032c18e0a65c70b9d94b8bde3"
+      "ec5132cc8696a5723a997c12cea9dc029ae10066d2fadac576615df1c2f6d06f"
+    ], 
+    ".build.manifest": [
+      "build", 
+      "dynamic", 
+      "unchecked"
+    ], 
+    "hooks/sensuapi-relation-joined": [
+      "interface:http", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
     "hooks/hook.template": [
       "layer:basic", 
       "static", 
-      "3a854a5fd180c5bacbb80b501d968a8d8bdc1468361e7123ea4022a1e0363c9a"
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
     "wheelhouse/six-1.10.0.tar.gz": [
       "layer:basic", 
       "dynamic", 
       "105f8d68616f8248e24bf0e9372ef04d3cc10104f1980f54d57b2ce73a5ad56a"
+    ], 
+    "hooks/relations/http/provides.py": [
+      "interface:http", 
+      "static", 
+      "eb4b01fc022cafbb6e67cb200f497ab3aeee4b954b1b9ff2be1d8e64d1a4be20"
     ]
   }
 }

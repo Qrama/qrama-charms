@@ -1,0 +1,107 @@
+<div>
+  <div class="outer">
+    <div class="code-bar">
+      <ul class="actions list-inline">
+        <li dropdown="" ng-show="frame.type == &quot;http&quot;" class="dropdown"><a dropdown-toggle="" class="button sl sl-download-drive dropdown-toggle"></a>
+          <ul class="dropdown-menu">
+            <li><a exportable ng-click="exportJSON(frame.response)">Download JSON</a></li>
+          </ul>
+        </li>
+        <li dropdown="" ng-show="frame.type == &quot;shell&quot;" class="dropdown"><a dropdown-toggle="" class="button sl sl-download-drive dropdown-toggle"></a>
+          <ul class="dropdown-menu">
+            <li><a exportable ng-click="exportText(frame.response)">Download TXT</a></li>
+          </ul>
+        </li>
+        <li dropdown="" ng-show="frame.type == &quot;cypher&quot;" class="dropdown"><a dropdown-toggle="" tooltip-placement="bottom" tooltip="Export to file" class="button sl sl-download-drive dropdown-toggle"></a>
+          <ul class="dropdown-menu">
+            <li><a exportable ng-click="exportGraphSVG()" ng-show="isActive(&quot;graph&quot;)">Export SVG</a><a exportable ng-click="exportPlanSVG()" ng-show="isActive(&quot;plan&quot;)">Export SVG</a><a exportable ng-click="exportGraphPNG()" ng-show="isActive(&quot;graph&quot;)">Export PNG</a><a exportable ng-click="exportPlanPNG()" ng-show="isActive(&quot;plan&quot;)">Export PNG</a><a exportable ng-click="exportJSON(frame.response.raw.summary ? frame.response.raw : frame.response.table._response)">Export JSON</a><a ng-hide="frame.response.protocol=='bolt'" exportable ng-click="exportCSV(frame.response.table)">Export CSV</a></li>
+          </ul>
+        </li>
+        <li><a ng-click="pin(frame)" ng-class="{pinned: pinned}" tooltip-placement="bottom" tooltip="Pin at top" class="button sl sl-pin"></a></li>
+        <li><a ng-click="toggleFullscreen(true)" tooltip-placement="bottom" tooltip="Fullscreen" ng-show="frame.fullscreenable" class="button sl sl-scale-spread"></a></li>
+        <li><a ng-click="frames.close(frame)" tooltip-placement="bottom" tooltip="Cancel and close" class="button sl sl-delete"></a></li>
+      </ul>
+      <div class="status"><span ng-if="frame.type == &quot;cypher&quot;" class="prompt code">$</span><span click-to-code="frame.input" class="code mono">{{frame.input | uncomment}}</span></div><a ng-click="toggleFullscreen(false)" tooltip="Close Fullscreen" tooltip-placement="bottom" class="close-fullscreen sl sl-scale-reduce"></a>
+    </div>
+    <div class="inner">
+      <div class="view-result">
+        <article ng-controller="ModelCreateController" class="help">
+          <div class="container-fluid">
+            <div ng-show="status == null" class="section row-fluid summary">
+              <div class="summary col-sm-3">
+                <h3>We are preparing the creation of your model</h3>
+              </div>
+            </div>
+            <div ng-show="status == 'start' || status == 'creating.model'" class="section row-fluid summary">
+              <div class="summary col-sm-3">
+                <h3>Create a new empty model</h3>
+                <p class="lead">
+                  You have to set the name of the new model.
+                  To be able to log into your nodes, you have to provide an SSH key as well.
+                </p>
+              </div>
+              <div class="details col-sm-9">
+                <div class="form">
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <p>Name of the new Model</p>
+                      <input type="text" id="model_name" on-enter="focus" on-enter-target-id="controller" ng-model="newModel" style="margin: 0" tabindex="1" class="form-control"><br>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <p>Name of the Environment</p>
+                      <input type="text" id="controller" disabled="true" on-enter="focus" ng-model="controller" style="margin: 0" ng-show="controller &amp;&amp; !controllers" tabindex="2" class="form-control">
+                      <select id="controller" on-enter="focus" ng-model="controller" style="margin: 0" ng-show="controllers" tabindex="2" class="form-control">
+                        <option ng-repeat="ctrl in controllers | orderBy: ctrl.name" value="{{ctrl.name}}" style="background-image:url('images/{{ctrl.type}}.svg')">{{ctrl.name}} on [{{ctrl.type}}]</option>
+                      </select><br><br>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <button id="deploy_bundle" ng-hide="status == 'creating.model'" ng-click="createModel()" style="margin: 0" class="btn btn-default">Start</button>
+                      <div ng-show="status == 'creating.model'" class="fa fa-spinner fa-spin fa-2x"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div ng-show="status == 'created.model' || status == 'creating.bundle'" class="section row-fluid summary">
+              <p class="lead">Your model <code>{{newModel}}</code> is created. </p>
+              <p ng-show="status == 'creating.bundle'">
+                We are deploying the different applications of your bundle to your model.
+                This might take a while. Sit back and relax.
+                <div class="fa fa-spinner fa-spin fa-2x"></div>
+              </p>
+            </div>
+            <div ng-show="status == 'finished'" class="section row-fluid summary">
+              <p class="lead">All done!</p>
+              <h4>What's next?</h4>
+              <p>Check the status of your deployment: <code ng-click="checkStatus()">:tengu model status {{newModel}}@{{controller}}</code>
+                </p><p>
+                  <ul>
+                    <li>
+                       
+                      Here you can see the link to your model's Juju GUI. You can easily login using the same user credentials
+                      you used to create the model.
+                    </li>
+                    <li>
+                       
+                      You can also see a graph model of your deployed model and services. And inspect the status of the different
+                      services.
+                    </li>
+                  </ul>
+                </p>
+              
+            </div>
+          </div>
+        </article>
+      </div>
+      <div ng-class="{error: frame.detailedErrorText, loading: frame.isLoading}" class="status-bar">
+        <div ng-show="frame.detailedErrorText" class="status">
+          <div class="fa fa-exclamation-triangle icon-warning-sign">&nbsp;</div>{{frame.detailedErrorText}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

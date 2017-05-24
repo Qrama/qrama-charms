@@ -1,0 +1,202 @@
+<div ng-controller="UserGrantController">
+  <div class="outer">
+    <div class="code-bar">
+      <ul class="actions list-inline">
+        <li dropdown="" ng-show="frame.type == &quot;http&quot;" class="dropdown"><a dropdown-toggle="" class="button sl sl-download-drive dropdown-toggle"></a>
+          <ul class="dropdown-menu">
+            <li><a exportable ng-click="exportJSON(frame.response)">Download JSON</a></li>
+          </ul>
+        </li>
+        <li dropdown="" ng-show="frame.type == &quot;shell&quot;" class="dropdown"><a dropdown-toggle="" class="button sl sl-download-drive dropdown-toggle"></a>
+          <ul class="dropdown-menu">
+            <li><a exportable ng-click="exportText(frame.response)">Download TXT</a></li>
+          </ul>
+        </li>
+        <li dropdown="" ng-show="frame.type == &quot;cypher&quot;" class="dropdown"><a dropdown-toggle="" tooltip-placement="bottom" tooltip="Export to file" class="button sl sl-download-drive dropdown-toggle"></a>
+          <ul class="dropdown-menu">
+            <li><a exportable ng-click="exportGraphSVG()" ng-show="isActive(&quot;graph&quot;)">Export SVG</a><a exportable ng-click="exportPlanSVG()" ng-show="isActive(&quot;plan&quot;)">Export SVG</a><a exportable ng-click="exportGraphPNG()" ng-show="isActive(&quot;graph&quot;)">Export PNG</a><a exportable ng-click="exportPlanPNG()" ng-show="isActive(&quot;plan&quot;)">Export PNG</a><a exportable ng-click="exportJSON(frame.response.raw.summary ? frame.response.raw : frame.response.table._response)">Export JSON</a><a ng-hide="frame.response.protocol=='bolt'" exportable ng-click="exportCSV(frame.response.table)">Export CSV</a></li>
+          </ul>
+        </li>
+        <li><a ng-click="pin(frame)" ng-class="{pinned: pinned}" tooltip-placement="bottom" tooltip="Pin at top" class="button sl sl-pin"></a></li>
+        <li><a ng-click="toggleFullscreen(true)" tooltip-placement="bottom" tooltip="Fullscreen" ng-show="frame.fullscreenable" class="button sl sl-scale-spread"></a></li>
+        <li><a ng-click="frames.close(frame)" tooltip-placement="bottom" tooltip="Cancel and close" class="button sl sl-delete"></a></li>
+      </ul>
+      <div class="status"><span ng-if="frame.type == &quot;cypher&quot;" class="prompt code">$</span><span click-to-code="frame.input" class="code mono">{{frame.input | uncomment}}</span></div><a ng-click="toggleFullscreen(false)" tooltip="Close Fullscreen" tooltip-placement="bottom" class="close-fullscreen sl sl-scale-reduce"></a>
+    </div>
+    <div class="left-frame-toggle">
+      <div ng-if="availableModes.length &gt; 0" class="left-toggle-menu toggle">
+        <div class="btn-group toggle-buttons">
+          <div ng-show="isAvailable('controllers')" class="button-holder">
+            <button ng-class="{active: isActive(&quot;controllers&quot;)}" ng-click="setActive(&quot;controllers&quot;)" class="btn"><i class="fa fa-cloud"></i><span class="mini-menu-item-text">Env...</span></button><br>
+          </div>
+          <div ng-show="isAvailable('models')" class="button-holder">
+            <button ng-class="{active: isActive(&quot;models&quot;)}" ng-click="setActive(&quot;models&quot;)" class="btn"><i class="fa fa-sitemap"></i><span class="mini-menu-item-text">Models</span></button><br>
+          </div>
+          <div ng-show="isAvailable('user')" class="button-holder">
+            <button ng-class="{active: isActive(&quot;user&quot;)}" ng-click="setActive(&quot;user&quot;)" class="btn"><i class="fa fa-user"></i><span class="mini-menu-item-text">User</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div ng-class="{&quot;no-left-menu&quot;: availableModes.length &lt; 1}" class="right-inner-frame no-indicator">
+      <div class="inner">
+        <div ng-class="{error: frame.hasErrors}" class="view-result">
+          <div ng-show="isActive(&quot;controllers&quot;) &amp;&amp; !frame.isTerminating" class="view-result-table result">
+            <div class="table-holder">   
+              <article class="help no-data">
+                <div class="container-fluid">
+                  <div ng-show="!static_is_authenticated" class="section row-fluid summary">
+                    <div class="details">
+                      <h3>User is not signed in</h3>
+                      <p class="lead">You are not signed in. Please use your credentials to <code exec-topic="signin">signin</code>.</p>
+                    </div>
+                  </div>
+                  <div ng-show="static_is_authenticated &amp;&amp; static_user" class="section row-fluid summary">
+                    <div class="details col-sm-12">
+                      Here you can change the access levels of the different 
+                      controllers the users (<code>{{static_user}}</code> can see) currently have access to. <br><br>
+                    </div>
+                    <div ng-show="access != {}" ng-repeat="(user_name, user) in access | orderBy : user_name" class="details col-sm-12">
+                      <h3>
+                         
+                        ACL for the environments of <code>{{user_name}}</code>
+                      </h3>
+                      <table ng-if="user.controllers != {}" class="table table-condensed">
+                        <thead>
+                          <td>Environment</td>
+                          <td>Access level</td>
+                        </thead>
+                        <tr ng-repeat="(ctrl_name, ctrl) in user.controllers | orderBy : ctrl_name">
+                          <th> <img ng-src="images/{{ctrl.type}}.svg">&nbsp;{{ctrl_name}}</th>
+                          <td> 
+                            <select ng-model="ctrl.access" ng-options="acl for acl in controller_acl_options" ng-change="changeControllerACL(user_name, ctrl.name, ctrl.access)"></select>
+                          </td>
+                        </tr>
+                      </table>
+                      <p ng-if="user.controllers == {}" class="lead">
+                         
+                        No environments to show.
+                      </p>
+                    </div>
+                    <div ng-show="access == {}" class="details col-sm-9">
+                      <p class="lead">We are loading the ACLs for the environments and the models.</p>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div ng-show="isActive(&quot;models&quot;) &amp;&amp; !frame.isTerminating" class="view-result-table result">
+            <div class="table-holder">   
+              <article class="help no-data">
+                <div class="container-fluid">
+                  <div ng-show="!static_is_authenticated" class="section row-fluid summary">
+                    <div class="details">
+                      <h3>User is not signed in</h3>
+                      <p class="lead">You are not signed in. Please use your credentials to <code exec-topic="signin">signin</code>.</p>
+                    </div>
+                  </div>
+                  <div ng-show="static_is_authenticated &amp;&amp; static_user" class="section row-fluid summary">
+                    <div class="details col-sm-12">
+                      Here you can change the access levels of the different 
+                      models the users (<code>{{static_user}}</code> can see) currently have access to. <br><br>
+                    </div>
+                    <div ng-show="access != {}" ng-repeat="(user_name, user) in access | orderBy : user_name" class="details col-sm-12">
+                      <h3>
+                         
+                        ACL for the models of <code>{{user_name}}</code>
+                      </h3>
+                      <table ng-if="user.models != {}" class="table table-condensed">
+                        <thead>
+                          <td>Model</td>
+                          <td>Environment</td>
+                          <td>Access level</td>
+                        </thead>
+                        <tr ng-repeat="(model_name, model) in user.models | orderBy : model_name">
+                          <th>
+                             
+                            &nbsp;{{model_name}}
+                          </th>
+                          <td><img ng-src="images/{{model.type}}.svg">&nbsp;{{model.controller}}</td>
+                          <td> 
+                            <select ng-model="model.access" ng-options="acl for acl in model_acl_options" ng-change="changeModelACL(user_name, model_name, model.controller, model.access)"></select>
+                          </td>
+                        </tr>
+                      </table>
+                      <p ng-if="user.models == {}" class="lead">
+                         
+                        No models to show.
+                      </p>
+                    </div>
+                    <div ng-hide="access == {}" class="details col-sm-9">
+                      <p class="lead">We are loading the ACLs for the environments and the models. </p>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div ng-show="isActive(&quot;user&quot;) &amp;&amp; !frame.isTerminating" class="view-result-table result">
+            <div class="table-holder">   
+              <article class="help no-data">
+                <div class="container-fluid">
+                  <div ng-show="!static_is_authenticated" class="section row-fluid summary">
+                    <div class="details">
+                      <h3>User is not signed in</h3>
+                      <p class="lead">You are not signed in. Please use your credentials to <code exec-topic="signin">signin</code>.</p>
+                    </div>
+                  </div>
+                  <div ng-show="static_is_authenticated &amp;&amp; static_user" class="section row-fluid summary">
+                    <div class="details col-sm-12">
+                      Here you can set the access levels for the models the 
+                      selected user currently does not have access to.<br>Only the models visible to <code>{{static_user}}</code> are shown here.<br>Please select a user for which you want to set the access levels: 
+                      <select ng-model="selectedUser" ng-options="user for user in otherUsers" ng-change="userSelected(selectedUser)"></select><br><br>
+                    </div>
+                    <div ng-show="selectedUser &amp;&amp; selectedUser != '?'" class="details col-sm-12">
+                      <p class="lead">Selected user: {{selectedUser}}</p>
+                      <table ng-show="access[selectedUser]" class="table table-condensed">
+                        <thead>
+                          <td>Model</td>
+                          <td>Environment</td>
+                          <td>Access level</td>
+                        </thead>
+                        <tr ng-repeat="(model_name, model) in access[static_user].models">
+                          <th>
+                             
+                            &nbsp;{{model_name}}
+                          </th>
+                          <td><img ng-src="images/{{model.type}}.svg">&nbsp;{{model.controller}}</td>
+                          <td> 
+                            <select ng-model="selectedUserModelACL[model_name]" ng-value="access[selectedUser].models[model_name].access" ng-options="acl for acl in model_acl_options" ng-change="changeModelACL(selectedUser, model_name, model.controller, selectedUserModelACL[model_name])"></select>
+                          </td>
+                        </tr>
+                      </table>
+                      <p ng-if="user.models == {}" class="lead">
+                         
+                        No models to show.
+                      </p>
+                    </div>
+                    <div ng-show="access.length == {}" class="details col-sm-9">
+                      <p class="lead">We are loading the ACLs for the environments and the models.  </p>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div ng-class="{error: frame.detailedErrorText, loading: frame.isLoading}" class="status-bar">
+        <div ng-show="frame.detailedErrorText" class="status">
+          <div class="fa fa-exclamation-triangle icon-warning-sign">&nbsp;</div>{{frame.detailedErrorText}}
+          <div ng-hide="frame.hasErrors">
+            <div ng-show="frame.response">
+              <div class="fa fa-ok"></div>Logged in as {{frame.response.name}} ({{frame.response.identities[0].provider}})
+            </div>
+          </div>
+        </div><span ng-show="frame.isLoading">
+          <div class="fa fa-spinner fa-spin"></div>Loading user info...</span>
+      </div>
+    </div>
+  </div>
+</div>
