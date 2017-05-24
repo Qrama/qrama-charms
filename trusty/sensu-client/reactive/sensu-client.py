@@ -25,9 +25,9 @@ from charms.reactive import when, when_not, set_state
 CONFIG_DIR = '/etc/sensu/conf.d'
 SSL_DIR = '/etc/sensu/ssl'
 
-@when('apt.installed.sensu')
+@when('apt.installed.sensu', 'info.available')
 @when_not('sensu.monitoring')
-def setup_sensu():
+def setup_sensu(info):
     if not os.path.isdir(SSL_DIR):
         os.mkdir(SSL_DIR)
     with open('{}/ssl_key.pem'.format(SSL_DIR), 'w+') as ssl_key:
