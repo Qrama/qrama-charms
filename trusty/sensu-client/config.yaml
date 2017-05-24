@@ -15,7 +15,7 @@
       \ for adding Personal Package Archives, or a distribution component to enable.\n"
     "type": "string"
     "default": |
-      - deb https://sensu.global.ssl.fastly.net/apt xenial main
+      - deb https://sensu.global.ssl.fastly.net/apt trusty main
   "install_keys":
     "description": "List of signing keys for install_sources package sources, per\
       \ charmhelpers standard format (a yaml list of strings encoded as a string).\

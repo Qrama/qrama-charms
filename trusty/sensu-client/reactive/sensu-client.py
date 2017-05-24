@@ -23,17 +23,21 @@ from charms.reactive import when, when_not, set_state
 
 
 CONFIG_DIR = '/etc/sensu/conf.d'
-
+SSL_DIR = '/etc/sensu/ssl'
 
 @when('apt.installed.sensu')
 @when_not('sensu.monitoring')
 def setup_sensu():
+    if not os.path.isdir(SSL_DIR):
+        os.mkdir(SSL_DIR)
+    with open('{}/ssl_key.pem'.format(SSL_DIR), 'w+') as ssl_key:
+        ssl_key.write(config()['ssl_key'])
+    with open('{}/ssl_cert.pem'.format(SSL_DIR), 'w+') as ssl_cert:
+        ssl_cert.write(config()['ssl_cert'])
     rabbitmq = {'host': config()['rabbitmq'].split(':')[0],
                 'port': config()['rabbitmq'].split(':')[1],
-                'password': config()['password']}
-    if not os.path.isdir('/etc/sensu/ssl'):
-        os.mkdir('/etc/sensu/ssl')
-        #todo create ssl files from config
+                'ssl_cert': '{}/ssl_cert.pem'.format(SSL_DIR),
+                'ssl_key': '{}/ssl_key.pem'.format(SSL_DIR)}
     application = os.environ['JUJU_REMOTE_UNIT']
     render('rabbitmq.json', '{}/rabbitmq.json'.format(CONFIG_DIR), context=rabbitmq)
     client = {'name': '{}/{}'.format(config()['name'], application),

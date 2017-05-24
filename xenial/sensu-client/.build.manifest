@@ -104,7 +104,7 @@
     "reactive/sensu-client.py": [
       "sensu-client", 
       "static", 
-      "5f3c5cbcf0c3afb28a1966681d4ec728e02464c3fe0157a2b0a33928cc02397e"
+      "02a73f93ef024c04c8c99b4a1451eba895406408015a502679a2aa235204e9a2"
     ], 
     "lib/charms/layer/execd.py": [
       "layer:basic", 
