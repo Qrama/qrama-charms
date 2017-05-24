@@ -59,6 +59,6 @@ def install_machine_monitoring():
     call(['sensu-install', '-p', 'sensu-plugins-memory-checks'])
     call(['sensu-install', '-p', 'sensu-plugins-disk-checks'])
     render('checks.json', '{}/checks.json'.format(CONFIG_DIR), context={})
-    service_restart('sencu-client')
+    service_restart('sensu-client')
     status_set('active', 'Sensu-client is monitoring CPU, memory and disk ')
     set_state('sensu.monitoring')

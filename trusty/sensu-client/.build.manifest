@@ -3,6 +3,7 @@
     "layer:basic", 
     "layer:apt", 
     "sensu-client", 
+    "interface:juju-info", 
     "build"
   ], 
   "signatures": {
@@ -21,15 +22,30 @@
       "static", 
       "589ed823e9a84c56feb95ac58e7cf384626b9cbf4fda2a907bc36e103de1bad2"
     ], 
-    "hooks/hook.template": [
+    "lib/charms/layer/execd.py": [
       "layer:basic", 
       "static", 
-      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+      "af1f2409869f990cdb33cffc4120fb6713876e8e680ac5f064ea510bbdca1073"
     ], 
     "hooks/leader-elected": [
       "layer:basic", 
       "static", 
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "wheelhouse/PyYAML-3.12.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "592766c6303207a20efc445587778322d7f73b161bd994f227adaa341ba212ab"
+    ], 
+    "hooks/relations/juju-info/__init__.py": [
+      "interface:juju-info", 
+      "static", 
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    ], 
+    "Makefile": [
+      "layer:basic", 
+      "static", 
+      "b7ab3a34e5faf79b96a8632039a0ad0aa87f2a9b5f0ba604e007cafb22190301"
     ], 
     "reactive/__init__.py": [
       "layer:basic", 
@@ -41,85 +57,15 @@
       "static", 
       "bcfb2fa943ce454204241eaf4a8c727e87f9d84e13abfb902eda955835de76ec"
     ], 
+    "hooks/relations/juju-info/README.md": [
+      "interface:juju-info", 
+      "static", 
+      "4589dd14b868df060bd263d988b3f556738db5ca5f02019b8c4b706501f94b6b"
+    ], 
     "wheelhouse/Jinja2-2.9.6.tar.gz": [
       "layer:basic", 
       "dynamic", 
       "ddaa01a212cd6d641401cb01b605f4a4d9f37bfc93043d7f760ec70fb99ff9ff"
-    ], 
-    "copyright": [
-      "layer:apt", 
-      "static", 
-      "5123b2d0220fefb4424a463216fb41a6dd7cfad49c9799ba7037f1e74a2fd6bc"
-    ], 
-    "requirements.txt": [
-      "layer:basic", 
-      "static", 
-      "0f1c70d27e26005a96d66ad54482877ae20f7737693c833e29dd72bd6ac24892"
-    ], 
-    ".gitignore": [
-      "layer:apt", 
-      "static", 
-      "54c2eac10d7d0187b02c271ac7a3767bb3d365d562cfb8c1548efb4e84f7b2d5"
-    ], 
-    "hooks/install": [
-      "layer:basic", 
-      "static", 
-      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
-    ], 
-    "config.yaml": [
-      "sensu-client", 
-      "dynamic", 
-      "42464324a92270ca954c5e7e2ec20778ceb44b7075fa88b5b70585c41decaa31"
-    ], 
-    "wheelhouse/PyYAML-3.12.tar.gz": [
-      "layer:basic", 
-      "dynamic", 
-      "592766c6303207a20efc445587778322d7f73b161bd994f227adaa341ba212ab"
-    ], 
-    "wheelhouse/charms.reactive-0.4.7.tar.gz": [
-      "layer:basic", 
-      "dynamic", 
-      "f023f5aef267786db1be51209610487171ba56e848f7b1c49877b06337000256"
-    ], 
-    "wheelhouse/pip-8.1.2.tar.gz": [
-      "layer:basic", 
-      "dynamic", 
-      "4d24b03ffa67638a3fa931c09fd9e0273ffa904e95ebebe7d4b1a54c93d7b732"
-    ], 
-    "hooks/update-status": [
-      "layer:basic", 
-      "static", 
-      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
-    ], 
-    "README.md": [
-      "sensu-client", 
-      "static", 
-      "6a98f78717b1d50d8625d7cab7e593dfa575ef3aed775ae669681d5f61bad1dc"
-    ], 
-    "lib/charms/layer/__init__.py": [
-      "layer:basic", 
-      "static", 
-      "71a8b901f7e64a6b1b61959fc25819bafc9c9905e37a918615b9f949295095a4"
-    ], 
-    "reactive/sensu-client.py": [
-      "sensu-client", 
-      "static", 
-      "913b8b1a9853c6c6de6044e2f2f9b4e9c3c0a91be00b4d8f0455ebc336a099b5"
-    ], 
-    "lib/charms/layer/execd.py": [
-      "layer:basic", 
-      "static", 
-      "af1f2409869f990cdb33cffc4120fb6713876e8e680ac5f064ea510bbdca1073"
-    ], 
-    "Makefile": [
-      "layer:basic", 
-      "static", 
-      "b7ab3a34e5faf79b96a8632039a0ad0aa87f2a9b5f0ba604e007cafb22190301"
-    ], 
-    ".build.manifest": [
-      "build", 
-      "dynamic", 
-      "unchecked"
     ], 
     "hooks/upgrade-charm": [
       "layer:basic", 
@@ -136,6 +82,11 @@
       "dynamic", 
       "cacecf0baa674d356641f1d406b8bff1d756d739c46b869a54de515d08e6fc9c"
     ], 
+    "hooks/info-relation-departed": [
+      "interface:juju-info", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
     "wheelhouse/pyaml-16.12.2.tar.gz": [
       "layer:basic", 
       "dynamic", 
@@ -151,15 +102,60 @@
       "dynamic", 
       "e8857ee10c110a2dad845313c4c51434d04e17935f0134862431d245e4300215"
     ], 
+    "copyright": [
+      "layer:apt", 
+      "static", 
+      "5123b2d0220fefb4424a463216fb41a6dd7cfad49c9799ba7037f1e74a2fd6bc"
+    ], 
     "wheelhouse/netaddr-0.7.19.tar.gz": [
       "layer:basic", 
       "dynamic", 
       "38aeec7cdd035081d3a4c306394b19d677623bf76fa0913f6695127c7753aefd"
     ], 
-    "hooks/config-changed": [
+    "hooks/relations/juju-info/requires.py": [
+      "interface:juju-info", 
+      "static", 
+      "a9a1ec6099b0d471e5a2b1456b870cd9d799ab1646d075261593b56340093504"
+    ], 
+    "requirements.txt": [
+      "layer:basic", 
+      "static", 
+      "0f1c70d27e26005a96d66ad54482877ae20f7737693c833e29dd72bd6ac24892"
+    ], 
+    ".gitignore": [
+      "layer:apt", 
+      "static", 
+      "54c2eac10d7d0187b02c271ac7a3767bb3d365d562cfb8c1548efb4e84f7b2d5"
+    ], 
+    "hooks/install": [
       "layer:basic", 
       "static", 
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/info-relation-changed": [
+      "interface:juju-info", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    ".build.manifest": [
+      "build", 
+      "dynamic", 
+      "unchecked"
+    ], 
+    "hooks/relations/juju-info/interface.yaml": [
+      "interface:juju-info", 
+      "static", 
+      "0d0057ed0bda75157e8314a1259e1a8bb883d2f738ad1b731177e821b5b1b542"
+    ], 
+    "config.yaml": [
+      "sensu-client", 
+      "dynamic", 
+      "d919b88920bac0dc8c1b5398b190196d2e9652f513e7f4b80909ee1668d15605"
+    ], 
+    "lib/charms/layer/__init__.py": [
+      "layer:basic", 
+      "static", 
+      "71a8b901f7e64a6b1b61959fc25819bafc9c9905e37a918615b9f949295095a4"
     ], 
     "hooks/stop": [
       "layer:basic", 
@@ -176,20 +172,45 @@
       "static", 
       "d09706ef3a224eb60d34366a2867c382791aa30157ab5b77eda37f29731df2e2"
     ], 
+    "wheelhouse/charms.reactive-0.4.7.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "f023f5aef267786db1be51209610487171ba56e848f7b1c49877b06337000256"
+    ], 
     "templates/client.json": [
       "sensu-client", 
       "static", 
       "c59dc529d1876979cbac5e6a1384960b99e7ebffd741bf27dc57f4a0598197df"
+    ], 
+    "wheelhouse/pip-8.1.2.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "4d24b03ffa67638a3fa931c09fd9e0273ffa904e95ebebe7d4b1a54c93d7b732"
     ], 
     "templates/transport.json": [
       "sensu-client", 
       "static", 
       "4d04859ba3b059e3c0c865cb7e3468ae68241a1591abd2db693a0e80e0beddf6"
     ], 
+    "hooks/update-status": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
     "lib/charms/__init__.py": [
       "layer:apt", 
       "static", 
       "4032724b98ed267185b12b8ec78dd9bcb0423ab1c89a6f0dad99397fd51159d9"
+    ], 
+    "README.md": [
+      "sensu-client", 
+      "static", 
+      "6a98f78717b1d50d8625d7cab7e593dfa575ef3aed775ae669681d5f61bad1dc"
+    ], 
+    "hooks/info-relation-joined": [
+      "interface:juju-info", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
     "hooks/start": [
       "layer:basic", 
@@ -201,6 +222,11 @@
       "dynamic", 
       "a6be69091dac236ea9c6bc7d012beab42010fa914c459791d627dad4910eb665"
     ], 
+    "hooks/info-relation-broken": [
+      "interface:juju-info", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
     "templates/checks.json": [
       "sensu-client", 
       "static", 
@@ -209,7 +235,22 @@
     "layer.yaml": [
       "sensu-client", 
       "dynamic", 
-      "01a6a8452ea61aa7f3446d2d163dfd55833d9935e4662078113edfb80817cd6d"
+      "dcc8c19a6d620b48098edfe7e2b04380ea1b625b31cd5f06c5cf2a1f299d8686"
+    ], 
+    "hooks/config-changed": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "reactive/sensu-client.py": [
+      "sensu-client", 
+      "static", 
+      "0e4f62d8ff5dadec6ce569f54013816cc45f15b0e79e089b4ff2da6e5a3d039e"
+    ], 
+    "hooks/hook.template": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
     "wheelhouse/six-1.10.0.tar.gz": [
       "layer:basic", 
