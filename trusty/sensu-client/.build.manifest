@@ -72,11 +72,6 @@
       "static", 
       "8fb6559bf4d4b7cdf1b857564c1d7265df98e863a4746fcbae092f141e59d97e"
     ], 
-    "wheelhouse/charmhelpers-0.15.0.tar.gz": [
-      "layer:basic", 
-      "dynamic", 
-      "dde6d6905a1f71cd3a6ed7cbf92bb4c26159d6a1b5ce8b4e5d2b893de7cc0647"
-    ], 
     "wheelhouse/Tempita-0.5.2.tar.gz": [
       "layer:basic", 
       "dynamic", 
@@ -126,6 +121,11 @@
       "layer:apt", 
       "static", 
       "54c2eac10d7d0187b02c271ac7a3767bb3d365d562cfb8c1548efb4e84f7b2d5"
+    ], 
+    "wheelhouse/charmhelpers-0.16.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "5727a1dc278416d3e0b432ae9d46f599bca1c61b17f4880e5d33553d249b7cb3"
     ], 
     "hooks/install": [
       "layer:basic", 
@@ -245,7 +245,7 @@
     "reactive/sensu-client.py": [
       "sensu-client", 
       "static", 
-      "426f0b08f6cf46bc0ce34f06442742bc1a1c0c25438a21eef0c1b6f20004ae9e"
+      "7f66a06fc5b4533d0c7de9bf8b75d02a303a98fe356c50f266694bb6343dd9fe"
     ], 
     "hooks/hook.template": [
       "layer:basic", 

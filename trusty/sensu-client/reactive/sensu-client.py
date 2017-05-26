@@ -15,11 +15,12 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 # pylint: disable=c0111,c0103,c0301
 import os
+import subprocess
 from subprocess import call
 from charmhelpers.core.templating import render
 from charmhelpers.core.hookenv import status_set, config, open_port, application_version_set, unit_public_ip
 from charmhelpers.core.host import service_restart
-from charms.reactive import when, when_not, set_state
+from charms.reactive import when, when_not, set_state, remove_state
 
 
 CONFIG_DIR = '/etc/sensu/conf.d'
@@ -64,3 +65,10 @@ def install_machine_monitoring():
     service_restart('sensu-client')
     status_set('active', 'Sensu-client is monitoring CPU, memory and disk ')
     set_state('sensu.monitoring')
+
+
+@when('sensu.monitoring')
+@when_not('info.available')
+def uninstall():
+    subprocess.call(['apt-get', 'remove', 'sensu', '--purge'])
+    remove_state('sensu.monitoring')
