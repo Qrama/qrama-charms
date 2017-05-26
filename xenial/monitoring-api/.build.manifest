@@ -45,7 +45,7 @@
     "files/w_monitoring.py": [
       "monitoring-api", 
       "static", 
-      "9449c285c5f221a5d256e9515e089e003022d6c1fbfa21fd3d3e1f179cec4250"
+      "57b77f2fce172860c571d4a32ac547d1a3b0f676557eb9b28a6a44c124d71f49"
     ], 
     "Makefile": [
       "layer:basic", 
@@ -62,6 +62,11 @@
       "static", 
       "111c079b81d260bbcd716dcf41672372a4cf4aaa14154b6c3055deeedae37a06"
     ], 
+    "hooks/relations/http/__init__.py": [
+      "interface:http", 
+      "static", 
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    ], 
     "hooks/relations/sojobo/__init__.py": [
       "interface:sojobo", 
       "static", 
@@ -76,11 +81,6 @@
       "layer:basic", 
       "static", 
       "8fb6559bf4d4b7cdf1b857564c1d7265df98e863a4746fcbae092f141e59d97e"
-    ], 
-    "wheelhouse/charmhelpers-0.15.0.tar.gz": [
-      "layer:basic", 
-      "dynamic", 
-      "dde6d6905a1f71cd3a6ed7cbf92bb4c26159d6a1b5ce8b4e5d2b893de7cc0647"
     ], 
     "wheelhouse/Tempita-0.5.2.tar.gz": [
       "layer:basic", 
@@ -147,10 +147,10 @@
       "static", 
       "0da5c4dcda27cd6406e5bb81cbf68ddccaf728ac764ec15053a165c1449d87d9"
     ], 
-    "hooks/relations/http/__init__.py": [
-      "interface:http", 
-      "static", 
-      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    "wheelhouse/charmhelpers-0.16.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "5727a1dc278416d3e0b432ae9d46f599bca1c61b17f4880e5d33553d249b7cb3"
     ], 
     "hooks/install": [
       "layer:basic", 
@@ -240,7 +240,7 @@
     "README.md": [
       "monitoring-api", 
       "static", 
-      "db18015b430c1a1fc56e903cc31620305a7592c0893cd5d7cd9c8e4171b287ba"
+      "7959752a9d1e8c4fdfe0f534514442172a8ccc45d9ff04799cf71cfe06dc805b"
     ], 
     "hooks/relations/sojobo/.gitignore": [
       "interface:sojobo", 
@@ -295,7 +295,7 @@
     "files/api_monitoring.py": [
       "monitoring-api", 
       "static", 
-      "ec5132cc8696a5723a997c12cea9dc029ae10066d2fadac576615df1c2f6d06f"
+      "28e3faee2c757fc688c0231367e7d52baefb627c809f01caa42f308de6f6eec6"
     ], 
     ".build.manifest": [
       "build", 

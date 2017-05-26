@@ -31,7 +31,7 @@ async def add_monitoring(con_con, mod_con, app):
 
 
 async def remove_monitoring(con_con, mod_con, app):
-    units_info = juju.get_units_info(mod_con, app)
+    units_info = await juju.get_units_info(mod_con, app)
     series = units_info[0]['series']
     await juju.remove_relation(mod_con, app, MON_APPS[series])
 
@@ -44,7 +44,7 @@ async def init_monitoring(con_con, mod_con):
               'password': settings.SENSU_PASSWORD}
     for serie, name in MON_APPS.items():
         await juju.deploy_app(mod_con, '/home/ubuntu/qrama-charms/{}/sensu-client'.format(serie),
-                              name, ser=serie, con=config)
+                              name, ser=serie, con=config, units=0)
 
 
 async def check_monitoring(mod_mod):

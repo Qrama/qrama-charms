@@ -121,7 +121,7 @@ def remove_monitoring_application(controller, model, application):
         if mod_access == 'admin':
             app = juju.check_input(application)
             if execute_task(juju.app_exists, token, con, mod, app):
-                code, response = 200, execute_task(monitoring.remove_monitoring, mod, app)
+                code, response = 200, execute_task(monitoring.remove_monitoring, con, mod, app)
             else:
                 code, response = errors.does_not_exist(app)
         else:
