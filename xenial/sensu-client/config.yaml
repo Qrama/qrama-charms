@@ -15,7 +15,7 @@
       \ for adding Personal Package Archives, or a distribution component to enable.\n"
     "type": "string"
     "default": |
-      - deb https://sensu.global.ssl.fastly.net/apt trusty main
+      - deb https://sensu.global.ssl.fastly.net/apt xenial main
   "install_keys":
     "description": "List of signing keys for install_sources package sources, per\
       \ charmhelpers standard format (a yaml list of strings encoded as a string).\
@@ -45,11 +45,16 @@
         YlDGDBPJYvWGezEwaeYuNmOVh+QTYLyv4BA9XafRnHvryLFJR0hW+Pg=
         =hhqa
         -----END PGP PUBLIC KEY BLOCK-----
-  "name":
+  "controller":
     "type": "string"
-    "default": "controller/model"
+    "default": "controller"
     "description": |
-      The name of the client. MUST follow above naming scheme. Values must be changed on deployment to the actual names
+      The name of the controller
+  "charm":
+    "type": "string"
+    "default": "machine"
+    "description": |
+      The type of application being monitored
   "rabbitmq":
     "type": "string"
     "default": "104.199.57.48:5672"
@@ -70,3 +75,14 @@
     "default": ""
     "description": |
       X.509 certificate in base64 PEM format (starts "-----BEGIN CERTIFICATE-----")
+  "plugins":
+    "type": "string"
+    "description": |
+      Space separated list of plugins that need to be installed
+    "default": "sensu-plugins-load-checks sensu-plugins-memory-checks sensu-plugins-disk-checks"
+  "measurements":
+    "type": "string"
+    "description": |
+      Space separated list of measurements and scripts, which in their turn are given
+      as a pair, separated with a |
+    "default": "cpu_load|check-load.rb memory|metrics-memory.rb disk|metrics-disk-usage.rb"

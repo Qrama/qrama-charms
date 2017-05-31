@@ -150,7 +150,7 @@
     "config.yaml": [
       "sensu-client", 
       "dynamic", 
-      "d919b88920bac0dc8c1b5398b190196d2e9652f513e7f4b80909ee1668d15605"
+      "1d1985aa12652ebbb067a4d6453841eabf77eed816aa97d2bd2ed8ccac784259"
     ], 
     "lib/charms/layer/__init__.py": [
       "layer:basic", 
@@ -230,7 +230,7 @@
     "templates/checks.json": [
       "sensu-client", 
       "static", 
-      "a5454dbb581c445651a9fa1fc26ee67a315b84691d493351c15647d2720d57ad"
+      "22ea02255c2db90530b560277912c8908000e212d660d752098863b27547b92e"
     ], 
     "layer.yaml": [
       "sensu-client", 
@@ -245,7 +245,7 @@
     "reactive/sensu-client.py": [
       "sensu-client", 
       "static", 
-      "7f66a06fc5b4533d0c7de9bf8b75d02a303a98fe356c50f266694bb6343dd9fe"
+      "ffdaa6cfdb8d642c4dfc62d7c9e19be121144e98d15c4729291e508f494a6a31"
     ], 
     "hooks/hook.template": [
       "layer:basic", 

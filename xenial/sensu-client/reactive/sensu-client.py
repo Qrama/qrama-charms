@@ -15,6 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 # pylint: disable=c0111,c0103,c0301
 import os
+import shutil
 import subprocess
 from subprocess import call
 from charmhelpers.core.templating import render
@@ -28,8 +29,9 @@ SSL_DIR = '/etc/sensu/ssl'
 
 
 @when('apt.installed.sensu', 'info.available')
-@when_not('sensu.monitoring')
+@when_not('sensu.installed')
 def setup_sensu(info):
+    application_version_set('0.29')
     if not os.path.isdir(SSL_DIR):
         os.mkdir(SSL_DIR)
     with open('{}/ssl_key.pem'.format(SSL_DIR), 'w+') as ssl_key:
@@ -41,34 +43,29 @@ def setup_sensu(info):
                 'password': config()['password'],
                 'ssl_cert': '{}/ssl_cert.pem'.format(SSL_DIR),
                 'ssl_key': '{}/ssl_key.pem'.format(SSL_DIR)}
+    name = '{}/{}/{}'.format(config()['controller'], os.environ['JUJU_MODEL_NAME'], os.environ['JUJU_MACHINE_ID'])
     application = os.environ['JUJU_REMOTE_UNIT']
     render('rabbitmq.json', '{}/rabbitmq.json'.format(CONFIG_DIR), context=rabbitmq)
-    client = {'name': '{}/{}'.format(config()['name'], application),
-              'public_ip': unit_public_ip(), 'subscriptions': '[\"monitoring\"]'}
+    client = {'name': name, 'public_ip': unit_public_ip(), 'subscriptions': '[\"monitoring\"]'}
     render('client.json', '{}/client.json'.format(CONFIG_DIR), context=client)
     render('transport.json', '{}/transport.json'.format(CONFIG_DIR), context={})
+    call(['/opt/sensu/embedded/bin/gem', 'install', 'sensu-plugin', '--version', '\'=1.2.0\''])
+    for plugin in config()['plugins'].split(' '):
+        call(['sensu-install', '-p', plugin])
+    checks = [{'type': m.split('|')[0],
+               'script': m.split('|')[1],
+               'subscriptions': application}
+               for m in config()['measurements'].split(' ')]
+    os.mkdir(os.path.join(CONFIG_DIR, config()['charm']))
+    render('checks.json', '{}/{}/checks.json'.format(CONFIG_DIR, config()['charm']), context={'checks': checks})
     open_port(3030)
-    application_version_set('0.29')
     service_restart('sensu-client')
     status_set('active', 'Sensu-client is active')
     set_state('sensu.installed')
 
 
 @when('sensu.installed')
-@when_not('sensu.monitoring')
-def install_machine_monitoring():
-    call(['/opt/sensu/embedded/bin/gem', 'install', 'sensu-plugin', '--version', '\'=1.2.0\''])
-    call(['sensu-install', '-p', 'sensu-plugins-load-checks'])
-    call(['sensu-install', '-p', 'sensu-plugins-memory-checks'])
-    call(['sensu-install', '-p', 'sensu-plugins-disk-checks'])
-    render('checks.json', '{}/checks.json'.format(CONFIG_DIR), context={})
-    service_restart('sensu-client')
-    status_set('active', 'Sensu-client is monitoring CPU, memory and disk ')
-    set_state('sensu.monitoring')
-
-
-@when('sensu.monitoring')
 @when_not('info.available')
-def uninstall():
-    subprocess.call(['apt-get', 'remove', 'sensu', '--purge'])
-    remove_state('sensu.monitoring')
+def remove():
+    shutil.rmtree(os.path.join(CONFIG_DIR, config()['charm']))
+    service_restart('sensu-client')
