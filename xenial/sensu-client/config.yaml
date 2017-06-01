@@ -50,11 +50,6 @@
     "default": "controller"
     "description": |
       The name of the controller
-  "charm":
-    "type": "string"
-    "default": "machine"
-    "description": |
-      The type of application being monitored
   "rabbitmq":
     "type": "string"
     "default": "104.199.57.48:5672"

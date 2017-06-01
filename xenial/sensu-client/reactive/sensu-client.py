@@ -14,12 +14,12 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 # pylint: disable=c0111,c0103,c0301
+import json
 import os
 import shutil
-import subprocess
-from subprocess import call
+from subprocess import call, CalledProcessError
 from charmhelpers.core.templating import render
-from charmhelpers.core.hookenv import status_set, config, open_port, application_version_set, unit_public_ip
+from charmhelpers.core.hookenv import local_unit, status_set, config, open_port, application_version_set, unit_public_ip
 from charmhelpers.core.host import service_restart
 from charms.reactive import when, when_not, set_state, remove_state
 
@@ -45,6 +45,7 @@ def setup_sensu(info):
                 'ssl_key': '{}/ssl_key.pem'.format(SSL_DIR)}
     name = '{}/{}/{}'.format(config()['controller'], os.environ['JUJU_MODEL_NAME'], os.environ['JUJU_MACHINE_ID'])
     application = os.environ['JUJU_REMOTE_UNIT']
+    unit = local_unit().replace('/', '-')
     render('rabbitmq.json', '{}/rabbitmq.json'.format(CONFIG_DIR), context=rabbitmq)
     client = {'name': name, 'public_ip': unit_public_ip(), 'subscriptions': '[\"monitoring\"]'}
     render('client.json', '{}/client.json'.format(CONFIG_DIR), context=client)
@@ -52,13 +53,17 @@ def setup_sensu(info):
     call(['/opt/sensu/embedded/bin/gem', 'install', 'sensu-plugin', '--version', '\'=1.2.0\''])
     for plugin in config()['plugins'].split(' '):
         call(['sensu-install', '-p', plugin])
+    if not os.path.isdir(os.path.join(CONFIG_DIR, unit)):
+        os.mkdir(os.path.join(CONFIG_DIR, unit))
     checks = [{'type': m.split('|')[0],
                'script': m.split('|')[1],
-               'subscriptions': application}
-               for m in config()['measurements'].split(' ')]
-    os.mkdir(os.path.join(CONFIG_DIR, config()['charm']))
-    render('checks.json', '{}/{}/checks.json'.format(CONFIG_DIR, config()['charm']), context={'checks': checks})
-    open_port(3030)
+               'subscribers': application}
+              for m in config()['measurements'].split(' ')]
+    render('checks.json', '{}/{}/checks.json'.format(CONFIG_DIR, unit), context={'checks': checks})
+    try:
+        open_port(3030)
+    except CalledProcessError:
+        pass
     service_restart('sensu-client')
     status_set('active', 'Sensu-client is active')
     set_state('sensu.installed')
@@ -67,5 +72,6 @@ def setup_sensu(info):
 @when('sensu.installed')
 @when_not('info.available')
 def remove():
-    shutil.rmtree(os.path.join(CONFIG_DIR, config()['charm']))
+    shutil.rmtree(os.path.join(CONFIG_DIR, local_unit().replace('/', '-')))
     service_restart('sensu-client')
+    remove_state('sensu.installed')
