@@ -19,7 +19,7 @@ import os
 import shutil
 from subprocess import call, CalledProcessError
 from charmhelpers.core.templating import render
-from charmhelpers.core.hookenv import local_unit, status_set, config, open_port, application_version_set, unit_public_ip
+from charmhelpers.core.hookenv import local_unit, status_set, config, open_port, application_version_set, unit_public_ip, charm_name
 from charmhelpers.core.host import service_restart
 from charms.reactive import when, when_not, set_state, remove_state
 
@@ -57,7 +57,8 @@ def setup_sensu(info):
         os.mkdir(os.path.join(CONFIG_DIR, unit))
     checks = [{'type': m.split('|')[0],
                'script': m.split('|')[1],
-               'subscribers': application}
+               'subscribers': application,
+               'charm': charm_name()}
               for m in config()['measurements'].split(' ')]
     render('checks.json', '{}/{}/checks.json'.format(CONFIG_DIR, unit), context={'checks': checks})
     try:

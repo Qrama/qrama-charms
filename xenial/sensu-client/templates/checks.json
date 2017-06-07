@@ -5,7 +5,8 @@
       "standalone": true,
       "interval": 5,
       "type": "metric",
-      "subscribers": ["{{check.subscribers}}"]
+      "subscribers": ["{{check.subscribers}}"],
+      "aggregate": "{{check.charm}}"
     }{%- if not loop.last %},{% endif %}{% endfor %}
   }
 }

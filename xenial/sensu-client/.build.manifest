@@ -230,7 +230,7 @@
     "templates/checks.json": [
       "sensu-client", 
       "static", 
-      "b30f5bee8dedcca979c390a4fbfd57733d9a534e79a9a619f2bf0ba0050b4f9e"
+      "ec933259a5ad201ceefb03fe768f28d0190c3ef0fa93c471b3476ca394f7d037"
     ], 
     "layer.yaml": [
       "sensu-client", 
@@ -245,7 +245,7 @@
     "reactive/sensu-client.py": [
       "sensu-client", 
       "static", 
-      "5cea2e40aabfd2be9e0870efeba6b802a89274d75c801da783956b9e5a6e8b48"
+      "1a51c7baa3132e8728a218ce8c3243920ce3a896a1318c9b3f5bbf3d45f13e01"
     ], 
     "hooks/hook.template": [
       "layer:basic", 
