@@ -1,0 +1,20 @@
+"name": "sojobo-api"
+"summary": "This Charm sets up a Tengu Sojobo API."
+"maintainer": "Mathijs Moerman <mathijs.moerman@qrama.io>"
+"description": ""
+"tags":
+- "big_data"
+"requires":
+  "mongodb":
+    "interface": "mongodb"
+"provides":
+  "website":
+    "interface": "http"
+  "sojobo":
+    "interface": "sojobo"
+  "reverseproxy":
+    "interface": "http"
+"series":
+- "xenial"
+- "xenial"
+"subordinate": !!bool "false"

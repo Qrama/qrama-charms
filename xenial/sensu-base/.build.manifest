@@ -6,6 +6,7 @@
     "interface:rabbitmq", 
     "interface:redis", 
     "interface:http", 
+    "interface:monitoring", 
     "build"
   ], 
   "signatures": {
@@ -94,15 +95,20 @@
       "static", 
       "8fb6559bf4d4b7cdf1b857564c1d7265df98e863a4746fcbae092f141e59d97e"
     ], 
-    "wheelhouse/charmhelpers-0.15.0.tar.gz": [
-      "layer:basic", 
-      "dynamic", 
-      "dde6d6905a1f71cd3a6ed7cbf92bb4c26159d6a1b5ce8b4e5d2b893de7cc0647"
+    "hooks/relations/redis/__init__.py": [
+      "interface:redis", 
+      "static", 
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     ], 
     "wheelhouse/Tempita-0.5.2.tar.gz": [
       "layer:basic", 
       "dynamic", 
       "cacecf0baa674d356641f1d406b8bff1d756d739c46b869a54de515d08e6fc9c"
+    ], 
+    "hooks/monitoring-relation-departed": [
+      "interface:monitoring", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
     "hooks/rabbitmq-relation-joined": [
       "interface:rabbitmq", 
@@ -114,10 +120,15 @@
       "dynamic", 
       "b865e4f53a85f4d8a092e7701f759a3237fb3ee8a928627401914aafadc00907"
     ], 
+    "wheelhouse/charmhelpers-0.16.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "5727a1dc278416d3e0b432ae9d46f599bca1c61b17f4880e5d33553d249b7cb3"
+    ], 
     "reactive/sensu-base.py": [
       "sensu-base", 
       "static", 
-      "d5a3ddd1aec9eb6903a2647a70605df80a9688ddddae0a84ecb1fbbac4b2a9e3"
+      "513a9288079cfce32d8d6d0e5d44ebed56abe41cd0cde70e3986c0de35ad4592"
     ], 
     "tox.ini": [
       "layer:basic", 
@@ -127,17 +138,17 @@
     "metadata.yaml": [
       "sensu-base", 
       "dynamic", 
-      "959d241ff55d1286f8ce7dcff2ecfc349ee4d4c84d0c2a10a7731d335c545843"
+      "4bc74f44cb94cd206bf91501c6b5d17c854ca6da0f6c4d9c21da974d6b6d1c52"
     ], 
     "copyright": [
       "layer:apt", 
       "static", 
       "5123b2d0220fefb4424a463216fb41a6dd7cfad49c9799ba7037f1e74a2fd6bc"
     ], 
-    "hooks/relations/http/README.md": [
-      "interface:http", 
+    "hooks/relations/rabbitmq/test-requirements.txt": [
+      "interface:rabbitmq", 
       "static", 
-      "9c95320ad040745374fc03e972077f52c27e07eb0386ec93ae19bd50dca24c0d"
+      "1e8672952cfe8ad7c98dd9554126023419552234ab39b6064c939e6d8b3585cc"
     ], 
     "wheelhouse/netaddr-0.7.19.tar.gz": [
       "layer:basic", 
@@ -149,15 +160,20 @@
       "static", 
       "0f1c70d27e26005a96d66ad54482877ae20f7737693c833e29dd72bd6ac24892"
     ], 
+    "templates/api.json": [
+      "sensu-base", 
+      "static", 
+      "b5a8f50d68abf766f5e6bb759ec70b6e1dad3f65af8cdfbcb5ecf69a52b4e161"
+    ], 
     ".gitignore": [
       "layer:apt", 
       "static", 
       "54c2eac10d7d0187b02c271ac7a3767bb3d365d562cfb8c1548efb4e84f7b2d5"
     ], 
-    "hooks/relations/redis/__init__.py": [
-      "interface:redis", 
+    "templates/default.json": [
+      "sensu-base", 
       "static", 
-      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      "e063bf547b5df83505d99bd4d3e0aebd5502d2b7fdb9bb238cfd63cf2c30ebee"
     ], 
     "hooks/redis-relation-joined": [
       "interface:redis", 
@@ -179,6 +195,11 @@
       "dynamic", 
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
+    "hooks/relations/monitoring/provides.py": [
+      "interface:monitoring", 
+      "static", 
+      "0ce6500643a6a3cb740011d2ee9f104c1831a9611bde10e54391166280f9a816"
+    ], 
     "hooks/proxy-relation-broken": [
       "interface:http", 
       "dynamic", 
@@ -186,6 +207,11 @@
     ], 
     "hooks/relations/http/__init__.py": [
       "interface:http", 
+      "static", 
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    ], 
+    "hooks/relations/monitoring/__init__.py": [
+      "interface:monitoring", 
       "static", 
       "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     ], 
@@ -254,6 +280,11 @@
       "dynamic", 
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
+    "hooks/relations/monitoring/interface.yaml": [
+      "interface:monitoring", 
+      "static", 
+      "b0b167ef5b25e350c0aee55b852f3deeaeb5eac9d7ba4e19878f4576bc28a9f5"
+    ], 
     "hooks/relations/redis/requires.py": [
       "interface:redis", 
       "static", 
@@ -294,10 +325,25 @@
       "static", 
       "7ab41b1b0e21350dcc449b9129598408f79bbf8b5711d94f766beae580643fed"
     ], 
+    "hooks/monitoring-relation-changed": [
+      "interface:monitoring", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
     "hooks/relations/http/requires.py": [
       "interface:http", 
       "static", 
       "70188554d673bff61578f4e601a78a91efb4736df727507e984be5ca19335f82"
+    ], 
+    "hooks/relations/http/README.md": [
+      "interface:http", 
+      "static", 
+      "9c95320ad040745374fc03e972077f52c27e07eb0386ec93ae19bd50dca24c0d"
+    ], 
+    "hooks/monitoring-relation-joined": [
+      "interface:monitoring", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
     "hooks/relations/redis/interface.yaml": [
       "interface:redis", 
@@ -314,30 +360,40 @@
       "dynamic", 
       "a6be69091dac236ea9c6bc7d012beab42010fa914c459791d627dad4910eb665"
     ], 
-    "wheelhouse/six-1.10.0.tar.gz": [
-      "layer:basic", 
+    "hooks/monitoring-relation-broken": [
+      "interface:monitoring", 
       "dynamic", 
-      "105f8d68616f8248e24bf0e9372ef04d3cc10104f1980f54d57b2ce73a5ad56a"
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
     "hooks/proxy-relation-departed": [
       "interface:http", 
       "dynamic", 
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
-    "hooks/relations/rabbitmq/test-requirements.txt": [
-      "interface:rabbitmq", 
+    "templates/send_monitoring.rb": [
+      "sensu-base", 
       "static", 
-      "1e8672952cfe8ad7c98dd9554126023419552234ab39b6064c939e6d8b3585cc"
+      "63b85969ee0eedfe81a7f5f001f61a5166fec2ff4575314d2e1ca24938e0ae17"
     ], 
     "layer.yaml": [
       "sensu-base", 
       "dynamic", 
-      "0af3edbfe6eee18efd49658f97874bbb32f52e981c4c557f4c2608d23f8092b0"
+      "dd537205b1522ad19da6989328736ff56ef5ab9b310c02e3448c65d409902db8"
     ], 
     "hooks/config-changed": [
       "layer:basic", 
       "static", 
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/relations/monitoring/LICENSE": [
+      "interface:monitoring", 
+      "static", 
+      "589ed823e9a84c56feb95ac58e7cf384626b9cbf4fda2a907bc36e103de1bad2"
+    ], 
+    "hooks/relations/monitoring/requires.py": [
+      "interface:monitoring", 
+      "static", 
+      "e17f11bea5b925640475ae656dd8f8ed40c251f6927db092d416681efed67fbb"
     ], 
     "hooks/relations/rabbitmq/interface.yaml": [
       "interface:rabbitmq", 
@@ -359,10 +415,10 @@
       "static", 
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
-    "templates/api.json": [
-      "sensu-base", 
-      "static", 
-      "b5a8f50d68abf766f5e6bb759ec70b6e1dad3f65af8cdfbcb5ecf69a52b4e161"
+    "wheelhouse/six-1.10.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "105f8d68616f8248e24bf0e9372ef04d3cc10104f1980f54d57b2ce73a5ad56a"
     ], 
     "lib/charms/apt.py": [
       "layer:apt", 
@@ -372,7 +428,7 @@
     "templates/redis.json": [
       "sensu-base", 
       "static", 
-      "79c2d3e8ace29caeecfa1c191652118269399a284c03bec3a1f382bb7800ae56"
+      "1bbe6ade6ac2748c65798dce1ac8a13271c33ed9c939e3d426f7154c766ec9e6"
     ]
   }
 }

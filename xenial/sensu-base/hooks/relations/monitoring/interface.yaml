@@ -1,0 +1,4 @@
+name: monitoring
+summary: Monitoring-API endpoint interface
+version: 1
+repo: https://github.com/Qrama/interface-monitoring

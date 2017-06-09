@@ -9,7 +9,10 @@
   "sojobo":
     "interface": "sojobo"
     "scope": "container"
-  "sensuapi":
-    "interface": "http"
+  "influxdb":
+    "interface": "influxdb-api"
+"provides":
+  "endpoint":
+    "interface": "monitoring"
 "series": ["xenial"]
 "subordinate": !!bool "true"

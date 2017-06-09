@@ -1,22 +1,12 @@
 {
-  "checks": {
-    "cpu_load": {
-      "command": "/opt/sensu/embedded/bin/check-load.rb",
+  "checks": { {% for check in checks %}
+    "{{check.type}}": {
+      "command": "{{check.script}}",
       "standalone": true,
-      "interval": 1,
-      "refresh": 1
-    },
-    "memory": {
-      "command": "/opt/sensu/embedded/bin/metrics-memory.rb",
-      "standalone": true,
-      "interval": 1,
-      "refresh": 1
-    },
-    "disk": {
-      "command": "/opt/sensu/embedded/bin/check-disk-usage.rb",
-      "standalone": true,
-      "interval": 1,
-      "refresh": 1
-    }
+      "interval": 5,
+      "type": "metric",
+      "subscribers": ["{{check.subscribers}}"],
+      "aggregate": "{{check.charm}}"
+    }{%- if not loop.last %},{% endif %}{% endfor %}
   }
 }

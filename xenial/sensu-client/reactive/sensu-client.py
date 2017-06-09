@@ -58,7 +58,7 @@ def setup_sensu(info):
     checks = [{'type': m.split('|')[0],
                'script': m.split('|')[1],
                'subscribers': application,
-               'charm': charm_name()}
+               'charm': config()['charm']}
               for m in config()['measurements'].split(' ')]
     render('checks.json', '{}/{}/checks.json'.format(CONFIG_DIR, unit), context={'checks': checks})
     try:

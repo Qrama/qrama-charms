@@ -3,7 +3,8 @@
     "layer:basic", 
     "monitoring-api", 
     "interface:sojobo", 
-    "interface:http", 
+    "interface:influxdb-api", 
+    "interface:monitoring", 
     "build"
   ], 
   "signatures": {
@@ -45,7 +46,12 @@
     "files/w_monitoring.py": [
       "monitoring-api", 
       "static", 
-      "57b77f2fce172860c571d4a32ac547d1a3b0f676557eb9b28a6a44c124d71f49"
+      "6de03c054b274eb2a7b4d79ffd21ad79a643e42ecd512fd998152d8ea5c2c3a0"
+    ], 
+    "hooks/endpoint-relation-departed": [
+      "interface:monitoring", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
     "Makefile": [
       "layer:basic", 
@@ -61,11 +67,6 @@
       "monitoring-api", 
       "static", 
       "111c079b81d260bbcd716dcf41672372a4cf4aaa14154b6c3055deeedae37a06"
-    ], 
-    "hooks/relations/http/__init__.py": [
-      "interface:http", 
-      "static", 
-      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     ], 
     "hooks/relations/sojobo/__init__.py": [
       "interface:sojobo", 
@@ -115,32 +116,47 @@
     "metadata.yaml": [
       "monitoring-api", 
       "dynamic", 
-      "6995443ed53267b95577da09a50a941c3d5661dbf46097276d36d27fd9fb5fd3"
+      "cfb5e94a6ccd6c0745c4b2bdd1bf6dc666104ea9e3ea83d6efe2f51e3d9da0b2"
     ], 
     "reactive/monitoring_api.py": [
       "monitoring-api", 
       "static", 
-      "d2cac96ef34e0caf40a51ca81a00c26989ee290f1667b747d3fbbb4c7b9e42b8"
+      "821aa07d59c10f8e2b37c101ece7d6edf95bbc7a46c33a066abf9bc34138c6ee"
+    ], 
+    "hooks/influxdb-relation-changed": [
+      "interface:influxdb-api", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
     "copyright": [
       "layer:basic", 
       "static", 
       "f6740d66fd60b60f2533d9fcb53907078d1e20920a0219afce7182e2a1c97629"
     ], 
-    "hooks/relations/http/README.md": [
-      "interface:http", 
-      "static", 
-      "9c95320ad040745374fc03e972077f52c27e07eb0386ec93ae19bd50dca24c0d"
-    ], 
     "wheelhouse/netaddr-0.7.19.tar.gz": [
       "layer:basic", 
       "dynamic", 
       "38aeec7cdd035081d3a4c306394b19d677623bf76fa0913f6695127c7753aefd"
     ], 
+    "hooks/endpoint-relation-changed": [
+      "interface:monitoring", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
     "requirements.txt": [
       "layer:basic", 
       "static", 
       "0f1c70d27e26005a96d66ad54482877ae20f7737693c833e29dd72bd6ac24892"
+    ], 
+    "hooks/endpoint-relation-broken": [
+      "interface:monitoring", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "files/install_mapping.json": [
+      "monitoring-api", 
+      "static", 
+      "baf198b904812518958ac15e58bd861b4a4736c311cd736c4deff2f1400be566"
     ], 
     ".gitignore": [
       "layer:basic", 
@@ -157,15 +173,30 @@
       "static", 
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
-    "hooks/sensuapi-relation-departed": [
-      "interface:http", 
-      "dynamic", 
-      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    "hooks/relations/influxdb-api/requires.py": [
+      "interface:influxdb-api", 
+      "static", 
+      "78bceb92109fdb7e4204bfae558fa594f1559a53667bffc8f12625b2f8b201b2"
+    ], 
+    "hooks/relations/monitoring/requires.py": [
+      "interface:monitoring", 
+      "static", 
+      "e17f11bea5b925640475ae656dd8f8ed40c251f6927db092d416681efed67fbb"
     ], 
     "wheelhouse/PyYAML-3.12.tar.gz": [
       "layer:basic", 
       "dynamic", 
       "592766c6303207a20efc445587778322d7f73b161bd994f227adaa341ba212ab"
+    ], 
+    "hooks/relations/monitoring/provides.py": [
+      "interface:monitoring", 
+      "static", 
+      "0ce6500643a6a3cb740011d2ee9f104c1831a9611bde10e54391166280f9a816"
+    ], 
+    "hooks/relations/monitoring/__init__.py": [
+      "interface:monitoring", 
+      "static", 
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     ], 
     "hooks/sojobo-relation-joined": [
       "interface:sojobo", 
@@ -192,23 +223,33 @@
       "static", 
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
-    "hooks/relations/http/interface.yaml": [
-      "interface:http", 
-      "static", 
-      "d0b64038b85b7791ee4f3a42d73ffc8c208f206f73f899cbf33a519d12f9ad13"
-    ], 
     "lib/charms/layer/basic.py": [
       "layer:basic", 
       "static", 
       "d09706ef3a224eb60d34366a2867c382791aa30157ab5b77eda37f29731df2e2"
+    ], 
+    "hooks/influxdb-relation-departed": [
+      "interface:influxdb-api", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
     "wheelhouse/charms.reactive-0.4.7.tar.gz": [
       "layer:basic", 
       "dynamic", 
       "f023f5aef267786db1be51209610487171ba56e848f7b1c49877b06337000256"
     ], 
+    "hooks/relations/monitoring/interface.yaml": [
+      "interface:monitoring", 
+      "static", 
+      "b0b167ef5b25e350c0aee55b852f3deeaeb5eac9d7ba4e19878f4576bc28a9f5"
+    ], 
     "hooks/sojobo-relation-departed": [
       "interface:sojobo", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/influxdb-relation-joined": [
+      "interface:influxdb-api", 
       "dynamic", 
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
@@ -232,35 +273,25 @@
       "static", 
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
-    "hooks/sensuapi-relation-changed": [
-      "interface:http", 
-      "dynamic", 
-      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
-    ], 
     "README.md": [
       "monitoring-api", 
       "static", 
-      "7959752a9d1e8c4fdfe0f534514442172a8ccc45d9ff04799cf71cfe06dc805b"
+      "2242b588c85a3aa8a6f12106c3adc0d315a4b9666ca9d57fd37f79100047039a"
     ], 
     "hooks/relations/sojobo/.gitignore": [
       "interface:sojobo", 
       "static", 
       "f24477a840737ae9a1439e10ec2c1003279b9569cc0e3661bd145df95fd0343a"
     ], 
-    "hooks/sensuapi-relation-broken": [
-      "interface:http", 
-      "dynamic", 
-      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
-    ], 
-    "hooks/relations/http/requires.py": [
-      "interface:http", 
-      "static", 
-      "70188554d673bff61578f4e601a78a91efb4736df727507e984be5ca19335f82"
-    ], 
     "hooks/relations/sojobo/provides.py": [
       "interface:sojobo", 
       "static", 
       "4c6bdf586d75ba804792a01d34d5709201ada5ffcafc2e21823b4cb0b0d4f4ad"
+    ], 
+    "hooks/relations/influxdb-api/provides.py": [
+      "interface:influxdb-api", 
+      "static", 
+      "c6c791c3ee3175baf79267869e03b32b5a26406e658b95fca4d57e8aeec50aab"
     ], 
     "hooks/start": [
       "layer:basic", 
@@ -272,10 +303,25 @@
       "dynamic", 
       "a6be69091dac236ea9c6bc7d012beab42010fa914c459791d627dad4910eb665"
     ], 
+    "hooks/relations/influxdb-api/__init__.py": [
+      "interface:influxdb-api", 
+      "static", 
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    ], 
     "hooks/relations/sojobo/README.md": [
       "interface:sojobo", 
       "static", 
       "d6c24cac4947f77772fc6ef1b418e752380da799e795380f52c1330a62b5cf1c"
+    ], 
+    "hooks/hook.template": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/relations/influxdb-api/interface.yaml": [
+      "interface:influxdb-api", 
+      "static", 
+      "aac2a10ed176e1536faedc075e959c2853c2b5dce96137c80e228f9a83694e66"
     ], 
     "hooks/relations/sojobo/interface.yaml": [
       "interface:sojobo", 
@@ -285,42 +331,47 @@
     "layer.yaml": [
       "monitoring-api", 
       "dynamic", 
-      "abd45eedf976fd7d9cc7f1ca531a3c7dd74856c6726c0b6f89497f3e0959027c"
+      "47ec2512baa7295ace583320ef2d0c96933bb0498ac60dde24ce2c6f68def38a"
     ], 
     "hooks/config-changed": [
       "layer:basic", 
       "static", 
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
+    "hooks/relations/monitoring/LICENSE": [
+      "interface:monitoring", 
+      "static", 
+      "589ed823e9a84c56feb95ac58e7cf384626b9cbf4fda2a907bc36e103de1bad2"
+    ], 
     "files/api_monitoring.py": [
       "monitoring-api", 
       "static", 
-      "28e3faee2c757fc688c0231367e7d52baefb627c809f01caa42f308de6f6eec6"
+      "8cc4f8006441ecd35e604e13a3d14e211c9f95b8deee97e7bbf1716d86855110"
     ], 
     ".build.manifest": [
       "build", 
       "dynamic", 
       "unchecked"
     ], 
-    "hooks/sensuapi-relation-joined": [
-      "interface:http", 
-      "dynamic", 
-      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
-    ], 
-    "hooks/hook.template": [
-      "layer:basic", 
+    "files/w_filters.py": [
+      "monitoring-api", 
       "static", 
-      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+      "90aef738baf86ea437a283a7a48398946fbfed3e8e020d4640be5b7e2e005e71"
     ], 
     "wheelhouse/six-1.10.0.tar.gz": [
       "layer:basic", 
       "dynamic", 
       "105f8d68616f8248e24bf0e9372ef04d3cc10104f1980f54d57b2ce73a5ad56a"
     ], 
-    "hooks/relations/http/provides.py": [
-      "interface:http", 
-      "static", 
-      "eb4b01fc022cafbb6e67cb200f497ab3aeee4b954b1b9ff2be1d8e64d1a4be20"
+    "hooks/influxdb-relation-broken": [
+      "interface:influxdb-api", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/endpoint-relation-joined": [
+      "interface:monitoring", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ]
   }
 }

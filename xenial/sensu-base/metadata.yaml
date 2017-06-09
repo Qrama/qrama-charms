@@ -9,6 +9,8 @@
     "interface": "rabbitmq"
   "redis":
     "interface": "redis"
+  "monitoring":
+    "interface": "monitoring"
 "provides":
   "proxy":
     "interface": "http"

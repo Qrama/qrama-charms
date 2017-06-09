@@ -14,6 +14,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 # pylint: disable=c0111,c0301,c0325,w0406
+import json
 import requests
 from flask import request, Blueprint
 from sojobo_api import settings
@@ -43,6 +44,13 @@ def status():
     return create_response(200, res)
 
 
+@MONITOR.route('', methods=['POST'])
+def event_data():
+    #monitoring.authenticate(request.authorization)
+    monitoring.save_data(json.loads(request.data.decode('utf-8')))
+    return create_response(200, 'OK')
+
+
 # @MONITOR.route('/controllers', methods=['GET'])
 # def get_controllers_monitor(controller):
 #     req = requests.get('http://ip/users/{}'.format(request.authorization.username),
@@ -55,40 +63,38 @@ def status():
 #         return create_response(req.status_code, req.text)
 #
 #
-# @MONITOR.route('/controllers/<controller>', methods=['GET'])
-# def get_controller_monitor(controller):
-#     req = requests.get('https://collision-backend.tengu.io/users/{}'.format(request.path[1:].split('/', 1)[1]),
-#                        auth=(request.authorization.username, request.authorization.password),
-#                        headers={'api-key': get_api_key()})
-#     if req.status_code == 200:
-#         res = monitoring.get_models(check_input(controller), req.json())
-#         return create_response(200, res)
-#     else:
-#         return create_response(req.status_code, req.text)
-#
-#
-# @MONITOR.route('/controllers/<controller>/models/<model>', methods=['GET'])
-# def get_model_monitor(controller, model):
-#     req = requests.get('https://collision-backend.tengu.io/users/{}'.format(request.path[1:].split('/', 1)[1]),
-#                        auth=(request.authorization.username, request.authorization.password),
-#                        headers={'api-key': get_api_key()})
-#     if req.status_code == 200:
-#         res = monitoring.get_model(check_input(controller), check_input(model))
-#         return create_response(200, res)
-#     else:
-#         return create_response(req.status_code, req.text)
+@MONITOR.route('/controllers/<controller>', methods=['GET'])
+def get_controller_monitor(controller):
+    req = requests.get('https://collision-backend.tengu.io/users/{}'.format(request.path[1:].split('/', 1)[1]),
+                       auth=(request.authorization.username, request.authorization.password),
+                       headers={'api-key': get_api_key()})
+    if req.status_code == 200:
+        res = monitoring.get_models(check_input(controller), req.json())
+        return create_response(200, res)
+    else:
+        return create_response(req.status_code, req.text)
+
+
+@MONITOR.route('/controllers/<controller>/models/<model>', methods=['GET'])
+def get_model_monitor(controller, model):
+    req = requests.get('https://collision-backend.tengu.io/users/{}'.format(request.path[1:].split('/', 1)[1]),
+                       auth=(request.authorization.username, request.authorization.password),
+                       headers={'api-key': get_api_key()})
+    if req.status_code == 200:
+        res = monitoring.get_model(check_input(controller), check_input(model))
+        return create_response(200, res)
+    else:
+        return create_response(req.status_code, req.text)
 
 
 @MONITOR.route('/controllers/<controller>/models/<model>/applications/<application>', methods=['GET'])
 def get_application_monitor(controller, model, application):
-    token, con, mod = execute_task(juju.authenticate, request.headers['api-key'], request.authorization,
-                                   juju.check_input(controller), juju.check_input(model))
-    app = juju.check_input(application)
-    if execute_task(juju.app_exists, token, con, mod, app):
-        code, response = 200, execute_task(monitoring.get_application, con, mod, app)
+    token, con = execute_task(juju.authenticate, request.headers['api-key'], request.authorization,
+                              juju.check_input(controller))
+    if mongo.get_model_access(controller, model, request.authorization.username) is not None:
+        code, response = 200, monitoring.get_application(controller, model, application)
     else:
-        code, response = errors.does_not_exist('application')
-    execute_task(mod.disconnect)
+        code, response = 200, {}
     execute_task(con.disconnect)
     return create_response(code, response)
 
@@ -102,7 +108,8 @@ def add_monitoring_application(controller, model, application):
         if mod_access == 'admin':
             app = juju.check_input(application)
             if execute_task(juju.app_exists, token, con, mod, app):
-                code, response = 200, execute_task(monitoring.add_monitoring, con, mod, app)
+                execute_task(monitoring.add_monitoring, con, mod, app)
+                code, response = 200, 'OK'
             else:
                 code, response = errors.does_not_exist(app)
         else:
@@ -121,7 +128,8 @@ def remove_monitoring_application(controller, model, application):
         if mod_access == 'admin':
             app = juju.check_input(application)
             if execute_task(juju.app_exists, token, con, mod, app):
-                code, response = 200, execute_task(monitoring.remove_monitoring, con, mod, app)
+                execute_task(monitoring.remove_monitoring, con, mod, app)
+                code, response = 200, 'OK'
             else:
                 code, response = errors.does_not_exist(app)
         else:
@@ -131,13 +139,13 @@ def remove_monitoring_application(controller, model, application):
     return create_response(code, response)
 
 
-# @MONITOR.route('/controllers/<controller>/models/<model>/applications/<application>/units/<unitnr>', methods=['GET'])
-# def get_unit_monitor(controller, model, application, unitnr):
-#     req = requests.get('https://collision-backend.tengu.io/tengu/{}'.format(request.path[1:].split('/', 1)[1]),
-#                        auth=(request.authorization.username, request.authorization.password),
-#                        headers={'api-key': get_api_key()})
-#     if req.status_code == 200:
-#         res = monitoring.get_unit(check_input(controller), check_input(model), req.json())
-#         return create_response(200, res)
-#     else:
-#         return create_response(req.status_code, req.text)
+@MONITOR.route('/controllers/<controller>/models/<model>/applications/<application>/units/<unitnr>', methods=['GET'])
+def get_unit_monitor(controller, model, application, unitnr):
+    token, con = execute_task(juju.authenticate, request.headers['api-key'], request.authorization,
+                              juju.check_input(controller))
+    if mongo.get_model_access(controller, model, request.authorization.username) is not None:
+        code, response = 200, monitoring.get_unit(controller, model, application, unitnr)
+    else:
+        code, response = 200, {}
+    execute_task(con.disconnect)
+    return create_response(code, response)

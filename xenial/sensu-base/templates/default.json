@@ -1,0 +1,8 @@
+{
+  "handlers" : {
+    "default" : {
+      "type": "pipe",
+      "command": "send_monitoring.rb"
+    }
+  }
+}

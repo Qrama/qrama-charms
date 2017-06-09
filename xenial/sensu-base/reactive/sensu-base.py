@@ -15,6 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 # pylint: disable=c0111,c0103,c0301
 import os
+from subprocess import check_call
 from charmhelpers.core.templating import render
 from charmhelpers.core.hookenv import status_set, config, open_port, application_version_set, unit_private_ip
 from charmhelpers.core.host import service_restart, service_stop
@@ -29,7 +30,7 @@ SSL_DIR = '/etc/sensu/ssl'
 @when('apt.installed.sensu')
 @when_not('sensu.running', 'redis.connected', 'rabbitmq.connected')
 def setup_sensu():
-    application_version_set('0.29')
+    application_version_set('0.29.0')
     status_set('blocked', 'Waiting for relation with RabbitMQ and Redis')
 
 
@@ -62,11 +63,21 @@ def configure_redis(redis):
     set_state('redis.setup')
 
 
-@when('redis.available', 'rabbitmq.available')
+@when('redis.available', 'rabbitmq.available', 'monitoring.available')
 @when_not('sensu.running')
-def starting_sensu(redis, rabbitmq):
+def starting_sensu(redis, rabbitmq, monitoring):
     render('transport.json', '{}/transport.json'.format(CONFIG_DIR), context={})
     render('api.json', '{}/api.json'.format(CONFIG_DIR), context={'host': unit_private_ip(), 'port': 4567})
+    context = {
+        'sojobo': list(monitoring.connection())[0]['ip'],
+        'user': list(monitoring.connection())[0]['user'],
+        'password': list(monitoring.connection())[0]['password']
+    }
+    render('send_monitoring.rb', '/opt/sensu/embedded/bin/send_monitoring.rb', context=context)
+    check_call(['chmod', '755', '/opt/sensu/embedded/bin/send_monitoring.rb'])
+    if not os.path.isdir(os.path.join(CONFIG_DIR, 'handlers')):
+        os.mkdir(os.path.join(CONFIG_DIR, 'handlers'))
+    render('default.json', os.path.join(CONFIG_DIR, 'handlers', 'default.json'), context={})
     service_restart('sensu-server')
     service_restart('sensu-api')
     open_port(4567)
@@ -102,3 +113,9 @@ def missing_redis(rabbitmq):
 @when_not('redis.available')
 def waiting_redis(redis):
     status_set('blocked', 'Waiting for Redis info')
+
+
+@when('redis.available', 'rabbitmq.available')
+@when_not('monitoring.available')
+def waiting_monitoring(redis, rabbitmq):
+    status_set('blocked', 'Waiting for relation with Monitoring-api. RabbitMQ password: {}'.format(rabbitmq.password()))

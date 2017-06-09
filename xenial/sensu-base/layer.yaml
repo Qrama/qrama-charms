@@ -15,5 +15,6 @@
 - "interface:rabbitmq"
 - "interface:redis"
 - "interface:http"
+- "interface:monitoring"
 "repo": "git@github.com:Qrama/layer-sensu-base.git"
 "is": "sensu-base"
