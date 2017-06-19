@@ -17,44 +17,14 @@
 import json
 import os
 import requests
-from flask import abort
 from influxdb import InfluxDBClient
 from sojobo_api import settings
-from sojobo_api.api import w_errors as errors, w_juju as juju, w_filters as filters #pylint: disable = e0401
-
-
-def authenticate(auth):
-    if not (auth.username == settings.MONITOR_USER and auth.password == settings.MONITOR_PASSWORD):
-        error = errors.unauthorized()
-        abort(error[0], error[1])
+from sojobo_api.api import w_juju as juju #pylint: disable = e0401
 
 
 def influxdb_client():
     return InfluxDBClient(settings.INFLUXDB.split(':')[0], settings.INFLUXDB.split(':')[1],
                           settings.INFLUXDB_USER, settings.INFLUXDB_PASSWORD, settings.INFLUXDB_DB)
-
-
-def save_data(data):
-    controller, model, machine = data['client']['name'].split('/')
-    subscribers = data['check']['subscribers']
-    measurements = filters.parse(data['check']['command'].split('/')[-1], data['check']['output'])
-    for m in measurements:
-        body = []
-        for s in subscribers:
-            body.append({
-                'measurement': data['check']['name'],
-                'time': '{}000000000'.format(data['check']['executed']),
-                'tags': {
-                    'controller': controller,
-                    'model': model,
-                    'machine': machine,
-                    'charm': data['check']['aggregate'],
-                    'application': s.split('/')[0],
-                    'unit': s.split('/')[1]
-                },
-                'fields': {'name': m['name'], 'value': m['value'], 'size': m['unit']}
-            })
-        influxdb_client().write_points(body, time_precision='s')
 
 
 async def add_monitoring(con_con, mod_con, app):
@@ -142,3 +112,46 @@ def get_unit(con, mod, app, unit):
         if result is not []:
             results[unit][m] = result
     return results
+
+
+def check_sensu():
+    try:
+        res = requests.get('http://{}/info'.format(settings.SENSU_API))
+        if res.status_code == 200:
+            return {
+                'Sensu-api': 'RUNNING',
+                'Sensu-server': 'RUNNING' if res.json()['servers'] != [] else 'DOWN',
+                'Sensu-Reddis-connection': 'RUNNING' if res.json()['redis']['connected'] else 'DOWN',
+                'Sensu-RabbitMQ-connection': 'RUNNING' if res.json()['transport']['connected'] else 'DOWN'
+            }
+        else:
+            return {
+                'Sensu-api': 'ERROR',
+                'Sensu-server': 'ERROR',
+                'Sensu-Reddis-connection': 'ERROR',
+                'Sensu-RabbitMQ-connection': 'ERROR'
+            }
+    except requests.exceptions.ConnectionError:
+        return {
+            'Sensu-api': 'DOWN',
+            'Sensu-server': 'UNKNOWN',
+            'Sensu-Reddis-connection': 'UNKNOWN',
+            'Sensu-RabbitMQ-connection': 'UNKNOWN'
+        }
+
+
+def check_influxdb():
+    try:
+        temp = influxdb_client()
+        return {'InfluxDB': 'RUNNING', 'Parser': check_parser()}
+    except requests.exceptions.ConnectionError:
+        return {'InfluxDB': 'DOWN', 'Parser': 'UNKNOWN'}
+
+
+def check_parser():
+    query = 'select * from heartbeat where \"name\"=\'sensu-influxdb-parser\' and time > now() - 10s'
+    result = list(influxdb_client().query(query).get_points())
+    if result is []:
+        return 'ERROR'
+    else:
+        return result[-1]['status']

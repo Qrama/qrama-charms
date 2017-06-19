@@ -1,0 +1,13 @@
+"name": "sensu-influxdb-parser"
+"summary": "Sends data from Sensu to an InfluxDB server"
+"maintainer": "Mathijs Moerman <mathijs.moerman@tengu.io>"
+"description": |
+  Sets up a tcp server, which sends data to influxdb.
+"tags": ["misc"]
+"requires":
+  "influxdb":
+    "interface": "influxdb-api"
+"provides":
+  "endpoint":
+    "interface": "http"
+"series": ["xenial"]

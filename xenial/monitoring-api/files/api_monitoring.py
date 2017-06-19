@@ -32,23 +32,13 @@ def get():
 #################
 @MONITOR.route('', methods=['GET'])
 def status():
-    res = {'Redis': 'Check not implemented',
-           'RabbitMQ': 'Check not implemented',
-           'Sensu-server': 'Check not implemented',
-           'Sensu-API': 'Check not implemented',
-           'Sensu-connection': {
-               'Redis': 'Check not implemented',
-               'RabbitMQ': 'Check not implemented'
-           }
-          }
+    res = {
+        'Redis': 'Check not implemented',
+        'RabbitMQ': 'Check not implemented',
+        'Sensu': monitoring.check_sensu(),
+        'InfluxDB': monitoring.check_influxdb()
+    }
     return create_response(200, res)
-
-
-@MONITOR.route('', methods=['POST'])
-def event_data():
-    #monitoring.authenticate(request.authorization)
-    monitoring.save_data(json.loads(request.data.decode('utf-8')))
-    return create_response(200, 'OK')
 
 
 # @MONITOR.route('/controllers', methods=['GET'])
@@ -63,28 +53,28 @@ def event_data():
 #         return create_response(req.status_code, req.text)
 #
 #
-@MONITOR.route('/controllers/<controller>', methods=['GET'])
-def get_controller_monitor(controller):
-    req = requests.get('https://collision-backend.tengu.io/users/{}'.format(request.path[1:].split('/', 1)[1]),
-                       auth=(request.authorization.username, request.authorization.password),
-                       headers={'api-key': get_api_key()})
-    if req.status_code == 200:
-        res = monitoring.get_models(check_input(controller), req.json())
-        return create_response(200, res)
-    else:
-        return create_response(req.status_code, req.text)
-
-
-@MONITOR.route('/controllers/<controller>/models/<model>', methods=['GET'])
-def get_model_monitor(controller, model):
-    req = requests.get('https://collision-backend.tengu.io/users/{}'.format(request.path[1:].split('/', 1)[1]),
-                       auth=(request.authorization.username, request.authorization.password),
-                       headers={'api-key': get_api_key()})
-    if req.status_code == 200:
-        res = monitoring.get_model(check_input(controller), check_input(model))
-        return create_response(200, res)
-    else:
-        return create_response(req.status_code, req.text)
+# @MONITOR.route('/controllers/<controller>', methods=['GET'])
+# def get_controller_monitor(controller):
+#     req = requests.get('https://collision-backend.tengu.io/users/{}'.format(request.path[1:].split('/', 1)[1]),
+#                        auth=(request.authorization.username, request.authorization.password),
+#                        headers={'api-key': get_api_key()})
+#     if req.status_code == 200:
+#         res = monitoring.get_models(check_input(controller), req.json())
+#         return create_response(200, res)
+#     else:
+#         return create_response(req.status_code, req.text)
+#
+#
+# @MONITOR.route('/controllers/<controller>/models/<model>', methods=['GET'])
+# def get_model_monitor(controller, model):
+#     req = requests.get('https://collision-backend.tengu.io/users/{}'.format(request.path[1:].split('/', 1)[1]),
+#                        auth=(request.authorization.username, request.authorization.password),
+#                        headers={'api-key': get_api_key()})
+#     if req.status_code == 200:
+#         res = monitoring.get_model(check_input(controller), check_input(model))
+#         return create_response(200, res)
+#     else:
+#         return create_response(req.status_code, req.text)
 
 
 @MONITOR.route('/controllers/<controller>/models/<model>/applications/<application>', methods=['GET'])
@@ -116,6 +106,8 @@ def add_monitoring_application(controller, model, application):
             code, response = errors.no_permission()
     except KeyError:
         code, response = errors.invalid_data()
+    execute_task(con.disconnect)
+    execute_task(mod.disconnect)
     return create_response(code, response)
 
 
@@ -136,6 +128,8 @@ def remove_monitoring_application(controller, model, application):
             code, response = errors.no_permission()
     except KeyError:
         code, response = errors.invalid_data()
+    execute_task(con.disconnect)
+    execute_task(mod.disconnect)
     return create_response(code, response)
 
 

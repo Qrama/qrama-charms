@@ -1,13 +1,12 @@
 "options":
-  "monitoring-api": {}
+  "sensu-influxdb-parser": {}
   "basic":
     "use_venv": !!bool "false"
     "packages": []
     "include_system_packages": !!bool "false"
 "includes":
 - "layer:basic"
-- "interface:sojobo"
 - "interface:influxdb-api"
 - "interface:http"
-"repo": "git@github.com:Qrama/monitoring-api.git"
-"is": "monitoring-api"
+"repo": "git@github.com:Qrama/layer-sensu-influxdb-parser.git"
+"is": "sensu-influxdb-parser"

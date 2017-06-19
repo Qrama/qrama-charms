@@ -11,8 +11,7 @@
     "scope": "container"
   "influxdb":
     "interface": "influxdb-api"
-"provides":
-  "endpoint":
-    "interface": "monitoring"
+  "sensu":
+    "interface": "http"
 "series": ["xenial"]
 "subordinate": !!bool "true"

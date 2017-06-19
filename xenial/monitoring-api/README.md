@@ -6,10 +6,11 @@ This installation assumes a running version of the Sojobo-API. If this is not th
 
 The required charms can be found in the qrama-charms repo. In order to install these using the following commands, one must be in the topdir of the cloned qrama-charms repo.
 ```
-juju deploy cs:rabbitmq-server-61
+juju deploy rabbitmq-server
 juju deploy cs:~chris.macnaughton/influxdb-7
 juju deploy ./xenial/monitoring-api
 juju deploy ./xenial/sensu-base
+juju deploy ./xenial/sensu-influxdb-parser
 juju deploy ./yakkety/redis
 juju expose rabbitmq-server
 ```
@@ -31,15 +32,17 @@ juju config monitoring-api rabbitmq="[publicip:port rabbitmq server. Port is ssl
 ```
 Then some of the applications can be connected:
 ```
+juju add-relation sensu-influxdb-parser influxdb
+juju add-relation sensu-influxdb-parser sensu-base
 juju add-relation redis sensu-base
 juju add-relation rabbitmq-server sensu-base
 ```
 When Sensu-base is complety setup, the rabbitmq-server password will be visible in its status message (of the Sensu-base). This password is needed for the monitoring-api config.
 ```
 juju config monitoring-api password="[See juju status message from sensu-base]"
-juju add-relation monitoring-api sojobo-api
-juju add-relation monitoring-api sensu-base
-juju add-relation monitoring-api influxdb
+juju add-relation monitoring-api:sojobo sojobo-api
+juju add-relation monitoring-api:influxdb influxdb
+juju add-relation monitoring-api:sensu sensu-base
 ```
 # Bugs
 Report bugs on <a href="https://github.com/Qrama/monitoring-api/issues">Github</a>
