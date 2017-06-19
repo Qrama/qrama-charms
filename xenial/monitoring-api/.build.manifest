@@ -46,7 +46,7 @@
     "files/w_monitoring.py": [
       "monitoring-api", 
       "static", 
-      "5be81902c8383b5c9ff96cb4b06a099c3bcf11630b3bed3e4ca16dc1786c13fb"
+      "83ad3af603c687bd287aecf2045861e0b13db58b8a81579462fbe436ae525705"
     ], 
     "Makefile": [
       "layer:basic", 
@@ -261,7 +261,7 @@
     "README.md": [
       "monitoring-api", 
       "static", 
-      "5a01277982ab0ae3bfef3c7c2e42377d5cd55ccecbb639d9598a42c546651285"
+      "fe9fdfabf994b01d962cf1a098866da47dd85f5fb4a255c0c9472b004c2eb0fd"
     ], 
     "hooks/relations/sojobo/.gitignore": [
       "interface:sojobo", 
@@ -341,7 +341,7 @@
     "files/api_monitoring.py": [
       "monitoring-api", 
       "static", 
-      "e16238e040b94abf385594cbffaeaebf242170ba32974515cf825c671c49755f"
+      "2d7b0a5588cf93cacc5ad410c00c7eb0d2d149111d6c51bd1aeff2157ab6db1f"
     ], 
     ".build.manifest": [
       "build", 

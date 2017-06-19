@@ -25,7 +25,6 @@ def install():
 @when_not('parser.running')
 def setup_tcpserver(influxdb):
     from influxdb import InfluxDBClient
-    from crontab import CronTab
     client = InfluxDBClient(influxdb.hostname(), influxdb.port(), influxdb.user(), influxdb.password())
     client.create_database('tengu_monitoring')
     context = {
@@ -37,13 +36,6 @@ def setup_tcpserver(influxdb):
         'influx_db': 'tengu_monitoring'
     }
     render('tcpserver.py', os.path.join(INSTALL_PATH, 'tcpserver.py'), context=context)
-    render('heartbeat.py', os.path.join(INSTALL_PATH, 'heartbeat.py'), context=context)
-    cron = CronTab(user='root')
-    cron.remove_all()
-    cron.write()
-    job = cron.new(command='python3 {}'.format(os.path.join(INSTALL_PATH, 'heartbeat.py')))
-    job.minute.during.every(1)
-    cron.write_to_user(user='root')
     service_restart('sensu-influxdb-parser')
     status_set('active', 'Parser running')
     set_state('parser.running')

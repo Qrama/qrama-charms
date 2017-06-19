@@ -143,13 +143,31 @@ def check_sensu():
 def check_influxdb():
     try:
         temp = influxdb_client()
-        return {'InfluxDB': 'RUNNING', 'Parser': check_parser()}
+        return {'InfluxDB': 'RUNNING', 'Parser': check_parser(), 'RabbitMQ': check_rabbitmq(), 'Redis': check_redis()}
     except requests.exceptions.ConnectionError:
-        return {'InfluxDB': 'DOWN', 'Parser': 'UNKNOWN'}
+        return {'InfluxDB': 'DOWN', 'Parser': 'UNKNOWN', 'RabbitMQ': 'UNKNOWN', 'Redis': 'UNKNOWN'}
 
 
 def check_parser():
     query = 'select * from heartbeat where \"name\"=\'sensu-influxdb-parser\' and time > now() - 10s'
+    result = list(influxdb_client().query(query).get_points())
+    if result is []:
+        return 'ERROR'
+    else:
+        return result[-1]['status']
+
+
+def check_rabbitmq():
+    query = 'select * from heartbeat where \"name\"=\'rabbitmq-server\' and time > now() - 10s'
+    result = list(influxdb_client().query(query).get_points())
+    if result is []:
+        return 'ERROR'
+    else:
+        return result[-1]['status']
+
+
+def check_redis():
+    query = 'select * from heartbeat where \"name\"=\'redis\' and time > now() - 10s'
     result = list(influxdb_client().query(query).get_points())
     if result is []:
         return 'ERROR'

@@ -1,16 +1,12 @@
 {
   "layers": [
     "layer:basic", 
-    "redis", 
-    "interface:redis", 
+    "heartbeat", 
+    "interface:influxdb-api", 
+    "interface:juju-info", 
     "build"
   ], 
   "signatures": {
-    "tests/10-deploy": [
-      "redis", 
-      "static", 
-      "18a036890f28dd2d49ec1f197c9ff4257107457b120d1d4631d020e91873bf78"
-    ], 
     "bin/layer_option": [
       "layer:basic", 
       "static", 
@@ -22,14 +18,9 @@
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
     "LICENSE": [
-      "redis", 
+      "heartbeat", 
       "static", 
-      "76a97c878c9c7a8321bb395c2b44d3fe2f8d81314d219b20138ed0e2dddd5182"
-    ], 
-    "reactive/redis.py": [
-      "redis", 
-      "static", 
-      "6fac5a7072fdb34851e5d4306bd689139be8a6ef684967225207f9b14e1fba8d"
+      "589ed823e9a84c56feb95ac58e7cf384626b9cbf4fda2a907bc36e103de1bad2"
     ], 
     "lib/charms/layer/execd.py": [
       "layer:basic", 
@@ -46,50 +37,40 @@
       "dynamic", 
       "592766c6303207a20efc445587778322d7f73b161bd994f227adaa341ba212ab"
     ], 
-    "Makefile": [
-      "redis", 
+    "hooks/relations/juju-info/__init__.py": [
+      "interface:juju-info", 
       "static", 
-      "64af52e91708443f6ff58252c13432049dadf40f3e180e270ef3e0e166209e2e"
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    ], 
+    "Makefile": [
+      "layer:basic", 
+      "static", 
+      "b7ab3a34e5faf79b96a8632039a0ad0aa87f2a9b5f0ba604e007cafb22190301"
     ], 
     "reactive/__init__.py": [
       "layer:basic", 
       "static", 
       "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     ], 
-    "hooks/redis-relation-broken": [
-      "interface:redis", 
-      "dynamic", 
-      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
-    ], 
-    "templates/redis.conf.tmpl": [
-      "redis", 
+    "hooks/relations/juju-info/README.md": [
+      "interface:juju-info", 
       "static", 
-      "129b55b5764f4f6ec9f638de69271ba2dcde830f4f502c4e77843ebb383c4262"
-    ], 
-    "tests/00-setup": [
-      "redis", 
-      "static", 
-      "111c079b81d260bbcd716dcf41672372a4cf4aaa14154b6c3055deeedae37a06"
+      "4589dd14b868df060bd263d988b3f556738db5ca5f02019b8c4b706501f94b6b"
     ], 
     "wheelhouse/Jinja2-2.9.6.tar.gz": [
       "layer:basic", 
       "dynamic", 
       "ddaa01a212cd6d641401cb01b605f4a4d9f37bfc93043d7f760ec70fb99ff9ff"
     ], 
-    "hooks/redis-relation-departed": [
-      "interface:redis", 
-      "dynamic", 
-      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
-    ], 
     "hooks/upgrade-charm": [
       "layer:basic", 
       "static", 
       "8fb6559bf4d4b7cdf1b857564c1d7265df98e863a4746fcbae092f141e59d97e"
     ], 
-    "wheelhouse/charmhelpers-0.15.0.tar.gz": [
-      "layer:basic", 
+    "hooks/influxdb-relation-changed": [
+      "interface:influxdb-api", 
       "dynamic", 
-      "dde6d6905a1f71cd3a6ed7cbf92bb4c26159d6a1b5ce8b4e5d2b893de7cc0647"
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
     "wheelhouse/Tempita-0.5.2.tar.gz": [
       "layer:basic", 
@@ -101,15 +82,25 @@
       "dynamic", 
       "b865e4f53a85f4d8a092e7701f759a3237fb3ee8a928627401914aafadc00907"
     ], 
+    "hooks/service-relation-changed": [
+      "interface:juju-info", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
     "tox.ini": [
-      "redis", 
+      "layer:basic", 
       "static", 
-      "b6f262c59da6949be645bdfefda43c9f90b351170718e60760b0d2a8579f12df"
+      "00b57a776ac313e92a52daa05d1fdb6056c21b3105b643d32610fd937664321b"
     ], 
     "metadata.yaml": [
-      "redis", 
+      "heartbeat", 
       "dynamic", 
-      "dfe00a17d96d8ae5a6dd68459331c188034e856d4febc7102c4eca3485ee1515"
+      "971e4e636d2248768f2501053b28996c5113e1987062a257389f125d01566c5d"
+    ], 
+    "hooks/influxdb-relation-departed": [
+      "interface:influxdb-api", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
     "copyright": [
       "layer:basic", 
@@ -121,6 +112,11 @@
       "dynamic", 
       "38aeec7cdd035081d3a4c306394b19d677623bf76fa0913f6695127c7753aefd"
     ], 
+    "hooks/relations/juju-info/requires.py": [
+      "interface:juju-info", 
+      "static", 
+      "a9a1ec6099b0d471e5a2b1456b870cd9d799ab1646d075261593b56340093504"
+    ], 
     "requirements.txt": [
       "layer:basic", 
       "static", 
@@ -131,35 +127,30 @@
       "static", 
       "0da5c4dcda27cd6406e5bb81cbf68ddccaf728ac764ec15053a165c1449d87d9"
     ], 
-    "hooks/relations/redis/__init__.py": [
-      "interface:redis", 
-      "static", 
-      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    "wheelhouse/charmhelpers-0.16.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "5727a1dc278416d3e0b432ae9d46f599bca1c61b17f4880e5d33553d249b7cb3"
     ], 
     "hooks/install": [
       "layer:basic", 
       "static", 
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
-    "lib/charms/layer/redis.py": [
-      "redis", 
+    "hooks/relations/influxdb-api/requires.py": [
+      "interface:influxdb-api", 
       "static", 
-      "fefc822e5d046423470214d6e048f76421090d7203f81cfacbe41695f1b2c6a3"
+      "78bceb92109fdb7e4204bfae558fa594f1559a53667bffc8f12625b2f8b201b2"
     ], 
-    "hooks/relations/redis/README.md": [
-      "interface:redis", 
+    "hooks/relations/juju-info/interface.yaml": [
+      "interface:juju-info", 
       "static", 
-      "723088955b0222d55a8354039547858fde1b6a9da7a129ae39a1422feeb326b0"
+      "0d0057ed0bda75157e8314a1259e1a8bb883d2f738ad1b731177e821b5b1b542"
     ], 
-    "hooks/redis-relation-changed": [
-      "interface:redis", 
-      "dynamic", 
+    "hooks/config-changed": [
+      "layer:basic", 
+      "static", 
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
-    ], 
-    "config.yaml": [
-      "redis", 
-      "dynamic", 
-      "ea0dd2a41126255319ebdeeba010b33ecee3067ae3408dc5da6e8cf16b628b45"
     ], 
     "lib/charms/layer/__init__.py": [
       "layer:basic", 
@@ -176,45 +167,55 @@
       "static", 
       "d09706ef3a224eb60d34366a2867c382791aa30157ab5b77eda37f29731df2e2"
     ], 
+    "reactive/heartbeat.py": [
+      "heartbeat", 
+      "static", 
+      "58e4ccec5b139d27d25bdd230c9a1811d236917daec7c88c8d8d634d3466b600"
+    ], 
     "wheelhouse/charms.reactive-0.4.7.tar.gz": [
       "layer:basic", 
       "dynamic", 
       "f023f5aef267786db1be51209610487171ba56e848f7b1c49877b06337000256"
     ], 
-    "hooks/relations/redis/requires.py": [
-      "interface:redis", 
-      "static", 
-      "57d150176b7bdff41e936ffb78ffced5b95c5c039c493f4dba5bcb19baa0b4fc"
+    "hooks/influxdb-relation-joined": [
+      "interface:influxdb-api", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
     "wheelhouse/pip-8.1.2.tar.gz": [
       "layer:basic", 
       "dynamic", 
       "4d24b03ffa67638a3fa931c09fd9e0273ffa904e95ebebe7d4b1a54c93d7b732"
     ], 
-    "hooks/relations/redis/provides.py": [
-      "interface:redis", 
-      "static", 
-      "e813a034781d6040fa2c6f92f1dc61f444b8660dfa78d6aea3f65649536f196e"
-    ], 
     "hooks/update-status": [
       "layer:basic", 
       "static", 
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
-    "hooks/redis-relation-joined": [
-      "interface:redis", 
+    "hooks/service-relation-departed": [
+      "interface:juju-info", 
       "dynamic", 
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
     "README.md": [
-      "redis", 
+      "heartbeat", 
       "static", 
-      "6f0306e85f1cd6ec91787f141678b55b26fda512dcca0a56e51459d6930641e0"
+      "c129489686946c6a8ac98c55b7abefb23d3393d1c926276c327b1b5a8048f4cd"
     ], 
-    "hooks/relations/redis/interface.yaml": [
-      "interface:redis", 
+    "hooks/service-relation-broken": [
+      "interface:juju-info", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/service-relation-joined": [
+      "interface:juju-info", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/relations/influxdb-api/interface.yaml": [
+      "interface:influxdb-api", 
       "static", 
-      "cab110c373ed5a84aabe778a7812254beba4129a0ce8cbc081d118b4951560d2"
+      "aac2a10ed176e1536faedc075e959c2853c2b5dce96137c80e228f9a83694e66"
     ], 
     "hooks/start": [
       "layer:basic", 
@@ -226,15 +227,25 @@
       "dynamic", 
       "a6be69091dac236ea9c6bc7d012beab42010fa914c459791d627dad4910eb665"
     ], 
-    "layer.yaml": [
-      "redis", 
-      "dynamic", 
-      "71d8069cbd8b978ffedaf6530bc9a9b927b48c80eb49d5949917752d47114ae9"
-    ], 
-    "hooks/config-changed": [
-      "layer:basic", 
+    "hooks/relations/influxdb-api/__init__.py": [
+      "interface:influxdb-api", 
       "static", 
-      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    ], 
+    "hooks/relations/influxdb-api/provides.py": [
+      "interface:influxdb-api", 
+      "static", 
+      "c6c791c3ee3175baf79267869e03b32b5a26406e658b95fca4d57e8aeec50aab"
+    ], 
+    "layer.yaml": [
+      "heartbeat", 
+      "dynamic", 
+      "894631204582f6052c5f7352b3f4294f2cbae49c011d960ee8347cc8129fe9f1"
+    ], 
+    "templates/heartbeat.py": [
+      "heartbeat", 
+      "static", 
+      "00996a596f10028daef20730012669da8eb91a1e90d42cfe02140fc52d8ca938"
     ], 
     ".build.manifest": [
       "build", 
@@ -250,6 +261,11 @@
       "layer:basic", 
       "dynamic", 
       "105f8d68616f8248e24bf0e9372ef04d3cc10104f1980f54d57b2ce73a5ad56a"
+    ], 
+    "hooks/influxdb-relation-broken": [
+      "interface:influxdb-api", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ]
   }
 }

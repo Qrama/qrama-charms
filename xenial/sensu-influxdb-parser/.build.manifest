@@ -157,10 +157,10 @@
       "static", 
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
-    "lib/charms/layer/__init__.py": [
+    "hooks/hook.template": [
       "layer:basic", 
       "static", 
-      "71a8b901f7e64a6b1b61959fc25819bafc9c9905e37a918615b9f949295095a4"
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
     "hooks/stop": [
       "layer:basic", 
@@ -242,15 +242,15 @@
       "dynamic", 
       "62dd69562d32134c3329eaabdf3cffc2f77f6175a62ef553abbe5f41c4379661"
     ], 
-    "templates/heartbeat.py": [
-      "sensu-influxdb-parser", 
+    "lib/charms/layer/__init__.py": [
+      "layer:basic", 
       "static", 
-      "6367a38d8a2399c4c06204997011bc22033b7763957deca24df9c1960c41b60e"
+      "71a8b901f7e64a6b1b61959fc25819bafc9c9905e37a918615b9f949295095a4"
     ], 
     "reactive/sensu-influxdb-parser.py": [
       "sensu-influxdb-parser", 
       "static", 
-      "ffe954275777d5c1f8e17a5890a8e311911d97aebd819a61a27790b928c68825"
+      "bd2ed141f455a8f5237b765b86b6e138f27ef60ef8282a1a7b1c69f65a87801c"
     ], 
     ".build.manifest": [
       "build", 
@@ -261,11 +261,6 @@
       "interface:http", 
       "static", 
       "eb4b01fc022cafbb6e67cb200f497ab3aeee4b954b1b9ff2be1d8e64d1a4be20"
-    ], 
-    "hooks/hook.template": [
-      "layer:basic", 
-      "static", 
-      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
     "wheelhouse/six-1.10.0.tar.gz": [
       "layer:basic", 

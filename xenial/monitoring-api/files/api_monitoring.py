@@ -14,12 +14,9 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 # pylint: disable=c0111,c0301,c0325,w0406
-import json
-import requests
 from flask import request, Blueprint
-from sojobo_api import settings
 from sojobo_api.api import w_errors as errors, w_monitoring as monitoring, w_juju as juju, w_mongo as mongo #pylint: disable = e0401
-from sojobo_api.api.w_juju import check_input, get_api_key, create_response, execute_task, Model_Connection
+from sojobo_api.api.w_juju import check_input, create_response, execute_task
 
 
 MONITOR = Blueprint('monitoring', __name__)
@@ -33,8 +30,6 @@ def get():
 @MONITOR.route('', methods=['GET'])
 def status():
     res = {
-        'Redis': 'Check not implemented',
-        'RabbitMQ': 'Check not implemented',
         'Sensu': monitoring.check_sensu(),
         'InfluxDB': monitoring.check_influxdb()
     }

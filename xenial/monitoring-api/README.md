@@ -4,14 +4,15 @@ This is a subordinate charm for the Sojobo-api.
 # Installation
 This installation assumes a running version of the Sojobo-API. If this is not the case, one must be setup first, using the instructions provided here.
 
-The required charms can be found in the qrama-charms repo. In order to install these using the following commands, one must be in the topdir of the cloned qrama-charms repo.
+The required charms can be found in the qrama-charms repo. In order to install these using the following commands, one must be in the topdir of the cloned qrama-charms repo. The rabbitmq-server, redis and sensu-base should be installed on the same machine as the mongodb from the Sojobo-API
 ```
 juju deploy rabbitmq-server
 juju deploy cs:~chris.macnaughton/influxdb-7
 juju deploy ./xenial/monitoring-api
 juju deploy ./xenial/sensu-base
 juju deploy ./xenial/sensu-influxdb-parser
-juju deploy ./yakkety/redis
+juju deploy ./xenial/redis
+juju deploy ./xenial/heartbeat
 juju expose rabbitmq-server
 ```
 Sensu provides it's own tool to generate all the required SSL-certificates, which are valid for 5 years. More info can be found here https://sensuapp.org/docs/latest/reference/ssl.html. Short version:
@@ -36,6 +37,10 @@ juju add-relation sensu-influxdb-parser influxdb
 juju add-relation sensu-influxdb-parser sensu-base
 juju add-relation redis sensu-base
 juju add-relation rabbitmq-server sensu-base
+juju add-relation redis heartbeat
+juju add-relation rabbitmq-server heartbeat
+juju add-relation sensu-influxdb-parser influxdb
+juju add-relation heartbeat influxdb
 ```
 When Sensu-base is complety setup, the rabbitmq-server password will be visible in its status message (of the Sensu-base). This password is needed for the monitoring-api config.
 ```
