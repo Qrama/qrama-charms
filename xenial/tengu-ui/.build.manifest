@@ -1,0 +1,1728 @@
+{
+  "layers": [
+    "layer:basic", 
+    "layer:apt", 
+    "layer:nginx-passenger", 
+    "tengu-ui", 
+    "interface:http", 
+    "interface:sojobo", 
+    "build"
+  ], 
+  "signatures": {
+    "hooks/leader-settings-changed": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/leader-elected": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "reactive/__init__.py": [
+      "layer:basic", 
+      "static", 
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    ], 
+    "files/tengu_ui/views/frame-geni-connect.html": [
+      "tengu-ui", 
+      "static", 
+      "85623cc1bc420b0b083915ed06f3282eb01852c6b5ca2dcd62c3ec544997374b"
+    ], 
+    "hooks/relations/sojobo/LICENSE": [
+      "interface:sojobo", 
+      "static", 
+      "956caac924f88d39f85d505a690a5f670a325d76b70c7c3ae8aee71d563a3ffe"
+    ], 
+    "files/tengu_ui/content/guides/write-code.html": [
+      "tengu-ui", 
+      "static", 
+      "0017b7fe138c06d7514a5158aaf86c0182f6af66fa883d3006f25b8c81d5c585"
+    ], 
+    "files/tengu_ui/fonts/neo4j-world.ttf": [
+      "tengu-ui", 
+      "static", 
+      "f9796d51e733cf5329deeca05874bef41a1dba8ccec12d2a54cdbe329974c1dc"
+    ], 
+    "files/tengu_ui/fonts/neo-font.woff": [
+      "tengu-ui", 
+      "static", 
+      "cf65039dfb57479dbd3f87a3269957da1785758bdb83713d2cb02c8ccf85936f"
+    ], 
+    "hooks/relations/sojobo/requires.py": [
+      "interface:sojobo", 
+      "static", 
+      "f1bb12f9cd102a07a22f31aa1dd5bc41088572bb4b2acf1f486f0e063aa7a436"
+    ], 
+    "templates/https.conf": [
+      "tengu-ui", 
+      "static", 
+      "f4c1f851473a0f3e850a04e4eca2e2e7d31dbfd3d4e1fa6c1943ee3362cf6a22"
+    ], 
+    "copyright": [
+      "layer:apt", 
+      "static", 
+      "5123b2d0220fefb4424a463216fb41a6dd7cfad49c9799ba7037f1e74a2fd6bc"
+    ], 
+    "files/tengu_ui/content/help/tengu-model.html": [
+      "tengu-ui", 
+      "static", 
+      "952e7d7ea087ff31a46c25f43544659d68b3435873a570a7b18a87477f0433b2"
+    ], 
+    "requirements.txt": [
+      "layer:basic", 
+      "static", 
+      "0f1c70d27e26005a96d66ad54482877ae20f7737693c833e29dd72bd6ac24892"
+    ], 
+    "files/tengu_ui/images/logo_imec.png": [
+      "tengu-ui", 
+      "static", 
+      "a3411ee5eafe90f071f04208dd2066edb2a8fe7567c4e0965057759a8fc44050"
+    ], 
+    "files/tengu_ui/content/help/commands.html": [
+      "tengu-ui", 
+      "static", 
+      "b5a7dc87190628bcff0ea43d32921db798a7179f703494bb77fb962053908359"
+    ], 
+    ".gitignore": [
+      "tengu-ui", 
+      "static", 
+      "f24477a840737ae9a1439e10ec2c1003279b9569cc0e3661bd145df95fd0343a"
+    ], 
+    "files/tengu_ui/content/help/query-plan.html": [
+      "tengu-ui", 
+      "static", 
+      "cb58d8a9bff40606c9c67f278df8669eaa62ffccc21f785af96a366842e082d0"
+    ], 
+    "files/tengu_ui/content/guides/movies.html": [
+      "tengu-ui", 
+      "static", 
+      "4683008852543481468552433987108de4ea3bc03eaf775e586f497c6121bafa"
+    ], 
+    "files/tengu_ui/views/partials/drawer-scripts.html": [
+      "tengu-ui", 
+      "static", 
+      "21e2a304137f6f45d1c25e928b24a60fffa1694dcfde4a8db4f7eda63558b2f9"
+    ], 
+    "files/tengu_ui/images/default_user.png": [
+      "tengu-ui", 
+      "static", 
+      "a22a3d38d2e68c733e8933b61fd6b045bf38b3059a21c7dfc02eb9659468611f"
+    ], 
+    "files/tengu_ui/images/screen_stream.png": [
+      "tengu-ui", 
+      "static", 
+      "8457265f3a47ff33214beac14b15bd561e7f511d692fb84dc3f4b75532b42469"
+    ], 
+    "files/tengu_ui/views/template/inspector-rows.html": [
+      "tengu-ui", 
+      "static", 
+      "92b484dc1507af612443b2dbd7a1c3b2ff32868863079b8841e6bc00193c5af2"
+    ], 
+    "files/tengu_ui/styles/b2a5a320.main.css": [
+      "tengu-ui", 
+      "static", 
+      "459a3666c8cf696de7c9334b015afc34d6b17513ae4831a6a38f4c30e7e92a0a"
+    ], 
+    "files/tengu_ui/images/spark-icon.png": [
+      "tengu-ui", 
+      "static", 
+      "4534b325174e94677e15c2ae3446065e8468ca701c1c65bc5905e4fdccd1921a"
+    ], 
+    "files/tengu_ui/images/health-icon.png": [
+      "tengu-ui", 
+      "static", 
+      "4483e2fc3adfff9485dd64e238780e20c2c9a497f3e592d1f78a0533f020f273"
+    ], 
+    "hooks/relations/http/provides.py": [
+      "interface:http", 
+      "static", 
+      "eb4b01fc022cafbb6e67cb200f497ab3aeee4b954b1b9ff2be1d8e64d1a4be20"
+    ], 
+    "files/tengu_ui/images/develop-strip.png": [
+      "tengu-ui", 
+      "static", 
+      "fe8a1830c90a98ffdafe3c691ee110345f8ac90107d76c3b411e80e7865705d5"
+    ], 
+    "files/tengu_ui/images/neo4j-glow.png": [
+      "tengu-ui", 
+      "static", 
+      "82429b7635aca7df7c4c79a805d74fa2003273847a0b074cfc7d029ad8c87198"
+    ], 
+    "files/tengu_ui/images/api-rest.png": [
+      "tengu-ui", 
+      "static", 
+      "8839fa5061ac2f2deb67440692afaed4f389cd6ae2971d3e0b99af5095722e18"
+    ], 
+    "files/tengu_ui/images/participate-strip.png": [
+      "tengu-ui", 
+      "static", 
+      "028c8dc6337ad4bb35f2c7905612ddc76bc5765b8a075be0e66935073e47230c"
+    ], 
+    "files/tengu_ui/content/guides/learn.html": [
+      "tengu-ui", 
+      "static", 
+      "163a1b97ad44298e715e427904027e13da934e89743f16a19e74f280f12bf6b7"
+    ], 
+    "files/tengu_ui/content/guides/tengu.html": [
+      "tengu-ui", 
+      "static", 
+      "26ca0d892cf72582cb6d95f0a6614dcc496849c4c04d89d0b5dbb6f768da027f"
+    ], 
+    "files/tengu_ui/fonts/neo4j-world.woff": [
+      "tengu-ui", 
+      "static", 
+      "3c5a3398897bc78f6fcf9903b72c7a8daa6ef275053746c210c5cc40584168b2"
+    ], 
+    "files/tengu_ui/views/frame-logout.html": [
+      "tengu-ui", 
+      "static", 
+      "34ecb193ceb5967043df023d54e3df62f7283d2243363a43a7f2157a63c6e51a"
+    ], 
+    "files/tengu_ui/images/visualize.png": [
+      "tengu-ui", 
+      "static", 
+      "389380b4a4931d1928983f4405b78daa54b389c90e3902daed945692031df6d7"
+    ], 
+    "files/tengu_ui/images/device-icons/mstile-150x150.png": [
+      "tengu-ui", 
+      "static", 
+      "bb35e467e0085af3e86d5d17acf4a01c19cfc3018c03ed6b25d26b30c8b1aa99"
+    ], 
+    "files/tengu_ui/images/query-plan-operator-cost.svg": [
+      "tengu-ui", 
+      "static", 
+      "80a2dc575ebbc227eaa09b836889581b19e70ba258f03eaf3af2c2ab7d3b4f7f"
+    ], 
+    "files/tengu_ui/content/guides/query-template.html": [
+      "tengu-ui", 
+      "static", 
+      "7df5a9de5cec12ad2e004e840f5bbacae3715979f4d72c31cc02c620b25d1e1e"
+    ], 
+    "files/tengu_ui/images/device-icons/mstile-310x150.png": [
+      "tengu-ui", 
+      "static", 
+      "ee584962d623a86186a4b47304a3f40d4745eaf159c5cd9512137c8f4127d970"
+    ], 
+    "files/tengu_ui/views/frame-monitoring.html": [
+      "tengu-ui", 
+      "static", 
+      "4f40acb877ef7437411530038dbd6065c9cc5bbc8bee57731649c92b4609432a"
+    ], 
+    "tests/vhost.conf.ex": [
+      "layer:nginx-passenger", 
+      "static", 
+      "f68c366c35a8487acb78da6f1086eeee33a3eccdbe5a524509039c0c41ad5d5a"
+    ], 
+    "hooks/relations/http/interface.yaml": [
+      "interface:http", 
+      "static", 
+      "d0b64038b85b7791ee4f3a42d73ffc8c208f206f73f899cbf33a519d12f9ad13"
+    ], 
+    "hooks/stop": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "Makefile": [
+      "layer:basic", 
+      "static", 
+      "b7ab3a34e5faf79b96a8632039a0ad0aa87f2a9b5f0ba604e007cafb22190301"
+    ], 
+    "files/tengu_ui/views/partials/plan-status.html": [
+      "tengu-ui", 
+      "static", 
+      "a6d2fe382c3425f1cdc954b3059d88b908c21973d6ed4c67977eb9a1ff7756cb"
+    ], 
+    "files/tengu_ui/content/help/keys.html": [
+      "tengu-ui", 
+      "static", 
+      "bf7e25057cc31cb52981765261b6fbb476ac18dd222f1d9d511c59e062cb786d"
+    ], 
+    "files/tengu_ui/images/background-pending.png": [
+      "tengu-ui", 
+      "static", 
+      "954acd89851f39546da0339bcbb0d1a58b5970f6bfd7e6e55267cd8b65d6cb80"
+    ], 
+    "files/tengu_ui/content/help/profile.html": [
+      "tengu-ui", 
+      "static", 
+      "730b8f2ee980ca080612f3aeecceadfc801c1a1a9c770f471b77aa0468ee6215"
+    ], 
+    "files/tengu_ui/content/help/remove.html": [
+      "tengu-ui", 
+      "static", 
+      "f1ec6ef9db2dc520da07b03485cd3ba1a13d3660c4fc3d5dacb9e4a97e3ea212"
+    ], 
+    "files/tengu_ui/views/frame-model-create.html": [
+      "tengu-ui", 
+      "static", 
+      "3f467bb63f29255cf1639b160fdf8401ad9346c2cd54f3837da42787781453d3"
+    ], 
+    "wheelhouse/charmhelpers-0.15.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "dde6d6905a1f71cd3a6ed7cbf92bb4c26159d6a1b5ce8b4e5d2b893de7cc0647"
+    ], 
+    "wheelhouse/Tempita-0.5.2.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "cacecf0baa674d356641f1d406b8bff1d756d739c46b869a54de515d08e6fc9c"
+    ], 
+    "files/tengu_ui/views/partials/raw-status.html": [
+      "tengu-ui", 
+      "static", 
+      "cbc63f529c9c9c7bb6b1bc0f671cf89f68ba05d22ff98028b61bb3a92cc75bac"
+    ], 
+    "files/tengu_ui/images/table-toggle.png": [
+      "tengu-ui", 
+      "static", 
+      "a36ccf1a72bc6f74e14a62cbf879e4df922a3f25f784b13c7a110a03e6bda7a5"
+    ], 
+    "files/tengu_ui/views/partials/frame-tengu.html": [
+      "tengu-ui", 
+      "static", 
+      "7d99c8ff2052bceb697d52e74cc0248fda3cfc2091a8e6b6c0106f2647fe154d"
+    ], 
+    "files/tengu_ui/content/help/play.html": [
+      "tengu-ui", 
+      "static", 
+      "8781db5f0960dd83ab8190f817df1db0023ab3c85934609bb8e5d536a49b7222"
+    ], 
+    "files/tengu_ui/views/partials/stream.html": [
+      "tengu-ui", 
+      "static", 
+      "bf427ba1aa4efd5b38c2a08ef3f5c88636bc67fdc5615ebaae999051c06fef03"
+    ], 
+    "files/tengu_ui/views/partials/drawer-preferences.html": [
+      "tengu-ui", 
+      "static", 
+      "d904a8272ba8401a6f6cc045dbb297d56d7272246371826102f90e254a726cfd"
+    ], 
+    "files/tengu_ui/content/help/with.html": [
+      "tengu-ui", 
+      "static", 
+      "9e7d424987813736cfb189e18ebb50463f771d7d1b75998122f31145476e3cd0"
+    ], 
+    "hooks/sojobo-relation-changed": [
+      "interface:sojobo", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "files/tengu_ui/views/partials/inefficient-cypher-query.html": [
+      "tengu-ui", 
+      "static", 
+      "9b14c8a695ec75ee241204aa06172dfc98a94fda37a268a79d4b2522f5e7a62e"
+    ], 
+    "reactive/tengu-ui.py": [
+      "tengu-ui", 
+      "static", 
+      "07d51d1872f655d899fdd43bcb532cb4f1e9e66c392856d5f267961867eb7b14"
+    ], 
+    "hooks/relations/sojobo/__init__.py": [
+      "interface:sojobo", 
+      "static", 
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    ], 
+    "files/tengu_ui/scripts/2c9ae7ec.components.js": [
+      "tengu-ui", 
+      "static", 
+      "4d7dacf021a6877157b7bda0153b89303ab19266a969c7d0641abf37a9a77f2a"
+    ], 
+    "files/tengu_ui/content/help/starts-with.html": [
+      "tengu-ui", 
+      "static", 
+      "cee97ef98fddadc462042b0dd5970749e485158f53a83620af30775978f56353"
+    ], 
+    "files/tengu_ui/images/device-icons/favicon-16x16.png": [
+      "tengu-ui", 
+      "static", 
+      "a74d2e78bdaf9a2545771f382921254bdf0bbd5b6a027ed36cfc93403b12054f"
+    ], 
+    "files/tengu_ui/images/screen_code_frame.png": [
+      "tengu-ui", 
+      "static", 
+      "9daa63ff347c4b3628aa807dc41c1e82ace73aab25977990b3649521209c932c"
+    ], 
+    "files/tengu_ui/images/neo4j-org.png": [
+      "tengu-ui", 
+      "static", 
+      "64c67087bf694426ce1e2cd8b8d9ebbdf3ce032714814f2acffb374746c3b7bb"
+    ], 
+    "files/tengu_ui/views/partials/messages-status-bar.html": [
+      "tengu-ui", 
+      "static", 
+      "5609c806be01d7d8a9d37db454fb0bb5cb55ba8b3e907c471f7e7d6fe32b9077"
+    ], 
+    "files/tengu_ui/fonts/streamline.svg": [
+      "tengu-ui", 
+      "static", 
+      "c4bdc1f399cd405c49501de49f8b9cea1d0902208b4354d48edf036839c2012d"
+    ], 
+    "files/tengu_ui/content/guides/cypher.html": [
+      "tengu-ui", 
+      "static", 
+      "5205fc4933428f754598f5c7e468d79eeb6a8c4e3c9d72f3fc2cb242747e0302"
+    ], 
+    "files/tengu_ui/images/query-plan-operator-rows.svg": [
+      "tengu-ui", 
+      "static", 
+      "e58a9501ee37902a81f8e59ef2580002b5727448cc38930f955c0301d0d53fd4"
+    ], 
+    "files/tengu_ui/views/partials/visualization-diagnostics.html": [
+      "tengu-ui", 
+      "static", 
+      "93d8f2e55f22fbd67614f4988e4333f708452839a2705a2e99c008de14a9eb40"
+    ], 
+    "files/tengu_ui/images/device-icons/favicon-32x32.png": [
+      "tengu-ui", 
+      "static", 
+      "d0e9bb9097a9b66d565a31d5e1b338131c754ff664e3d5a8faa09a242dfc45da"
+    ], 
+    "files/tengu_ui/views/frame-overlay.html": [
+      "tengu-ui", 
+      "static", 
+      "e62d98b521bbb545815c2c4acf71dee7d6f01c35ed8e9b9213c134cf3d8cfd1b"
+    ], 
+    "files/tengu_ui/images/northwind/product-graph.png": [
+      "tengu-ui", 
+      "static", 
+      "3185ff6303cf719ae9f210086f197a95bc8e764ac614fe037d2aacf31c09fabe"
+    ], 
+    "files/tengu_ui/content/guides/neo4j-sync.html": [
+      "tengu-ui", 
+      "static", 
+      "391c08f136cfa0563ca1c3c41e1549987e73419a809c25aa0e9d53f8bc5bb8dd"
+    ], 
+    "hooks/start": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "files/tengu_ui/images/neo4j-world.png": [
+      "tengu-ui", 
+      "static", 
+      "17f00b629522e1fc935f0471ee113ebd3a01fd6130aa9051eb2538e96411c622"
+    ], 
+    "files/tengu_ui/content/guides/graphs.html": [
+      "tengu-ui", 
+      "static", 
+      "2b8167c56bee4aaae7b14a8454d17bb8849b8bfa7ad9d7f5005ac51706d1eada"
+    ], 
+    "files/tengu_ui/scripts/settings.template": [
+      "tengu-ui", 
+      "static", 
+      "db1224c5beef23ab70f46a3928ce1e377bdacecbd07bc561209ae3fe3a1efeef"
+    ], 
+    "files/tengu_ui/images/watch.png": [
+      "tengu-ui", 
+      "static", 
+      "23840425d74402998c9e8e9f92ef7af489373f3debbf5d4e4fa7ade61a2007ad"
+    ], 
+    "files/tengu_ui/fonts/fontawesome-webfont.woff2": [
+      "tengu-ui", 
+      "static", 
+      "aadc3580d2b64ff5a7e6f1425587db4e8b033efcbf8f5c332ca52a5ed580c87c"
+    ], 
+    "lib/charms/apt.py": [
+      "layer:apt", 
+      "static", 
+      "f074d981409c3860547f8c45cde9c3ce4a80985a5ee94755981cd10117dc76e4"
+    ], 
+    "files/tengu_ui/images/welcome-logo.png": [
+      "tengu-ui", 
+      "static", 
+      "ee77208ce1dcabbee8beb026bf85ef912f41cd94c57cb61f2974d9dc55161f63"
+    ], 
+    "files/tengu_ui/images/device-icons/android-chrome-144x144.png": [
+      "tengu-ui", 
+      "static", 
+      "ab849b5d7e7996a8cb070d08ea5cc217b8f5543904cb3e4730c3ab35cae9df49"
+    ], 
+    "files/tengu_ui/images/tengu.png": [
+      "tengu-ui", 
+      "static", 
+      "0393912fba2a9f880c6624ea6b4cd00e01e3e223f5e95d51cbad242e168bee79"
+    ], 
+    "reactive/nginx_passenger.py": [
+      "layer:nginx-passenger", 
+      "static", 
+      "fa8892e4383fc71a558c2a1b53cb84ddacd5a8d9f9e228f79647e799591ea8a4"
+    ], 
+    "files/tengu_ui/fonts/glyphicons-halflings-regular.svg": [
+      "tengu-ui", 
+      "static", 
+      "42f60659d265c1a3c30f9fa42abcbb56bd4a53af4d83d316d6dd7a36903c43e5"
+    ], 
+    "files/tengu_ui/content/help/load-csv.html": [
+      "tengu-ui", 
+      "static", 
+      "fc2211a7870921c89ab832cb90aba1eaaa743b4664ecbeb2058d50710926e3f8"
+    ], 
+    "files/tengu_ui/images/device-icons/android-chrome-36x36.png": [
+      "tengu-ui", 
+      "static", 
+      "4189786ca7b97ed1941916bd61e8f88d907b25c2f8c7dc6d224b372bcb15da12"
+    ], 
+    "files/tengu_ui/content/help/unwind.html": [
+      "tengu-ui", 
+      "static", 
+      "44d06264b0ffc061a01391fa6231a7f9a2a6da9e4fbc6e98be966c6e93697867"
+    ], 
+    "files/tengu_ui/content/help/match.html": [
+      "tengu-ui", 
+      "static", 
+      "3927633449644b34da1df08db999f028f27e4b5eb40150ac87c4224015f66d25"
+    ], 
+    "files/tengu_ui/content/help/rest-delete.html": [
+      "tengu-ui", 
+      "static", 
+      "3dbaa1fc56ba4a8476bdca4639bb2003ba64aff12aaff1b8020167a8d42b0912"
+    ], 
+    "files/tengu_ui/lib/geni-auth.js": [
+      "tengu-ui", 
+      "static", 
+      "8f68af497163a87e7a1a8438e841a173c64a6b9ebe508885a8841abf3cdc8243"
+    ], 
+    "files/tengu_ui/images/one_node.png": [
+      "tengu-ui", 
+      "static", 
+      "0bf4651d5eaa713f78f08ddff5676930bff855f932f9e4115ae629ede9044edd"
+    ], 
+    "files/tengu_ui/fonts/fontawesome-webfont.ttf": [
+      "tengu-ui", 
+      "static", 
+      "9e540a087924a6e64790149d735cac022640e4fa6bff6bd65f5e9f41529bf0b3"
+    ], 
+    "files/tengu_ui/views/partials/legend.html": [
+      "tengu-ui", 
+      "static", 
+      "275ea320670b16f6b46a0b106015fef31b75912404665ce6b30aa10cf693f594"
+    ], 
+    "files/tengu_ui/images/{{controller.type}}.svg": [
+      "tengu-ui", 
+      "static", 
+      "18023d5dfed581ca69fa9939619bed99c88d723aa3ef50695fe5dfa2029cbdc0"
+    ], 
+    "files/tengu_ui/images/storm-icon.png": [
+      "tengu-ui", 
+      "static", 
+      "28b28840944adc22077ed9d54c9494976784c8ba9ec0f60fee5c28cf7a033ee9"
+    ], 
+    "hooks/install": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "files/tengu_ui/images/rel-props.png": [
+      "tengu-ui", 
+      "static", 
+      "a6c4dfd4c065caae0e0a1dc880ec1e808aabb90ca4cb7f437ca68071445fef9a"
+    ], 
+    "files/tengu_ui/content/guides/imec-demo.html": [
+      "tengu-ui", 
+      "static", 
+      "809e0347b909dca2681defaa64c2d960b00486c2473e46337c889097793f5fc9"
+    ], 
+    "files/tengu_ui/images/ajax_loader.gif": [
+      "tengu-ui", 
+      "static", 
+      "82865dc820c2697382798fb7da16b00c5a14dea40fbf92ebf7e5b1bc2ce79d4f"
+    ], 
+    "files/tengu_ui/images/more_nodes.png": [
+      "tengu-ui", 
+      "static", 
+      "2766d9c4d1b3f9086caf05aad60f79763cd5e95c5544a5bfcc285d94e6afaf72"
+    ], 
+    "files/tengu_ui/views/partials/drawer.html": [
+      "tengu-ui", 
+      "static", 
+      "6a18a690d7503b228e72314b556d786f938eab8b4427ea692329ba334cf82719"
+    ], 
+    "files/tengu_ui/views/frame-disconnect.html": [
+      "tengu-ui", 
+      "static", 
+      "fd680e8346df1ea8bfaa1e9b4c564d26a20f26eb5f0f5adfe0c758cdfe5c7fe3"
+    ], 
+    "files/tengu_ui/content/guides/start.html": [
+      "tengu-ui", 
+      "static", 
+      "f2741506f18898853b9c18db2cfca9446810532941f98f49195e673780fdf479"
+    ], 
+    "wheelhouse/charms.reactive-0.4.7.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "f023f5aef267786db1be51209610487171ba56e848f7b1c49877b06337000256"
+    ], 
+    "files/tengu_ui/images/community.jpg": [
+      "tengu-ui", 
+      "static", 
+      "6d207b28e1adf1f6afb15d91e4d126e5c6099963b2b4f2f06f400857b150f8b0"
+    ], 
+    "files/tengu_ui/views/partials/drawer-tengu.html": [
+      "tengu-ui", 
+      "static", 
+      "fbecad005aee333f57d9360f4f4ac1e7f0da7be1ba90fd4d744c2cc6108b51aa"
+    ], 
+    "files/tengu_ui/views/partials/error-status-bar.html": [
+      "tengu-ui", 
+      "static", 
+      "df3c0c2dd9c28e2fcee763b1ee28bdf76558c384ffdfc3be97fe7a7155fb8a30"
+    ], 
+    "hooks/sojobo-relation-joined": [
+      "interface:sojobo", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "wheelhouse/pip-8.1.2.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "4d24b03ffa67638a3fa931c09fd9e0273ffa904e95ebebe7d4b1a54c93d7b732"
+    ], 
+    "hooks/update-status": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "files/tengu_ui/images/device-icons/apple-touch-icon-76x76.png": [
+      "tengu-ui", 
+      "static", 
+      "3741431756d31b0808e8a6af7e40ba534bfeb712990f9426cbeb253b314de19f"
+    ], 
+    "files/tengu_ui/images/labeled_node.png": [
+      "tengu-ui", 
+      "static", 
+      "6c7698b00572358f4795bbc3a55b9394994ff0c9bbd0504ce0be7234da89f1b3"
+    ], 
+    "files/tengu_ui/content/help/history.html": [
+      "tengu-ui", 
+      "static", 
+      "fc6d13a8a32624ae3768982f3f71c6bd813ff33a78563f0dffcdba18dbf8806f"
+    ], 
+    "files/tengu_ui/images/console.png": [
+      "tengu-ui", 
+      "static", 
+      "f8349bfee3763110e5e5f4f90cc036c0950d83b30ec72007b66888c6c06e2736"
+    ], 
+    "files/tengu_ui/views/partials/arc-login.html": [
+      "tengu-ui", 
+      "static", 
+      "4530337311d8d80f04a89c254d42709800e6961b594ff6c48cb9c4905286d6c7"
+    ], 
+    "files/tengu_ui/images/customer-orders.png": [
+      "tengu-ui", 
+      "static", 
+      "c36926d8d91cf0f6223401cab31515d133cc034e91a7d70df08bd484fbc03524"
+    ], 
+    "files/tengu_ui/content/guides/northwind-graph.html": [
+      "tengu-ui", 
+      "static", 
+      "d355a32c5a766a480901db601d5b44e5c351276d3d5f4f1db923348aa678a3aa"
+    ], 
+    "files/tengu_ui/images/property-graph.png": [
+      "tengu-ui", 
+      "static", 
+      "3c7c50f60783c398a6c2082b80848153eb77fe989e20772b290f4a121ce6c86e"
+    ], 
+    "hooks/relations/sojobo/interface.yaml": [
+      "interface:sojobo", 
+      "static", 
+      "f64e590045176f17753c6aab748414324b7933136cbdfce8f9edb850e95963c1"
+    ], 
+    "files/tengu_ui/content/help/contains.html": [
+      "tengu-ui", 
+      "static", 
+      "f096a8dffd07f06519e2af8405172dd2b7ee2b7402421a592f21de99d9d284ec"
+    ], 
+    "files/tengu_ui/views/partials/list-item.html": [
+      "tengu-ui", 
+      "static", 
+      "d7bd9d3a943c7e0abc4c4b50ae005f873f14d3b6e87effb130ec0285982bf50d"
+    ], 
+    "hooks/website-relation-broken": [
+      "interface:http", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "files/tengu_ui/images/movie-icon.png": [
+      "tengu-ui", 
+      "static", 
+      "b3ae7530a7113c88fa2d4252878e412c91fe22ad7696b6cfb2946e3e3d33c2c2"
+    ], 
+    "files/tengu_ui/scripts/af8c0aa4.settings.js": [
+      "tengu-ui", 
+      "static", 
+      "8ef092df254f0101f8a755e1077b7b97165031d3065e94cf6ecc49f3030ca75a"
+    ], 
+    "files/tengu_ui/content/help/detach-delete.html": [
+      "tengu-ui", 
+      "static", 
+      "573e2e448097e6cf2118e3e02552ec55fdf6bb4fb89205839334cf9b4203daaf"
+    ], 
+    "files/tengu_ui/images/data-icon.png": [
+      "tengu-ui", 
+      "static", 
+      "e0a482b36a6838862492b48ca8745bb8fa40b2545e0b9f73a9ae7a3f85885593"
+    ], 
+    "files/tengu_ui/content/help/delete.html": [
+      "tengu-ui", 
+      "static", 
+      "da0f08675a3bf866fd2438c2c6de90620b681eaa8f1b0cb549ad2ed3407b7d82"
+    ], 
+    "metadata.yaml": [
+      "tengu-ui", 
+      "dynamic", 
+      "af4dd84e37948f69a1ed197d06b2dccc98b36fe5546acdbd1867df985deb0957"
+    ], 
+    "files/tengu_ui/views/template/alert.html": [
+      "tengu-ui", 
+      "static", 
+      "5d1a5bbdb01598f914de5dde153908083c5e32f7c029949e8aeeffb7d24c5276"
+    ], 
+    "files/tengu_ui/views/frame-tengu-sign-in.html": [
+      "tengu-ui", 
+      "static", 
+      "43fce8d0c2757db0f5cb448600278bba1575ee437542acb102926b7ba23676b3"
+    ], 
+    "files/tengu_ui/content/help/server.html": [
+      "tengu-ui", 
+      "static", 
+      "d692089a4facfe47eb6898737ca1e665bbc7a7541a4e50b39461e944ccb3f738"
+    ], 
+    "files/tengu_ui/images/learn-strip.png": [
+      "tengu-ui", 
+      "static", 
+      "321e4da3c8fe2b8546bc5f29072fdc426b460b71ad7a20aa12fa653cb933d987"
+    ], 
+    "hooks/relations/http/__init__.py": [
+      "interface:http", 
+      "static", 
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    ], 
+    "files/tengu_ui/content/help/create-unique.html": [
+      "tengu-ui", 
+      "static", 
+      "b132a54561cacb62390d7943ab24286bd7f2ac621a9f6162b719a0c246ef4a7f"
+    ], 
+    "files/tengu_ui/content/help/create.html": [
+      "tengu-ui", 
+      "static", 
+      "138fe789a307b8b67cdcd4b38fafe78fc49fcc7680a6b0dd3701fd8197b9ca71"
+    ], 
+    "files/tengu_ui/images/browser.png": [
+      "tengu-ui", 
+      "static", 
+      "a7095ce32c109e8e4c67c755eb9059c70c35eb6fc89476afc546c3e1728d3f0a"
+    ], 
+    "files/tengu_ui/images/device-icons/android-chrome-192x192.png": [
+      "tengu-ui", 
+      "static", 
+      "3246e35fef750b591395d3f12f52363835dbbfb881a81500a142ce913875dac3"
+    ], 
+    "files/tengu_ui/content/guides/explore.html": [
+      "tengu-ui", 
+      "static", 
+      "60420e971376bbac9010a52a0dea642c8bc1083155283f6661dc9356af8ac306"
+    ], 
+    "files/tengu_ui/images/screen_cypher_warn.png": [
+      "tengu-ui", 
+      "static", 
+      "3910a086b5e01ffd8580476bb96d9eb1f823f4875818505ef9c54785cef43ff1"
+    ], 
+    "files/tengu_ui/images/device-icons/apple-touch-icon-60x60.png": [
+      "tengu-ui", 
+      "static", 
+      "5d6e2da9a65596882d0774789643b31bcfc966dc4b90c2b5f9f669a5d7b7df54"
+    ], 
+    "files/tengu_ui/views/frame-tengu-userinfo.html": [
+      "tengu-ui", 
+      "static", 
+      "ae2a6106ea941819a277e2f17b7acb10143684b83352dda6549f9e815c83cf6c"
+    ], 
+    "files/tengu_ui/views/template/carousel/slide.html": [
+      "tengu-ui", 
+      "static", 
+      "083a362e75c1bb845c5f44455773b5bccf48ad67b99585543166af09878aa5ce"
+    ], 
+    "files/tengu_ui/views/frame-geni-disconnect.html": [
+      "tengu-ui", 
+      "static", 
+      "d1196487c17170fe81d5e9e9b98150fb70587cdd1480dd006459a4ebe2507ac8"
+    ], 
+    "files/tengu_ui/images/logo-full.png": [
+      "tengu-ui", 
+      "static", 
+      "6e8e711097dfdf7594f73182555517fc86ece31f01e73654c367a0d6e68e1328"
+    ], 
+    "wheelhouse/pyaml-16.12.2.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "b865e4f53a85f4d8a092e7701f759a3237fb3ee8a928627401914aafadc00907"
+    ], 
+    "files/tengu_ui/views/frame-model-status.html": [
+      "tengu-ui", 
+      "static", 
+      "51d8a0901bb3171c1c5dcdfff6f051382c7be913a31b0b079945a7347c7e18d1"
+    ], 
+    "files/tengu_ui/images/metamodel.png": [
+      "tengu-ui", 
+      "static", 
+      "2324eb006c00e0b54ad54f5e457b55a1a63721bd0a0dae3b15a49cdfaec96719"
+    ], 
+    "files/tengu_ui/images/device-icons/mstile-144x144.png": [
+      "tengu-ui", 
+      "static", 
+      "2e24c8d5740e86a812906ababdf62a306731ccc11adc969a03d62139baf670cd"
+    ], 
+    "hooks/sojobo-relation-departed": [
+      "interface:sojobo", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "files/tengu_ui/images/device-icons/android-chrome-72x72.png": [
+      "tengu-ui", 
+      "static", 
+      "2e21451b474a0747d5659ae0cd626f70e2b1df88c150d394e0c163427d7f7166"
+    ], 
+    "files/tengu_ui/views/frame-google-sign-in.html": [
+      "tengu-ui", 
+      "static", 
+      "6503ba0e83a21241ddd580572b5f5776b3650999228ffa8e529646aca2f7f57d"
+    ], 
+    "files/tengu_ui/fonts/icomoon.svg": [
+      "tengu-ui", 
+      "static", 
+      "c002396901cd1931d55635fb5309cbe944374bd56b593d9bd9904b1df0f0c251"
+    ], 
+    "files/tengu_ui/fonts/neo-font.ttf": [
+      "tengu-ui", 
+      "static", 
+      "e6a2e8fb684d8cc70c9a0e9d5ea279a5143dfeb661ee2cf7eb2a9acc5385f99b"
+    ], 
+    "files/tengu_ui/content/help/return.html": [
+      "tengu-ui", 
+      "static", 
+      "a99dfa25bf83baee9a59fa1afd8fcf8b6cc8f0f4df042eb630f6a79d45ee08ed"
+    ], 
+    "files/tengu_ui/content/guides/movie-graph.html": [
+      "tengu-ui", 
+      "static", 
+      "da6fabdeefe83153a1c70e56cf306eb974a96577c8c473d7c1f45e95be9f85fa"
+    ], 
+    "files/tengu_ui/images/device-icons/apple-touch-icon-57x57.png": [
+      "tengu-ui", 
+      "static", 
+      "c72f7632e52c8c5975480846b86d0c579ec16409abeca8ea5db71b3af9501b7b"
+    ], 
+    "files/tengu_ui/images/device-icons/mstile-70x70.png": [
+      "tengu-ui", 
+      "static", 
+      "3e14bf91360ead0eb4f289f3f02d60c62f10f687c58015277a6279ea0c5d0d2c"
+    ], 
+    "files/tengu_ui/fonts/neo4j-world.svg": [
+      "tengu-ui", 
+      "static", 
+      "320e61769409d3c83198e4de6058c5437f63ab563139fccc370786a7b31e968e"
+    ], 
+    "files/tengu_ui/fonts/glyphicons-halflings-regular.woff": [
+      "tengu-ui", 
+      "static", 
+      "a26394f7ede100ca118eff2eda08596275a9839b959c226e15439557a5a80742"
+    ], 
+    "wheelhouse/MarkupSafe-1.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "a6be69091dac236ea9c6bc7d012beab42010fa914c459791d627dad4910eb665"
+    ], 
+    "files/tengu_ui/views/frame-hauchiwa.html": [
+      "tengu-ui", 
+      "static", 
+      "6b32a073e8aa14d4c5b060346295d9819523dcb796497e2d55c9737825706f3b"
+    ], 
+    "files/tengu_ui/images/background-error.png": [
+      "tengu-ui", 
+      "static", 
+      "553716013d547ecb902399f9fb335e952a4f7eee184a64f7ac541f4a2ae28e42"
+    ], 
+    "files/tengu_ui/views/main.html": [
+      "tengu-ui", 
+      "static", 
+      "7d5880063a9db50558050d31935d718e36d694fdcb2263f03a7c5ea3559c049a"
+    ], 
+    "files/tengu_ui/views/partials/arc-loggedin.html": [
+      "tengu-ui", 
+      "static", 
+      "4a6fa22a845d30ae34d94f07f33ded47e50646708e3c0c65bc7c3c2b321168ec"
+    ], 
+    "files/tengu_ui/content/help/rest-post.html": [
+      "tengu-ui", 
+      "static", 
+      "59364a70ffe60a754dd49589bad234ee4e21ec737c1d4226b115ab9625b6b585"
+    ], 
+    "bin/layer_option": [
+      "layer:basic", 
+      "static", 
+      "621b556cd208005e131e9f648859294347da9376609745a73ca2e808dd2032f9"
+    ], 
+    "files/tengu_ui/images/api-trio.png": [
+      "tengu-ui", 
+      "static", 
+      "d0319654205d4dc0bd2f27aed3db952e390fcae25e577aad6b6bc4509318f8fc"
+    ], 
+    "LICENSE": [
+      "tengu-ui", 
+      "static", 
+      "589ed823e9a84c56feb95ac58e7cf384626b9cbf4fda2a907bc36e103de1bad2"
+    ], 
+    "files/tengu_ui/fonts/streamline.ttf": [
+      "tengu-ui", 
+      "static", 
+      "2b08340b7983145a767af68ba4dbb74e93ed6ed737ee4ffd1b0bdcef11c2eeb4"
+    ], 
+    "hooks/hook.template": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "files/tengu_ui/views/partials/nav.html": [
+      "tengu-ui", 
+      "static", 
+      "75a3228cf9f72f39e2cd8bf1cdd5543954884f68d1e459fe8840e3003177822d"
+    ], 
+    "files/tengu_ui/content/help/drop-index-on.html": [
+      "tengu-ui", 
+      "static", 
+      "38a202abb6b1279981253caf25c4cf717ed41d292c3405a0fe77b28f042e216b"
+    ], 
+    "files/tengu_ui/images/device-icons/apple-touch-icon-precomposed.png": [
+      "tengu-ui", 
+      "static", 
+      "96ecc5e7b4acbaf5c7eb51bcfbd594c283c4ae6b819af63e3dfedec653964898"
+    ], 
+    "files/tengu_ui/images/logo.png": [
+      "tengu-ui", 
+      "static", 
+      "8edf60a11c0f012a522fa656907be68d3762cb37dfbc6ed23e48f6a3a6fe1989"
+    ], 
+    "files/tengu_ui/views/partials/drawer-database.html": [
+      "tengu-ui", 
+      "static", 
+      "121047fe309c37b4e5d3ea385ef0d8a8d01189a8e1cd5dfb1b4f3e726095e573"
+    ], 
+    "files/tengu_ui/content/help/rest-get.html": [
+      "tengu-ui", 
+      "static", 
+      "2a1a644b72b1db2c4fd1db13e17e612cc597e65b9c1fc66fb0591351582a1368"
+    ], 
+    "files/tengu_ui/images/study-strip.png": [
+      "tengu-ui", 
+      "static", 
+      "86c442f967ec24f081b1034fc6207b4ce3f7904b9e25dc576b0d0fddc44ce056"
+    ], 
+    "files/tengu_ui/images/device-icons/apple-touch-icon-114x114.png": [
+      "tengu-ui", 
+      "static", 
+      "a462c10a09a90311d822319469ecd20879ea87d9fbaf40c629c413c6d2eb2f9e"
+    ], 
+    "files/tengu_ui/views/template/tooltip.html": [
+      "tengu-ui", 
+      "static", 
+      "6c4a6760ad756c47f24c9ba440256d5b8b0292cc996ac884d14813dce73a1fd9"
+    ], 
+    "files/tengu_ui/images/device-icons/mstile-310x310.png": [
+      "tengu-ui", 
+      "static", 
+      "87b62265f0a258e2a5501170b6374de29f48cc867c70c489a0fcb8d013c11156"
+    ], 
+    "files/tengu_ui/views/partials/notifications.html": [
+      "tengu-ui", 
+      "static", 
+      "644472bf56cb717ced53d7530f25a3f054fe1bfdf16387150318ec473c9190e9"
+    ], 
+    "files/tengu_ui/images/device-icons/apple-touch-icon-152x152.png": [
+      "tengu-ui", 
+      "static", 
+      "440c35a98fb0b7a5c492bcfae87de619f836827689bb806ee33c8d6da6d8113c"
+    ], 
+    "files/tengu_ui/views/template/popups.html": [
+      "tengu-ui", 
+      "static", 
+      "cf1e032af95e697b07ef0c7299a14757b56d0d7b3a7e9e786bfbdaf147dafbb8"
+    ], 
+    "wheelhouse/PyYAML-3.12.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "592766c6303207a20efc445587778322d7f73b161bd994f227adaa341ba212ab"
+    ], 
+    "files/tengu_ui/views/frame-config.html": [
+      "tengu-ui", 
+      "static", 
+      "b4b5b01b24323e658b6e107865a0ff50f2f561a535c9a74fdcd5761526809971"
+    ], 
+    "files/tengu_ui/images/books.png": [
+      "tengu-ui", 
+      "static", 
+      "0c2dfccf5ea4b30f4a9f80a16b844933d5e30776f769a72ad5b42b88764c0097"
+    ], 
+    "files/tengu_ui/views/frame-connect.html": [
+      "tengu-ui", 
+      "static", 
+      "bb5ff687631ff004f77b4b42be8adc83c594b739dfdbb22a35f3a4cf41810cb8"
+    ], 
+    "files/tengu_ui/views/partials/system.html": [
+      "tengu-ui", 
+      "static", 
+      "2a2534f0a160e0dabb7f4b331cb7d08d7717fdd3e49d29eec6c4c228536675ce"
+    ], 
+    "files/tengu_ui/content/help/create-index-on.html": [
+      "tengu-ui", 
+      "static", 
+      "d56e8fbbca5a179396da182202b801cc47be6a23f4c223451a165b0477283056"
+    ], 
+    "wheelhouse/netaddr-0.7.19.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "38aeec7cdd035081d3a4c306394b19d677623bf76fa0913f6695127c7753aefd"
+    ], 
+    "templates/vhost.conf.ex": [
+      "layer:nginx-passenger", 
+      "static", 
+      "f68c366c35a8487acb78da6f1086eeee33a3eccdbe5a524509039c0c41ad5d5a"
+    ], 
+    "files/tengu_ui/content/help/help.html": [
+      "tengu-ui", 
+      "static", 
+      "f070f3ad262a49fb5aa25b059e0309af84a2e93eb47803e8888b0fa7d22cb77b"
+    ], 
+    "files/tengu_ui/views/partials/bundle-graph.html": [
+      "tengu-ui", 
+      "static", 
+      "a62e07901d7e525a477cf2e0d53fc0f63dbe9e65dfef2af68fd1d803fa6722c4"
+    ], 
+    "files/tengu_ui/images/device-icons/apple-touch-icon-180x180.png": [
+      "tengu-ui", 
+      "static", 
+      "f380c0496c5188c7939bc8c96b7eb6f1eb4a6c20070dba37b62fda8b29a4d2ce"
+    ], 
+    "templates/letsencrypt.conf": [
+      "tengu-ui", 
+      "static", 
+      "dd13a98553ff44942e8b7801ee172753d3395747837b8fdd65e722369d0c84f2"
+    ], 
+    "files/tengu_ui/images/lambda.png": [
+      "tengu-ui", 
+      "static", 
+      "69dbfc7a504edd17887e92b71a2bae34884ed3fdbd81abb904be8c1f979eda50"
+    ], 
+    "files/tengu_ui/images/northwind/product-category-supplier.png": [
+      "tengu-ui", 
+      "static", 
+      "d1dc4f6efd2895345f0d77075a9fe7c6caf488d80151ae9c0d6932b9fe9ac217"
+    ], 
+    "files/tengu_ui/content/help/schema.html": [
+      "tengu-ui", 
+      "static", 
+      "795b86de0f56bbed05118acbb02a15831ade7d3a9ad73959582ef2445c556bd1"
+    ], 
+    "files/tengu_ui/views/frame-login.html": [
+      "tengu-ui", 
+      "static", 
+      "854c37325cb1c084d162d6ed5228b8f4f6486922d52958b2e9c095a12adc21aa"
+    ], 
+    "tests/00-setup": [
+      "layer:nginx-passenger", 
+      "static", 
+      "111c079b81d260bbcd716dcf41672372a4cf4aaa14154b6c3055deeedae37a06"
+    ], 
+    "files/tengu_ui/images/foo_bar.png": [
+      "tengu-ui", 
+      "static", 
+      "546b2edb3029e96732f4ac44afd9bcb7be6571da6fef319bf214d786ea283c09"
+    ], 
+    "files/tengu_ui/views/frame-tengu-changepassword.html": [
+      "tengu-ui", 
+      "static", 
+      "222eeb1d0d0c153b62830948d48f7fec5c3457e5e4d2fbb41e0eec09de1653a7"
+    ], 
+    "files/tengu_ui/content/help/bolt-encryption.html": [
+      "tengu-ui", 
+      "static", 
+      "e2d6def9838bd5b97f183c84bcfb4678262c6ca97a38cd9a0f8c416f08b37b38"
+    ], 
+    "templates/settings.js": [
+      "tengu-ui", 
+      "static", 
+      "db1224c5beef23ab70f46a3928ce1e377bdacecbd07bc561209ae3fe3a1efeef"
+    ], 
+    "files/tengu_ui/content/guides/welcome.html": [
+      "tengu-ui", 
+      "static", 
+      "9031167b01493f162e7f527870c61e597eb66f7a2bd65d58820ee2efb47699d5"
+    ], 
+    "files/tengu_ui/views/partials/drawer-info.html": [
+      "tengu-ui", 
+      "static", 
+      "8bb021caf441c842fbcc124541d2463b582ea966ce12271b32fea18acd6a8552"
+    ], 
+    "files/tengu_ui/views/partials/device-icons.html": [
+      "tengu-ui", 
+      "static", 
+      "de7ffe47b787235b29682c6ce91225a1be7942b1df827041d1f5d43149cce32f"
+    ], 
+    "files/tengu_ui/views/partials/popup-styling.html": [
+      "tengu-ui", 
+      "static", 
+      "1967fd4288933c93f943fc6c5a9494dafbed24c2eee0a4c4aa74974448f5159e"
+    ], 
+    "hooks/website-relation-departed": [
+      "interface:http", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "files/tengu_ui/views/partials/frame-common-actions.html": [
+      "tengu-ui", 
+      "static", 
+      "a203cce5875619e703d310237c487643943b639d3606f24690bafff73c0879fc"
+    ], 
+    "files/tengu_ui/images/tabs-strip.png": [
+      "tengu-ui", 
+      "static", 
+      "96c566f0cbe14ffdd36de476991164e25e7a33750f406ec160a16d0100372810"
+    ], 
+    "files/tengu_ui/images/screen_sidebar.png": [
+      "tengu-ui", 
+      "static", 
+      "de647f1ae82ff0fea3b3ebba728540f30ecf08c8e3ce8e73f84259c66e645db5"
+    ], 
+    "files/tengu_ui/content/help/rest.html": [
+      "tengu-ui", 
+      "static", 
+      "0804043d46652019bcbaad5d9237d9ba9f73f57e62a5ed384e693c7de195a2da"
+    ], 
+    "files/tengu_ui/images/dashboard.png": [
+      "tengu-ui", 
+      "static", 
+      "30c5833194144e970ce9607dc4512e0fc63f9173858bfb1b410e0983c04fc43a"
+    ], 
+    "hooks/relations/sojobo/README.md": [
+      "interface:sojobo", 
+      "static", 
+      "d6c24cac4947f77772fc6ef1b418e752380da799e795380f52c1330a62b5cf1c"
+    ], 
+    "files/tengu_ui/images/template-icon.png": [
+      "tengu-ui", 
+      "static", 
+      "b95e98fcb296046c3235f998291a3e57817da20817a522921508538da2e61373"
+    ], 
+    "files/tengu_ui/fonts/neo4j-world.eot": [
+      "tengu-ui", 
+      "static", 
+      "6e8f5a579f1fad7e2af08f999f97db0e6fdc39b515a08e93d726ef3ad91382d3"
+    ], 
+    "files/tengu_ui/views/partials/frame-hauchiwa-create.html": [
+      "tengu-ui", 
+      "static", 
+      "7b4cfd10406d179eb9d19b43d7e314ffc86bd28168a42573b31193f29245f2eb"
+    ], 
+    "lib/charms/layer/basic.py": [
+      "layer:basic", 
+      "static", 
+      "d09706ef3a224eb60d34366a2867c382791aa30157ab5b77eda37f29731df2e2"
+    ], 
+    "files/tengu_ui/images/manual-strip.png": [
+      "tengu-ui", 
+      "static", 
+      "61b3ade361202a552addcee4047b58962a09ac43c128b6f629f9c28f1379ab15"
+    ], 
+    "files/tengu_ui/images/device-icons/apple-touch-icon-120x120.png": [
+      "tengu-ui", 
+      "static", 
+      "eb023a833c24d2ad0c7f951a21e1b0fdf7015bc3fb0a1f5404894476259a9703"
+    ], 
+    "files/tengu_ui/views/frame-cypher.html": [
+      "tengu-ui", 
+      "static", 
+      "eadb3815dced37dfc5bd13f483992252e3def4907cb2a7256a347669092aed89"
+    ], 
+    "files/tengu_ui/views/frame-google-sign-out.html": [
+      "tengu-ui", 
+      "static", 
+      "d07697b51232b158a48c8d74fc2e4abdaf8efcbefb10fa3aa213f4308c609eb1"
+    ], 
+    "files/tengu_ui/fonts/icomoon.ttf": [
+      "tengu-ui", 
+      "static", 
+      "b6e70afdb99f7f3bea8429f1f8ad3169ab368dd44bdef83169e78e7d55424c7f"
+    ], 
+    "files/tengu_ui/views/partials/result-status.html": [
+      "tengu-ui", 
+      "static", 
+      "6d462234b014568583f6e4f4c2cf5df94d1ec892153b36a6121f49cfb4acb084"
+    ], 
+    "files/tengu_ui/images/social-strip.png": [
+      "tengu-ui", 
+      "static", 
+      "203b59437ff4ce3ba43417c580481d08c6caaff5692458fbcf4aee7c724e0f73"
+    ], 
+    "lib/charms/layer/__init__.py": [
+      "layer:basic", 
+      "static", 
+      "71a8b901f7e64a6b1b61959fc25819bafc9c9905e37a918615b9f949295095a4"
+    ], 
+    "files/tengu_ui/fonts/fontawesome-webfont.woff": [
+      "tengu-ui", 
+      "static", 
+      "e3870de89716b72cb61a4bba0e17c75783b361cdaba35ea96961c3070bd8ca18"
+    ], 
+    "reactive/apt.py": [
+      "layer:apt", 
+      "static", 
+      "6dad3fc2032bc4367b3669def96a45609222a745fd28763992725e377d7c974c"
+    ], 
+    "files/tengu_ui/images/google.svg": [
+      "tengu-ui", 
+      "static", 
+      "f54fe5f634f0bbaee93e64ce1c8793472e82a8cf232e065a2317627f5372d05a"
+    ], 
+    "files/tengu_ui/content/help/rest-put.html": [
+      "tengu-ui", 
+      "static", 
+      "b1757a1dbefdc0a6c175c2299ca9f967387c598d174d5dbc85fea125f7b259e0"
+    ], 
+    "files/tengu_ui/views/partials/frame-console.html": [
+      "tengu-ui", 
+      "static", 
+      "4273f1a9f51d06a3e532406ef1b0c67167769f078c8e9ecc8f8200422296255f"
+    ], 
+    "files/tengu_ui/views/frame-model-delete.html": [
+      "tengu-ui", 
+      "static", 
+      "2664c9841301be0026fc77723333d4da0e20af73956781b5612c0ff31328ab60"
+    ], 
+    "files/tengu_ui/views/frame-controller-create.html": [
+      "tengu-ui", 
+      "static", 
+      "ee8425780ed8210a8d9df2ab037aca50ea2e8f0651491c9e7171c6c47abe6f2a"
+    ], 
+    "files/tengu_ui/images/device-icons/android-chrome-96x96.png": [
+      "tengu-ui", 
+      "static", 
+      "62785636553bfbe290f07207b5911a025cecd70dec6ce33206398ee7d74ed4ab"
+    ], 
+    "files/tengu_ui/views/partials/editor.html": [
+      "tengu-ui", 
+      "static", 
+      "b91904610e810ba91e846b5a0f5c119da5d799ff11f9bd7267b33a43bdc4010b"
+    ], 
+    "files/tengu_ui/images/no_controller.svg": [
+      "tengu-ui", 
+      "static", 
+      "18023d5dfed581ca69fa9939619bed99c88d723aa3ef50695fe5dfa2029cbdc0"
+    ], 
+    "files/tengu_ui/fonts/neo-font.eot": [
+      "tengu-ui", 
+      "static", 
+      "7f1467fb5d9394024a95f10379efcd7e80c21c135b9cd94e7a2083ed2a20138a"
+    ], 
+    "lib/charms/__init__.py": [
+      "layer:apt", 
+      "static", 
+      "4032724b98ed267185b12b8ec78dd9bcb0423ab1c89a6f0dad99397fd51159d9"
+    ], 
+    "files/tengu_ui/fonts/glyphicons-halflings-regular.woff2": [
+      "tengu-ui", 
+      "static", 
+      "fe185d11a49676890d47bb783312a0cda5a44c4039214094e7957b4c040ef11c"
+    ], 
+    "files/tengu_ui/images/device-icons/apple-touch-icon.png": [
+      "tengu-ui", 
+      "static", 
+      "f380c0496c5188c7939bc8c96b7eb6f1eb4a6c20070dba37b62fda8b29a4d2ce"
+    ], 
+    "files/tengu_ui/images/screen_editor.png": [
+      "tengu-ui", 
+      "static", 
+      "7e9752ac5fb2bcf00f6f67f94c29489613019904a8833caff50406697e7cdab4"
+    ], 
+    "files/tengu_ui/images/click-next.png": [
+      "tengu-ui", 
+      "static", 
+      "c4f9f76b5a81422c7653fb8d42ef0a1b86116b1012dbb002af24604747f28ba2"
+    ], 
+    "files/tengu_ui/content/guides/intro.html": [
+      "tengu-ui", 
+      "static", 
+      "6866000fb11b080b4d251c0242425152fae7026f5da27029a5d7931788d9c58c"
+    ], 
+    "files/tengu_ui/views/partials/drawer-credits.html": [
+      "tengu-ui", 
+      "static", 
+      "7d94b59c6f0f5c56ff61e8cf338f8052da8646bda371ecb3c5866b2a55c9b95c"
+    ], 
+    "hooks/relations/sojobo/provides.py": [
+      "interface:sojobo", 
+      "static", 
+      "4c6bdf586d75ba804792a01d34d5709201ada5ffcafc2e21823b4cb0b0d4f4ad"
+    ], 
+    "files/tengu_ui/fonts/FontAwesome.otf": [
+      "tengu-ui", 
+      "static", 
+      "bdc5d0b9f397be83e886c74b0141d1954aa4384b359dce49829994c4a2e1f7bf"
+    ], 
+    "lib/charms/layer/nginx_passenger.py": [
+      "layer:nginx-passenger", 
+      "static", 
+      "7243cbb20ae86b6ffb17fef5a6788fd9f83bea99764b0f8875b6975fe86d54e0"
+    ], 
+    "files/tengu_ui/index.html": [
+      "tengu-ui", 
+      "static", 
+      "d753037a9f9eb5f1961e6014aab290bbd536bc2e4002c80197e12bd5df1d01b6"
+    ], 
+    "files/tengu_ui/images/about-logo.png": [
+      "tengu-ui", 
+      "static", 
+      "e61196d26aba7f2c767e5f802991dbc86d8f853f12f7b5486b0318c22542b3d5"
+    ], 
+    "files/tengu_ui/images/code-icon.png": [
+      "tengu-ui", 
+      "static", 
+      "5c572f60ed1031d012a71d19d173909327f0c4c42dec3291d071981419df9e50"
+    ], 
+    "files/tengu_ui/fonts/streamline.eot": [
+      "tengu-ui", 
+      "static", 
+      "6c6496d6047efd8d82e4222b25fa5c414d1e06b196435aeb5ee6941dc38250b7"
+    ], 
+    "files/tengu_ui/views/partials/frame-model-delete.html": [
+      "tengu-ui", 
+      "static", 
+      "122a54160215f5babcc8bc4b79870a2b4f6532cdeb944408f154ee412f7173f7"
+    ], 
+    "wheelhouse/six-1.10.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "105f8d68616f8248e24bf0e9372ef04d3cc10104f1980f54d57b2ce73a5ad56a"
+    ], 
+    "hooks/website-relation-changed": [
+      "interface:http", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "files/tengu_ui/views/frame-rest.html": [
+      "tengu-ui", 
+      "static", 
+      "a069fa7db5a026fec4279f7e1255dcb1593b52a98d134eabad43dbebe1889b77"
+    ], 
+    "files/tengu_ui/images/foo_bar-graph.png": [
+      "tengu-ui", 
+      "static", 
+      "9611ed633ac6239225b62783a13a00df07f2f611e510769a90e74a064715654d"
+    ], 
+    "files/tengu_ui/images/device-icons/android-chrome-48x48.png": [
+      "tengu-ui", 
+      "static", 
+      "de7b1d87547c28198a3fd6665a6f4d63105c6958a28ef762d322336588429832"
+    ], 
+    "files/tengu_ui/images/northwind-icon.png": [
+      "tengu-ui", 
+      "static", 
+      "831259fa037b9f51fd1bdd4e2d485d44efbf108fdec5c4e9de348823638385fd"
+    ], 
+    "wheelhouse/Jinja2-2.9.6.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "ddaa01a212cd6d641401cb01b605f4a4d9f37bfc93043d7f760ec70fb99ff9ff"
+    ], 
+    "files/tengu_ui/content/guides/sysinfo.html": [
+      "tengu-ui", 
+      "static", 
+      "fa8cda0ac3af15858450fc764604fbf6e5b7271a5ab9254bdbdaecd2fb678f42"
+    ], 
+    "files/tengu_ui/content/guides/concepts.html": [
+      "tengu-ui", 
+      "static", 
+      "6603de059d2d8d0e0c080033b2a086f9dab7b2f7f98daf4770f4d869116d3bd5"
+    ], 
+    "files/tengu_ui/images/graph-toggle.png": [
+      "tengu-ui", 
+      "static", 
+      "95522998f72bfee69c59765da0008bff7b8c70c36bcef5f0d771677c0faf8337"
+    ], 
+    "files/tengu_ui/content/help/tengu-hauchiwa.html": [
+      "tengu-ui", 
+      "static", 
+      "fe795fa2f62caa9e777d47fbf242571a981b09d40452e2905a1b393a313494e7"
+    ], 
+    "hooks/sojobo-relation-broken": [
+      "interface:sojobo", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/website-relation-joined": [
+      "interface:http", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "files/tengu_ui/content/help/clear.html": [
+      "tengu-ui", 
+      "static", 
+      "5ab7bdb60161879591af77b274a5cbd164340ba9467ea5efe9db90e9f67d8327"
+    ], 
+    "files/tengu_ui/images/logo@2x.png": [
+      "tengu-ui", 
+      "static", 
+      "9a60048ea1b517397e062c852fb3a5c9232c208c112babe484bd3ec7b7a8dc3e"
+    ], 
+    "files/tengu_ui/views/frame-history.html": [
+      "tengu-ui", 
+      "static", 
+      "d4a5d68b5eba0959d9457fbeb989007de2fdfd3f471656972e742eea09fe00e1"
+    ], 
+    "files/tengu_ui/images/intro.png": [
+      "tengu-ui", 
+      "static", 
+      "7fe60ba891be1f5249c37530f8b504ccb447f266550e46478edfe021c6b0119b"
+    ], 
+    "hooks/relations/http/README.md": [
+      "interface:http", 
+      "static", 
+      "9c95320ad040745374fc03e972077f52c27e07eb0386ec93ae19bd50dca24c0d"
+    ], 
+    "files/tengu_ui/images/device-icons/favicon.ico": [
+      "tengu-ui", 
+      "static", 
+      "90acba79f647fceae56a83bee17c48ec52de061f9ca195e930acce35d6cfe054"
+    ], 
+    "files/tengu_ui/content/help/set.html": [
+      "tengu-ui", 
+      "static", 
+      "708be6f2ceff371135a01abe46288ab7a07fe1053f7ce5b5d7cf20061cf4b949"
+    ], 
+    "files/tengu_ui/content/help/start.html": [
+      "tengu-ui", 
+      "static", 
+      "43bccb106690bf984b37d0ed4cd60247e13b09109cccb246d6f022104282e08e"
+    ], 
+    "files/tengu_ui/views/partials/frame-change-password.html": [
+      "tengu-ui", 
+      "static", 
+      "1e034e92d1a5cfbeda2f5456565958a952b4bc7e270f309ee80cb2bdb9947cd5"
+    ], 
+    "files/tengu_ui/images/neo4j-favicon.ico": [
+      "tengu-ui", 
+      "static", 
+      "323a614d44f6c15d056c1e5d3a5f7f98b573835e29cd12b040e1a56d4d39cc7a"
+    ], 
+    "files/tengu_ui/images/inspect.png": [
+      "tengu-ui", 
+      "static", 
+      "fa514122ad2577e3eda58f2891bc96841ac041b9dae69afb6205ece81170bf8c"
+    ], 
+    "files/tengu_ui/views/template/carousel/carousel.html": [
+      "tengu-ui", 
+      "static", 
+      "385082fba6d0808597a06203b0b3dbbaccef763348f95010c02f0f350830aa16"
+    ], 
+    "files/tengu_ui/content/help/explain.html": [
+      "tengu-ui", 
+      "static", 
+      "9622caa4e52822981d5e0ae90b44a90d7c1f5d244cd0a0f4eb64a8761b1fdac4"
+    ], 
+    "files/tengu_ui/fonts/icomoon.woff": [
+      "tengu-ui", 
+      "static", 
+      "163e3d06f983d3fb3805e62a364b2bc87c5a2c811b773c6b2ed322f803c3b20c"
+    ], 
+    "files/tengu_ui/views/frame-help.html": [
+      "tengu-ui", 
+      "static", 
+      "48d2b48702175a3ac10c4f88b926fead33fbb9dd7ad70a3fde0d8138e8506476"
+    ], 
+    "files/tengu_ui/images/relationships.png": [
+      "tengu-ui", 
+      "static", 
+      "1ae11a1311a736a1426aac0e14048ffd494f0b843d4b7bcb737c14b5a6e93210"
+    ], 
+    "files/tengu_ui/content/help/merge.html": [
+      "tengu-ui", 
+      "static", 
+      "0a42794e1db1fd2e437c8e51505907491e0df16ed569ad207bc5196a4b727951"
+    ], 
+    "files/tengu_ui/content/help/ends-with.html": [
+      "tengu-ui", 
+      "static", 
+      "3f5d2ab664f2ef8e68f1420ff78e6cb97d724cc772a437d42d916d768d314c86"
+    ], 
+    "files/tengu_ui/images/sensors.png": [
+      "tengu-ui", 
+      "static", 
+      "4efdaa15710b8bbe0fa7884134387b2be9e6a0ad8d9d52bb10e76f373624ff2b"
+    ], 
+    "README.md": [
+      "tengu-ui", 
+      "static", 
+      "72d17328a1cc5266da6225f02b62a25ec9fac98f0bce4209fc1df96ab79ee413"
+    ], 
+    "files/tengu_ui/fonts/glyphicons-halflings-regular.ttf": [
+      "tengu-ui", 
+      "static", 
+      "e395044093757d82afcb138957d06a1ea9361bdcf0b442d06a18a8051af57456"
+    ], 
+    "files/tengu_ui/views/frame-user-create.html": [
+      "tengu-ui", 
+      "static", 
+      "c4910bca1662cd440699ed0f3629f02bd904c0dd332ae6bdb7af275101ffb8ae"
+    ], 
+    "files/tengu_ui/images/northwind/order-graph.png": [
+      "tengu-ui", 
+      "static", 
+      "acc4795133822acbdbd172fa3f43ef5a66a4ddd2b49b702ea1c68c5f9ded6866"
+    ], 
+    "files/tengu_ui/views/frame-server-status.html": [
+      "tengu-ui", 
+      "static", 
+      "6126a3eedf05b37ba7b90bccffcf4a1a1894eb9f23978a51d80adb94a62789e6"
+    ], 
+    "files/tengu_ui/views/partials/frame-model-create.html": [
+      "tengu-ui", 
+      "static", 
+      "bebb2f6abbd25dfc048cd48c048fe863dfb5d6be61190386f77a9d556a54e327"
+    ], 
+    "files/tengu_ui/fonts/neo-font.svg": [
+      "tengu-ui", 
+      "static", 
+      "04b9c142c2fc7d50c3d379fc3a9622447af9b0f13f8721e23e4414ce505bfd10"
+    ], 
+    "templates/http.conf": [
+      "tengu-ui", 
+      "static", 
+      "c3abdf1e735325ba6ba1736ca59f17479511f008727e1528b610c7651d82e34d"
+    ], 
+    "files/tengu_ui/views/partials/inspector.html": [
+      "tengu-ui", 
+      "static", 
+      "938c2cd33b6d06105a930779d8ee9a98e98f1cabe160d0b2fa9201e17f2ed2ac"
+    ], 
+    "files/tengu_ui/views/frame-user-delete.html": [
+      "tengu-ui", 
+      "static", 
+      "d2c3c2f0d190318a9c78ad448e1bff4f26c01e928e084f803bac5289f83abdf2"
+    ], 
+    "config.yaml": [
+      "tengu-ui", 
+      "dynamic", 
+      "2ee04fa082a26823ba03bc10a41c8426cbeb755c6730a39335b7f0c771636204"
+    ], 
+    "files/tengu_ui/images/device-icons/apple-touch-icon-144x144.png": [
+      "tengu-ui", 
+      "static", 
+      "605bd6db419783dddadb36e20e0edaddf3762ab563daaba4029e4a6628f788b9"
+    ], 
+    "files/tengu_ui/content/help/foreach.html": [
+      "tengu-ui", 
+      "static", 
+      "cdcb13ca6d6da562a4da69f1af04b1ec8337fe1a5dc731a487023eb976593f1a"
+    ], 
+    "tests/10-deploy": [
+      "layer:nginx-passenger", 
+      "static", 
+      "bbb7e8227ee860be66ce64eef5784bd294811408f184c1e2041358ccac82da1b"
+    ], 
+    "files/tengu_ui/views/partials/drawer-profile.html": [
+      "tengu-ui", 
+      "static", 
+      "0f6228b959c85cb65b579cc1533f69e4964e2c5da2de51181e6e900e60bcb533"
+    ], 
+    "lib/charms/layer/execd.py": [
+      "layer:basic", 
+      "static", 
+      "af1f2409869f990cdb33cffc4120fb6713876e8e680ac5f064ea510bbdca1073"
+    ], 
+    "files/tengu_ui/content/help/unknown.html": [
+      "tengu-ui", 
+      "static", 
+      "7e3496c5b98c68c308c7f2dfb9235b0d9d5984965de0fb905b8dc6b547e85776"
+    ], 
+    "files/tengu_ui/images/query-plan.svg": [
+      "tengu-ui", 
+      "static", 
+      "c8c82378760342a55f431763d9625d304b66d7fbba13c34b4b0c9ebacc3e9f14"
+    ], 
+    "hooks/relations/sojobo/.gitignore": [
+      "interface:sojobo", 
+      "static", 
+      "f24477a840737ae9a1439e10ec2c1003279b9569cc0e3661bd145df95fd0343a"
+    ], 
+    "files/tengu_ui/images/cityot.png": [
+      "tengu-ui", 
+      "static", 
+      "c585796637c7307856a34332aa85a192e9cd4d4c03b74e2ec5d3c7fd061fe4b2"
+    ], 
+    ".build.manifest": [
+      "build", 
+      "dynamic", 
+      "unchecked"
+    ], 
+    "files/tengu_ui/views/template/tabs.html": [
+      "tengu-ui", 
+      "static", 
+      "4a5c1c17c51543e8584f7e4dc6284c6b03c54355c875feae7d312336f29e80c5"
+    ], 
+    "hooks/upgrade-charm": [
+      "layer:basic", 
+      "static", 
+      "8fb6559bf4d4b7cdf1b857564c1d7265df98e863a4746fcbae092f141e59d97e"
+    ], 
+    "files/tengu_ui/views/frame-info.html": [
+      "tengu-ui", 
+      "static", 
+      "1c9987ee36686a535849203eeba51804f4c655d44dc265ea21373e0171a9f103"
+    ], 
+    "wheelhouse/shell-1.0.1.tar.gz": [
+      "layer:nginx-passenger", 
+      "dynamic", 
+      "6fbaa88f85de228ddecef33cb1e9037f4959f6f76942b01769e4139a038f6513"
+    ], 
+    "tox.ini": [
+      "layer:basic", 
+      "static", 
+      "00b57a776ac313e92a52daa05d1fdb6056c21b3105b643d32610fd937664321b"
+    ], 
+    "files/tengu_ui/images/device-icons/apple-touch-icon-72x72.png": [
+      "tengu-ui", 
+      "static", 
+      "4f199033216835840540ed11b4474463cb84aec5ba7db9a2d17d59c8c953de52"
+    ], 
+    "files/tengu_ui/views/frame-tengu-sign-out.html": [
+      "tengu-ui", 
+      "static", 
+      "864cf471dc88a33f8d61ce0039648ac7a408451c40319e3bb52726f8deed0125"
+    ], 
+    "files/tengu_ui/fonts/streamline.woff": [
+      "tengu-ui", 
+      "static", 
+      "a843196dd0023099c273ca6c99929aa1846e1700169bd195c743ba3a633d0910"
+    ], 
+    "files/tengu_ui/images/device-icons/favicon-96x96.png": [
+      "tengu-ui", 
+      "static", 
+      "252f2512c98b75ecd93cde36604777be029b9cff4db282ef293f222b3ec19b7e"
+    ], 
+    "hooks/relations/http/requires.py": [
+      "interface:http", 
+      "static", 
+      "70188554d673bff61578f4e601a78a91efb4736df727507e984be5ca19335f82"
+    ], 
+    "files/tengu_ui/images/neo4j-white-icon.png": [
+      "tengu-ui", 
+      "static", 
+      "966e5162321014f5d29c3fa1f3889693beabde46fbc6691897ea9c6ecf776a9d"
+    ], 
+    "files/tengu_ui/images/thumbnail.png": [
+      "tengu-ui", 
+      "static", 
+      "b460c239bd7dd591e9974747ec7af9aa83e47d47d16402cb6c1d145706cc3f54"
+    ], 
+    "files/tengu_ui/views/frame-change-password.html": [
+      "tengu-ui", 
+      "static", 
+      "cc539afb3cd03a9524f5d4ab97d407154c528f7e3cac54aef03754faa1be2f6e"
+    ], 
+    "files/tengu_ui/images/learn-icon.png": [
+      "tengu-ui", 
+      "static", 
+      "35ce52a5748da6a697b9217f5408a6246aaa85147c8c5f6c530ca1fac573ee48"
+    ], 
+    "files/tengu_ui/images/northwind/customer-orders.png": [
+      "tengu-ui", 
+      "static", 
+      "c36926d8d91cf0f6223401cab31515d133cc034e91a7d70df08bd484fbc03524"
+    ], 
+    "hooks/config-changed": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "files/tengu_ui/views/frame-user-grant.html": [
+      "tengu-ui", 
+      "static", 
+      "6967b702be99264c12d61d5bb5058be1ff55222e78f3625f7196bab15c3f4229"
+    ], 
+    "files/tengu_ui/images/{{model.type}}.svg": [
+      "tengu-ui", 
+      "static", 
+      "18023d5dfed581ca69fa9939619bed99c88d723aa3ef50695fe5dfa2029cbdc0"
+    ], 
+    "files/tengu_ui/scripts/1be583c4.scripts.js": [
+      "tengu-ui", 
+      "static", 
+      "1d9a368fc7bd692cc224623f63937e767c53f1f469c1cbd3bb1359a248984910"
+    ], 
+    "files/tengu_ui/views/frame-hauchiwa-create.html": [
+      "tengu-ui", 
+      "static", 
+      "3acf58f4b116bdbd762229551078cae8b5bae8d86f78e82a7ee317f105388c8c"
+    ], 
+    "files/tengu_ui/views/frame-keys.html": [
+      "tengu-ui", 
+      "static", 
+      "e89391b78c7060957e4f8787301fe48c98040d4141ba852a98d6b478edc389d1"
+    ], 
+    "files/tengu_ui/images/maas.svg": [
+      "tengu-ui", 
+      "static", 
+      "249a18f163a3399b36ec345e77f22af21669b7b1e67fd8f66a2d01a04c5c8bdd"
+    ], 
+    "files/tengu_ui/content/help/where.html": [
+      "tengu-ui", 
+      "static", 
+      "e6eb654e67aea466c5276fe782c210b02103cc311441500c224d299999209c70"
+    ], 
+    "files/tengu_ui/images/big-logo.png": [
+      "tengu-ui", 
+      "static", 
+      "3957196f2202805d60f3f78fad5fe8c817622b9379bc91e1530f4fd09e546ebe"
+    ], 
+    "templates/nginx.conf.tmpl": [
+      "layer:nginx-passenger", 
+      "static", 
+      "2725734fabc29704c5f1bc6534025bc02e97c630af243d4cda947d6350ef22ed"
+    ], 
+    "files/tengu_ui/images/query-plan-operator-details.svg": [
+      "tengu-ui", 
+      "static", 
+      "42ea153f095b03e310e2676b3760955dddbef64dec36985ece6452adce474e2c"
+    ], 
+    "files/tengu_ui/fonts/fontawesome-webfont.svg": [
+      "tengu-ui", 
+      "static", 
+      "bfdef833219a6edffd9c3cbc28db72739d22bb4d20cc2e2f8d56a7a4d408a206"
+    ], 
+    "files/tengu_ui/content/help/cypher.html": [
+      "tengu-ui", 
+      "static", 
+      "cb47620cb4f936f332d36fa023a588488f89a04faedd9215941c59f9fcf8a344"
+    ], 
+    "files/tengu_ui/images/aws.svg": [
+      "tengu-ui", 
+      "static", 
+      "326641bdfb1ffd8100feb18e152d482dddd84264d9e612420659c4230d909f4b"
+    ], 
+    "layer.yaml": [
+      "tengu-ui", 
+      "dynamic", 
+      "29c0452961dc0fb71c04ef405b6c3742ffd081d11eb1d28127d9b6ff374dc959"
+    ], 
+    "files/tengu_ui/views/frame-guide.html": [
+      "tengu-ui", 
+      "static", 
+      "a629befa009a73f8380e658d58a173ae020f6d5f781eb72527bad6a5a9f381d6"
+    ], 
+    "wheelhouse/toml-0.9.2.tar.gz": [
+      "layer:nginx-passenger", 
+      "dynamic", 
+      "b3953bffe848ad9a6d554114d82f2dcb3e23945e90b4d9addc9956f37f336594"
+    ]
+  }
+}
