@@ -15,10 +15,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 # pylint: disable=c0111,c0103,c0301
 import os
-from subprocess import check_call
 from charmhelpers.core.templating import render
-from charmhelpers.core.hookenv import status_set, config, open_port, application_version_set, unit_private_ip
-from charmhelpers.core.host import service_restart, service_stop
+from charmhelpers.core.hookenv import status_set, config, application_version_set, unit_private_ip
+from charmhelpers.core.host import service_restart
 
 from charms.reactive import when, when_not, set_state, remove_state
 
@@ -63,47 +62,36 @@ def configure_redis(redis):
     set_state('redis.setup')
 
 
-@when('redis.available', 'rabbitmq.available', 'monitoring.available')
+@when('redis.available', 'rabbitmq.available', 'tcpserver.available')
 @when_not('sensu.running')
-def starting_sensu(redis, rabbitmq, monitoring):
+def starting_sensu(redis, rabbitmq, tcpserver):
     render('transport.json', '{}/transport.json'.format(CONFIG_DIR), context={})
-    render('api.json', '{}/api.json'.format(CONFIG_DIR), context={'host': unit_private_ip(), 'port': 4567})
-    context = {
-        'sojobo': list(monitoring.connection())[0]['ip'],
-        'user': list(monitoring.connection())[0]['user'],
-        'password': list(monitoring.connection())[0]['password']
-    }
-    render('send_monitoring.rb', '/opt/sensu/embedded/bin/send_monitoring.rb', context=context)
-    check_call(['chmod', '755', '/opt/sensu/embedded/bin/send_monitoring.rb'])
     if not os.path.isdir(os.path.join(CONFIG_DIR, 'handlers')):
         os.mkdir(os.path.join(CONFIG_DIR, 'handlers'))
-    render('default.json', os.path.join(CONFIG_DIR, 'handlers', 'default.json'), context={})
+    context = {'host': tcpserver.services()[0]['hosts'][0]['hostname'], 'port': tcpserver.services()[0]['hosts'][0]['port']}
+    render('default.json', os.path.join(CONFIG_DIR, 'handlers', 'default.json'), context=context)
     service_restart('sensu-server')
-    service_restart('sensu-api')
-    open_port(4567)
-    status_set('active', 'RabbitMQ (password: {} ) and Redis connected'.format(rabbitmq.password()))
+    status_set('active', 'RabbitMQ (password: {} ), Redis and Sensu-InfluxDB-parser connected'.format(rabbitmq.password()))
     set_state('sensu.running')
 
 
-@when('sensu.running', 'proxy.available')
-def setup_proxy(proxy):
-    proxy.configure(4567)
+@when('sensu.running', 'api.available')
+def setup_api(api):
+    render('api.json', '{}/api.json'.format(CONFIG_DIR), context={'host': unit_private_ip(), 'port': 4567})
+    service_restart('sensu-api')
+    api.configure(4567)
 
 
 @when('redis.available')
 @when_not('rabbitmq.connected')
 def missing_rabbitmq(redis):
-    service_stop('sensu-server')
-    service_stop('sensu-api')
-    status_set('blocked', 'Redis is connected, waiting for relation with RabbitMQ')
+    status_set('blocked', 'Waiting for relation with RabbitMQ')
     remove_state('sensu.running')
 
 
 @when('rabbitmq.available')
 @when_not('redis.connected')
 def missing_redis(rabbitmq):
-    service_stop('sensu-server')
-    service_stop('sensu-api')
     status_set('blocked', 'Waiting for relation with Redis')
     remove_state('sensu.running')
     remove_state('redis.configured')
@@ -116,6 +104,7 @@ def waiting_redis(redis):
 
 
 @when('redis.available', 'rabbitmq.available')
-@when_not('monitoring.available')
+@when_not('tcpserver.available')
 def waiting_monitoring(redis, rabbitmq):
-    status_set('blocked', 'Waiting for relation with Monitoring-api. RabbitMQ password: {}'.format(rabbitmq.password()))
+    status_set('blocked', 'Waiting for relation with Sensu-InfluxDB-parser')
+    remove_state('sensu.running')

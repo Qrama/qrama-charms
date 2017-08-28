@@ -9,11 +9,14 @@ class ProvidesRedis(RelationBase):
 
     @hook('{provides:redis}-relation-{joined,changed}')
     def changed(self):
-        self.set_state('{relation_name}.connected')
+        conv = self.conversation()
+        conv.set_state('{relation_name}.connected')
 
     @hook('{provides:redis}-relation-{broken,departed}')
     def broken(self):
-        self.remove_state('{relation_name}.connected')
+        conv = self.conversation()
+        conv.remove_state('{relation_name}.connected')
+        conv.remove_state('{relation_name}.available')
 
     def configure(self, port, password=None):
         relation_info = {
@@ -28,5 +31,5 @@ class ProvidesRedis(RelationBase):
 
         relation_info['uri'] = uri
 
-        self.set_remote(**relation_info)
-        self.set_state('{relation_name}.configured')
+        conv = self.conversation()
+        conv.set_remote(**relation_info)

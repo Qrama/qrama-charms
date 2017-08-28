@@ -9,10 +9,9 @@
     "interface": "rabbitmq"
   "redis":
     "interface": "redis"
-  "monitoring":
-    "interface": "monitoring"
+  "tcpserver":
+    "interface": "http"
 "provides":
-  "proxy":
+  "api":
     "interface": "http"
 "series": ["xenial"]
-"subordinate": !!bool "false"
