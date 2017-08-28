@@ -16,9 +16,11 @@ def install():
         pip_install(pkg)
     if not os.path.isdir(INSTALL_PATH):
         os.mkdir(INSTALL_PATH)
+    if not os.path.isdir('{}/filters'.format(INSTALL_PATH)):
+        os.mkdir('{}/filters'.format(INSTALL_PATH))
     context = {'install_path': INSTALL_PATH}
     render('sensu-influxdb-parser.service', '/etc/systemd/system/sensu-influxdb-parser.service', context=context)
-    mergecopytree('files/filters', INSTALL_PATH)
+    mergecopytree('files/filters', '{}/filters'.format(INSTALL_PATH))
     status_set('blocked', 'Waiting for relation with InfluxDB')
     set_state('parser.installed')
 

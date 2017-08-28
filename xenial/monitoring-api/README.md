@@ -34,9 +34,9 @@ Then some of the applications can be connected:
 ```
 juju add-relation sensu-influxdb-parser influxdb
 juju add-relation sensu-influxdb-parser sensu-base
-juju add-relation redis sensu-base
+juju add-relation redis-server sensu-base
 juju add-relation rabbitmq-server sensu-base
-juju add-relation redis heartbeat
+juju add-relation redis-server heartbeat
 juju add-relation rabbitmq-server heartbeat
 juju add-relation sensu-influxdb-parser heartbeat
 juju add-relation heartbeat influxdb

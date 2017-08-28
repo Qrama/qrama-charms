@@ -3,7 +3,7 @@ Description=TCP server which listens to a tcp-stream from Sensu, filters this da
 
 [Service]
 Type=simple
-ExecStart=/bin/bash -c 'PATH={{install_path}}:$PATH exec /usr/bin/python3 {{install_path}}/tcpserver.py
+ExecStart=/bin/bash -c "PATH={{install_path}}:$PATH exec /usr/bin/python3 {{install_path}}/tcpserver.py"
 
 [Install]
 WantedBy=multi-user.target

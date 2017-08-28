@@ -151,7 +151,7 @@ def check_influxdb():
 def check_parser():
     query = 'select * from heartbeat where \"name\"=\'sensu-influxdb-parser\' and time > now() - 10s'
     result = list(influxdb_client().query(query).get_points())
-    if result is []:
+    if result == []:
         return 'ERROR'
     else:
         return result[-1]['status']
@@ -160,16 +160,16 @@ def check_parser():
 def check_rabbitmq():
     query = 'select * from heartbeat where \"name\"=\'rabbitmq-server\' and time > now() - 10s'
     result = list(influxdb_client().query(query).get_points())
-    if result is []:
+    if result == []:
         return 'ERROR'
     else:
         return result[-1]['status']
 
 
 def check_redis():
-    query = 'select * from heartbeat where \"name\"=\'redis\' and time > now() - 10s'
+    query = 'select * from heartbeat where \"name\"=\'redis-server\' and time > now() - 10s'
     result = list(influxdb_client().query(query).get_points())
-    if result is []:
+    if result == []:
         return 'ERROR'
     else:
         return result[-1]['status']

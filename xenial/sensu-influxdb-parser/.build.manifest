@@ -195,7 +195,7 @@
     "templates/sensu-influxdb-parser.service": [
       "sensu-influxdb-parser", 
       "static", 
-      "7c682c8af5a7c476624d31b51188b164648dc05faa415739ff5efb0fe7a1ded7"
+      "44cce160c9cc4f73b0bc138cf7bef33c42e6b0ae56c45a040b2510cd35623530"
     ], 
     "hooks/influxdb-relation-joined": [
       "interface:influxdb-api", 
@@ -265,7 +265,7 @@
     "reactive/sensu-influxdb-parser.py": [
       "sensu-influxdb-parser", 
       "static", 
-      "467c51319329ece7e13755f314db2e36e2f6f6545acfacb752aeca6d2d24d289"
+      "a289d12a9be7f9931a5daa91710f10c1057c572ae282b491a5c853c28883020b"
     ], 
     ".build.manifest": [
       "build", 
