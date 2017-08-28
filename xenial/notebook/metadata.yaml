@@ -1,0 +1,13 @@
+"name": "notebook"
+"summary": "Deploys a notebook on zeppelin"
+"maintainer": "Sebastien Pattyn<sebastien.pattyn@tengu.io>"
+"description": |
+  this charm needs an URL where a Zeppelin Notebook is located and will deploy
+  this job on Zeppelin.
+"tags":
+- "Big Data"
+"requires":
+  "zeppelin":
+    "interface": "juju-info"
+    "scope": "container"
+"subordinate": !!bool "true"

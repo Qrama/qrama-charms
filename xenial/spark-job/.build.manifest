@@ -1,0 +1,266 @@
+{
+  "layers": [
+    "layer:basic", 
+    "layer:leadership", 
+    "spark-job", 
+    "interface:spark", 
+    "build"
+  ], 
+  "signatures": {
+    "tests/10-deploy": [
+      "spark-job", 
+      "static", 
+      "eba90ce8b2fec39e7c8a67b982af3eba6a870c90fb5d4d062d5d25669b0868f6"
+    ], 
+    "bin/layer_option": [
+      "layer:basic", 
+      "static", 
+      "621b556cd208005e131e9f648859294347da9376609745a73ca2e808dd2032f9"
+    ], 
+    "hooks/leader-settings-changed": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "wheelhouse/pyaml-17.8.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "9cf5ff8fc3b82aab1428e67ab2040b52a9f39433517cb7c5b852498ed3a75740"
+    ], 
+    "lib/charms/layer/execd.py": [
+      "layer:basic", 
+      "static", 
+      "af1f2409869f990cdb33cffc4120fb6713876e8e680ac5f064ea510bbdca1073"
+    ], 
+    "hooks/leader-elected": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "Makefile": [
+      "layer:basic", 
+      "static", 
+      "b7ab3a34e5faf79b96a8632039a0ad0aa87f2a9b5f0ba604e007cafb22190301"
+    ], 
+    "reactive/__init__.py": [
+      "layer:leadership", 
+      "static", 
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    ], 
+    "tests/00-setup": [
+      "spark-job", 
+      "static", 
+      "111c079b81d260bbcd716dcf41672372a4cf4aaa14154b6c3055deeedae37a06"
+    ], 
+    "wheelhouse/Jinja2-2.9.6.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "ddaa01a212cd6d641401cb01b605f4a4d9f37bfc93043d7f760ec70fb99ff9ff"
+    ], 
+    "hooks/upgrade-charm": [
+      "layer:basic", 
+      "static", 
+      "8fb6559bf4d4b7cdf1b857564c1d7265df98e863a4746fcbae092f141e59d97e"
+    ], 
+    "wheelhouse/Tempita-0.5.2.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "cacecf0baa674d356641f1d406b8bff1d756d739c46b869a54de515d08e6fc9c"
+    ], 
+    "reactive/leadership.py": [
+      "layer:leadership", 
+      "static", 
+      "e2b233cf861adc3b2d9e9c062134ce2f104953f03283cdddd88f49efee652e8f"
+    ], 
+    "hooks/hook.template": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/spark-relation-changed": [
+      "interface:spark", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "tox.ini": [
+      "layer:basic", 
+      "static", 
+      "00b57a776ac313e92a52daa05d1fdb6056c21b3105b643d32610fd937664321b"
+    ], 
+    "metadata.yaml": [
+      "spark-job", 
+      "dynamic", 
+      "f393f2956e7bd0c57607241dfbd2293acdd02a89067cdac4ca9e46d148dca0e3"
+    ], 
+    "copyright": [
+      "layer:leadership", 
+      "static", 
+      "8ce407829378fc0f72ce44c7f624e4951c7ccb3db1cfb949bee026b701728cc9"
+    ], 
+    "reactive/layer_spark_job.py": [
+      "spark-job", 
+      "static", 
+      "f4385cc3c9fc88f657d6a1b96eb383787c07c008b030d559a168cb5d6fe116f4"
+    ], 
+    "lib/charms/leadership.py": [
+      "layer:leadership", 
+      "static", 
+      "12b52fa768c3e9072556ac6f46f68129dc762f89eb806d8dee921c86497f6707"
+    ], 
+    "wheelhouse/PyYAML-3.12.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "592766c6303207a20efc445587778322d7f73b161bd994f227adaa341ba212ab"
+    ], 
+    ".gitignore": [
+      "layer:leadership", 
+      "static", 
+      "54c2eac10d7d0187b02c271ac7a3767bb3d365d562cfb8c1548efb4e84f7b2d5"
+    ], 
+    "hooks/install": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/relations/spark/README.md": [
+      "interface:spark", 
+      "static", 
+      "4b6649f8bf8b5968560d6021f62d8f72590c19c4787449884775056fc75f1693"
+    ], 
+    "hooks/relations/spark/requires.py": [
+      "interface:spark", 
+      "static", 
+      "d292d20e715ff1c07fda6dbde3c48bf2a9056b2fc368aeb39462da702c87f686"
+    ], 
+    "icon.svg": [
+      "spark-job", 
+      "static", 
+      "838ad266cf853eb2b8076bf3938c53498360ebd4ad91f3c4466b9edc6c842be1"
+    ], 
+    "config.yaml": [
+      "spark-job", 
+      "dynamic", 
+      "bf3838ebfece48ed6aa19ffdc3b2aa592bcde8460030ce0593e1c076120ac1ae"
+    ], 
+    "lib/charms/layer/__init__.py": [
+      "layer:basic", 
+      "static", 
+      "71a8b901f7e64a6b1b61959fc25819bafc9c9905e37a918615b9f949295095a4"
+    ], 
+    "wheelhouse/charms.reactive-0.4.7.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "f023f5aef267786db1be51209610487171ba56e848f7b1c49877b06337000256"
+    ], 
+    "hooks/stop": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/relations/spark/interface.yaml": [
+      "interface:spark", 
+      "static", 
+      "02a05826247e534381ef98ed17e9b067f64216a7512f9cadf8c1dba55d1e17b1"
+    ], 
+    "lib/charms/layer/basic.py": [
+      "layer:basic", 
+      "static", 
+      "d09706ef3a224eb60d34366a2867c382791aa30157ab5b77eda37f29731df2e2"
+    ], 
+    "wheelhouse/netaddr-0.7.19.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "38aeec7cdd035081d3a4c306394b19d677623bf76fa0913f6695127c7753aefd"
+    ], 
+    "wheelhouse/charmhelpers-0.17.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "232f9ee252c58e9357aaa74d14d351e786716fa0cec3f496f74c40ad0bc6a0b5"
+    ], 
+    "hooks/spark-relation-broken": [
+      "interface:spark", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/relations/spark/copyright": [
+      "interface:spark", 
+      "static", 
+      "188b8b4aa4477e8d2a0b4c290c451326456a0ddf58e1f314c3f5bf151ddbd8a8"
+    ], 
+    "wheelhouse/pip-8.1.2.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "4d24b03ffa67638a3fa931c09fd9e0273ffa904e95ebebe7d4b1a54c93d7b732"
+    ], 
+    "hooks/update-status": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "lib/charms/__init__.py": [
+      "layer:leadership", 
+      "static", 
+      "4032724b98ed267185b12b8ec78dd9bcb0423ab1c89a6f0dad99397fd51159d9"
+    ], 
+    "README.md": [
+      "spark-job", 
+      "static", 
+      "880783237a0d1a52a1a1b7564144141a641e4cdbb2d9b5339ef95b9acc117207"
+    ], 
+    "hooks/spark-relation-departed": [
+      "interface:spark", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/relations/spark/provides.py": [
+      "interface:spark", 
+      "static", 
+      "22b0c5a2c30652a56d45a60a728a7a1f0cf5e8e1ee4fb9fba956d7b4fbb4a63b"
+    ], 
+    "hooks/relations/spark/__init__.py": [
+      "interface:spark", 
+      "static", 
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    ], 
+    "hooks/start": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "wheelhouse/MarkupSafe-1.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "a6be69091dac236ea9c6bc7d012beab42010fa914c459791d627dad4910eb665"
+    ], 
+    "hooks/spark-relation-joined": [
+      "interface:spark", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "requirements.txt": [
+      "layer:basic", 
+      "static", 
+      "0f1c70d27e26005a96d66ad54482877ae20f7737693c833e29dd72bd6ac24892"
+    ], 
+    "layer.yaml": [
+      "spark-job", 
+      "dynamic", 
+      "090c24c526016cca9664e01665f940ff65e0f6aed77d5ffc4e87cc06f898232b"
+    ], 
+    "hooks/config-changed": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    ".build.manifest": [
+      "build", 
+      "dynamic", 
+      "unchecked"
+    ], 
+    "wheelhouse/six-1.10.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "105f8d68616f8248e24bf0e9372ef04d3cc10104f1980f54d57b2ce73a5ad56a"
+    ]
+  }
+}

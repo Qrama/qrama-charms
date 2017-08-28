@@ -1,0 +1,6 @@
+"options":
+  "job_location":
+    "type": "string"
+    "default": ""
+    "description": "On this url you can find the job that needs to be deployed on\
+      \ spark"

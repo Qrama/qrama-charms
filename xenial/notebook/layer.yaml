@@ -1,0 +1,10 @@
+"options":
+  "notebook": {}
+  "basic":
+    "use_venv": !!bool "false"
+    "packages": []
+    "include_system_packages": !!bool "false"
+"includes":
+- "layer:basic"
+"repo": "https://github.com/Qrama/layer-notebook.git"
+"is": "notebook"
