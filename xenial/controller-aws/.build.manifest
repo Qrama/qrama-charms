@@ -16,20 +16,20 @@
       "static", 
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
-    "LICENSE": [
-      "controller-aws", 
-      "static", 
-      "956caac924f88d39f85d505a690a5f670a325d76b70c7c3ae8aee71d563a3ffe"
+    "wheelhouse/pyaml-17.8.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "9cf5ff8fc3b82aab1428e67ab2040b52a9f39433517cb7c5b852498ed3a75740"
     ], 
     "charmbuild/controller-aws/lib/charms/layer/execd.py": [
       "controller-aws", 
       "static", 
       "c0eb4c90e93a14f04d851f78bc6592e093226321fbe328125958633397aed014"
     ], 
-    "charmbuild/controller-aws/lib/charms/layer/basic.py": [
-      "controller-aws", 
+    "lib/charms/layer/execd.py": [
+      "layer:basic", 
       "static", 
-      "a98b1ba58bd144f8a79ac0847bfe6741253bbd1a9805f12e9cbc7df3bd12fece"
+      "af1f2409869f990cdb33cffc4120fb6713876e8e680ac5f064ea510bbdca1073"
     ], 
     "hooks/leader-elected": [
       "layer:basic", 
@@ -66,11 +66,6 @@
       "static", 
       "8fb6559bf4d4b7cdf1b857564c1d7265df98e863a4746fcbae092f141e59d97e"
     ], 
-    "wheelhouse/charmhelpers-0.15.0.tar.gz": [
-      "layer:basic", 
-      "dynamic", 
-      "dde6d6905a1f71cd3a6ed7cbf92bb4c26159d6a1b5ce8b4e5d2b893de7cc0647"
-    ], 
     "wheelhouse/Tempita-0.5.2.tar.gz": [
       "layer:basic", 
       "dynamic", 
@@ -81,10 +76,10 @@
       "static", 
       "68d82afba51775e33e1faced5032088bb6d198050c53c1e7976dc3a0ee8598bc"
     ], 
-    "wheelhouse/pyaml-16.12.2.tar.gz": [
+    "hooks/hook.template": [
       "layer:basic", 
-      "dynamic", 
-      "b865e4f53a85f4d8a092e7701f759a3237fb3ee8a928627401914aafadc00907"
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
     "hooks/sojobo-relation-broken": [
       "interface:sojobo", 
@@ -100,6 +95,11 @@
       "controller-aws", 
       "dynamic", 
       "c5da07240156e244536889d1265e8af14c6544e5b67f477495f2bf63f6b90afc"
+    ], 
+    "LICENSE": [
+      "controller-aws", 
+      "static", 
+      "956caac924f88d39f85d505a690a5f670a325d76b70c7c3ae8aee71d563a3ffe"
     ], 
     "copyright": [
       "layer:basic", 
@@ -141,15 +141,10 @@
       "static", 
       "38a9655ce966647f6b8408530df0ecdf08fb674183d60a350ac8049ca5c7eaea"
     ], 
-    "lib/charms/layer/execd.py": [
-      "layer:basic", 
-      "static", 
-      "af1f2409869f990cdb33cffc4120fb6713876e8e680ac5f064ea510bbdca1073"
-    ], 
     "files/controller_aws.py": [
       "controller-aws", 
       "static", 
-      "245378f1729b4057b57df74343ba9faef69efef899f8d30d9baa455121675e3d"
+      "1d7418342f3bf93f5eacfd830d279c753d83597597811945fe683423d276b7c6"
     ], 
     "hooks/sojobo-relation-joined": [
       "interface:sojobo", 
@@ -162,11 +157,6 @@
       "751e6b3fce8d8c82084f3474a662b54e1f91b5c286de7436703f334077b92e7e"
     ], 
     "hooks/config-changed": [
-      "layer:basic", 
-      "static", 
-      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
-    ], 
-    "hooks/hook.template": [
       "layer:basic", 
       "static", 
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
@@ -185,6 +175,11 @@
       "layer:basic", 
       "dynamic", 
       "f023f5aef267786db1be51209610487171ba56e848f7b1c49877b06337000256"
+    ], 
+    "wheelhouse/charmhelpers-0.17.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "232f9ee252c58e9357aaa74d14d351e786716fa0cec3f496f74c40ad0bc6a0b5"
     ], 
     "hooks/sojobo-relation-departed": [
       "interface:sojobo", 
@@ -214,7 +209,7 @@
     "README.md": [
       "controller-aws", 
       "static", 
-      "c4de9ee6b8ec1a875836cf5bc4e2b42dfe75f916d7dbda9b539e2246426d9a70"
+      "5f9041ed2751b3e25ebcdaa82dacd05c51c8ec266d139d4127e257268b6f8131"
     ], 
     "hooks/relations/sojobo/provides.py": [
       "interface:sojobo", 
@@ -235,6 +230,11 @@
       "interface:sojobo", 
       "static", 
       "d6c24cac4947f77772fc6ef1b418e752380da799e795380f52c1330a62b5cf1c"
+    ], 
+    "charmbuild/controller-aws/lib/charms/layer/basic.py": [
+      "controller-aws", 
+      "static", 
+      "a98b1ba58bd144f8a79ac0847bfe6741253bbd1a9805f12e9cbc7df3bd12fece"
     ], 
     "hooks/relations/sojobo/interface.yaml": [
       "interface:sojobo", 

@@ -15,8 +15,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 # pylint: disable=c0111,c0301,c0325,w0406
 from flask import request, Blueprint
-from sojobo_api.api import w_errors as errors, w_monitoring as monitoring, w_juju as juju, w_mongo as mongo #pylint: disable = e0401
-from sojobo_api.api.w_juju import check_input, create_response, execute_task
+from sojobo_api.api import w_errors as errors, w_monitoring as monitoring, w_datastore as datastore #pylint: disable = e0401
+from sojobo_api.api.w_juju import create_response, execute_task, check_input, authenticate, authorize, app_exists
 
 
 MONITOR = Blueprint('monitoring', __name__)
@@ -30,8 +30,8 @@ def get():
 @MONITOR.route('', methods=['GET'])
 def status():
     res = {
-        'Sensu': monitoring.check_sensu(),
-        'InfluxDB': monitoring.check_influxdb()
+        **monitoring.check_sensu(),
+        **monitoring.check_influxdb()
     }
     return create_response(200, res)
 
@@ -74,26 +74,23 @@ def status():
 
 @MONITOR.route('/controllers/<controller>/models/<model>/applications/<application>', methods=['GET'])
 def get_application_monitor(controller, model, application):
-    token, con = execute_task(juju.authenticate, request.headers['api-key'], request.authorization,
-                              juju.check_input(controller))
-    if mongo.get_model_access(controller, model, request.authorization.username) is not None:
+    token = execute_task(authenticate, request.headers['api-key'], request.authorization)
+    if datastore.get_model_access(check_input(controller), check_input(model), token.username) is not None:
         code, response = 200, monitoring.get_application(controller, model, application)
     else:
         code, response = 200, {}
-    execute_task(con.disconnect)
     return create_response(code, response)
 
 
 @MONITOR.route('/controllers/<controller>/models/<model>/applications/<application>', methods=['PUT'])
 def add_monitoring_application(controller, model, application):
     try:
-        token, con, mod = execute_task(juju.authenticate, request.headers['api-key'], request.authorization,
-                                       juju.check_input(controller), juju.check_input(model))
-        mod_access = mongo.get_model_access(controller, model, token.username)
-        if mod_access == 'admin':
-            app = juju.check_input(application)
-            if execute_task(juju.app_exists, token, con, mod, app):
-                execute_task(monitoring.add_monitoring, con, mod, app)
+        token = execute_task(authenticate, request.headers['api-key'], request.authorization)
+        con, mod = execute_task(authorize, token, check_input(controller), check_input(model))
+        if mod.m_access == 'admin':
+            app = check_input(application)
+            if execute_task(app_exists, token, con, mod, app):
+                execute_task(monitoring.add_monitoring, token, con, mod, app)
                 code, response = 200, 'OK'
             else:
                 code, response = errors.does_not_exist(app)
@@ -101,21 +98,18 @@ def add_monitoring_application(controller, model, application):
             code, response = errors.no_permission()
     except KeyError:
         code, response = errors.invalid_data()
-    execute_task(con.disconnect)
-    execute_task(mod.disconnect)
     return create_response(code, response)
 
 
 @MONITOR.route('/controllers/<controller>/models/<model>/applications/<application>', methods=['DELETE'])
 def remove_monitoring_application(controller, model, application):
     try:
-        token, con, mod = execute_task(juju.authenticate, request.headers['api-key'], request.authorization,
-                                       juju.check_input(controller), juju.check_input(model))
-        mod_access = mongo.get_model_access(controller, model, token.username)
-        if mod_access == 'admin':
-            app = juju.check_input(application)
-            if execute_task(juju.app_exists, token, con, mod, app):
-                execute_task(monitoring.remove_monitoring, con, mod, app)
+        token = execute_task(authenticate, request.headers['api-key'], request.authorization)
+        con, mod = execute_task(authorize, token, check_input(controller), check_input(model))
+        if mod.m_access == 'admin':
+            app = check_input(application)
+            if execute_task(app_exists, token, con, mod, app):
+                execute_task(monitoring.remove_monitoring, token, con, mod, app)
                 code, response = 200, 'OK'
             else:
                 code, response = errors.does_not_exist(app)
@@ -123,18 +117,14 @@ def remove_monitoring_application(controller, model, application):
             code, response = errors.no_permission()
     except KeyError:
         code, response = errors.invalid_data()
-    execute_task(con.disconnect)
-    execute_task(mod.disconnect)
     return create_response(code, response)
 
 
 @MONITOR.route('/controllers/<controller>/models/<model>/applications/<application>/units/<unitnr>', methods=['GET'])
 def get_unit_monitor(controller, model, application, unitnr):
-    token, con = execute_task(juju.authenticate, request.headers['api-key'], request.authorization,
-                              juju.check_input(controller))
-    if mongo.get_model_access(controller, model, request.authorization.username) is not None:
+    token = execute_task(authenticate, request.headers['api-key'], request.authorization)
+    if datastore.get_model_access(check_input(controller), check_input(model), token.username) is not None:
         code, response = 200, monitoring.get_unit(controller, model, application, unitnr)
     else:
         code, response = 200, {}
-    execute_task(con.disconnect)
     return create_response(code, response)

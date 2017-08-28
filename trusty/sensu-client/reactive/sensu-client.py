@@ -43,7 +43,7 @@ def setup_sensu(info):
                 'password': config()['password'],
                 'ssl_cert': '{}/ssl_cert.pem'.format(SSL_DIR),
                 'ssl_key': '{}/ssl_key.pem'.format(SSL_DIR)}
-    name = '{}/{}/{}'.format(config()['controller'], os.environ['JUJU_MODEL_NAME'], os.environ['JUJU_MACHINE_ID'])
+    name = '{}-X-{}-X-{}'.format(config()['controller'], os.environ['JUJU_MODEL_NAME'], os.environ['JUJU_MACHINE_ID'])
     application = os.environ['JUJU_REMOTE_UNIT']
     unit = local_unit().replace('/', '-')
     render('rabbitmq.json', '{}/rabbitmq.json'.format(CONFIG_DIR), context=rabbitmq)

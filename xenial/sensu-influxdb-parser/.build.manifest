@@ -17,10 +17,10 @@
       "static", 
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
-    "LICENSE": [
-      "sensu-influxdb-parser", 
-      "static", 
-      "589ed823e9a84c56feb95ac58e7cf384626b9cbf4fda2a907bc36e103de1bad2"
+    "wheelhouse/pyaml-17.8.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "9cf5ff8fc3b82aab1428e67ab2040b52a9f39433517cb7c5b852498ed3a75740"
     ], 
     "lib/charms/layer/execd.py": [
       "layer:basic", 
@@ -67,6 +67,11 @@
       "static", 
       "8fb6559bf4d4b7cdf1b857564c1d7265df98e863a4746fcbae092f141e59d97e"
     ], 
+    "hooks/influxdb-relation-changed": [
+      "interface:influxdb-api", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
     "wheelhouse/Tempita-0.5.2.tar.gz": [
       "layer:basic", 
       "dynamic", 
@@ -77,10 +82,10 @@
       "static", 
       "9c95320ad040745374fc03e972077f52c27e07eb0386ec93ae19bd50dca24c0d"
     ], 
-    "wheelhouse/pyaml-16.12.2.tar.gz": [
+    "hooks/hook.template": [
       "layer:basic", 
-      "dynamic", 
-      "b865e4f53a85f4d8a092e7701f759a3237fb3ee8a928627401914aafadc00907"
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
     "tox.ini": [
       "layer:basic", 
@@ -92,10 +97,10 @@
       "dynamic", 
       "2e009a4ce8687a3f7c6e0f3059fbf49b5b3f98de97fb9b27d81fcb64b062ac6f"
     ], 
-    "hooks/influxdb-relation-changed": [
-      "interface:influxdb-api", 
-      "dynamic", 
-      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    "LICENSE": [
+      "sensu-influxdb-parser", 
+      "static", 
+      "589ed823e9a84c56feb95ac58e7cf384626b9cbf4fda2a907bc36e103de1bad2"
     ], 
     "copyright": [
       "layer:basic", 
@@ -127,40 +132,40 @@
       "dynamic", 
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
-    ".gitignore": [
-      "layer:basic", 
-      "static", 
-      "0da5c4dcda27cd6406e5bb81cbf68ddccaf728ac764ec15053a165c1449d87d9"
-    ], 
-    "wheelhouse/charmhelpers-0.16.0.tar.gz": [
-      "layer:basic", 
-      "dynamic", 
-      "5727a1dc278416d3e0b432ae9d46f599bca1c61b17f4880e5d33553d249b7cb3"
-    ], 
-    "templates/tcpserver.py": [
-      "sensu-influxdb-parser", 
-      "static", 
-      "478d981e1cafabbc1dad32481e8f78cdc1d9eea209212321fcf8614bfe00125a"
-    ], 
     "hooks/relations/influxdb-api/requires.py": [
       "interface:influxdb-api", 
       "static", 
       "78bceb92109fdb7e4204bfae558fa594f1559a53667bffc8f12625b2f8b201b2"
+    ], 
+    ".gitignore": [
+      "layer:basic", 
+      "static", 
+      "0da5c4dcda27cd6406e5bb81cbf68ddccaf728ac764ec15053a165c1449d87d9"
     ], 
     "hooks/relations/http/__init__.py": [
       "interface:http", 
       "static", 
       "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     ], 
-    "hooks/config-changed": [
-      "layer:basic", 
+    "templates/tcpserver.py": [
+      "sensu-influxdb-parser", 
       "static", 
-      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+      "027bf0b43cb521c82b1814c5b364b9d32681c7f9a44976e01f9b1b0d207eca71"
     ], 
-    "hooks/hook.template": [
+    "hooks/relations/influxdb-api/interface.yaml": [
+      "interface:influxdb-api", 
+      "static", 
+      "aac2a10ed176e1536faedc075e959c2853c2b5dce96137c80e228f9a83694e66"
+    ], 
+    "files/filters/machine.py": [
+      "sensu-influxdb-parser", 
+      "static", 
+      "47c5ab149623e24afc5dadfdf476e0fd05a3a6dee45f03c8c2b93c50f55b900c"
+    ], 
+    "lib/charms/layer/__init__.py": [
       "layer:basic", 
       "static", 
-      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+      "71a8b901f7e64a6b1b61959fc25819bafc9c9905e37a918615b9f949295095a4"
     ], 
     "hooks/stop": [
       "layer:basic", 
@@ -182,10 +187,15 @@
       "dynamic", 
       "f023f5aef267786db1be51209610487171ba56e848f7b1c49877b06337000256"
     ], 
+    "wheelhouse/charmhelpers-0.17.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "232f9ee252c58e9357aaa74d14d351e786716fa0cec3f496f74c40ad0bc6a0b5"
+    ], 
     "templates/sensu-influxdb-parser.service": [
       "sensu-influxdb-parser", 
       "static", 
-      "a3147e4ee2f94b6769e3dbb1678e6b06572143a53f6d2998dec59077e84ebf90"
+      "7c682c8af5a7c476624d31b51188b164648dc05faa415739ff5efb0fe7a1ded7"
     ], 
     "hooks/influxdb-relation-joined": [
       "interface:influxdb-api", 
@@ -202,20 +212,25 @@
       "static", 
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
+    "files/filters/mongodb.py": [
+      "sensu-influxdb-parser", 
+      "static", 
+      "5d39754461e8a1b77d6771d7abd85db2d7ce14087cc5a35c64af49f09fdd98af"
+    ], 
     "README.md": [
       "sensu-influxdb-parser", 
       "static", 
-      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      "526fc0f2c2599895c17116e438630dd898d06b3b7ae254d957abc1f56b282bf1"
     ], 
     "hooks/relations/http/requires.py": [
       "interface:http", 
       "static", 
       "70188554d673bff61578f4e601a78a91efb4736df727507e984be5ca19335f82"
     ], 
-    "hooks/relations/influxdb-api/interface.yaml": [
-      "interface:influxdb-api", 
+    "files/filters/__init__.py": [
+      "sensu-influxdb-parser", 
       "static", 
-      "aac2a10ed176e1536faedc075e959c2853c2b5dce96137c80e228f9a83694e66"
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     ], 
     "hooks/start": [
       "layer:basic", 
@@ -242,15 +257,15 @@
       "dynamic", 
       "62dd69562d32134c3329eaabdf3cffc2f77f6175a62ef553abbe5f41c4379661"
     ], 
-    "lib/charms/layer/__init__.py": [
+    "hooks/config-changed": [
       "layer:basic", 
       "static", 
-      "71a8b901f7e64a6b1b61959fc25819bafc9c9905e37a918615b9f949295095a4"
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
     "reactive/sensu-influxdb-parser.py": [
       "sensu-influxdb-parser", 
       "static", 
-      "bd2ed141f455a8f5237b765b86b6e138f27ef60ef8282a1a7b1c69f65a87801c"
+      "467c51319329ece7e13755f314db2e36e2f6f6545acfacb752aeca6d2d24d289"
     ], 
     ".build.manifest": [
       "build", 
@@ -260,7 +275,7 @@
     "hooks/relations/http/provides.py": [
       "interface:http", 
       "static", 
-      "eb4b01fc022cafbb6e67cb200f497ab3aeee4b954b1b9ff2be1d8e64d1a4be20"
+      "c6e16d6c0d80009aab33c51cb1e196f959df155ac656f47fe7104484859d2476"
     ], 
     "wheelhouse/six-1.10.0.tar.gz": [
       "layer:basic", 

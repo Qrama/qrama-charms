@@ -1,42 +1,36 @@
 "options":
+  "snap":
+    "juju":
+      "channel": "stable"
+      "classic": !!bool "true"
   "apt":
-    "packages":
-    - "juju"
-    - "juju-core"
-    - "juju-deployer"
-    - "git"
-    - "python-yaml"
-    - "python-jujuclient"
-    - "charm-tools"
-    - "maas-cli"
-    - "python3-lxml"
-    - "letsencrypt"
-    "install_sources": "deb http://ppa.launchpad.net/juju/stable/ubuntu xenial main"
+    "packages": ["maas-cli", "python3-lxml", "python3.6"]
     "version_package": ""
     "full_version": !!bool "false"
   "basic":
-    "packages":
-    - "python-pip"
-    - "tree"
-    - "python-dev"
-    - "unzip"
-    - "make"
     "use_venv": !!bool "false"
+    "packages": []
     "include_system_packages": !!bool "false"
-  "sojobo-api": {}
+  "leadership": {}
   "nginx-passenger": {}
-  "juju2-client": {}
+  "juju-client": {}
+  "sojobo-api": {}
 "includes":
 - "layer:basic"
+- "layer:basic"
 - "layer:apt"
+- "layer:snap"
+- "layer:basic"
 - "layer:basic"
 - "layer:apt"
 - "interface:http"
 - "layer:basic"
+- "layer:leadership"
 - "layer:apt"
-- "layer:juju2-client"
+- "layer:juju-client"
 - "layer:nginx-passenger"
+- "layer:metrics"
 - "interface:sojobo"
-- "interface:mongodb"
+- "interface:redis"
 "repo": "git@github.com:Qrama/Sojobo-api.git"
 "is": "sojobo-api"

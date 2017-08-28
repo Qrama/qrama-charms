@@ -5,14 +5,14 @@
 "tags":
 - "big_data"
 "requires":
-  "mongodb":
-    "interface": "mongodb"
+  "redis":
+    "interface": "redis"
 "provides":
   "website":
     "interface": "http"
   "sojobo":
     "interface": "sojobo"
-  "reverseproxy":
+  "proxy":
     "interface": "http"
 "series":
 - "xenial"

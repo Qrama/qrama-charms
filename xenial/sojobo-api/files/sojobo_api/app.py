@@ -17,9 +17,9 @@ from importlib import import_module
 import logging
 import os
 from flask import Flask, redirect, request, abort
-from sojobo_api.api.w_juju import create_response, get_api_key
+from sojobo_api import settings
+from sojobo_api.api.w_juju import create_response
 from sojobo_api.api.w_errors import invalid_data, unauthorized
-from flask_pymongo import PyMongo
 ########################################################################################################################
 # INIT FLASK
 ########################################################################################################################
@@ -27,7 +27,6 @@ APP = Flask(__name__)
 APP.url_map.strict_slashes = False
 APP.debug = True
 APP.config.from_object('sojobo_api.settings')
-MONGO = PyMongo(APP)
 ########################################################################################################################
 # SETUP LOGGING
 ########################################################################################################################
@@ -38,7 +37,7 @@ logging.basicConfig(filename='/home/ubuntu/flask-sojobo-api.log', level=logging.
 @APP.route('/')
 def index():
     try:
-        if request.headers['api-key'] == get_api_key():
+        if request.headers['api-key'] == settings.API_KEY:
             code, response = 200, {'version': "1.0.0",  # see http://semver.org/
                                    'used_apis': get_apis(),
                                    'controllers': get_controllers()}

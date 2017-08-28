@@ -1,23 +1,18 @@
-# ToDo
-- Finish small ToDo's and testing mentioned below.
-- Output charm name/info with application info
-- Prevent KeyErrors in w_juju.py to ensure correct html status codes
-- Proper json output: no longer output empty keys
-- Copy a model from one controller and deploy it to another, with the correct configs
-
 # Tengu-API Documentation
 
-The Tengu-API is a blueprint, automaticaly deployed when installing the Sojobo-API. It contains all the calls to use JuJu,
-excluding calls handling users.
+The Tengu-API is a blueprint, automaticaly deployed when installing the Sojobo-API. It contains all the calls to use JuJu, excluding calls handling users.
+
+# ToDo
+- implement JSON web tokens
 
 **Currently, all the calls must be made with BasicAuth in the request!**
 
 ## API Calls
+- [/login](#login)
 - [/tengu/controllers](#controllers)
 - [/tengu/controllers/[controller]](#controller)
 - [/tengu/controllers/[controller]/models](#models)
 - [/tengu/controllers/[controller]/models/[model]](#model)
-- [/tengu/controllers/[controller]/models/[model]/sshkey](#sshkey)
 - [/tengu/controllers/[controller]/models/[model]/applications](#applications)
 - [/tengu/controllers/[controller]/models/[model]/applications/[application]](#application)
 - [/tengu/controllers/[controller]/models/[model]/applications/[application]/units](#units)
@@ -29,56 +24,44 @@ excluding calls handling users.
 - [/tengu/controllers/[controller]/models/[model]/relations/[app1]/[app2]](#relation-del)
 - [/tengu/backup](#backup)
 
+## **/login** <a name="login"></a>
+#### **Request Type**: POST
+* **Description**:
+  Verifies the provided BasicAuth.
+* **Required headers**:
+  - api-key
+  - Content-Type:application/json
+* **Required body**
+
+* **Successful response**:
+  - code: 200
+  - message:
+  ```json
+  "Success"
+  ```
 ## **/tengu/controllers** <a name="controllers"></a>
 #### **Request type**: GET
 * **Description**:
-  Returns all the information of all the controllers, models, applications, machines, units and users the user has access to.
+  Returns a list of all the controllers the user has access to.
 * **Required headers**:
   - api-key
   - Content-Type:application/json
 * **Required body**:
 
-* **Succesful response**:
+* **Successful response**:
   - code: 200
   - message:
   ```json
-  [{"name": "controller-name",
-    "type": "controller-type",
-    "users": [{"name": "username",
-               "access": "controller-access"}],
-    "models": [{"name": "modelname",
-                "ssh-keys": "ssh-keys with access to all the machines in model",
-                "juju-gui-url": "Using the user login and password, the juju GUI can be used",
-                "users": [{"name": "username",
-                           "access": "model-access"}],
-                "machines": [{"name": "machine-name",
-                              "instance-id": "juju-id",
-                              "ip": "ip-address",
-                              "series": "Ubuntu OS version name",
-                              "containers": [{"name": "container-name",
-                                              "ip": "ip-address",
-                                              "series": "Ubuntu OS version name"}]
-                            }],
-                "applications": [{"name": "application name",
-                                  "units": [{"name": "unit-name",
-                                             "ip": "ip-address",
-                                             "port": "used ports",
-                                             "machine": "machine name"}],
-                                  "relations": [{"interface": "interface-name",
-                                                 "with": "name of the other application"}],
-                                  "charm-name": "Name of the charm build",
-                                  "exposed": "Whether or not the application is publicly accessible",
-                                  "series": "Ubuntu series of the application"
-                                }]
-              }]           
-  }]
+  [
+      "controller1-name",
+      "controller2-name"
+  ]
   ```
 
 #### **Request type**: POST
 * **Description**:
   - Bootstraps a new controller with the given name and in the given region.
-  - The required credentials depend of the type of cloud. Some clouds use a file for credentials. This file must be send
-  with the request under `file`, then `credentials` is not used
+  - The required credentials depend of the type of cloud.
 * **Required headers**:
   - api-key
   - Content-Type:application/json
@@ -86,86 +69,48 @@ excluding calls handling users.
   - controller
   - type
   - region
-  - credentials or file
-* **Succesful response**:
+  - credentials
+* **Successful response**:
   - code: 200
   - message:
   ```json
-  {"name": "controller-name",
-   "type": "controller-type",
-   "users": [{"name": "username",
-              "access": "controller-access"}],
-   "models": [{"name": "modelname",
-               "ssh-keys": "ssh-keys with access to all the machines in model",
-               "juju-gui-url": "Using the user login and password, the juju GUI can be used",
-               "users": [{"name": "username",
-                          "access": "model-access"}],
-               "machines": [{"name": "machine-name",
-                             "instance-id": "juju-id",
-                             "ip": "ip-address",
-                             "series": "Ubuntu OS version name",
-                             "containers": [{"name": "container-name",
-                                             "ip": "ip-address",
-                                             "series": "Ubuntu OS version name"}]
-                           }],
-               "applications": [{"name": "application name",
-                                 "units": [{"name": "unit-name",
-                                            "ip": "ip-address",
-                                            "port": "used ports",
-                                            "machine": "machine name"}],
-                                 "relations": [{"interface": "interface-name",
-                                                "with": "name of the other application"}],
-                                 "charm-name": "Name of the charm build",
-                                 "exposed": "Whether or not the application is publicly accessible",
-                                 "series": "Ubuntu series of the application"
-                               }]
-             }]           
-  }
+  {
+    "name": "controller1-name",
+    "models": [
+        "controller",
+        "default"
+    ],
+    "type": "google",
+    "users": [
+        "admin"
+    ]
+}
   ```
 
 ## **/tengu/controllers/[controller]** <a name="controller"></a>
 #### **Request type**: GET
 * **Description**:
-  Returns all the information of a controller (models, applications, machines, units and users) the user has access to.
+  Returns all the information of a controller (models, type and users) the user has access to.
 * **Required headers**:
   - api-key
   - Content-Type:application/json
 * **Required body**:
 
-* **Succesful response**:
+* **Successful response**:
   - code: 200
   - message:
   ```json
-  {"name": "controller-name",
-   "type": "controller-type",
-   "users": [{"name": "username",
-              "access": "controller-access"}],
-   "models": [{"name": "modelname",
-               "ssh-keys": "ssh-keys with access to all the machines in model",
-               "juju-gui-url": "Using the user login and password, the juju GUI can be used",
-               "users": [{"name": "username",
-                          "access": "model-access"}],
-               "machines": [{"name": "machine-name",
-                             "instance-id": "juju-id",
-                             "ip": "ip-address",
-                             "series": "Ubuntu OS version name",
-                             "containers": [{"name": "container-name",
-                                             "ip": "ip-address",
-                                             "series": "Ubuntu OS version name"}]
-                           }],
-               "applications": [{"name": "application name",
-                                 "units": [{"name": "unit-name",
-                                            "ip": "ip-address",
-                                            "port": "used ports",
-                                            "machine": "machine name"}],
-                                 "relations": [{"interface": "interface-name",
-                                                "with": "name of the other application"}],
-                                 "charm-name": "Name of the charm build",
-                                 "exposed": "Whether or not the application is publicly accessible",
-                                 "series": "Ubuntu series of the application"
-                               }]
-             }]           
-  }
+  {
+    "name": "controller1-name",
+    "models": [
+        "controller",
+        "default"
+    ],
+    "type": "google",
+    "users": [
+        "admin"
+    ]
+}
   ```
 
 #### **Request type**: DELETE
@@ -176,123 +121,50 @@ excluding calls handling users.
   - Content-Type:application/json
 * **Required body**:
 
-* **Succesful response**:
+* **Successful response**:
   - code: 200
   - message:
   ```json
-  [{"name": "controller-name",
-    "type": "controller-type",
-    "users": [{"name": "username",
-               "access": "controller-access"}],
-    "models": [{"name": "modelname",
-                "ssh-keys": "ssh-keys with access to all the machines in model",
-                "juju-gui-url": "Using the user login and password, the juju GUI can be used",
-                "users": [{"name": "username",
-                           "access": "model-access"}],
-                "machines": [{"name": "machine-name",
-                              "instance-id": "juju-id",
-                              "ip": "ip-address",
-                              "series": "Ubuntu OS version name",
-                              "containers": [{"name": "container-name",
-                                              "ip": "ip-address",
-                                              "series": "Ubuntu OS version name"}]
-                            }],
-                "applications": [{"name": "application name",
-                                  "units": [{"name": "unit-name",
-                                             "ip": "ip-address",
-                                             "port": "used ports",
-                                             "machine": "machine name"}],
-                                  "relations": [{"interface": "interface-name",
-                                                 "with": "name of the other application"}],
-                                  "charm-name": "Name of the charm build",
-                                  "exposed": "Whether or not the application is publicly accessible",
-                                  "series": "Ubuntu series of the application"
-                                }]
-              }]           
-  }]
+  [
+      "controller1-name"
+  ]
   ```
 
 ## **/tengu/controllers/[controller]/models** <a name="models"></a>
 #### **Request type**: GET
 * **Description**:
-  - Returns all the information of all the models (applications, machines, units and users) on a controller if the user has access to this controller or models.
+  - Returns a list of all the models on a controller if the user has access to this controller or models.
   - The api checks if the controller exists
 * **Required headers**:
   - api-key
   - Content-Type:application/json
 * **Required body**:
 
-* **Succesful response**:
+* **Successful response**:
   - code: 200
   - message:
   ```json
-  [{"name": "modelname",
-    "ssh-keys": "ssh-keys with access to all the machines in model",
-    "juju-gui-url": "Using the user login and password, the juju GUI can be used",
-    "users": [{"name": "username",
-               "access": "model-access"}],
-    "machines": [{"name": "machine-name",
-                  "instance-id": "juju-id",
-                  "ip": "ip-address",
-                  "series": "Ubuntu OS version name",
-                  "containers": [{"name": "container-name",
-                                  "ip": "ip-address",
-                                  "series": "Ubuntu OS version name"}]
-                }],
-    "applications": [{"name": "application name",
-                      "units": [{"name": "unit-name",
-                                 "ip": "ip-address",
-                                 "port": "used ports",
-                                 "machine": "machine name"}],
-                      "relations": [{"interface": "interface-name",
-                                     "with": "name of the other application"}],
-                      "charm-name": "Name of the charm build",
-                      "exposed": "Whether or not the application is publicly accessible",
-                      "series": "Ubuntu series of the application"
-                    }]
-  }]           
+  [
+      "controller",
+      "default",
+      "model3-name"
+  ]          
   ```
 
 #### **Request type**: POST
 * **Description**:
-  Creates a new model on a controller. It checks if the model already exists and if the user is allowed to create a model on
-  the given controller
+  Creates a new model on a controller. It checks if the model already exists and if the user is allowed to create a model on the given controller
 * **Required headers**:
   - api-key
   - Content-Type:application/json
 * **Required body**:
   - model
-* **Optional body**:
-  - ssh-key
-* **Succesful response**:
-  - code: 200
+  - credentials
+* **Successful response**:
+  - code: 202
   - message:
   ```json
-  {"name": "modelname",
-   "ssh-keys": "ssh-keys with access to all the machines in model",
-   "juju-gui-url": "Using the user login and password, the juju GUI can be used",
-   "users": [{"name": "username",
-              "access": "model-access"}],
-   "machines": [{"name": "machine-name",
-                 "instance-id": "juju-id",
-                 "ip": "ip-address",
-                 "series": "Ubuntu OS version name",
-                 "containers": [{"name": "container-name",
-                                 "ip": "ip-address",
-                                 "series": "Ubuntu OS version name"}]
-               }],
-   "applications": [{"name": "application name",
-                     "units": [{"name": "unit-name",
-                                "ip": "ip-address",
-                                "port": "used ports",
-                                "machine": "machine name"}],
-                     "relations": [{"interface": "interface-name",
-                                    "with": "name of the other application"}],
-                     "charm-name": "Name of the charm build",
-                     "exposed": "Whether or not the application is publicly accessible",
-                     "series": "Ubuntu series of the application"
-                   }]
-  }]           
+  "Model is being deployed"        
   ```
 
 ## **/tengu/controllers/[controller]/models/[model]** <a name="model"></a>
@@ -304,35 +176,28 @@ excluding calls handling users.
   - Content-Type:application/json
 * **Required body**:
 
-* **Succesful response**:
+* **Successful response**:
   - code: 200
   - message:
   ```json
-  {"name": "modelname",
-   "ssh-keys": "ssh-keys with access to all the machines in model",
-   "juju-gui-url": "Using the user login and password, the juju GUI can be used",
-   "users": [{"name": "username",
-              "access": "model-access"}],
-   "machines": [{"name": "machine-name",
-                 "instance-id": "juju-id",
-                 "ip": "ip-address",
-                 "series": "Ubuntu OS version name",
-                 "containers": [{"name": "container-name",
-                                 "ip": "ip-address",
-                                 "series": "Ubuntu OS version name"}]
-               }],
-   "applications": [{"name": "application name",
-                     "units": [{"name": "unit-name",
-                                "ip": "ip-address",
-                                "port": "used ports",
-                                "machine": "machine name"}],
-                     "relations": [{"interface": "interface-name",
-                                    "with": "name of the other application"}],
-                     "charm-name": "Name of the charm build",
-                     "exposed": "Whether or not the application is publicly accessible",
-                     "series": "Ubuntu series of the application"
-                   }]
-  }]           
+  {
+    "ssh-keys": {
+        "result": null,
+        "error": null
+    },
+    "name": "model_name",
+    "applications": [],
+    "juju-gui-url": "https://xxx.xxx.xxx.xxx:17070/gui/0f71dff7-29ae-4cc8-8664-66563860cbd5",
+    "status": "ready",
+    "machines": [],
+    "users": [
+        {
+            "user": "admin",
+            "access": "admin"
+        }
+    ],
+    "credentials":[<credential JSON>]
+  }          
   ```
 #### **Request type**: POST
 * **Description**:
@@ -343,35 +208,11 @@ excluding calls handling users.
   - Content-Type:application/json
 * **Required body**:
   - bundle
-* **Succesful response**:
-  - code: 200
+* **Successful response**:
+  - code: 202
   - message:
   ```json
-  {"name": "modelname",
-   "ssh-keys": "ssh-keys with access to all the machines in model",
-   "juju-gui-url": "Using the user login and password, the juju GUI can be used",
-   "users": [{"name": "username",
-              "access": "model-access"}],
-   "machines": [{"name": "machine-name",
-                 "instance-id": "juju-id",
-                 "ip": "ip-address",
-                 "series": "Ubuntu OS version name",
-                 "containers": [{"name": "container-name",
-                                 "ip": "ip-address",
-                                 "series": "Ubuntu OS version name"}]
-               }],
-   "applications": [{"name": "application name",
-                     "units": [{"name": "unit-name",
-                                "ip": "ip-address",
-                                "port": "used ports",
-                                "machine": "machine name"}],
-                     "relations": [{"interface": "interface-name",
-                                    "with": "name of the other application"}],
-                     "charm-name": "Name of the charm build",
-                     "exposed": "Whether or not the application is publicly accessible",
-                     "series": "Ubuntu series of the application"
-                   }]
-  }]           
+  "Bundle is being deployed"          
   ```
 
 #### **Request type**: DELETE
@@ -382,73 +223,12 @@ excluding calls handling users.
   - Content-Type:application/json
 * **Required body**:
 
-* **Succesful response**:
+* **Successful response**:
   - code: 200
   - message:
   ```json
-  [{"name": "modelname",
-    "ssh-keys": "ssh-keys with access to all the machines in model",
-    "juju-gui-url": "Using the user login and password, the juju GUI can be used",
-    "users": [{"name": "username",
-               "access": "model-access"}],
-    "machines": [{"name": "machine-name",
-                  "instance-id": "juju-id",
-                  "ip": "ip-address",
-                  "series": "Ubuntu OS version name",
-                  "containers": [{"name": "container-name",
-                                  "ip": "ip-address",
-                                  "series": "Ubuntu OS version name"}]
-                }],
-    "applications": [{"name": "application name",
-                      "units": [{"name": "unit-name",
-                                 "ip": "ip-address",
-                                 "port": "used ports",
-                                 "machine": "machine name"}],
-                      "relations": [{"interface": "interface-name",
-                                     "with": "name of the other application"}],
-                      "charm-name": "Name of the charm build",
-                      "exposed": "Whether or not the application is publicly accessible",
-                      "series": "Ubuntu series of the application"
-                    }]
-  }]           
+  "Model testmodel02 is being deleted"          
   ```
-
-## **/tengu/controllers/[controller]/models/[model]/sshkey** <a name="sshkey"></a>
-#### **Request type**: GET
-* **Description**:
-      Returns all the ssh-keys of a model if the user has access.
-* **Required headers**:
-  - api-key
-  - Content-Type:application/json
-* **Required body**:
-
-* **Succesful response**:
-  - code: 200
-  - message: `[ssh-key]`
-
-#### **Request type**: POST
-* **Description**:
-  Adds the given ssh-key to the model
-* **Required headers**:
-  - api-key
-  - Content-Type:application/json
-* **Required body**:
-  - ssh-key
-* **Succesful response**:
-  - code: 200
-  - message: `[ssh-key]`
-
-#### **Request type**: DELETE
-* **Description**:
-  Removes the given ssh-key from the model. The ssh-key must be given, not it"s fingerprint
-* **Required headers**:
-  - api-key
-  - Content-Type:application/json
-* **Required body**:
-  - ssh-key
-* **Succesful response**:
-  - code: 200
-  - message: `[ssh-key]`
 
 ## **/tengu/controllers/[controller]/models/[model]/applications** <a name="applications"></a>
 #### **Request type**: GET
@@ -459,21 +239,39 @@ excluding calls handling users.
   - Content-Type:application/json
 * **Required body**:
 
-* **Succesful response**:
+* **Successful response**:
   - code: 200
   - message:
   ```json
-  [{"name": "application name",
-    "units": [{"name": "unit-name",
-               "ip": "ip-address",
-               "port": "used ports",
-               "machine": "machine name"}],
-    "relations": [{"interface": "interface-name",
-                   "with": "name of the other application"}],
-    "charm-name": "Name of the charm build",
-    "exposed": "Whether or not the application is publicly accessible",
-    "series": "Ubuntu series of the application"
-  }]
+  [
+      {
+          "units": [
+              {
+                  "ports": [],
+                  "series": "xenial",
+                  "name": "mysql/0",
+                  "machine": "0",
+                  "private-ip": "",
+                  "public-ip": ""
+              }
+          ],
+          "name": "mysql",
+          "charm": "cs:mysql-57",
+          "status": {
+              "message": "waiting for machine",
+              "since": "2017-06-23T13:23:14.999857294Z",
+              "current": "waiting",
+              "version": ""
+          },
+          "relations": [
+              {
+                  "interface": "cluster",
+                  "with": "mysql"
+              }
+          ],
+          "exposed": false
+      }
+  ]
   ```
 
 #### **Request type**: POST
@@ -493,20 +291,36 @@ excluding calls handling users.
 * **Optional body**:
   - series
   - target
-* **Succesful response**:
+* **Successful response**:
   - code: 200
   - message:
   ```json
-  {"name": "application name",
-   "units": [{"name": "unit-name",
-              "ip": "ip-address",
-              "port": "used ports",
-              "machine": "machine name"}],
-   "relations": [{"interface": "interface-name",
-                  "with": "name of the other application"}],
-   "charm-name": "Name of the charm build",
-   "exposed": "Whether or not the application is publicly accessible",
-   "series": "Ubuntu series of the application"
+  {
+      "units": [
+          {
+              "ports": [],
+              "series": "xenial",
+              "name": "mysql/0",
+              "machine": "",
+              "private-ip": "",
+              "public-ip": ""
+          }
+      ],
+      "name": "mysql",
+      "charm": "cs:mysql-57",
+      "status": {
+          "message": "waiting for machine",
+          "since": "2017-06-23T13:23:14.999857294Z",
+          "current": "waiting",
+          "version": ""
+      },
+      "relations": [
+          {
+              "interface": "cluster",
+              "with": "mysql"
+          }
+      ],
+      "exposed": false
   }
   ```
 
@@ -519,20 +333,76 @@ excluding calls handling users.
   - Content-Type:application/json
 * **Required body**:
 
-* **Succesful response**:
+* **Successful response**:
   - code: 200
   - message:
   ```json
-  {"name": "application name",
-   "units": [{"name": "unit-name",
-              "ip": "ip-address",
-              "port": "used ports",
-   "machine": "machine name"}],
-   "relations": [{"interface": "interface-name",
-                  "with": "name of the other application"}],
-   "charm-name": "Name of the charm build",
-   "exposed": "Whether or not the application is publicly accessible",
-   "series": "Ubuntu series of the application"
+  {
+      "units": [
+          {
+              "ports": [],
+              "series": "xenial",
+              "name": "mysql/0",
+              "machine": "0",
+              "private-ip": "",
+              "public-ip": ""
+          }
+      ],
+      "name": "mysql",
+      "charm": "cs:mysql-57",
+      "status": {
+          "message": "waiting for machine",
+          "since": "2017-06-23T13:23:14.999857294Z",
+          "current": "waiting",
+          "version": ""
+      },
+      "relations": [
+          {
+              "interface": "cluster",
+              "with": "mysql"
+          }
+      ],
+      "exposed": false
+  }
+  ```
+#### **Request type**: PUT
+* **Description**:
+  Exposes or unexposes an application.
+* **Required headers**:
+  - api-key
+  - Content-Type:application/json
+* **Required body**:
+  - expose
+* **Successful response**:
+  - code: 200
+  - message:
+  ```json
+  {
+      "units": [
+          {
+              "ports": [],
+              "series": "xenial",
+              "name": "mysql/0",
+              "machine": "0",
+              "private-ip": "",
+              "public-ip": ""
+          }
+      ],
+      "name": "mysql",
+      "charm": "cs:mysql-57",
+      "status": {
+          "message": "waiting for machine",
+          "since": "2017-06-23T13:23:14.999857294Z",
+          "current": "waiting",
+          "version": ""
+      },
+      "relations": [
+          {
+              "interface": "cluster",
+              "with": "mysql"
+          }
+      ],
+      "exposed": false
   }
   ```
 
@@ -544,21 +414,61 @@ excluding calls handling users.
   - Content-Type:application/json
 * **Required body**:
 
-* **Succesful response**:
+* **Successful response**:
+  - code: 202
+  - message:
+  ```json
+    "The application is being removed"
+  ```
+
+## **/tengu/controllers/[controller]/models/[model]/applications/[application]/config** <a name="config"></a>
+#### **Request type**: GET
+* **Description**:
+  Return all the config values of the given application.
+* **Required headers**:
+  - api-key
+  - Content-Type:application/json
+* **Required body**:
+
+* **Successful response**:
   - code: 200
   - message:
   ```json
-  [{"name": "application name",
-    "units": [{"name": "unit-name",
-               "ip": "ip-address",
-               "port": "used ports",
-               "machine": "machine name"}],
-    "relations": [{"interface": "interface-name",
-                   "with": "name of the other application"}],
-    "charm-name": "Name of the charm build",
-    "exposed": "Whether or not the application is publicly accessible",
-    "series": "Ubuntu series of the application"
-  }]
+  {
+    "backup_dir": {
+        "default": true,
+        "description": "Directory where backups will be stored",
+        "type": "string",
+        "value": "/var/lib/mysql/backups"
+    },
+    "backup_retention_count": {
+        "default": true,
+        "description": "Number of recent backups to retain.",
+        "type": "int",
+        "value": 7
+    },
+    "backup_schedule": {
+        "default": true,
+        "description": "Cron schedule used for backups. If empty backups are disabled\n",
+        "type": "string",
+        "value": ""
+    }
+  }  
+  ```
+
+#### **Request type**: PUT
+* **Description**:
+  Change a specific config value of an application
+* **Required headers**:
+  - api-key
+  - Content-Type:application/json
+* **Required body**:
+  - config
+* **Successful response**:
+  - code: 202
+  - message:
+  ```json
+    "The config parameter is being changed"
   ```
 
 ## **/tengu/controllers/[controller]/models/[model]/applications/[application]/units** <a name="units"></a>
@@ -570,15 +480,28 @@ excluding calls handling users.
   - Content-Type:application/json
 * **Required body**:
 
-* **Succesful response**:
+* **Successful response**:
   - code: 200
   - message:
   ```json
-  [{"name": "unit-name",
-    "ip": "ip-address",
-    "port": "used ports",
-    "machine": "machine name"}]
-  }]
+  [
+      {
+          "ports": [],
+          "series": "trusty",
+          "name": "wordpress/0",
+          "machine": "1",
+          "private-ip": "",
+          "public-ip": ""
+      },
+      {
+          "ports": [],
+          "series": "trusty",
+          "name": "wordpress/1",
+          "machine": "2",
+          "private-ip": "",
+          "public-ip": ""
+      }
+  ]
   ```
 
 #### **Request type**: POST
@@ -587,17 +510,14 @@ excluding calls handling users.
 * **Required headers**:
   - api-key
   - Content-Type:application/json
-* **Required body**:
-
-* **Succesful response**:
-  - code: 200
+* **Optional body**:
+  - amount
+  - target
+* **Successful response**:
+  - code: 202
   - message:
   ```json
-  [{"name": "unit-name",
-    "ip": "ip-address",
-    "port": "used ports",
-    "machine": "machine name"}]
-  }]
+    "Units being added"
   ```
 
 ## **/tengu/controllers/[controller]/models/[model]/applications/[application]/units/[unitnumber]** <a name="unit"></a>
@@ -609,14 +529,17 @@ excluding calls handling users.
   - Content-Type:application/json
 * **Required body**:
 
-* **Succesful response**:
+* **Successful response**:
   - code: 200
   - message:
   ```json
-  {"name": "unit-name",
-   "ip": "ip-address",
-   "port": "used ports",
-   "machine": "machine name"}
+  {
+      "ports": [],
+      "series": "trusty",
+      "name": "wordpress/0",
+      "machine": "1",
+      "private-ip": "",
+      "public-ip": ""
   }
   ```
 
@@ -628,15 +551,11 @@ excluding calls handling users.
   - Content-Type:application/json
 * **Required body**:
 
-* **Succesful response**:
-  - code: 200
+* **Successful response**:
+  - code: 202
   - message:
   ```json
-  [{"name": "unit-name",
-    "ip": "ip-address",
-    "port": "used ports",
-    "machine": "machine name"}]
-  }]
+    "Unit is being removed"
   ```
 
 ## **/tengu/controllers/[controller]/models/[model]/machines/** <a name="machines"></a>
@@ -648,18 +567,48 @@ excluding calls handling users.
   - Content-Type:application/json
 * **Required body**:
 
-* **Succesful response**:
+* **Successful response**:
   - code: 200
   - message:
   ```json
-  [{"name": "machine-name",
-    "instance-id": "juju-id",
-    "ip": "ip-address",
-    "series": "Ubuntu OS version name",
-    "containers": [{"name": "container-name",
-                    "ip": "ip-address",
-                    "series": "Ubuntu OS version name"}]
-  }]
+  [
+      {
+          "instance-id": "juju-b7313c-0",
+          "ip": {
+              "external_ip": "104.155.26.44",
+              "internal_ip": "10.132.0.35"
+          },
+          "containers": [],
+          "series": "xenial",
+          "name": "0",
+          "hardware-characteristics": {
+              "mem": 1700,
+              "availability-zone": "europe-west1-b",
+              "root-disk": 10240,
+              "arch": "amd64",
+              "cpu-power": 138,
+              "cpu-cores": 1
+          }
+      },
+      {
+          "instance-id": "juju-b7313c-2",
+          "ip": {
+              "external_ip": "35.187.84.154",
+              "internal_ip": "10.132.0.39"
+          },
+          "containers": [],
+          "series": "trusty",
+          "name": "2",
+          "hardware-characteristics": {
+              "mem": 1700,
+              "availability-zone": "europe-west1-b",
+              "root-disk": 10240,
+              "arch": "amd64",
+              "cpu-power": 138,
+              "cpu-cores": 1
+          }
+      }
+  ]
   ```
 
 #### **Request type**: POST
@@ -673,15 +622,11 @@ excluding calls handling users.
 
 * **Optional body**:
   - series
-* **Succesful response**:
+* **Successful response**:
     - code: 200
     - message:
     ```json
-    {"name": "unit-name",
-     "ip": "ip-address",
-     "port": "used ports",
-     "machine": "machine name"}]
-    }
+"Machine is being deployed"
     ```
 
 ## **/tengu/controllers/[controller]/models/[model]/machines/[machine]** <a name="machine"></a>
@@ -693,17 +638,27 @@ excluding calls handling users.
   - Content-Type:application/json
 * **Required body**:
 
-* **Succesful response**:
+* **Successful response**:
   - code: 200
   - message:
   ```json
-  {"name": "machine-name",
-   "instance-id": "juju-id",
-   "ip": "ip-address",
-   "series": "Ubuntu OS version name",
-   "containers": [{"name": "container-name",
-                   "ip": "ip-address",
-                   "series": "Ubuntu OS version name"}]
+  {
+      "instance-id": "juju-b7313c-0",
+      "ip": {
+          "external_ip": "104.155.26.44",
+          "internal_ip": "10.132.0.35"
+      },
+      "containers": [],
+      "series": "xenial",
+      "name": "0",
+      "hardware-characteristics": {
+          "mem": 1700,
+          "availability-zone": "europe-west1-b",
+          "root-disk": 10240,
+          "arch": "amd64",
+          "cpu-power": 138,
+          "cpu-cores": 1
+      }
   }
   ```
 
@@ -716,14 +671,10 @@ excluding calls handling users.
 * **Required body**:
 
 * **Successful response**:
-  - code: 200
+  - code: 202
   - message:
   ```json
-  [{"name": "unit-name",
-    "ip": "ip-address",
-    "port": "used ports",
-    "machine": "machine name"}]
-  }]
+    "machine is being deleted"
   ```
 
 ## **/tengu/controllers/[controller]/models/[model]/relations** <a name="relations"></a>
@@ -735,14 +686,30 @@ excluding calls handling users.
   - Content-Type:application/json
 * **Required body**:
 
-* **Succesful response**:
+* **Successful response**:
   - code: 200
   - message:
   ```json
-  [{"name": "application name",
-    "relations": [{"interface": "interface-name",
-                   "with": "name of the other application"}]
-  }]
+  [
+      {
+          "name": "wordpress",
+          "relations": [
+              {
+                  "interface": "loadbalancer",
+                  "with": "wordpress"
+              }
+          ]
+      },
+      {
+          "name": "mysql",
+          "relations": [
+              {
+                  "interface": "cluster",
+                  "with": "mysql"
+              }
+          ]
+      }
+  ]
   ```
 
 #### **Request type**: PUT
@@ -755,21 +722,38 @@ excluding calls handling users.
 * **Required body**:
   - app1
   - app2
-* **Succesful response**:
+* **Successful response**:
   - code: 200
   - message:
   ```json
-  [{"name": "application name",
-    "units": [{"name": "unit-name",
-               "ip": "ip-address",
-               "port": "used ports",
-               "machine": "machine name"}],
-    "relations": [{"interface": "interface-name",
-                   "with": "name of the other application"}],
-    "charm-name": "Name of the charm build",
-    "exposed": "Whether or not the application is publicly accessible",
-    "series": "Ubuntu series of the application"
-  }]
+  [
+      {
+          "name": "wordpress",
+          "relations": [
+              {
+                  "interface": "loadbalancer",
+                  "with": "wordpress"
+              },
+              {
+                  "interface": "db",
+                  "with": "mysql"
+              }
+          ]
+      },
+      {
+          "name": "mysql",
+          "relations": [
+              {
+                  "interface": "cluster",
+                  "with": "mysql"
+              },
+              {
+                  "interface": "db",
+                  "with": "wordpress"
+              }
+          ]
+      }
+  ]
   ```
 
 ## **/tengu/controllers/[controller]/models/[model]/relations/[application]** <a name="relation-add"></a>
@@ -781,12 +765,20 @@ excluding calls handling users.
   - Content-Type:application/json
 * **Required body**:
 
-* **Succesful response**:
+* **Successful response**:
   - code: 200
   - message:
   ```json
-  [{"interface": "interface-name",
-    "with": "name of the other application"}]
+  [
+      {
+          "interface": "loadbalancer",
+          "with": "wordpress"
+      },
+      {
+          "interface": "db",
+          "with": "mysql"
+      }
+  ]
   ```
 
 ## **/tengu/controllers/[controller]/models/[model]/relations/[app1]/[app2]** <a name="relation-del"></a>
@@ -798,12 +790,38 @@ excluding calls handling users.
   - Content-Type:application/json
 * **Required body**:
 
-* **Succesful response**:
+* **Successful response**:
   - code: 200
   - message:
   ```json
-  [{"interface": "interface-name",
-    "with": "name of the other application"}]
+  [
+      {
+          "name": "wordpress",
+          "relations": [
+              {
+                  "interface": "loadbalancer",
+                  "with": "wordpress"
+              },
+              {
+                  "interface": "db",
+                  "with": "mysql"
+              }
+          ]
+      },
+      {
+          "name": "mysql",
+          "relations": [
+              {
+                  "interface": "cluster",
+                  "with": "mysql"
+              },
+              {
+                  "interface": "db",
+                  "with": "wordpress"
+              }
+          ]
+      }
+  ]
   ```
 
 ## **/tengu/backup** <a name="backup"></a>
@@ -815,6 +833,6 @@ excluding calls handling users.
   - Content-Type:application/json
 * **Required body**:
 
-* **Succesful response**:
+* **Successful response**:
   - code: 200
   - message: Zipfile

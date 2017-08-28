@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-# Copyright (C) 2016  Ghent University
+# Copyright (C) 2017  Ghent University
+# Copyright (C) 2017  Qrama
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as published by
@@ -15,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 # pylint: disable=C0111,C0103,c0325
 from base64 import b64decode
-from subprocess import check_call
+from subprocess import call, check_call
 from os.path import expanduser
 
 # Charm pip dependencies
@@ -30,55 +31,64 @@ from charms.reactive import set_state, when_not, when
 USER = config()['user']
 HOME = expanduser('~{}'.format(USER))
 
+
 @when_not('juju.installed')
-@when('apt.installed.juju')
+@when('snap.installed.juju')
 def set_juju_installed_state():
+    # Allows the use of the juju cli command in new sessions
+    call(['ln', '-s', '/snap/bin/juju', '/usr/bin/juju'])
     # Run juju once to generate initial config
     check_call([
         'su', USER, '-c',
         'juju'])
     set_state('juju.installed')
 
+
 @when('juju.installed')
 @when('config.changed.credentials.yaml')
 def import_credentials():
     credentials_file = "{}/.local/share/juju/credentials.yaml".format(HOME)
-    data = config()['credentials.yaml']
+    data = config()['credentials_yaml']
     if data != '':
         credentials = yaml.load(b64decode(data))
         merge_yaml_file_and_dict(credentials_file, credentials)
     set_state('juju.credentials.available')
 
+
 @when('juju.installed')
 @when('config.changed.controllers.yaml')
 def import_controllers():
     controllers_file = "{}/.local/share/juju/controllers.yaml".format(HOME)
-    data = config()['controllers.yaml']
+    data = config()['controllers_yaml']
     if data != '':
         controllers = yaml.load(b64decode(data))
         merge_yaml_file_and_dict(controllers_file, controllers)
     set_state('juju.controller.available')
 
+
 @when('juju.installed')
 @when('config.changed.clouds.yaml')
 def import_clouds():
     clouds_file = "{}/.local/share/juju/clouds.yaml".format(HOME)
-    data = config()['clouds.yaml']
+    data = config()['clouds_yaml']
     if data != '':
         clouds = yaml.load(b64decode(data))
         merge_yaml_file_and_dict(clouds_file, clouds)
     set_state('juju.cloud.available')
 
+
 def merge_yaml_file_and_dict(filepath, datadict):
-    open(filepath, "a").close() # to fix "file doesn't exist"
+    open(filepath, "a").close()  # to fix "file doesn't exist"
     with open(filepath, 'r+') as e_file:
         filedict = yaml.load(e_file) or {}
         filedict = deep_merge(filedict, datadict)
         e_file.seek(0)  # rewind
         e_file.write(yaml.dump(filedict, default_flow_style=False))
 
+
 class MergerError(Exception):
     pass
+
 
 def deep_merge(a, b):
     """merges b into a and return merged result

@@ -16,10 +16,10 @@
       "static", 
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
-    "LICENSE": [
-      "controller-google", 
-      "static", 
-      "956caac924f88d39f85d505a690a5f670a325d76b70c7c3ae8aee71d563a3ffe"
+    "wheelhouse/pyaml-17.8.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "9cf5ff8fc3b82aab1428e67ab2040b52a9f39433517cb7c5b852498ed3a75740"
     ], 
     "hooks/relations/sojobo/__init__.py": [
       "interface:sojobo", 
@@ -56,20 +56,15 @@
       "static", 
       "f24477a840737ae9a1439e10ec2c1003279b9569cc0e3661bd145df95fd0343a"
     ], 
-    "charmbuild/controller-google/lib/charms/layer/execd.py": [
-      "controller-google", 
-      "static", 
-      "c0eb4c90e93a14f04d851f78bc6592e093226321fbe328125958633397aed014"
+    "wheelhouse/Jinja2-2.9.6.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "ddaa01a212cd6d641401cb01b605f4a4d9f37bfc93043d7f760ec70fb99ff9ff"
     ], 
     "hooks/upgrade-charm": [
       "layer:basic", 
       "static", 
       "8fb6559bf4d4b7cdf1b857564c1d7265df98e863a4746fcbae092f141e59d97e"
-    ], 
-    "wheelhouse/charmhelpers-0.15.0.tar.gz": [
-      "layer:basic", 
-      "dynamic", 
-      "dde6d6905a1f71cd3a6ed7cbf92bb4c26159d6a1b5ce8b4e5d2b893de7cc0647"
     ], 
     "wheelhouse/Tempita-0.5.2.tar.gz": [
       "layer:basic", 
@@ -81,10 +76,10 @@
       "static", 
       "a98b1ba58bd144f8a79ac0847bfe6741253bbd1a9805f12e9cbc7df3bd12fece"
     ], 
-    "wheelhouse/pyaml-16.12.2.tar.gz": [
+    "hooks/hook.template": [
       "layer:basic", 
-      "dynamic", 
-      "b865e4f53a85f4d8a092e7701f759a3237fb3ee8a928627401914aafadc00907"
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
     "hooks/sojobo-relation-broken": [
       "interface:sojobo", 
@@ -105,6 +100,11 @@
       "controller-google", 
       "static", 
       "ba058a18ec7d00954b419fed04f0a2b2d72468c87f1586f3af6bf4e760d7c595"
+    ], 
+    "LICENSE": [
+      "controller-google", 
+      "static", 
+      "956caac924f88d39f85d505a690a5f670a325d76b70c7c3ae8aee71d563a3ffe"
     ], 
     "copyright": [
       "layer:basic", 
@@ -156,11 +156,6 @@
       "static", 
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
-    "hooks/hook.template": [
-      "layer:basic", 
-      "static", 
-      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
-    ], 
     "hooks/stop": [
       "layer:basic", 
       "static", 
@@ -176,10 +171,15 @@
       "dynamic", 
       "f023f5aef267786db1be51209610487171ba56e848f7b1c49877b06337000256"
     ], 
+    "wheelhouse/charmhelpers-0.17.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "232f9ee252c58e9357aaa74d14d351e786716fa0cec3f496f74c40ad0bc6a0b5"
+    ], 
     "files/controller_google.py": [
       "controller-google", 
       "static", 
-      "67d04f5dde27721d814443f2882f2af1e634fd38fe748bb4c3149b09071c3c90"
+      "1b6a01f67ee62ce41913061beb2062c5757bbc6a103a53e296d02a693da784a8"
     ], 
     "hooks/sojobo-relation-departed": [
       "interface:sojobo", 
@@ -214,7 +214,7 @@
     "README.md": [
       "controller-google", 
       "static", 
-      "fc8a323fbea4c882c6f592f733dcb1da585efd550d34a3744a8e78f935d86bfd"
+      "99ab7b5efcf781bdbcb1c8bc4aaf6807b071671b69c81f8458b8e53f5a8ce2c5"
     ], 
     "hooks/relations/sojobo/provides.py": [
       "interface:sojobo", 
@@ -256,10 +256,10 @@
       "static", 
       "71a8b901f7e64a6b1b61959fc25819bafc9c9905e37a918615b9f949295095a4"
     ], 
-    "wheelhouse/Jinja2-2.9.6.tar.gz": [
-      "layer:basic", 
-      "dynamic", 
-      "ddaa01a212cd6d641401cb01b605f4a4d9f37bfc93043d7f760ec70fb99ff9ff"
+    "charmbuild/controller-google/lib/charms/layer/execd.py": [
+      "controller-google", 
+      "static", 
+      "c0eb4c90e93a14f04d851f78bc6592e093226321fbe328125958633397aed014"
     ], 
     "wheelhouse/six-1.10.0.tar.gz": [
       "layer:basic", 

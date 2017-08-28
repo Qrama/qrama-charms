@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 # Copyright (C) 2017  Qrama
 #
 # This program is free software: you can redistribute it and/or modify
@@ -14,34 +14,35 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 # pylint: disable=c0111,c0103,c0301
-import binascii
 from base64 import b64encode
 from hashlib import sha256
 import os
 import shutil
 import subprocess
-# Charm pip dependencies
+from charmhelpers.core import unitdata
 from charmhelpers.core.templating import render
-from charmhelpers.core.hookenv import status_set, log, config, open_port, close_port, unit_private_ip, application_version_set
+from charmhelpers.core.hookenv import status_set, log, config, open_port, unit_private_ip, application_version_set, leader_get, leader_set
 from charmhelpers.core.host import service_restart, chownr, adduser
 from charmhelpers.contrib.python.packages import pip_install
-
 from charms.reactive import hook, when, when_not, set_state, remove_state
+import charms.leadership
 
-API_DIR = config()['api-dir']
-USER = config()['api-user']
-GROUP = config()['nginx-group']
+
+API_DIR = '/opt/sojobo_api'
+USER = 'sojobo'
+GROUP = 'www-data'
 HOST = config()['host'] if config()['host'] != '127.0.0.1' else unit_private_ip()
+db = unitdata.kv()
 ###############################################################################
 # INSTALLATION AND UPGRADES
 ###############################################################################
 @when('juju.installed')
 @when_not('api.installed')
 def install():
+    subprocess.call(['python3.6', '-m', 'pip', 'install', '--upgrade', 'pip', 'setuptools', 'wheel'])
     log('Installing Sojobo API')
-    os.mkdir(API_DIR)
-    generate_api_key()
-    generate_password()
+    if not os.path.isdir(API_DIR):
+        os.mkdir(API_DIR)
     install_api()
     set_state('api.installed')
 
@@ -56,67 +57,80 @@ def upgrade_charm():
 @when('api.installed', 'nginx.passenger.available')
 @when_not('api.configured')
 def configure_webapp():
-    close_port(80)
-    render_http()
+    context = {'hostname': HOST, 'user': USER, 'rootdir': API_DIR}
+    render('http.conf', '/etc/nginx/sites-enabled/sojobo.conf', context)
     open_port(80)
-    restart_api()
+    service_restart('nginx')
     set_state('api.configured')
-    status_set('blocked', 'Waiting for a connection with MongoDB')
+    status_set('blocked', 'Waiting for a connection with Redis')
 
 
 @when('config.changed', 'api.running')
 def config_changed():
-    configure_webapp()
-    status_set('active', 'The Sojobo-api is running, initial admin-password: {} and MongoDB password: {}'.format(get_password(), get_mongo_pwd()))
+    context = {'hostname': HOST, 'user': USER, 'rootdir': API_DIR}
+    render('http.conf', '/etc/nginx/sites-enabled/sojobo.conf', context)
+    service_restart('nginx')
 
 
-# Handeling changed configs
-@when('api.configured', 'mongodb.available')
+@when('leadership.is_leader')
+@when_not('secrets.configured')
+def set_secrets():
+    api_key = sha256(os.urandom(256)).hexdigest()
+    password = b64encode(os.urandom(18)).decode('utf-8')
+    leader_set({
+        'api-key': api_key,
+        'password': password
+    })
+    db.set('api-key', api_key)
+    db.set('password', password)
+    set_state('secrets.configured')
+
+
+@when('api.configured')
+@when_not('leadership.is_leader')
+def set_secrets_local():
+    db.set('api-key', leader_get()['api-key'])
+    db.set('password', leader_get()['password'])
+
+
+@when('api.configured', 'redis.available')
 @when_not('api.running')
-def connect_to_mongo(mongodb):
-    from pymongo import MongoClient
-    uri = list(mongodb.connection())[-1]['uri']
-    client = MongoClient(uri)
-    db = client.sojobo
-    user = {'name' : 'admin',
-            'access': [],
-            'ssh_keys': [],
-            'active': True}
-    db.users.insert_one(user)
-    generate_mongo_pwd()
-    db.add_user('sojobo', get_mongo_pwd(), roles=[{'role': 'dbOwner', 'db': 'sojobo'}])
-    sojobo_uri = 'mongodb://{}:{}@{}:{}/sojobo'.format('sojobo', get_mongo_pwd(), list(mongodb.connection())[-1]['host'],
-                                                       list(mongodb.connection())[-1]['port'])
-    render('settings.py', '{}/settings.py'.format(API_DIR), {'JUJU_ADMIN_USER': 'admin',
-                                                             'JUJU_ADMIN_PASSWORD': get_password(),
-                                                             'SOJOBO_API_DIR': API_DIR,
-                                                             'LOCAL_CHARM_DIR': config()['charm-dir'],
-                                                             'SOJOBO_IP': 'http://{}'.format(HOST),
-                                                             'SOJOBO_USER': USER,
-                                                             'MONGO_URI': sojobo_uri})
+def connect_to_redis(redis):
+    redis_db = redis.redis_data()
+    api_key = db.get('api-key')
+    password = db.get('password')
+    render('settings.py', '{}/settings.py'.format(API_DIR), {
+        'API_KEY': api_key,
+        'JUJU_ADMIN_USER': 'admin',
+        'JUJU_ADMIN_PASSWORD': password,
+        'SOJOBO_API_DIR': API_DIR,
+        'LOCAL_CHARM_DIR': config()['charm-dir'],
+        'SOJOBO_IP': 'http://{}'.format(HOST),
+        'SOJOBO_USER': USER,
+        'REDIS_HOST': redis_db['host'],
+        'REDIS_PORT': redis_db['port']
+    })
     set_state('api.running')
     service_restart('nginx')
-    status_set('active', 'The Sojobo-api is running, initial admin-password: {} and MongoDB password: {}'.format(get_password(), get_mongo_pwd()))
+    status_set('active', 'admin-password: {} api-key: {}'.format(password, api_key))
 
 
-@when('api.running')
-@when_not('mongodb.available')
-def mongo_db_removed():
+@when_not('redis.available')
+def redis_db_removed():
     remove_state('api.running')
-    status_set('blocked', 'Waiting for a connection with MongoDB')
+    status_set('blocked', 'Waiting for a connection with redis')
 
 
-@when('sojobo.available')
+@when('sojobo.available', 'api.running')
 def configure(sojobo):
-    prefix = 'https://'
-    with open("/{}/api-key".format(API_DIR), "r") as key:
-        sojobo.configure('{}{}'.format(prefix, HOST), API_DIR, key.readline(), config()['api-user'])
+    api_key = db.get('api-key')
+    sojobo.configure('https://{}'.format(HOST), API_DIR, api_key, USER)
 
-@when('reverseproxy.available', 'api.running')
-def configure_proxy(reverseproxy):
-    reverseproxy.configure(80)
-    set_state('api.reverseproxy-configured')
 
+@when('proxy.available', 'api.running')
+def configure_proxy(proxy):
+    proxy.configure(80)
+    set_state('api.proxy-configured')
 ###############################################################################
 # UTILS
 ###############################################################################
@@ -143,95 +157,25 @@ def mergecopytree(src, dst, symlinks=False, ignore=None):
             shutil.copy2(src_item, dst_item)
 
 
-def generate_api_key():
-    with open("{}/api-key".format(API_DIR), "w+") as key:
-        key.write(sha256(os.urandom(256)).hexdigest())
-
-
-def generate_password():
-    with open("{}/juju-admin".format(API_DIR), "w+") as key:
-        key.write(b64encode(os.urandom(16)).decode('utf-8'))
-
-
-def get_password():
-    with open("{}/juju-admin".format(API_DIR), "r") as key:
-        return key.readline()
-
-
-def generate_mongo_pwd():
-    pwd = str(binascii.b2a_hex(os.urandom(16)).decode('utf-8'))
-    with open("{}/mongo_cred".format(API_DIR), "w+") as key:
-        key.write(pwd)
-
-
-def get_mongo_pwd():
-    with open("{}/mongo_cred".format(API_DIR), "r") as key:
-        return key.readline()
-
-
 def install_api():
-    # Install pip pkgs
-    for pkg in ['Jinja2', 'Flask', 'pyyaml', 'click', 'pygments', 'apscheduler', 'gitpython', 'Flask-PyMongo', 'pymongo']:
-        pip_install(pkg)
-    subprocess.check_call(['pip', 'install', 'juju==0.3.0'])
+    for pkg in ['Jinja2', 'Flask', 'pyyaml', 'click', 'pygments', 'apscheduler',
+                'gitpython', 'redis', 'asyncio_extras', 'requests']:
+        subprocess.check_call(['pip3', 'install', pkg])
+    subprocess.check_call(['pip3', 'install', 'juju==0.6.0'])
     mergecopytree('files/sojobo_api', API_DIR)
-    os.mkdir('{}/files'.format(API_DIR))
-    os.mkdir('{}/bundle'.format(API_DIR))
-    os.mkdir('{}/log'.format(API_DIR))
-    os.mkdir('{}/backup'.format(API_DIR))
+    if not os.path.isdir('{}/files'.format(API_DIR)):
+        os.mkdir('{}/files'.format(API_DIR))
+    if not os.path.isdir('{}/bundle'.format(API_DIR)):
+        os.mkdir('{}/bundle'.format(API_DIR))
+    if not os.path.isdir('{}/log'.format(API_DIR)):
+        os.mkdir('{}/log'.format(API_DIR))
+    if not os.path.isdir('{}/backup'.format(API_DIR)):
+        os.mkdir('{}/backup'.format(API_DIR))
     adduser(USER)
-    os.mkdir('/home/{}'.format(USER))
+    if not os.path.isdir('/home/{}'.format(USER)):
+        os.mkdir('/home/{}'.format(USER))
     chownr('/home/{}'.format(USER), USER, USER, chowntopdir=True)
     chownr(API_DIR, USER, GROUP, chowntopdir=True)
-    from git import Repo
-    Repo.clone_from('https://github.com/tengu-team/python-libjuju.git', '{}/libjuju'.format(API_DIR))
-    mergecopytree('{}/libjuju/juju'.format(API_DIR), '/usr/local/lib/python3.5/dist-packages/juju/')
-    shutil.copyfile('files/model.py', '/usr/local/lib/python3.5/dist-packages/juju/model.py')
-    shutil.copyfile('files/controller.py', '/usr/local/lib/python3.5/dist-packages/juju/controller.py')
     service_restart('nginx')
     status_set('active', 'The Sojobo-api is installed')
     application_version_set('1.0.0')
-
-
-def render_http():
-    context = {'hostname': HOST, 'user': USER, 'rootdir': API_DIR}
-    render('http.conf', '/etc/nginx/sites-enabled/sojobo.conf', context)
-
-
-# def render_httpsclient():
-#     context = {'hostname': HOST, 'user': USER, 'rootdir': API_DIR, 'dhparam': config()['dhparam']}
-#     chownr(context['dhparam'], GROUP, 'root')
-#     if config()['fullchain'] == '' and config()['privatekey'] == '':
-#         chownr('/etc/letsencrypt/live/{}'.format(HOST), GROUP, 'root', chowntopdir=True)
-#         context['fullchain'] = '/etc/letsencrypt/live/{}/fullchain.pem'.format(HOST)
-#         context['privatekey'] = '/etc/letsencrypt/live/{}/privkey.pem'.format(HOST)
-#         render('https.conf', '/etc/nginx/sites-enabled/sojobo.conf', context)
-#     elif config()['fullchain'] != '' and config()['privatekey'] != '':
-#         context['fullchain'] = config()['fullchain']
-#         context['privatekey'] = config()['privatekey']
-#         render('https.conf', '/etc/nginx/sites-enabled/sojobo.conf', context)
-#     else:
-#         status_set('blocked', 'Invalid fullchain and privatekey config')
-#
-#
-# def render_httpsletsencrypt():
-#     context = {'hostname': HOST, 'user': USER, 'rootdir': API_DIR}
-#     if not os.path.isdir('{}/.well-known'.format(API_DIR)):
-#         os.mkdir('{}/.well-known'.format(API_DIR))
-#     chownr('{}/.well-known'.format(API_DIR), USER, GROUP, chowntopdir=True)
-#     render('letsencrypt.conf', '/etc/nginx/sites-enabled/sojobo.conf', context)
-
-
-def restart_api():
-    service_restart('nginx')
-    subprocess.check_call(['service', 'nginx', 'status'])
-
-
-def dhparam(size):
-    if not os.path.isdir('/etc/nginx/ssl'):
-        os.mkdir('/etc/nginx/ssl')
-    if not os.path.isdir('/etc/nginx/ssl/{}'.format(HOST)):
-        os.mkdir('/etc/nginx/ssl/{}'.format(HOST))
-    chownr('/etc/nginx/ssl/{}'.format(HOST), GROUP, 'root', chowntopdir=True)
-    subprocess.check_call(['openssl', 'dhparam', '-out', '/etc/nignx/ssl/{}/dhparam.pem'.format(HOST), str(size)])
-    return '/etc/nignx/ssl/{}/dhparam.pem'.format(HOST)

@@ -16,11 +16,11 @@
 # pylint: disable=c0111,c0301,c0325,w0406
 import os
 import shutil
+import subprocess
 
 from charms.reactive import when, when_not, set_state, remove_state
 from charmhelpers.core.hookenv import status_set, charm_dir, config
 from charmhelpers.core.host import service_restart, chownr
-from charmhelpers.contrib.python.packages import pip_install
 
 
 @when('sojobo.available')
@@ -33,7 +33,7 @@ def waiting_for_api(sojobo):
 @when_not('monitoring-api.installed')
 def install(sojobo, influxdb, sensu):
     for pkg in ['influxdb']:
-        pip_install(pkg)
+        subprocess.check_call(['pip3', 'install', pkg])
     api_dir = list(sojobo.connection())[0]['api-dir']
     user = list(sojobo.connection())[0]['user']
     shutil.copyfile('{}/files/api_monitoring.py'.format(charm_dir()), '{}/api/api_monitoring.py'.format(api_dir))

@@ -1,59 +1,25 @@
 import socketserver
 import json
-import re
 from influxdb import InfluxDBClient
-
-
-def check_load(measurement):
-    regex = r'CheckLoad .* load average \(1 CPU\): \[(.+?),.*\]'
-    outputs = [{'name': 'used', 'unit': '%'}]
-    for i, res in enumerate(re.search(regex, measurement.replace('\n', '')).groups()):
-        outputs[i]['value'] = float(res)
-    return outputs
-
-
-def metrics_memory(measurement):
-    regex = r'.*memory\.total ([0-9]*?) .*memory\.free ([0-9]*?) .*memory\.used ([0-9]*?) .*'
-    outputs = [{'name': 'total', 'unit': 'kB'}, {'name': 'free', 'unit': 'kB'}, {'name': 'used', 'unit': 'kB'}]
-    for i, res in enumerate(re.search(regex, measurement.replace('\n', '')).groups()):
-        outputs[i]['value'] = int(res)
-    return outputs
-
-
-def metrics_disk_usage(measurement):
-    regex = r'.*root\.used ([0-9]*?) .*root\.avail ([0-9]*?) .*root\.used_percentage ([0-9]*?) .*'
-    outputs = [{'name': 'used', 'unit': 'MB'}, {'name': 'free', 'unit': 'MB'}, {'name': 'percentage_used', 'unit': '%'}]
-    for i, res in enumerate(re.search(regex, measurement.replace('\n', '')).groups()):
-        outputs[i]['value'] = int(res)
-    return outputs
-
-
-def mongodb_replica(measurement):
-    if measurement == 'Check failed to run: not running with --replSet ()':
-        return []
-    else:
-        measurement = measurement.replace('\n', '')
-        outputs = [{'name': 'health', 'unit': None}, {'name': 'ping_to_master', 'unit': 'ms'}, {'name': 'delay_to_primary', 'unit': 's'}]
-        ids = re.search(r'member_[0-9]+\.id ([0-9]+?) ', measurement).groups()
-        names = re.search(r'member_[0-9]+\.name (.+?) ', measurement).groups()
-        healths = re.search(r'member_[0-9]+\.health (.+?) ', measurement).groups()
-        pings = re.search(r'member_[0-9]+\.pingMs (.+?) ', measurement).groups()
-        delays = re.search(r'member_[0-9]+\.secondsBehindPrimary ([0-9]+?) ', measurement).groups()
+from filters import *
 
 
 MAPPING = {
-    'check-load.rb': check_load,
-    'metrics-memory.rb': metrics_memory,
-    'metrics-disk-usage.rb': metrics_disk_usage
+    'check-load.rb': machine.check_load,
+    'metrics-memory.rb': machine.metrics_memory,
+    'metrics-disk-usage.rb': machine.metrics_disk_usage,
+    'metrics-mongodb-replication.rb': mongodb.metrics_replica,
+    'metrics-mongodb.rb': mongodb.metrics,
 }
 
 
 def prep_data(data):
     data = json.loads(data.decode('utf-8'))
     if 'subscribers' in data['check'].keys():
-        controller, model, machine = data['client']['name'].split('/')
+        controller, model, machine = data['client']['name'].split('-X-')
         subscribers = data['check']['subscribers']
-        measurements = MAPPING[data['check']['command'].split('/')[-1]](data['check']['output'])
+        parser = MAPPING[data['check']['command'].split('/')[-1]]
+        measurements = parser(data['check']['output'])
         for m in measurements:
             body = []
             for s in subscribers:

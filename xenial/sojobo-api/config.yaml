@@ -19,7 +19,7 @@
     "type": "string"
     "default": |
       - "deb https://oss-binaries.phusionpassenger.com/apt/passenger xenial main"
-      - "deb http://ppa.launchpad.net/juju/stable/ubuntu xenial main"
+      - "ppa:jonathonf/python-3.6"
   "install_keys":
     "description": |
       list of signing keys for install_sources package sources, per
@@ -34,26 +34,31 @@
     "type": "string"
     "default": |
       - 561F9B9CAC40B2F7
-      - C8068B11
+      - null
   "user":
     "type": "string"
     "default": "ubuntu"
     "description": "user to install the tools for"
-  "controllers.yaml":
+  "controllers_yaml":
     "type": "string"
     "default": ""
     "description": |
       base64 encoded contents of ~/.local/share/juju/controllers.yaml
-  "credentials.yaml":
+  "credentials_yaml":
     "type": "string"
     "default": ""
     "description": |
       base64 encoded contents of ~/.local/share/juju/credentials.yaml
-  "clouds.yaml":
+  "clouds_yaml":
     "type": "string"
     "default": ""
     "description": |
       base64 encoded contents of ~/.local/share/juju/clouds.yaml
+  "snap_proxy":
+    "description": "HTTP/HTTPS web proxy for Snappy to use when accessing the snap\
+      \ store.\n"
+    "type": "string"
+    "default": ""
   "port":
     "type": "int"
     "default": !!int "80"
@@ -64,45 +69,8 @@
     "default": "127.0.0.1"
     "description": "listen address. When left at the default value, defaults to internal\
       \ ip address."
-  "api-dir":
-    "type": "string"
-    "default": "/opt/sojobo_api"
-    "description": |
-      The location where the api will be installed
-  "api-user":
-    "type": "string"
-    "default": "sojobo"
-    "description": |
-      The linux user that will be created to run the api
-  "nginx-group":
-    "type": "string"
-    "default": "www-data"
-    "description": |
-      The linux group of which nginx is a member
   "charm-dir":
     "type": "string"
     "default": "/home/ubuntu/qrama-charms"
     "description": |
       The location where the api will search for local charms, when the app_name is prefixed with "local:<app_name>"
-  "setup":
-    "type": "string"
-    "default": "http"
-    "description": |
-      Choose the type of install: http [http], https [https] with client certificates, letsencrypt [letsencrypt] with
-      letsencrypt setup. If an option is entered which does not match [http, httpsclient, httpsletsencrypt], defaults to http.
-      the setup and config for letsencrypt is a manual process, which is documented in the readme.
-  "fullchain":
-    "type": "string"
-    "default": ""
-    "description": |
-      Specify the location of the ssl fullchain. Leave blank if you want the charm to setup a letsencrypt certificate
-  "privatekey":
-    "type": "string"
-    "default": ""
-    "description": |
-      Specify the location of the ssl privatekey. Leave blank if you want the charm to setup a letsencrypt certificate
-  "dhparam":
-    "type": "string"
-    "default": "/etc/nginx/ssl/dhparam.pem"
-    "description": |
-      Location of the DH.pem file

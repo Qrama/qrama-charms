@@ -23,10 +23,10 @@
       "static", 
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
-    "LICENSE": [
-      "monitoring-api", 
-      "static", 
-      "956caac924f88d39f85d505a690a5f670a325d76b70c7c3ae8aee71d563a3ffe"
+    "wheelhouse/pyaml-17.8.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "9cf5ff8fc3b82aab1428e67ab2040b52a9f39433517cb7c5b852498ed3a75740"
     ], 
     "docs.md": [
       "monitoring-api", 
@@ -46,7 +46,7 @@
     "files/w_monitoring.py": [
       "monitoring-api", 
       "static", 
-      "83ad3af603c687bd287aecf2045861e0b13db58b8a81579462fbe436ae525705"
+      "2fa6cbbed4ba7ae434a427d76ff43aa7793c25041ca65d029dd9f243a989dbad"
     ], 
     "Makefile": [
       "layer:basic", 
@@ -83,25 +83,25 @@
       "static", 
       "8fb6559bf4d4b7cdf1b857564c1d7265df98e863a4746fcbae092f141e59d97e"
     ], 
+    "hooks/influxdb-relation-changed": [
+      "interface:influxdb-api", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
     "wheelhouse/Tempita-0.5.2.tar.gz": [
       "layer:basic", 
       "dynamic", 
       "cacecf0baa674d356641f1d406b8bff1d756d739c46b869a54de515d08e6fc9c"
     ], 
-    "templates/monitoring.yaml": [
+    "docs/monitoring.md": [
       "monitoring-api", 
       "static", 
-      "dd8b0a5cf80cd95666ff98b129d5268be63d9e5a64db2e6f53fd9c7053c7cb0c"
+      "84700b1a3e3241bc2f8638762b50c4889d0be316ce2a15418e03a94d9d70167c"
     ], 
-    "hooks/relations/sojobo/LICENSE": [
-      "interface:sojobo", 
-      "static", 
-      "956caac924f88d39f85d505a690a5f670a325d76b70c7c3ae8aee71d563a3ffe"
-    ], 
-    "wheelhouse/pyaml-16.12.2.tar.gz": [
+    "hooks/hook.template": [
       "layer:basic", 
-      "dynamic", 
-      "b865e4f53a85f4d8a092e7701f759a3237fb3ee8a928627401914aafadc00907"
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
     "hooks/sojobo-relation-broken": [
       "interface:sojobo", 
@@ -121,12 +121,12 @@
     "reactive/monitoring_api.py": [
       "monitoring-api", 
       "static", 
-      "096a58948e4c610b29fe523c8789b91d9bfbec9bef7a14c6081ec71ea5661de3"
+      "d80c6ffe21f53a274cbe3a2cd93d286952afa5b58d99eb7d7d39cbf0c67208e0"
     ], 
-    "hooks/influxdb-relation-changed": [
-      "interface:influxdb-api", 
-      "dynamic", 
-      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    "LICENSE": [
+      "monitoring-api", 
+      "static", 
+      "956caac924f88d39f85d505a690a5f670a325d76b70c7c3ae8aee71d563a3ffe"
     ], 
     "copyright": [
       "layer:basic", 
@@ -158,10 +158,10 @@
       "static", 
       "0da5c4dcda27cd6406e5bb81cbf68ddccaf728ac764ec15053a165c1449d87d9"
     ], 
-    "wheelhouse/charmhelpers-0.16.0.tar.gz": [
-      "layer:basic", 
-      "dynamic", 
-      "5727a1dc278416d3e0b432ae9d46f599bca1c61b17f4880e5d33553d249b7cb3"
+    "hooks/relations/sojobo/LICENSE": [
+      "interface:sojobo", 
+      "static", 
+      "956caac924f88d39f85d505a690a5f670a325d76b70c7c3ae8aee71d563a3ffe"
     ], 
     "hooks/install": [
       "layer:basic", 
@@ -228,6 +228,11 @@
       "dynamic", 
       "f023f5aef267786db1be51209610487171ba56e848f7b1c49877b06337000256"
     ], 
+    "wheelhouse/charmhelpers-0.17.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "232f9ee252c58e9357aaa74d14d351e786716fa0cec3f496f74c40ad0bc6a0b5"
+    ], 
     "hooks/sojobo-relation-departed": [
       "interface:sojobo", 
       "dynamic", 
@@ -261,7 +266,7 @@
     "README.md": [
       "monitoring-api", 
       "static", 
-      "fe9fdfabf994b01d962cf1a098866da47dd85f5fb4a255c0c9472b004c2eb0fd"
+      "942c3b445330efad98646843cde4f31d4152f4a0081c778eca3d6b15d04a87b0"
     ], 
     "hooks/relations/sojobo/.gitignore": [
       "interface:sojobo", 
@@ -341,7 +346,7 @@
     "files/api_monitoring.py": [
       "monitoring-api", 
       "static", 
-      "2d7b0a5588cf93cacc5ad410c00c7eb0d2d149111d6c51bd1aeff2157ab6db1f"
+      "e8c763425960eed5608c832f387723ab524b7c7e9147df88cdc15124d699e8a4"
     ], 
     ".build.manifest": [
       "build", 
@@ -351,12 +356,7 @@
     "hooks/relations/http/provides.py": [
       "interface:http", 
       "static", 
-      "eb4b01fc022cafbb6e67cb200f497ab3aeee4b954b1b9ff2be1d8e64d1a4be20"
-    ], 
-    "hooks/hook.template": [
-      "layer:basic", 
-      "static", 
-      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+      "c6e16d6c0d80009aab33c51cb1e196f959df155ac656f47fe7104484859d2476"
     ], 
     "wheelhouse/six-1.10.0.tar.gz": [
       "layer:basic", 

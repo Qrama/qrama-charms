@@ -17,10 +17,10 @@
       "static", 
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
-    "LICENSE": [
-      "sensu-client", 
-      "static", 
-      "589ed823e9a84c56feb95ac58e7cf384626b9cbf4fda2a907bc36e103de1bad2"
+    "wheelhouse/pyaml-17.8.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "9cf5ff8fc3b82aab1428e67ab2040b52a9f39433517cb7c5b852498ed3a75740"
     ], 
     "lib/charms/layer/execd.py": [
       "layer:basic", 
@@ -82,10 +82,10 @@
       "dynamic", 
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
-    "wheelhouse/pyaml-16.12.2.tar.gz": [
+    "hooks/hook.template": [
       "layer:basic", 
-      "dynamic", 
-      "b865e4f53a85f4d8a092e7701f759a3237fb3ee8a928627401914aafadc00907"
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
     "tox.ini": [
       "layer:basic", 
@@ -96,6 +96,11 @@
       "sensu-client", 
       "dynamic", 
       "e8857ee10c110a2dad845313c4c51434d04e17935f0134862431d245e4300215"
+    ], 
+    "LICENSE": [
+      "sensu-client", 
+      "static", 
+      "589ed823e9a84c56feb95ac58e7cf384626b9cbf4fda2a907bc36e103de1bad2"
     ], 
     "copyright": [
       "layer:apt", 
@@ -122,11 +127,6 @@
       "static", 
       "54c2eac10d7d0187b02c271ac7a3767bb3d365d562cfb8c1548efb4e84f7b2d5"
     ], 
-    "wheelhouse/charmhelpers-0.16.0.tar.gz": [
-      "layer:basic", 
-      "dynamic", 
-      "5727a1dc278416d3e0b432ae9d46f599bca1c61b17f4880e5d33553d249b7cb3"
-    ], 
     "hooks/install": [
       "layer:basic", 
       "static", 
@@ -150,7 +150,7 @@
     "config.yaml": [
       "sensu-client", 
       "dynamic", 
-      "34778cafd0574460a63cc3836563cb19f1e734a43cb90329915fef4e0a8a7da4"
+      "1a8687f9674773bbb02daa3a23659d06ec12f28915835bb5d3b5378f5e5d9edb"
     ], 
     "lib/charms/layer/__init__.py": [
       "layer:basic", 
@@ -176,6 +176,11 @@
       "layer:basic", 
       "dynamic", 
       "f023f5aef267786db1be51209610487171ba56e848f7b1c49877b06337000256"
+    ], 
+    "wheelhouse/charmhelpers-0.17.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "232f9ee252c58e9357aaa74d14d351e786716fa0cec3f496f74c40ad0bc6a0b5"
     ], 
     "templates/client.json": [
       "sensu-client", 
@@ -245,12 +250,7 @@
     "reactive/sensu-client.py": [
       "sensu-client", 
       "static", 
-      "7704e201c0a93003025e6bfddf94524ee9f98ea05756af039e02f4d6446f80bf"
-    ], 
-    "hooks/hook.template": [
-      "layer:basic", 
-      "static", 
-      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+      "cec7c89783cd587fa08b32eeb71cfd132ffdf154d9817ed0c72d080cfbbb242e"
     ], 
     "wheelhouse/six-1.10.0.tar.gz": [
       "layer:basic", 

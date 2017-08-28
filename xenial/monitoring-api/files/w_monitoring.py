@@ -27,20 +27,20 @@ def influxdb_client():
                           settings.INFLUXDB_USER, settings.INFLUXDB_PASSWORD, settings.INFLUXDB_DB)
 
 
-async def add_monitoring(con_con, mod_con, app):
-    app_info = await juju.get_application_info(mod_con, app)
+async def add_monitoring(token, con_con, mod_con, app):
+    app_info = await juju.get_application_info(token, mod_con, app)
     charm, version = app_info['charm'].split(':')[1].rsplit('-', 1)
     serie = app_info['units'][0]['series']
-    if not await check_monitoring(mod_con, app):
-        await install_monitoring(con_con, mod_con, app, charm, serie)
-    await juju.add_relation(mod_con, app, '{}-monitoring'.format(app))
+    if not await check_monitoring(token, mod_con, app):
+        await install_monitoring(token, con_con, mod_con, app, charm, serie)
+    await juju.add_relation(token, mod_con, app, '{}-monitoring'.format(app))
 
 
-async def remove_monitoring(con_con, mod_con, app):
-    await juju.remove_application(mod_con, '{}-monitoring'.format(app))
+async def remove_monitoring(token, con_con, mod_con, app):
+    await juju.remove_app(token, mod_con, '{}-monitoring'.format(app))
 
 
-async def install_monitoring(con_con, mod_con, app, charm, serie):
+async def install_monitoring(token, con_con, mod_con, app, charm, serie):
     with open(os.path.join(settings.SOJOBO_API_DIR, 'install_mapping.json'), 'r') as mapping:
         install_map = json.load(mapping)
     plugins = install_map['machine'][0]['install']#.extend(install_map[charm][0]['install'])
@@ -53,12 +53,12 @@ async def install_monitoring(con_con, mod_con, app, charm, serie):
               'ssl_key': settings.SENSU_SSL_KEY,
               'ssl_cert': settings.SENSU_SSL_CERT,
               'password': settings.SENSU_PASSWORD}
-    await juju.deploy_app(mod_con, '{}/{}/sensu-client'.format(settings.LOCAL_CHARM_DIR, serie),
+    await juju.deploy_app(token, mod_con, '{}/{}/sensu-client'.format(settings.LOCAL_CHARM_DIR, serie),
                           '{}-monitoring'.format(app), ser=serie, con=config, num_of_units=0)
 
 
-async def check_monitoring(mod_con, app):
-    res = await juju.get_application_info(mod_con, '{}-monitoring'.format(app))
+async def check_monitoring(token, mod_con, app):
+    res = await juju.get_application_info(token, mod_con, '{}-monitoring'.format(app))
     return bool(res)
 
 
