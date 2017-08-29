@@ -136,7 +136,10 @@ def create_response(http_code, return_object, is_json=False):
 
 
 def check_input(data):
-    if data is not None:
+    if not data:
+        error = errors.empty()
+        abort(error[0], error[1])
+    else:
         items = data.split(':', 1)
         if len(items) > 1 and items[0].lower() not in ['local', 'github', 'lxd', 'kvm']:
             error = errors.invalid_option(items[0])
@@ -146,10 +149,7 @@ def check_input(data):
                 if not all(x.isalpha() or x.isdigit() or x == '-' for x in item):
                     error = errors.invalid_input()
                     abort(error[0], error[1])
-            result = data.lower()
-    else:
-        result = None
-    return result
+            return data.lower()
 
 
 async def authenticate(api_key, auth):
@@ -224,7 +224,6 @@ async def create_controller(token, c_type, name, region, credentials):
             con_data['controllers'][name]['uuid'],
             con_data['controllers'][name]['ca-cert'],
             con_data['controllers'][name]['region'])
-    datastore.create_user('admin')
     datastore.add_user_to_controller(name, 'admin', 'superuser')
     controller = Controller_Connection(token, name)
     result_cred = await generate_cred_file(c_type, 'admin', credentials)
@@ -332,14 +331,10 @@ async def get_model_info(token, controller, model):
         return {'name': model.m_name, 'users': users, 'ssh-keys': ssh,
                 'applications': applications, 'machines': machines, 'juju-gui-url' : gui,
                 'status': datastore.check_model_state(controller.c_name, model.m_name), 'credentials' : credentials}
-    elif state == 'accepted':
-        s_users = await get_controller_superusers(controller)
-        u_list = [{"user" : us, "access" : "admin"} for us in s_users]
-        if not token.username in s_users:
-            u_list.append({"user" : token.username, "access" : "admin"})
-        return {'name': model.m_name, 'status': state, 'users' : u_list}
-    elif state == 'error':
-        return {'name': model.m_name, 'status': state}
+    elif state == 'accepted' or state == 'error':
+        return {'name': model.m_name, 'status': state, 'users' : {"user" : token.username, "access" : "admin"}}
+    else:
+        return {}
 
 
 async def get_model_creds(token, model):
@@ -361,7 +356,11 @@ def get_cloud_response(data):
 async def get_ssh_keys(token, model):
     async with model.connect(token) as juju:
         res = await juju.get_ssh_key(False)
-    return res.serialize()['results'][0].serialize()
+    data = res.serialize()['results'][0].serialize()['result']
+    if data is None:
+        return []
+    else:
+        return data
 
 
 async def get_ssh_keys_user(user):
@@ -421,7 +420,7 @@ async def get_public_ip_controller(token, controller):
 
 #libjuju geen manier om gui te verkrijgen of juju gui methode
 async def get_gui_url(controller, model):
-    return 'https://{}:17070/gui/{}'.format(controller.endpoint, model.m_uuid)
+    return 'https://{}/gui/{}'.format(controller.endpoint, model.m_uuid)
 
 
 async def create_model(token, controller, model, credentials):
@@ -430,7 +429,8 @@ async def create_model(token, controller, model, credentials):
         code, response = errors.already_exists('model')
     elif credentials in datastore.get_credential_keys(token.username):
         datastore.add_model_to_controller(controller, model)
-        datastore.set_model_access(controller, model, token.username, 'accepted')
+        datastore.set_model_state(controller, model, 'accepted')
+        datastore.set_model_access(controller, model, token.username, 'admin')
         Popen(["python3.6", "{}/scripts/add_model.py".format(settings.SOJOBO_API_DIR), token.username,
                token.password, settings.SOJOBO_API_DIR, settings.REDIS_HOST, settings.REDIS_PORT,
                controller, model, credentials])
@@ -795,7 +795,7 @@ async def remove_user_from_model(token, controller, model, username):
 
 
 async def user_exists(username):
-    return username == settings.JUJU_ADMIN_USER or username in await get_all_users()
+    return username in await get_all_users()
 
 
 #libjuju: geen andere methode om users op te vragen atm

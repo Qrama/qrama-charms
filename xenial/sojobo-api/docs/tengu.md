@@ -103,12 +103,18 @@ The Tengu-API is a blueprint, automaticaly deployed when installing the Sojobo-A
   {
     "name": "controller1-name",
     "models": [
-        "controller",
-        "default"
+      {
+        "name": "default",
+        "owner-tag": "user-admin",
+        "uuid": "a7063770-e448-49d1-8a4e-930a5e2f1f10"
+      }
     ],
     "type": "google",
     "users": [
-        "admin"
+      {
+        "name": "admin",
+        "access": "superuser"
+      }
     ]
 }
   ```
@@ -159,7 +165,7 @@ The Tengu-API is a blueprint, automaticaly deployed when installing the Sojobo-A
   - Content-Type:application/json
 * **Required body**:
   - model
-  - credentials
+  - credential
 * **Successful response**:
   - code: 202
   - message:
