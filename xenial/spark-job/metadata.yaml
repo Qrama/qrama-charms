@@ -1,0 +1,13 @@
+"name": "spark-job"
+"summary": "Deploys a job on spark"
+"maintainer": "Sebastien Pattyn<sebastien.pattyn@tengu.io>"
+"description": |
+  this charm needs an URL where a Spark job is located and will deploy this job
+  on spark.
+"tags":
+- "Big Data"
+"requires":
+  "spark":
+    "interface": "spark"
+    "scope": "container"
+"subordinate": !!bool "true"

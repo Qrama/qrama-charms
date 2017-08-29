@@ -1,0 +1,5 @@
+"options":
+  "notebook_location":
+    "type": "string"
+    "default": ""
+    "description": "The URL where the notebook can be found to deploy on zeppelin"
