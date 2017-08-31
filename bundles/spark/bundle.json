@@ -56,7 +56,7 @@
 			]
 		},
 		"hadoop-slave": {
-			"charm": "cs:hadoop-slave-15",
+			"charm": "cs:hadoop-slave-28",
 			"num_units": 1,
 			"to": [
 				"0"
@@ -92,18 +92,18 @@
 			"hadoop-plugin:resourcemanager",
 			"hadoop-resourcemanager:resourcemanager"
 		],
-    [
-      "getdata:spark"
-      "spark:client"
-    ],
-    [
-      "validatedata:spark"
-      "spark:client"
-    ],
-    [
-      "tengu-notebook:zeppelin"
-      "zeppelin:juju-info"
-    ]
+	    	[
+	      		"getdata:spark",
+		      	"spark:client"
+	    	],
+	    	[
+		      	"validatedata:spark",
+		      	"spark:client"
+	    	],
+		[
+			"tengu-notebook:zeppelin",
+			"zeppelin:juju-info"
+		]
 	],
 	"machines": {
 		"0": {
