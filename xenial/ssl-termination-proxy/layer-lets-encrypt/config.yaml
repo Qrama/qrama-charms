@@ -1,0 +1,4 @@
+options:
+  contact-email:
+    type: string
+    description: Contact email for Let's Encrypt

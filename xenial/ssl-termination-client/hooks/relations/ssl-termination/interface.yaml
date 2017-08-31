@@ -1,0 +1,4 @@
+name: ssl-termination
+summary: Interface between a ssl-termination-proxy and a ssl-termination-client
+version: 1
+repo: https://github.com/tengu-team/interface-ssl-termination

@@ -1,0 +1,449 @@
+{
+  "layers": [
+    "layer:basic", 
+    "layer:nginx", 
+    "layer:apt", 
+    "layer:lets-encrypt", 
+    "ssl-termination-proxy", 
+    "interface:http", 
+    "interface:ssl-termination", 
+    "build"
+  ], 
+  "signatures": {
+    "bin/layer_option": [
+      "layer:basic", 
+      "static", 
+      "621b556cd208005e131e9f648859294347da9376609745a73ca2e808dd2032f9"
+    ], 
+    "hooks/leader-settings-changed": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "wheelhouse/pyaml-17.8.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "9cf5ff8fc3b82aab1428e67ab2040b52a9f39433517cb7c5b852498ed3a75740"
+    ], 
+    "hooks/leader-elected": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "layer-lets-encrypt/LICENSE.layer-lets-encrypt": [
+      "layer:lets-encrypt", 
+      "static", 
+      "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    ], 
+    "layer-lets-encrypt/README.md": [
+      "layer:lets-encrypt", 
+      "static", 
+      "fbd92d151c316307deb9f27ade43d7b279170ee012a8f72746625e1c05667497"
+    ], 
+    "reactive/__init__.py": [
+      "layer:basic", 
+      "static", 
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    ], 
+    "templates/.gitkeep": [
+      "layer:nginx", 
+      "static", 
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    ], 
+    "wheelhouse/Jinja2-2.9.6.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "ddaa01a212cd6d641401cb01b605f4a4d9f37bfc93043d7f760ec70fb99ff9ff"
+    ], 
+    ".gitignore": [
+      "layer:lets-encrypt", 
+      "static", 
+      "07b366d4d7ac56edf24e6f91eb91d63b40de6c0b0f91078a6e1a0e3914efc1b3"
+    ], 
+    "wheelhouse/python-dateutil-2.6.1.tar.gz": [
+      "layer:lets-encrypt", 
+      "dynamic", 
+      "891c38b2a02f5bb1be3e4793866c8df49c7d19baabf9c1bad62547e0b4866aca"
+    ], 
+    "hooks/ssltermination-relation-joined": [
+      "interface:ssl-termination", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "layer-lets-encrypt/reactive/lets_encrypt.py": [
+      "layer:lets-encrypt", 
+      "static", 
+      "d84aba83ebce929e6933a4ad1f788265d672223b547b3e05ffa5ba0fede5cf61"
+    ], 
+    "copyright": [
+      "ssl-termination-proxy", 
+      "static", 
+      "956caac924f88d39f85d505a690a5f670a325d76b70c7c3ae8aee71d563a3ffe"
+    ], 
+    "hooks/install": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "wheelhouse/PyYAML-3.12.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "592766c6303207a20efc445587778322d7f73b161bd994f227adaa341ba212ab"
+    ], 
+    "reactive/ssl_termination_proxy.py": [
+      "ssl-termination-proxy", 
+      "static", 
+      "b00f5916d95e3824e47e54f2465848ebe66564924d1f98a05175f16eeba3670a"
+    ], 
+    "reactive/lets_encrypt.py": [
+      "layer:lets-encrypt", 
+      "static", 
+      "20eba6b4a8803e6f0182139f844f41dc655e3d703633d98e8eff9d83bb3f99ad"
+    ], 
+    "hooks/relations/http/README.md": [
+      "interface:http", 
+      "static", 
+      "9c95320ad040745374fc03e972077f52c27e07eb0386ec93ae19bd50dca24c0d"
+    ], 
+    "layer-lets-encrypt/tox.ini": [
+      "layer:lets-encrypt", 
+      "static", 
+      "b6f262c59da6949be645bdfefda43c9f90b351170718e60760b0d2a8579f12df"
+    ], 
+    "README.md": [
+      "ssl-termination-proxy", 
+      "static", 
+      "6ea42c97de9165d66f221af75a1670d11e7cce36629b8065e2a023eb0a586537"
+    ], 
+    "lib/.gitkeep": [
+      "layer:nginx", 
+      "static", 
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    ], 
+    "hooks/ssltermination-relation-broken": [
+      "interface:ssl-termination", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "icon.svg": [
+      "ssl-termination-proxy", 
+      "static", 
+      "3c1c6a2b063067972e6813a36a2ce4aa3cb427d79c9252ff888c4d2d72d569ff"
+    ], 
+    "hooks/relations/ssl-termination/requires.py": [
+      "interface:ssl-termination", 
+      "static", 
+      "9e47576fa43114a82e0dab86d91604f66e1711af4b1a37f41ec689ad94c0e17e"
+    ], 
+    "config.yaml": [
+      "layer:lets-encrypt", 
+      "dynamic", 
+      "c0eb14196246e6c6b3abc72df891fa9c2e068aa03f5516fa7433222d5c310bca"
+    ], 
+    "lib/charms/layer/nginx.py": [
+      "layer:nginx", 
+      "static", 
+      "0dcf5852ced4937caeee8f0a3d6d4442aa8efc540b80592731fc05ff8a3cbf6b"
+    ], 
+    "hooks/hook.template": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "wheelhouse/netaddr-0.7.19.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "38aeec7cdd035081d3a4c306394b19d677623bf76fa0913f6695127c7753aefd"
+    ], 
+    "hooks/relations/ssl-termination/interface.yaml": [
+      "interface:ssl-termination", 
+      "static", 
+      "45b12b50c379eb0d60d9680350814b52376f1e31c56d0b21aca361f8201b0b9a"
+    ], 
+    "templates/vhost.conf.ex": [
+      "layer:nginx", 
+      "static", 
+      "f68c366c35a8487acb78da6f1086eeee33a3eccdbe5a524509039c0c41ad5d5a"
+    ], 
+    "wheelhouse/pip-8.1.2.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "4d24b03ffa67638a3fa931c09fd9e0273ffa904e95ebebe7d4b1a54c93d7b732"
+    ], 
+    "hooks/ssltermination-relation-changed": [
+      "interface:ssl-termination", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/update-status": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "layer-lets-encrypt/lib/charms/layer/lets_encrypt.py": [
+      "layer:lets-encrypt", 
+      "static", 
+      "0ae85875a6cd3d026d2bacc24a2063c404d4e2730844b6d4d36037fd7a53fcaf"
+    ], 
+    "hooks/relations/http/requires.py": [
+      "interface:http", 
+      "static", 
+      "70188554d673bff61578f4e601a78a91efb4736df727507e984be5ca19335f82"
+    ], 
+    "lib/charms/layer/lets_encrypt.py": [
+      "layer:lets-encrypt", 
+      "static", 
+      "c39a4bf20ec9fbf486a90620944438177232f69376022d579db7d25f663d2072"
+    ], 
+    "lib/charms/layer/__init__.py": [
+      "layer:basic", 
+      "static", 
+      "71a8b901f7e64a6b1b61959fc25819bafc9c9905e37a918615b9f949295095a4"
+    ], 
+    "AUTHORS": [
+      "layer:nginx", 
+      "static", 
+      "5e460cc5d7fe5ce6dc5c4e8eefc13159ee58874667baf9af3b5fa9b597a10fa2"
+    ], 
+    ".build.manifest": [
+      "build", 
+      "dynamic", 
+      "unchecked"
+    ], 
+    "hooks/website-relation-broken": [
+      "interface:http", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/website-relation-departed": [
+      "interface:http", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/relations/http/interface.yaml": [
+      "interface:http", 
+      "static", 
+      "d0b64038b85b7791ee4f3a42d73ffc8c208f206f73f899cbf33a519d12f9ad13"
+    ], 
+    "hooks/website-relation-joined": [
+      "interface:http", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "lib/charms/layer/execd.py": [
+      "layer:basic", 
+      "static", 
+      "af1f2409869f990cdb33cffc4120fb6713876e8e680ac5f064ea510bbdca1073"
+    ], 
+    "layer-lets-encrypt/wheelhouse.txt": [
+      "layer:lets-encrypt", 
+      "static", 
+      "54f9d0f5c65f4037cc9417c3730f4e128eb43ad4e87d684dd071c5417d09c4fb"
+    ], 
+    "layer-lets-encrypt/Makefile": [
+      "layer:lets-encrypt", 
+      "static", 
+      "64af52e91708443f6ff58252c13432049dadf40f3e180e270ef3e0e166209e2e"
+    ], 
+    "Makefile": [
+      "layer:lets-encrypt", 
+      "static", 
+      "64af52e91708443f6ff58252c13432049dadf40f3e180e270ef3e0e166209e2e"
+    ], 
+    "docs/ssl-termination-proxy.svg": [
+      "ssl-termination-proxy", 
+      "static", 
+      "b2e8cb44dbbb44cd3ad218e39f01ef2e94d4b96c993f0be5a864fcd90b8735d4"
+    ], 
+    "hooks/relations/ssl-termination/LICENSE": [
+      "interface:ssl-termination", 
+      "static", 
+      "589ed823e9a84c56feb95ac58e7cf384626b9cbf4fda2a907bc36e103de1bad2"
+    ], 
+    "layer-lets-encrypt/requirements.txt": [
+      "layer:lets-encrypt", 
+      "static", 
+      "075dd0664a7d772b720a297f98a4c98da93bbe0713dbb256021680e2dcebe850"
+    ], 
+    "hooks/upgrade-charm": [
+      "layer:basic", 
+      "static", 
+      "8fb6559bf4d4b7cdf1b857564c1d7265df98e863a4746fcbae092f141e59d97e"
+    ], 
+    "wheelhouse/Tempita-0.5.2.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "cacecf0baa674d356641f1d406b8bff1d756d739c46b869a54de515d08e6fc9c"
+    ], 
+    "hooks/relations/http/__init__.py": [
+      "interface:http", 
+      "static", 
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    ], 
+    "hooks/relations/http/provides.py": [
+      "interface:http", 
+      "static", 
+      "c6e16d6c0d80009aab33c51cb1e196f959df155ac656f47fe7104484859d2476"
+    ], 
+    "tox.ini": [
+      "layer:lets-encrypt", 
+      "static", 
+      "b6f262c59da6949be645bdfefda43c9f90b351170718e60760b0d2a8579f12df"
+    ], 
+    "metadata.yaml": [
+      "ssl-termination-proxy", 
+      "dynamic", 
+      "4c5e72ecb420b690139f989861d37b818415d5a2f9f268f82b4495e7ee4070cf"
+    ], 
+    "files/dhparam.pem": [
+      "layer:lets-encrypt", 
+      "static", 
+      "76baf2afc55131c503fb4bc4fa866b1dc75c2e7598d7f61fd4e736a178a46736"
+    ], 
+    "templates/service.conf": [
+      "ssl-termination-proxy", 
+      "static", 
+      "6674dba41caf0c239b3ec345d58adcedf47e39649ce60610bc3b1824eca57f07"
+    ], 
+    "wheelhouse/charms.reactive-0.4.7.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "f023f5aef267786db1be51209610487171ba56e848f7b1c49877b06337000256"
+    ], 
+    "layer-lets-encrypt/files/dhparam.pem": [
+      "layer:lets-encrypt", 
+      "static", 
+      "76baf2afc55131c503fb4bc4fa866b1dc75c2e7598d7f61fd4e736a178a46736"
+    ], 
+    "layer-lets-encrypt/layer.yaml": [
+      "layer:lets-encrypt", 
+      "static", 
+      "d54209fbffc2d5a9d4046edf5e37618dd04b80e86fad93dac2262b4b184e15dd"
+    ], 
+    "layer-lets-encrypt/metadata.yaml": [
+      "layer:lets-encrypt", 
+      "static", 
+      "514118cd3c3c0009d66482e707cf2f4f9b7da5b98256a9f76ecbabd5952ee6f7"
+    ], 
+    "hooks/config-changed": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/stop": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "reactive/apt.py": [
+      "layer:apt", 
+      "static", 
+      "6dad3fc2032bc4367b3669def96a45609222a745fd28763992725e377d7c974c"
+    ], 
+    "LICENSE.layer-lets-encrypt": [
+      "layer:lets-encrypt", 
+      "static", 
+      "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    ], 
+    "lib/charms/layer/basic.py": [
+      "layer:basic", 
+      "static", 
+      "d09706ef3a224eb60d34366a2867c382791aa30157ab5b77eda37f29731df2e2"
+    ], 
+    "wheelhouse/six-1.10.0.tar.gz": [
+      "layer:lets-encrypt", 
+      "dynamic", 
+      "105f8d68616f8248e24bf0e9372ef04d3cc10104f1980f54d57b2ce73a5ad56a"
+    ], 
+    "wheelhouse/python-crontab-2.2.4.tar.gz": [
+      "layer:lets-encrypt", 
+      "dynamic", 
+      "2cceb39e1af9e85c293ad2ebc32b57ed804da31fd1a7f21eee6f4b43f4a4910f"
+    ], 
+    "docs/ssl-termination-proxy.png": [
+      "ssl-termination-proxy", 
+      "static", 
+      "984bda827154c3d9d42d64cec86cb7c323d4c38d8d9875e25508799f91ae1faa"
+    ], 
+    "lib/charms/__init__.py": [
+      "layer:apt", 
+      "static", 
+      "4032724b98ed267185b12b8ec78dd9bcb0423ab1c89a6f0dad99397fd51159d9"
+    ], 
+    "hooks/ssltermination-relation-departed": [
+      "interface:ssl-termination", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "reactive/nginx.py": [
+      "layer:nginx", 
+      "static", 
+      "d4a49b739921761cac5943e1ac5781dc965be2b8d10fd39984e0193783898fa4"
+    ], 
+    "layer-lets-encrypt/.gitignore": [
+      "layer:lets-encrypt", 
+      "static", 
+      "07b366d4d7ac56edf24e6f91eb91d63b40de6c0b0f91078a6e1a0e3914efc1b3"
+    ], 
+    "hooks/website-relation-changed": [
+      "interface:http", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/relations/ssl-termination/__init__.py": [
+      "interface:ssl-termination", 
+      "static", 
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    ], 
+    "hooks/start": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "wheelhouse/MarkupSafe-1.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "a6be69091dac236ea9c6bc7d012beab42010fa914c459791d627dad4910eb665"
+    ], 
+    "hooks/relations/ssl-termination/provides.py": [
+      "interface:ssl-termination", 
+      "static", 
+      "5ff610f09055f4e313d6594c57cf5a88660a326ca5cdd73197bc45dba7587971"
+    ], 
+    "layer-lets-encrypt/config.yaml": [
+      "layer:lets-encrypt", 
+      "static", 
+      "5a9f7beeb8dda6a7051b6746c91dfba9e35be57721259feaa4ca99aef747cf3e"
+    ], 
+    "layer.yaml": [
+      "ssl-termination-proxy", 
+      "dynamic", 
+      "4216bc9ed9b008d72df9849179cd265f704abaf44b6200e04ccb8a6c45d3d870"
+    ], 
+    "wheelhouse/toml-0.9.2.tar.gz": [
+      "layer:nginx", 
+      "dynamic", 
+      "b3953bffe848ad9a6d554114d82f2dcb3e23945e90b4d9addc9956f37f336594"
+    ], 
+    "wheelhouse/charmhelpers-0.18.1.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "15dbae866550b724fb81ce501e118386b28a554110bd45f8ce3f62139411cf9f"
+    ], 
+    "lib/nginxlib.py": [
+      "layer:nginx", 
+      "static", 
+      "bae474acba0fbf9da21f1372dcda1dba848757c5e7cebb6fb22c29f04a67c0aa"
+    ], 
+    "requirements.txt": [
+      "layer:lets-encrypt", 
+      "static", 
+      "075dd0664a7d772b720a297f98a4c98da93bbe0713dbb256021680e2dcebe850"
+    ], 
+    "lib/charms/apt.py": [
+      "layer:apt", 
+      "static", 
+      "f074d981409c3860547f8c45cde9c3ce4a80985a5ee94755981cd10117dc76e4"
+    ]
+  }
+}
