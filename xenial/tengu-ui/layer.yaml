@@ -17,5 +17,6 @@
 - "layer:apt"
 - "layer:nginx-passenger"
 - "interface:sojobo"
+- "interface:http"
 "repo": "git@github.com:Qrama/layer-tengu-ui.git"
 "is": "tengu-ui"

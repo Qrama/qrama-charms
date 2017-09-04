@@ -16,19 +16,17 @@
 # pylint: disable=c0111,c0103,c0301
 import os
 import shutil
-import subprocess
 # Charm pip dependencies
 from charmhelpers.core.templating import render
-from charmhelpers.core.hookenv import status_set, log, config, open_port, close_port, unit_public_ip
+from charmhelpers.core.hookenv import status_set, log, config, open_port, unit_private_ip
 from charmhelpers.core.host import service_restart, chownr, adduser
 from charms.reactive import hook, when, when_not, set_state, remove_state
 
 
-API_DIR = config()['api-dir']
-USER = config()['user']
-GROUP = config()['nginx-group']
-HOST = config()['host'] if config()['host'] != '127.0.0.1' else unit_public_ip()
-SETUP = config()['setup']
+API_DIR = '/opt/tengu_ui'
+USER = 'tengu'
+GROUP = 'www-data'
+HOST = unit_private_ip()
 ###############################################################################
 # INSTALLATION AND UPGRADES
 ###############################################################################
@@ -47,92 +45,6 @@ def upgrade_charm():
     set_state('tengu.installed')
 
 
-@when('tengu.configured', 'nginx.passenger.available')
-@when_not('tengu.running')
-def configure_webapp():
-    if SETUP == 'https':
-        close_port(80)
-        close_port(443)
-        render_httpsclient()
-        open_port(443)
-        open_port(80)
-    elif SETUP == 'letsencrypt':
-        close_port(80)
-        close_port(443)
-        render_httpsletsencrypt()
-        open_port(80)
-    else:
-        close_port(80)
-        close_port(443)
-        render_http()
-        open_port(80)
-    restart_api()
-    set_state('tengu.running')
-    status_set('active', 'The Tengu-UI is running')
-
-
-def install_tengu():
-    mergecopytree('files/tengu_ui', API_DIR)
-    try:
-        os.mkdir('/home/{}'.format(USER))
-        adduser(USER)
-        chownr('/home/{}'.format(USER), USER, USER, chowntopdir=True)
-        chownr(API_DIR, USER, GROUP, chowntopdir=True)
-    except FileExistsError:
-        pass
-
-
-def render_httpsclient():
-    context = {'hostname': HOST, 'user': USER, 'rootdir': API_DIR, 'dhparam': config()['dhparam']}
-    chownr(context['dhparam'], GROUP, 'root')
-    if config()['fullchain'] == '' and config()['privatekey'] == '':
-        chownr('/etc/letsencrypt/live/{}'.format(HOST), GROUP, 'root', chowntopdir=True)
-        context['fullchain'] = '/etc/letsencrypt/live/{}/fullchain.pem'.format(HOST)
-        context['privatekey'] = '/etc/letsencrypt/live/{}/privkey.pem'.format(HOST)
-        render('https.conf', '/etc/nginx/sites-enabled/tengu.conf', context)
-    elif config()['fullchain'] != '' and config()['privatekey'] != '':
-        context['fullchain'] = config()['fullchain']
-        context['privatekey'] = config()['privatekey']
-        render('https.conf', '/etc/nginx/sites-enabled/tengu.conf', context)
-    else:
-        status_set('blocked', 'Invalid fullchain and privatekey config')
-
-
-def render_httpsletsencrypt():
-    context = {'hostname': HOST, 'user': USER, 'rootdir': API_DIR}
-    if not os.path.isdir('{}/.well-known'.format(API_DIR)):
-        os.mkdir('{}/.well-known'.format(API_DIR))
-    chownr('{}/.well-known'.format(API_DIR), USER, GROUP, chowntopdir=True)
-    render('letsencrypt.conf', '/etc/nginx/sites-enabled/tengu.conf', context)
-
-
-def render_http():
-    context = {'hostname': HOST, 'user': USER, 'rootdir': API_DIR}
-    render('http.conf', '/etc/nginx/sites-enabled/tengu.conf', context)
-
-
-def restart_api():
-    service_restart('nginx')
-    subprocess.check_call(['service', 'nginx', 'status'])
-
-
-def dhparam(size):
-    if not os.path.isdir('/etc/nginx/ssl'):
-        os.mkdir('/etc/nginx/ssl')
-    if not os.path.isdir('/etc/nginx/ssl/{}'.format(HOST)):
-        os.mkdir('/etc/nginx/ssl/{}'.format(HOST))
-    chownr('/etc/nginx/ssl/{}'.format(HOST), GROUP, 'root', chowntopdir=True)
-    subprocess.check_call(['openssl', 'dhparam', '-out', '/etc/nignx/ssl/{}/dhparam.pem'.format(HOST), str(size)])
-    return '/etc/nignx/ssl/{}/dhparam.pem'.format(HOST)
-
-
-# Handeling changed configs
-@when('tengu.configured', 'config.changed')
-def feature_flags_changed():
-    configure_webapp()
-    restart_api()
-
-
 @when('sojobo.available')
 @when_not('tengu.running')
 def configure(sojobo):
@@ -143,11 +55,27 @@ def configure(sojobo):
     data = list(sojobo.connection())[0]
     render('settings.js', '{}/scripts/{}.settings.js'.format(API_DIR, prefix),
            {'sojobo_url': data['url'],
-            'bundles_url': config()['bundles_url'],
             'mappings_url': config()['mappings_url'],
             'api_key': data['api-key'],
             'init_cmd': ':signin'})
     set_state('tengu.configured')
+
+
+@when('tengu.installed', 'nginx.passenger.available', 'tengu.configured')
+@when_not('tengu.running')
+def render_http():
+    context = {'hostname': HOST, 'user': USER, 'rootdir': API_DIR}
+    render('http.conf', '/etc/nginx/sites-enabled/tengu_ui.conf', context)
+    open_port(80)
+    service_restart('nginx')
+    set_state('tengu.running')
+    status_set('active', 'active (ready)')
+
+
+@when('tengu.running', 'proxy.available')
+def configure_proxy(proxy):
+    proxy.configure(80)
+    set_state('tengu.proxy-configured')
 
 
 @when('tengu.installed', 'nginx.passenger.available')
@@ -180,3 +108,14 @@ def mergecopytree(src, dst, symlinks=False, ignore=None):
             mergecopytree(src_item, dst_item, symlinks, ignore)
         else:
             shutil.copy2(src_item, dst_item)
+
+
+def install_tengu():
+    if not os.path.isdir('/home/{}'.format(USER)):
+        os.mkdir('/home/{}'.format(USER))
+        adduser(USER)
+        chownr('/home/{}'.format(USER), USER, USER, chowntopdir=True)
+    if not os.path.isdir(API_DIR):
+        os.mkdir(API_DIR)
+    mergecopytree('files/tengu_ui', API_DIR)
+    chownr(API_DIR, USER, GROUP, chowntopdir=True)

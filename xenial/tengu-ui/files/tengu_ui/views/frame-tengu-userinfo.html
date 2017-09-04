@@ -1,4 +1,4 @@
-<div ng-controller="UserInfoCtrl">
+<div ng-controller="UserInfoCtrl" fullscreen="fullscreen">
   <div class="outer">
     <div class="code-bar">
       <ul class="actions list-inline">
@@ -23,77 +23,197 @@
       </ul>
       <div class="status"><span ng-if="frame.type == &quot;cypher&quot;" class="prompt code">$</span><span click-to-code="frame.input" class="code mono">{{frame.input | uncomment}}</span></div><a ng-click="toggleFullscreen(false)" tooltip="Close Fullscreen" tooltip-placement="bottom" class="close-fullscreen sl sl-scale-reduce"></a>
     </div>
-    <div class="inner">
-      <div class="view-result">
-        <article class="help">
-          <div class="container-fluid">
-            <div ng-show="!static_is_authenticated" class="section row-fluid summary">
-              <div class="details">
+    <div class="left-frame-toggle">
+      <div ng-if="availableModes.length &gt; 0" class="left-toggle-menu toggle">
+        <div class="btn-group toggle-buttons">
+          <div ng-show="isAvailable('info')" class="button-holder">
+            <button ng-class="{active: isActive(&quot;info&quot;)}" ng-click="setActive(&quot;info&quot;)" class="btn"><i class="fa fa-info"></i><span class="mini-menu-item-text">Info</span></button><br>
+          </div>
+          <div ng-show="isAvailable('keys')" class="button-holder">
+            <button ng-class="{active: isActive(&quot;keys&quot;)}" ng-click="setActive(&quot;keys&quot;)" class="btn"><i class="fa fa-key"></i><span class="mini-menu-item-text">SSH-...</span></button><br>
+          </div>
+          <div ng-show="isAvailable('creds')" class="button-holder">
+            <button ng-class="{active: isActive(&quot;creds&quot;)}" ng-click="setActive(&quot;creds&quot;)" class="btn"><i class="fa fa-lock"></i><span class="mini-menu-item-text">Cred...</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div ng-class="{&quot;no-left-menu&quot;: availableModes.length &lt; 1}" class="right-inner-frame no-indicator">
+      <div class="inner">
+        <div ng-class="{error: frame.hasErrors}" class="view-result">
+          <div ng-show="isActive(&quot;info&quot;) &amp;&amp; !frame.isTerminating" class="view-result-table result">
+            <div ng-show="!static_is_authenticated" class="table-holder">
+              <article class="guide no-data has-status-bar">
                 <h3>User is not signed in</h3>
-                <p class="lead">You are not signed in. Please use your credentials to <code exec-topic="signin">signin</code>.</p>
-              </div>
+                <p class="lead">You are not signed in. Please use your credentials to <code exec-topic="signin">signin</code>.</p><br><br>
+              </article>
             </div>
-            <div ng-show="static_is_authenticated &amp;&amp; static_user" class="section row-fluid summary">
-              <div class="summary col-sm-3">
-                <h3>Welcome <b>{{static_user}}</b></h3>
-                <p class="lead">Lovely to see you.</p>
-              </div>
-              <div ng-show="user_info" class="details col-sm-9">
-                <table ng-if="models != null &amp;&amp; models.length &gt; 0" class="table table-condensed">
-                  <thead>
-                    <td>Model</td>
-                    <td>Environment</td>
-                    <td>Access level</td>
-                    <td>&nbsp;</td>
-                  </thead>
-                  <tr ng-repeat="model in models">
-                    <th>{{model.name}}</th>
-                    <td> <img ng-src="images/{{model.type}}.svg">&nbsp;{{model.controller}}</td>
-                    <td>{{model.access}}</td>
-                    <td>
-                      <ul class="actions list-inline">
-                        <li> <a view-model="{{model.name}}@{{model.controller}}" tooltip="Show model status" class="sl-show"></a></li>
-                        <li><a delete-model="{{model.name}}@{{model.controller}}" tooltip="Delete the model" class="sl-delete"></a></li>
-                      </ul>
-                    </td>
-                  </tr>
-                </table>
-                <p ng-if="models.length == 0" class="lead">You don't have any models yet.<br><br>Do you want to create a new model?<br><a play-topic="tengu">Get started!</a>
-                  </p><p ng-if="models.length == 0 &amp;&amp; controllers != null &amp;&amp; controllers.length &gt; 0">There are already some environment availble for you:
-                    <table ng-if="models.length == 0 &amp;&amp; controllers != null &amp;&amp; controllers.length &gt; 0" class="table table-condensed">
-                      <thead>
-                        <td>Environment</td>
-                        <td>Type</td>
-                        <td>Access level</td>
-                      </thead>
-                      <tr ng-repeat="controller in controllers">
-                        <th>{{controller.name}}</th>
-                        <td> <img ng-src="images/{{controller.type}}.svg"></td>
-                        <td>{{controller.access}}</td>
-                      </tr>
-                    </table>
+            <div ng-show="static_is_authenticated &amp;&amp; static_user" class="table-holder">
+              <article class="guide">
+                <div class="summary col-sm-3">
+                  <h3>Welcome <b>{{static_user}}</b></h3>
+                  <p class="lead">Lovely to see you.</p>
+                </div>
+                <div ng-hide="user_info" class="details col-sm-9">
+                  <p class="lead">
+                    <div class="fa fa-spinner fa-spin"></div> We are loading your environments and models.
                   </p>
-                
-              </div>
-              <div ng-hide="user_info" class="details col-sm-9">
-                <p class="lead">
-                  <div class="fa fa-spinner fa-spin"></div> We are loading your environments and models.
+                </div>
+                <div ng-show="user_info" class="details col-sm-9">
+                  <p ng-show="controllers == null || controllers.length == 0" class="lead">
+                    There is not yet an environment available for you. Want to
+                    create one?<br><a click-to-command=":tengu environment create">
+                       
+                      Create a brand new environment</a>
+                  </p>
+                  <table ng-hide="controllers == null || controllers.length == 0" class="table table-condensed">
+                    <thead>
+                      <th>Environment</th>
+                      <th>Type</th>
+                      <th>Access level</th>
+                    </thead>
+                    <tr ng-repeat="controller in controllers">
+                      <td>{{controller.name}}</td>
+                      <td> <img ng-src="images/{{controller.type}}.svg"></td>
+                      <td>{{controller.access}}</td>
+                    </tr>
+                  </table>
+                  <p ng-show="controllers != null &amp;&amp; controllers.length &gt; 0 &amp;&amp; (models == null || models.length == 0)">Ow, it seems like you don't have any models yet.<br>Do you want to create a new model?<br><a play-topic="tengu">Get started!</a></p>
+                  <table ng-show="controllers != null &amp;&amp; controllers.length &gt; 0 &amp;&amp; models != null &amp;&amp; models.length &gt; 0" class="table table-condensed">
+                    <thead>
+                      <th>Model</th>
+                      <th>Environment</th>
+                      <th>Access level</th>
+                      <th>&nbsp;</th>
+                    </thead>
+                    <tr ng-repeat="model in models">
+                      <td>{{model.name}}</td>
+                      <td> <img ng-src="images/{{model.type}}.svg">&nbsp;{{model.controller}}</td>
+                      <td>{{model.access}}</td>
+                      <td>
+                        <ul class="actions list-inline">
+                          <li> <a view-model="{{model.name}}@{{model.controller}}" tooltip="Show model status" class="sl-show"></a></li>
+                          <li><a delete-model="{{model.name}}@{{model.controller}}" tooltip="Delete the model" class="sl-delete"></a></li>
+                        </ul>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </article>
+            </div>
+            <div ng-show="!frame.hasErrors" class="status-bar">
+              <div class="status"><span ng-show="frame.hasErrors">Execution error</span>
+                <p ng-hide="frame.hasErrors"><span>{{resultStatistics(frame)}}</span>
+                  <div ng-show="isActive(&quot;text&quot;)" class="frame-slider-wrapper"><span>Max column width: </span>
+                    <div class="frame-slider">
+                      <range-slider ng-range-min="slider.min" ng-range-max="slider.max" ng-model="ascii_col_width" class="text-table-slider"></range-slider>
+                    </div>
+                  </div>
                 </p>
               </div>
             </div>
           </div>
-        </article>
-      </div>
-      <div ng-class="{error: frame.detailedErrorText, loading: frame.isLoading}" class="status-bar">
-        <div ng-show="frame.detailedErrorText" class="status">
-          <div class="fa fa-exclamation-triangle icon-warning-sign">&nbsp;</div>{{frame.detailedErrorText}}
-          <div ng-hide="frame.hasErrors">
-            <div ng-show="frame.response">
-              <div class="fa fa-ok"></div>Logged in as {{frame.response.name}} ({{frame.response.identities[0].provider}})
+          <div ng-show="isActive(&quot;keys&quot;) &amp;&amp; !frame.isTerminating" class="view-result-table result">
+            <div ng-show="!static_is_authenticated" class="table-holder">
+              <article class="guide no-data has-status-bar">
+                <h3>User is not signed in</h3>
+                <p class="lead">You are not signed in. Please use your credentials to <code exec-topic="signin">signin</code>.</p><br><br>
+              </article>
+            </div>
+            <div ng-show="static_is_authenticated &amp;&amp; static_user" class="table-holder">
+              <article class="guide">
+                <div class="summary col-sm-3">
+                  <h3>Welcome <b>{{static_user}}</b></h3>
+                  <p class="lead">Lovely to see you.</p>
+                </div>
+                <div ng-hide="user_info" class="details col-sm-9">
+                  <p class="lead">
+                    <div class="fa fa-spinner fa-spin"></div> We are loading your info about your SSH keys.
+                  </p>
+                </div>
+                <div ng-show="user_info" class="details col-sm-9">
+                  <p ng-show="sshKeys == null || sshKeys.length == 0" class="lead">You don't have any registered SSH-keys. Want to add one?<br><a click-to-command=":tengu user add-ssh-key">
+                       
+                      Add your public SSH key</a></p>
+                  <table ng-hide="sshKeys == null || sshKeys.length == 0" class="table table-condensed">
+                    <thead>
+                      <td>Your SSH keys                      </td>
+                    </thead>
+                    <tr ng-repeat="key in sshKeys">
+                      <td style="word-break: break-all; font-family: Menlo, Monaco, Consolas, &quot;Courier New&quot;, monospace" class="code">{{key}}</td>
+                    </tr>
+                    <tr>
+                      <td><br>Want to add extra SSH keys?<br><a click-to-command=":tengu user add-ssh-key">Add an extra public SSH key</a></td>
+                    </tr>
+                  </table>
+                </div>
+              </article>
+            </div>
+            <div ng-show="!frame.hasErrors" class="status-bar">
+              <div class="status"><span ng-show="frame.hasErrors">Execution error</span>
+                <p ng-hide="frame.hasErrors"><span>{{resultStatistics(frame)}}</span>
+                  <div ng-show="isActive(&quot;text&quot;)" class="frame-slider-wrapper"><span>Max column width: </span>
+                    <div class="frame-slider">
+                      <range-slider ng-range-min="slider.min" ng-range-max="slider.max" ng-model="ascii_col_width" class="text-table-slider"></range-slider>
+                    </div>
+                  </div>
+                </p>
+              </div>
             </div>
           </div>
-        </div><span ng-show="frame.isLoading">
-          <div class="fa fa-spinner fa-spin"></div>Loading user info...</span>
+          <div ng-show="isActive(&quot;creds&quot;) &amp;&amp; !frame.isTerminating" class="view-result-table result">
+            <div ng-show="!static_is_authenticated" class="table-holder">
+              <article class="guide no-data has-status-bar">
+                <h3>User is not signed in</h3>
+                <p class="lead">You are not signed in. Please use your credentials to <code exec-topic="signin">signin</code>.</p><br><br>
+              </article>
+            </div>
+            <div ng-show="static_is_authenticated &amp;&amp; static_user" class="table-holder">
+              <article class="guide">
+                <div class="summary col-sm-3">
+                  <h3>Welcome <b>{{static_user}}</b></h3>
+                  <p class="lead">Lovely to see you.</p>
+                </div>
+                <div ng-hide="user_info" class="details col-sm-9">
+                  <p class="lead">
+                    <div class="fa fa-spinner fa-spin"></div> We are loading your cloud credentials.
+                  </p>
+                </div>
+                <div ng-show="user_info" class="details col-sm-9">
+                  <p ng-show="credentials == null || credentials.length == 0" class="lead">You don't have any registered cloud credentials. Want to add one?<br><a click-to-command=":tengu user add-credential">
+                       
+                      Add a cloud credential</a></p>
+                  <table ng-hide="credentials == null || credentials.length == 0" class="table table-condensed">
+                    <thead>
+                      <th>Credential name</th>
+                      <th>Cloud</th>
+                      <th>Type</th>
+                    </thead>
+                    <tr ng-repeat="cred in credentials">
+                      <td>{{cred.name}}</td>
+                      <td> <img ng-src="images/{{cred.cloud}}.svg"></td>
+                      <td>{{cred.type}}</td>
+                    </tr>
+                    <tr>
+                      <td colspan="3"><br>Want to add extra cloud credentials?<br><a click-to-command=":tengu user add-credential">Add an extra cloud credential</a></td>
+                    </tr>
+                  </table>
+                </div>
+              </article>
+            </div>
+            <div ng-show="!frame.hasErrors" class="status-bar">
+              <div class="status"><span ng-show="frame.hasErrors">Execution error</span>
+                <p ng-hide="frame.hasErrors"><span>{{resultStatistics(frame)}}</span>
+                  <div ng-show="isActive(&quot;text&quot;)" class="frame-slider-wrapper"><span>Max column width: </span>
+                    <div class="frame-slider">
+                      <range-slider ng-range-min="slider.min" ng-range-max="slider.max" ng-model="ascii_col_width" class="text-table-slider"></range-slider>
+                    </div>
+                  </div>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

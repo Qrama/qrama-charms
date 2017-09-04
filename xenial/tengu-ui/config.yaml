@@ -42,48 +42,6 @@
     "type": "string"
     "default": "127.0.0.1"
     "description": "listen address"
-  "api-dir":
-    "type": "string"
-    "default": "/opt/tengu_ui"
-    "description": |
-      The location where the ui will be installed
-  "user":
-    "type": "string"
-    "default": "tengu"
-    "description": |
-      The linux user that will be created to run the api
-  "nginx-group":
-    "type": "string"
-    "default": "www-data"
-    "description": |
-      The linux group of which nginx is a member
-  "setup":
-    "type": "string"
-    "default": "letsencrypt"
-    "description": |
-      Choose the type of install: https [client] with client certificates, https [letsencrypt] with
-      letsencrypt certificates. If an option is entered which does not match [client, letsencrypt], defaults to letsencrypt.
-      the setup and config for letsencrypt is a manual process, which is documented in the readme.
-  "fullchain":
-    "type": "string"
-    "default": ""
-    "description": |
-      Specify the location of the ssl fullchain. Leave blank if you want the charm to setup a letsencrypt certificate
-  "privatekey":
-    "type": "string"
-    "default": ""
-    "description": |
-      Specify the location of the ssl privatekey. Leave blank if you want the charm to setup a letsencrypt certificate
-  "dhparam":
-    "type": "string"
-    "default": "/etc/nginx/ssl/dhparam.pem"
-    "description": |
-      Location of the DH.pem file
-  "bundles_url":
-    "type": "string"
-    "default": "http://tengu.io/bundles/{{bundlename}}.json"
-    "description": |
-      Specify the location of custom bundles
   "mappings_url":
     "type": "string"
     "default": ""

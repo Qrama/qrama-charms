@@ -14,6 +14,11 @@
       "static", 
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
+    "wheelhouse/pyaml-17.8.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "9cf5ff8fc3b82aab1428e67ab2040b52a9f39433517cb7c5b852498ed3a75740"
+    ], 
     "hooks/leader-elected": [
       "layer:basic", 
       "static", 
@@ -29,10 +34,10 @@
       "static", 
       "85623cc1bc420b0b083915ed06f3282eb01852c6b5ca2dcd62c3ec544997374b"
     ], 
-    "hooks/relations/sojobo/LICENSE": [
-      "interface:sojobo", 
+    "files/tengu_ui/images/device-icons/favicon-96x96.png": [
+      "tengu-ui", 
       "static", 
-      "956caac924f88d39f85d505a690a5f670a325d76b70c7c3ae8aee71d563a3ffe"
+      "252f2512c98b75ecd93cde36604777be029b9cff4db282ef293f222b3ec19b7e"
     ], 
     "files/tengu_ui/content/guides/write-code.html": [
       "tengu-ui", 
@@ -54,10 +59,10 @@
       "static", 
       "f1bb12f9cd102a07a22f31aa1dd5bc41088572bb4b2acf1f486f0e063aa7a436"
     ], 
-    "templates/https.conf": [
+    "files/tengu_ui/images/query-plan-operator-rows.svg": [
       "tengu-ui", 
       "static", 
-      "f4c1f851473a0f3e850a04e4eca2e2e7d31dbfd3d4e1fa6c1943ee3362cf6a22"
+      "e58a9501ee37902a81f8e59ef2580002b5727448cc38930f955c0301d0d53fd4"
     ], 
     "copyright": [
       "layer:apt", 
@@ -134,10 +139,15 @@
       "static", 
       "4483e2fc3adfff9485dd64e238780e20c2c9a497f3e592d1f78a0533f020f273"
     ], 
-    "hooks/relations/http/provides.py": [
-      "interface:http", 
+    "hooks/hook.template": [
+      "layer:basic", 
       "static", 
-      "eb4b01fc022cafbb6e67cb200f497ab3aeee4b954b1b9ff2be1d8e64d1a4be20"
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "files/tengu_ui/content/help/with.html": [
+      "tengu-ui", 
+      "static", 
+      "9e7d424987813736cfb189e18ebb50463f771d7d1b75998122f31145476e3cd0"
     ], 
     "files/tengu_ui/images/develop-strip.png": [
       "tengu-ui", 
@@ -219,10 +229,10 @@
       "static", 
       "d0b64038b85b7791ee4f3a42d73ffc8c208f206f73f899cbf33a519d12f9ad13"
     ], 
-    "hooks/stop": [
-      "layer:basic", 
+    "hooks/relations/sojobo/__init__.py": [
+      "interface:sojobo", 
       "static", 
-      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     ], 
     "Makefile": [
       "layer:basic", 
@@ -257,12 +267,7 @@
     "files/tengu_ui/views/frame-model-create.html": [
       "tengu-ui", 
       "static", 
-      "3f467bb63f29255cf1639b160fdf8401ad9346c2cd54f3837da42787781453d3"
-    ], 
-    "wheelhouse/charmhelpers-0.15.0.tar.gz": [
-      "layer:basic", 
-      "dynamic", 
-      "dde6d6905a1f71cd3a6ed7cbf92bb4c26159d6a1b5ce8b4e5d2b893de7cc0647"
+      "599925c7a666a5ffe156c254b50e62f944020174f36feb5a4cbf260989eae807"
     ], 
     "wheelhouse/Tempita-0.5.2.tar.gz": [
       "layer:basic", 
@@ -278,6 +283,16 @@
       "tengu-ui", 
       "static", 
       "a36ccf1a72bc6f74e14a62cbf879e4df922a3f25f784b13c7a110a03e6bda7a5"
+    ], 
+    "files/tengu_ui/content/help/create-index-on.html": [
+      "tengu-ui", 
+      "static", 
+      "d56e8fbbca5a179396da182202b801cc47be6a23f4c223451a165b0477283056"
+    ], 
+    "hooks/relations/sojobo/LICENSE": [
+      "interface:sojobo", 
+      "static", 
+      "956caac924f88d39f85d505a690a5f670a325d76b70c7c3ae8aee71d563a3ffe"
     ], 
     "files/tengu_ui/views/partials/frame-tengu.html": [
       "tengu-ui", 
@@ -299,10 +314,10 @@
       "static", 
       "d904a8272ba8401a6f6cc045dbb297d56d7272246371826102f90e254a726cfd"
     ], 
-    "files/tengu_ui/content/help/with.html": [
-      "tengu-ui", 
-      "static", 
-      "9e7d424987813736cfb189e18ebb50463f771d7d1b75998122f31145476e3cd0"
+    "hooks/proxy-relation-broken": [
+      "interface:http", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
     "hooks/sojobo-relation-changed": [
       "interface:sojobo", 
@@ -314,20 +329,20 @@
       "static", 
       "9b14c8a695ec75ee241204aa06172dfc98a94fda37a268a79d4b2522f5e7a62e"
     ], 
+    "files/tengu_ui/scripts/51f4d9ff.settings.js": [
+      "tengu-ui", 
+      "static", 
+      "ebffc0064d0e99875e38e215a650b2d09c2e0981be2a5e061822e3decef48fd3"
+    ], 
     "reactive/tengu-ui.py": [
       "tengu-ui", 
       "static", 
-      "07d51d1872f655d899fdd43bcb532cb4f1e9e66c392856d5f267961867eb7b14"
+      "18c004a777e515ebbf2b20446f12d5f96d7830fb79a61e129a8e0d8f9b15930d"
     ], 
-    "hooks/relations/sojobo/__init__.py": [
-      "interface:sojobo", 
+    "hooks/stop": [
+      "layer:basic", 
       "static", 
-      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-    ], 
-    "files/tengu_ui/scripts/2c9ae7ec.components.js": [
-      "tengu-ui", 
-      "static", 
-      "4d7dacf021a6877157b7bda0153b89303ab19266a969c7d0641abf37a9a77f2a"
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
     "files/tengu_ui/content/help/starts-with.html": [
       "tengu-ui", 
@@ -344,10 +359,10 @@
       "static", 
       "9daa63ff347c4b3628aa807dc41c1e82ace73aab25977990b3649521209c932c"
     ], 
-    "files/tengu_ui/images/neo4j-org.png": [
+    "files/tengu_ui/scripts/2c9ae7ec.components.js": [
       "tengu-ui", 
       "static", 
-      "64c67087bf694426ce1e2cd8b8d9ebbdf3ce032714814f2acffb374746c3b7bb"
+      "4d7dacf021a6877157b7bda0153b89303ab19266a969c7d0641abf37a9a77f2a"
     ], 
     "files/tengu_ui/views/partials/messages-status-bar.html": [
       "tengu-ui", 
@@ -359,15 +374,20 @@
       "static", 
       "c4bdc1f399cd405c49501de49f8b9cea1d0902208b4354d48edf036839c2012d"
     ], 
+    "files/tengu_ui/images/neo4j-org.png": [
+      "tengu-ui", 
+      "static", 
+      "64c67087bf694426ce1e2cd8b8d9ebbdf3ce032714814f2acffb374746c3b7bb"
+    ], 
     "files/tengu_ui/content/guides/cypher.html": [
       "tengu-ui", 
       "static", 
       "5205fc4933428f754598f5c7e468d79eeb6a8c4e3c9d72f3fc2cb242747e0302"
     ], 
-    "files/tengu_ui/images/query-plan-operator-rows.svg": [
+    "files/tengu_ui/images/ajax_loader.gif": [
       "tengu-ui", 
       "static", 
-      "e58a9501ee37902a81f8e59ef2580002b5727448cc38930f955c0301d0d53fd4"
+      "82865dc820c2697382798fb7da16b00c5a14dea40fbf92ebf7e5b1bc2ce79d4f"
     ], 
     "files/tengu_ui/views/partials/visualization-diagnostics.html": [
       "tengu-ui", 
@@ -412,7 +432,7 @@
     "files/tengu_ui/scripts/settings.template": [
       "tengu-ui", 
       "static", 
-      "db1224c5beef23ab70f46a3928ce1e377bdacecbd07bc561209ae3fe3a1efeef"
+      "14329d757a1ccbdc85401b702400dbf832e9bfe1292e8f5b3f1ff050df3eb627"
     ], 
     "files/tengu_ui/images/watch.png": [
       "tengu-ui", 
@@ -524,10 +544,10 @@
       "static", 
       "809e0347b909dca2681defaa64c2d960b00486c2473e46337c889097793f5fc9"
     ], 
-    "files/tengu_ui/images/ajax_loader.gif": [
+    "files/tengu_ui/views/frame-tengu-add-credential.html": [
       "tengu-ui", 
       "static", 
-      "82865dc820c2697382798fb7da16b00c5a14dea40fbf92ebf7e5b1bc2ce79d4f"
+      "e30c4355cd06e8034954f75ff8b71b35ef6eb53c45a866b00398e7017dcd21a7"
     ], 
     "files/tengu_ui/images/more_nodes.png": [
       "tengu-ui", 
@@ -649,11 +669,6 @@
       "static", 
       "b3ae7530a7113c88fa2d4252878e412c91fe22ad7696b6cfb2946e3e3d33c2c2"
     ], 
-    "files/tengu_ui/scripts/af8c0aa4.settings.js": [
-      "tengu-ui", 
-      "static", 
-      "8ef092df254f0101f8a755e1077b7b97165031d3065e94cf6ecc49f3030ca75a"
-    ], 
     "files/tengu_ui/content/help/detach-delete.html": [
       "tengu-ui", 
       "static", 
@@ -672,7 +687,7 @@
     "metadata.yaml": [
       "tengu-ui", 
       "dynamic", 
-      "af4dd84e37948f69a1ed197d06b2dccc98b36fe5546acdbd1867df985deb0957"
+      "b9d52be581fcd3e6d73f4c41e250472525a68a2a0401d00844a49f7effaf8f4c"
     ], 
     "files/tengu_ui/views/template/alert.html": [
       "tengu-ui", 
@@ -682,7 +697,7 @@
     "files/tengu_ui/views/frame-tengu-sign-in.html": [
       "tengu-ui", 
       "static", 
-      "43fce8d0c2757db0f5cb448600278bba1575ee437542acb102926b7ba23676b3"
+      "8e13b383e1da4618378bdf71f5d3b4a8f5d9ad0eaf41021abb2b663e13bfbd0b"
     ], 
     "files/tengu_ui/content/help/server.html": [
       "tengu-ui", 
@@ -704,10 +719,10 @@
       "static", 
       "b132a54561cacb62390d7943ab24286bd7f2ac621a9f6162b719a0c246ef4a7f"
     ], 
-    "files/tengu_ui/content/help/create.html": [
-      "tengu-ui", 
+    "hooks/relations/http/provides.py": [
+      "interface:http", 
       "static", 
-      "138fe789a307b8b67cdcd4b38fafe78fc49fcc7680a6b0dd3701fd8197b9ca71"
+      "c6e16d6c0d80009aab33c51cb1e196f959df155ac656f47fe7104484859d2476"
     ], 
     "files/tengu_ui/images/browser.png": [
       "tengu-ui", 
@@ -737,7 +752,7 @@
     "files/tengu_ui/views/frame-tengu-userinfo.html": [
       "tengu-ui", 
       "static", 
-      "ae2a6106ea941819a277e2f17b7acb10143684b83352dda6549f9e815c83cf6c"
+      "6aa235a919f4b17dda261d046f7f8dc7944e6b0db812faf3611deb023ce47076"
     ], 
     "files/tengu_ui/views/template/carousel/slide.html": [
       "tengu-ui", 
@@ -754,15 +769,10 @@
       "static", 
       "6e8e711097dfdf7594f73182555517fc86ece31f01e73654c367a0d6e68e1328"
     ], 
-    "wheelhouse/pyaml-16.12.2.tar.gz": [
-      "layer:basic", 
-      "dynamic", 
-      "b865e4f53a85f4d8a092e7701f759a3237fb3ee8a928627401914aafadc00907"
-    ], 
     "files/tengu_ui/views/frame-model-status.html": [
       "tengu-ui", 
       "static", 
-      "51d8a0901bb3171c1c5dcdfff6f051382c7be913a31b0b079945a7347c7e18d1"
+      "f2c228cca11a337191d5c361ab4dd1658456994d7317b869c49e1a000f46571b"
     ], 
     "files/tengu_ui/images/metamodel.png": [
       "tengu-ui", 
@@ -879,11 +889,6 @@
       "static", 
       "2b08340b7983145a767af68ba4dbb74e93ed6ed737ee4ffd1b0bdcef11c2eeb4"
     ], 
-    "hooks/hook.template": [
-      "layer:basic", 
-      "static", 
-      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
-    ], 
     "files/tengu_ui/views/partials/nav.html": [
       "tengu-ui", 
       "static", 
@@ -974,10 +979,10 @@
       "static", 
       "2a2534f0a160e0dabb7f4b331cb7d08d7717fdd3e49d29eec6c4c228536675ce"
     ], 
-    "files/tengu_ui/content/help/create-index-on.html": [
+    "files/tengu_ui/content/help/create.html": [
       "tengu-ui", 
       "static", 
-      "d56e8fbbca5a179396da182202b801cc47be6a23f4c223451a165b0477283056"
+      "138fe789a307b8b67cdcd4b38fafe78fc49fcc7680a6b0dd3701fd8197b9ca71"
     ], 
     "wheelhouse/netaddr-0.7.19.tar.gz": [
       "layer:basic", 
@@ -1003,11 +1008,6 @@
       "tengu-ui", 
       "static", 
       "f380c0496c5188c7939bc8c96b7eb6f1eb4a6c20070dba37b62fda8b29a4d2ce"
-    ], 
-    "templates/letsencrypt.conf": [
-      "tengu-ui", 
-      "static", 
-      "dd13a98553ff44942e8b7801ee172753d3395747837b8fdd65e722369d0c84f2"
     ], 
     "files/tengu_ui/images/lambda.png": [
       "tengu-ui", 
@@ -1048,6 +1048,11 @@
       "tengu-ui", 
       "static", 
       "e2d6def9838bd5b97f183c84bcfb4678262c6ca97a38cd9a0f8c416f08b37b38"
+    ], 
+    "hooks/proxy-relation-departed": [
+      "interface:http", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
     "templates/settings.js": [
       "tengu-ui", 
@@ -1202,7 +1207,7 @@
     "files/tengu_ui/views/frame-controller-create.html": [
       "tengu-ui", 
       "static", 
-      "ee8425780ed8210a8d9df2ab037aca50ea2e8f0651491c9e7171c6c47abe6f2a"
+      "d26dd675197b5c7b022a6d4df663327349943ff390218ebc421f7824538ee54c"
     ], 
     "files/tengu_ui/images/device-icons/android-chrome-96x96.png": [
       "tengu-ui", 
@@ -1269,6 +1274,11 @@
       "static", 
       "bdc5d0b9f397be83e886c74b0141d1954aa4384b359dce49829994c4a2e1f7bf"
     ], 
+    "files/tengu_ui/views/frame-tengu-add-ssh-key.html": [
+      "tengu-ui", 
+      "static", 
+      "b5d0e8a25ab484e731869b980dbdcd4e6171bd4460a930e20c11ce0efc8b1142"
+    ], 
     "lib/charms/layer/nginx_passenger.py": [
       "layer:nginx-passenger", 
       "static", 
@@ -1277,7 +1287,7 @@
     "files/tengu_ui/index.html": [
       "tengu-ui", 
       "static", 
-      "d753037a9f9eb5f1961e6014aab290bbd536bc2e4002c80197e12bd5df1d01b6"
+      "02de734c03299521c7146c8006584c3db3d0c72c3ebf4131509cea0db3938554"
     ], 
     "files/tengu_ui/images/about-logo.png": [
       "tengu-ui", 
@@ -1379,6 +1389,11 @@
       "static", 
       "d4a5d68b5eba0959d9457fbeb989007de2fdfd3f471656972e742eea09fe00e1"
     ], 
+    "hooks/proxy-relation-joined": [
+      "interface:http", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
     "files/tengu_ui/images/intro.png": [
       "tengu-ui", 
       "static", 
@@ -1423,6 +1438,11 @@
       "tengu-ui", 
       "static", 
       "385082fba6d0808597a06203b0b3dbbaccef763348f95010c02f0f350830aa16"
+    ], 
+    "hooks/proxy-relation-changed": [
+      "interface:http", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
     "files/tengu_ui/content/help/explain.html": [
       "tengu-ui", 
@@ -1487,7 +1507,7 @@
     "files/tengu_ui/views/partials/frame-model-create.html": [
       "tengu-ui", 
       "static", 
-      "bebb2f6abbd25dfc048cd48c048fe863dfb5d6be61190386f77a9d556a54e327"
+      "24fdb8a54fe0d89111cddc3dd96397f4568bc6656f58859d631ac61543217325"
     ], 
     "files/tengu_ui/fonts/neo-font.svg": [
       "tengu-ui", 
@@ -1497,7 +1517,7 @@
     "templates/http.conf": [
       "tengu-ui", 
       "static", 
-      "c3abdf1e735325ba6ba1736ca59f17479511f008727e1528b610c7651d82e34d"
+      "27da76a0e7ac67f28e070cc6aa7019cea1e60cd8497aeb681aed381a44f25639"
     ], 
     "files/tengu_ui/views/partials/inspector.html": [
       "tengu-ui", 
@@ -1512,7 +1532,7 @@
     "config.yaml": [
       "tengu-ui", 
       "dynamic", 
-      "2ee04fa082a26823ba03bc10a41c8426cbeb755c6730a39335b7f0c771636204"
+      "3c4ebc3e9444d57fae99953966c920d7d4bc220cc001c85a70d6aca56d2045f6"
     ], 
     "files/tengu_ui/images/device-icons/apple-touch-icon-144x144.png": [
       "tengu-ui", 
@@ -1579,6 +1599,11 @@
       "static", 
       "1c9987ee36686a535849203eeba51804f4c655d44dc265ea21373e0171a9f103"
     ], 
+    "files/tengu_ui/scripts/359ddf2a.scripts.js": [
+      "tengu-ui", 
+      "static", 
+      "59c21c5380c49254de4d563d942d626ed192dac7aa10c727d2df95980a333c9c"
+    ], 
     "wheelhouse/shell-1.0.1.tar.gz": [
       "layer:nginx-passenger", 
       "dynamic", 
@@ -1603,11 +1628,6 @@
       "tengu-ui", 
       "static", 
       "a843196dd0023099c273ca6c99929aa1846e1700169bd195c743ba3a633d0910"
-    ], 
-    "files/tengu_ui/images/device-icons/favicon-96x96.png": [
-      "tengu-ui", 
-      "static", 
-      "252f2512c98b75ecd93cde36604777be029b9cff4db282ef293f222b3ec19b7e"
     ], 
     "hooks/relations/http/requires.py": [
       "interface:http", 
@@ -1653,11 +1673,6 @@
       "tengu-ui", 
       "static", 
       "18023d5dfed581ca69fa9939619bed99c88d723aa3ef50695fe5dfa2029cbdc0"
-    ], 
-    "files/tengu_ui/scripts/1be583c4.scripts.js": [
-      "tengu-ui", 
-      "static", 
-      "1d9a368fc7bd692cc224623f63937e767c53f1f469c1cbd3bb1359a248984910"
     ], 
     "files/tengu_ui/views/frame-hauchiwa-create.html": [
       "tengu-ui", 
@@ -1712,7 +1727,12 @@
     "layer.yaml": [
       "tengu-ui", 
       "dynamic", 
-      "29c0452961dc0fb71c04ef405b6c3742ffd081d11eb1d28127d9b6ff374dc959"
+      "d2c30824f05ce93baaeed70a969443afba16a0dba924eb939b0806d7dffe851a"
+    ], 
+    "wheelhouse/charmhelpers-0.18.1.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "15dbae866550b724fb81ce501e118386b28a554110bd45f8ce3f62139411cf9f"
     ], 
     "files/tengu_ui/views/frame-guide.html": [
       "tengu-ui", 

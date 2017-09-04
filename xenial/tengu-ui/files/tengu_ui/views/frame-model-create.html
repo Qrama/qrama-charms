@@ -54,6 +54,14 @@
                       <input type="text" id="controller" disabled="true" on-enter="focus" ng-model="controller" style="margin: 0" ng-show="controller &amp;&amp; !controllers" tabindex="2" class="form-control">
                       <select id="controller" on-enter="focus" ng-model="controller" style="margin: 0" ng-show="controllers" tabindex="2" class="form-control">
                         <option ng-repeat="ctrl in controllers | orderBy: ctrl.name" value="{{ctrl.name}}" style="background-image:url('images/{{ctrl.type}}.svg')">{{ctrl.name}} on [{{ctrl.type}}]</option>
+                      </select><br>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <p>Name of the Credentials</p>
+                      <select id="credential" on-enter="focus" ng-model="credential" style="margin: 0" ng-show="credentials" tabindex="3" class="form-control">
+                        <option ng-repeat="cred in credentials | orderBy: cred.name" value="{{cred.name}}">{{cred.name}}</option>
                       </select><br><br>
                     </div>
                   </div>

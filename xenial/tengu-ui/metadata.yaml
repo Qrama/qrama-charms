@@ -10,6 +10,8 @@
 "provides":
   "website":
     "interface": "http"
+  "proxy":
+    "interface": "http"
 "series":
 - "xenial"
 - "xenial"
