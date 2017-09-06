@@ -155,7 +155,7 @@
     "config.yaml": [
       "mongo-database", 
       "dynamic", 
-      "8f2680233043fcf666743b1b4d0dd3e36bd386faecabef269e290bd8db308bcb"
+      "d0a4a545849305c03a36272b9e556f0ab31e0c268b6c98182157d058b6d53b66"
     ], 
     "lib/charms/layer/__init__.py": [
       "layer:basic", 
@@ -225,12 +225,12 @@
     "hooks/relations/mongodb-database/provides.py": [
       "interface:mongodb-database", 
       "static", 
-      "718255e1c291a980b0a5ab74a7310f6492bffe8819af579973fdc6def7875f5c"
+      "b3740bafbe844ec5430c5704b9ce7bad0a818a41f6cbf3e5b0c143a4531ee148"
     ], 
     "hooks/relations/mongodb-database/requires.py": [
       "interface:mongodb-database", 
       "static", 
-      "3e058d39878290fd126011adfccfab97ce5e9f5158693f23c73b224d03c41205"
+      "c8d98137846c6f809a1df7779378d29a6bbe95f86d5cac10c276b0a995bcdb59"
     ], 
     "hooks/start": [
       "layer:basic", 
@@ -270,7 +270,7 @@
     "reactive/layer_mongo_database.py": [
       "mongo-database", 
       "static", 
-      "b279bd9e923412d2ab86eec5071b27209fc12383ac7f75cc771e9e849f2a27e0"
+      "5847dd9ee989d44db16abacb7ff886df82fff9cc21cf1c51285d469bb5467227"
     ], 
     "hooks/relations/mongodb/interface.yaml": [
       "interface:mongodb", 

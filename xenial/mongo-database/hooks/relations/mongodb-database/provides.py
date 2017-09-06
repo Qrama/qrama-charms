@@ -48,10 +48,11 @@ class MongoDBDatabaseProvides(RelationBase):
         conv.remove_state('{relation_name}.connected')
 
 
-    def configure(self, uri, db):
+    def configure(self, uri, db, collection):
         relation_info = {
             'uri': uri,     
-            'db': db
+            'db': db,
+            'collection': collection
         }
         for conv in self.conversations():
             conv.set_remote(**relation_info)

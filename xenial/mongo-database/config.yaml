@@ -1,13 +1,5 @@
 "options":
-  "string-option":
+  "collection":
     "type": "string"
-    "default": "Default Value"
-    "description": "A short description of the configuration option"
-  "boolean-option":
-    "type": "boolean"
-    "default": !!bool "false"
-    "description": "A short description of the configuration option"
-  "int-option":
-    "type": "int"
-    "default": !!int "9001"
-    "description": "A short description of the configuration option"
+    "default": "stream_data"
+    "description": "The name of the collection you want to add to the Database"

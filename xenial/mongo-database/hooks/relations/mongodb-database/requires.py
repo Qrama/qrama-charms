@@ -52,4 +52,5 @@ class MongoDBDatabaseRequires(RelationBase):
     def connection(self):
         for conv in self.conversations():
             yield {'uri': conv.get_remote('uri'),
-                   'db' : conv.get_remote('db')}
+                   'db' : conv.get_remote('db'),
+                   'collection': conv.get_remote('collection')}
