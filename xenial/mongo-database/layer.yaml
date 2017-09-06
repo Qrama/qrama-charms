@@ -1,0 +1,12 @@
+"options":
+  "mongo-database": {}
+  "basic":
+    "use_venv": !!bool "false"
+    "packages": []
+    "include_system_packages": !!bool "false"
+"includes":
+- "layer:basic"
+- "interface:mongodb"
+- "interface:mongodb-database"
+"repo": "https://github.com/Qrama/layer-mongo-database"
+"is": "mongo-database"

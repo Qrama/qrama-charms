@@ -1,0 +1,18 @@
+"name": "mongo-database"
+"summary": "<Fill in summary here>"
+"maintainer": "Sebastien Pattyn <sebastien.pattyn@tengu.io>"
+"description": |
+  <Multi-line description here>
+"tags":
+  # Replace "misc" with one or more whitelisted tags from this list:
+  # https://jujucharms.com/docs/stable/authors-charm-metadata
+  - "misc"
+"requires":
+  "mongodb":
+    "interface": "mongodb"
+    "scope": "container"
+"provides":
+  "db":
+    "interface": "mongodb-database"
+"series": ["xenial"]
+"subordinate": !!bool "true"

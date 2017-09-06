@@ -1,0 +1,17 @@
+"options":
+  "storm-topology": {}
+  "apt":
+    "version_package": ""
+    "packages": []
+    "full_version": !!bool "false"
+  "basic":
+    "use_venv": !!bool "false"
+    "packages": []
+    "include_system_packages": !!bool "false"
+"includes":
+- "layer:basic"
+- "layer:apt"
+- "interface:mongodb-database"
+- "interface:kafka-topic"
+"repo": "https://github.com/Qrama/layer-storm-topology"
+"is": "storm-topology"
