@@ -1,0 +1,10 @@
+"options":
+  "data-source": {}
+  "basic":
+    "use_venv": !!bool "false"
+    "packages": []
+    "include_system_packages": !!bool "false"
+"includes":
+- "layer:basic"
+- "interface:kafka-topic"
+"is": "data-source"

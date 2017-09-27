@@ -5,15 +5,18 @@ from charms.reactive import scopes
 
 
 class ProvidesRedis(RelationBase):
-    scope = scopes.GLOBAL
+    scope = scopes.UNIT
 
     @hook('{provides:redis}-relation-{joined,changed}')
     def changed(self):
-        self.set_state('{relation_name}.connected')
+        conv = self.conversation()
+        conv.set_state('{relation_name}.connected')
 
     @hook('{provides:redis}-relation-{broken,departed}')
     def broken(self):
-        self.remove_state('{relation_name}.connected')
+        conv = self.conversation()
+        conv.remove_state('{relation_name}.connected')
+        conv.set_state('{relation_name}.broken')
 
     def configure(self, port, password=None):
         relation_info = {
@@ -25,8 +28,6 @@ class ProvidesRedis(RelationBase):
             uri = 'redis://:{password}@{host}:{port}'.format(**relation_info)
         else:
             uri = 'redis://{host}:{port}'.format(**relation_info)
-
         relation_info['uri'] = uri
-
-        self.set_remote(**relation_info)
-        self.set_state('{relation_name}.configured')
+        for conv in self.conversations():
+            conv.set_remote(**relation_info)

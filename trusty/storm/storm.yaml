@@ -13,10 +13,10 @@ storm.zookeeper.retry.interval: 1000
 storm.zookeeper.retry.intervalceiling.millis: 30000
 storm.cluster.mode: "distributed" # can be distributed or local
 storm.local.mode.zmq: false
-storm.thrift.transport: "backtype.storm.security.auth.SimpleTransportPlugin"
+storm.thrift.transport: "org.apache.storm.security.auth.SimpleTransportPlugin"
 ### Use Netty Instead of ZMQ
 #storm.messaging.transport: "backtype.storm.messaging.zmq"
-storm.messaging.transport: "backtype.storm.messaging.netty.Context"
+storm.messaging.transport: "org.apache.storm.messaging.netty.Context"
 storm.messaging.netty.server_worker_threads: 1
 storm.messaging.netty.client_worker_threads: 1
 storm.messaging.netty.buffer_size: 5242880
@@ -25,7 +25,7 @@ storm.messaging.netty.max_wait_ms: 1000
 storm.messaging.netty.min_wait_ms: 100
 
 ### nimbus.* configs are for the master
-nimbus.host: "localhost"
+nimbus.seeds: ["localhost"]
 nimbus.thrift.port: 6627
 nimbus.childopts: "-Xmx1024m"
 nimbus.task.timeout.secs: 30
@@ -36,7 +36,7 @@ nimbus.inbox.jar.expiration.secs: 3600
 nimbus.task.launch.secs: 120
 nimbus.reassign: true
 nimbus.file.copy.expiration.secs: 600
-nimbus.topology.validator: "backtype.storm.nimbus.DefaultTopologyValidator"
+nimbus.topology.validator: "org.apache.storm.nimbus.DefaultTopologyValidator"
 
 ### ui.* configs are for the master
 ui.port: 8080
@@ -103,12 +103,12 @@ topology.transfer.buffer.size: 1024 # batched
 topology.tick.tuple.freq.secs: null
 topology.worker.shared.thread.pool.size: 4
 topology.disruptor.wait.strategy: "com.lmax.disruptor.BlockingWaitStrategy"
-topology.spout.wait.strategy: "backtype.storm.spout.SleepSpoutWaitStrategy"
+topology.spout.wait.strategy: "org.apache.storm.spout.SleepSpoutWaitStrategy"
 topology.sleep.spout.wait.strategy.time.ms: 1
 topology.error.throttle.interval.secs: 10
 topology.max.error.report.per.interval: 5
-topology.kryo.factory: "backtype.storm.serialization.DefaultKryoFactory"
-topology.tuple.serializer: "backtype.storm.serialization.types.ListDelegateSerializer"
+topology.kryo.factory: "org.apache.storm.serialization.DefaultKryoFactory"
+topology.tuple.serializer: "org.apache.storm.serialization.types.ListDelegateSerializer"
 topology.trident.batch.emit.interval.millis: 500
 
 dev.zookeeper.path: "/tmp/dev-storm-zookeeper"

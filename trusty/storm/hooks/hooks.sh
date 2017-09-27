@@ -131,7 +131,7 @@ configure_master () {
 	juju-log "Configuring nimbus for storm"
 	nimbus=`unit-get private-address`
 	cp /opt/storm/apache-storm-${version}/conf/storm.yaml /opt/storm/apache-storm-${version}/conf/storm.yaml.tmp
-	cat /opt/storm/apache-storm-${version}/conf/storm.yaml.tmp | sed "s/nimbus.host: .*/nimbus.host: \"$nimbus\"/" > /opt/storm/apache-storm-${version}/conf/storm.yaml
+	cat /opt/storm/apache-storm-${version}/conf/storm.yaml.tmp | sed "s/nimbus.seeds: .*/nimbus.seeds: [\"$nimbus\"]/" > /opt/storm/apache-storm-${version}/conf/storm.yaml
 	rm /opt/storm/apache-storm-${version}/conf/storm.yaml.tmp
 	juju-log "Reconfiguring Storm DRPC configuration"
 	for member in `relation-list`
@@ -161,7 +161,7 @@ validate_master () {
 purge_master () {
 	juju-log "Purging nimbus from storm"
 	cp /opt/storm/apache-storm-${version}/conf/storm.yaml /opt/storm/apache-storm-${version}/conf/storm.yaml.tmp
-	cat /opt/storm/apache-storm-${version}/conf/storm.yaml.tmp | sed "s/nimbus.host: .*/nimbus.host: /" > /opt/storm/apache-storm-${version}/conf/storm.yaml
+	cat /opt/storm/apache-storm-${version}/conf/storm.yaml.tmp | sed "s/nimbus.seeds: .*/nimbus.seeds: /" > /opt/storm/apache-storm-${version}/conf/storm.yaml
 	rm /opt/storm/apache-storm-${version}/conf/storm.yaml.tmp
 	rm -f /opt/storm/apache-storm-${version}/conf/master
 }
@@ -171,7 +171,7 @@ configure_worker () {
 	MASTER=`relation-get master_node`
 	juju-log "master: $MASTER"
 	cp /opt/storm/apache-storm-${version}/conf/storm.yaml /opt/storm/apache-storm-${version}/conf/storm.yaml.tmp
-	cat /opt/storm/apache-storm-${version}/conf/storm.yaml.tmp | sed "s/nimbus.host: .*/nimbus.host: \"$MASTER\"/" > /opt/storm/apache-storm-${version}/conf/storm.yaml
+	cat /opt/storm/apache-storm-${version}/conf/storm.yaml.tmp | sed "s/nimbus.seeds: .*/nimbus.seeds: [\"$MASTER\"]/" > /opt/storm/apache-storm-${version}/conf/storm.yaml
 	rm /opt/storm/apache-storm-${version}/conf/storm.yaml.tmp
 	touch /opt/storm/apache-storm-${version}/conf/worker
 }
@@ -186,7 +186,7 @@ validate_worker () {
 purge_worker () {
 	juju-log "Purging supervisor configuration from storm"
 	cp /opt/storm/apache-storm-${version}/conf/storm.yaml /opt/storm/apache-storm-${version}/conf/storm.yaml.tmp
-	cat /opt/storm/apache-storm-${version}/conf/storm.yaml.tmp | sed "s/nimbus.host: .*/nimbus.host: /" > /opt/storm/apache-storm-${version}/conf/storm.yaml
+	cat /opt/storm/apache-storm-${version}/conf/storm.yaml.tmp | sed "s/nimbus.seeds: .*/nimbus.seeds: /" > /opt/storm/apache-storm-${version}/conf/storm.yaml
 	rm /opt/storm/apache-storm-${version}/conf/storm.yaml.tmp
 	rm -f /opt/storm/apache-storm-${version}/conf/worker
 }
@@ -244,7 +244,7 @@ zk_configured () {
 
 master_configured () {
 	# Validate nimbus has been changed from localhost
-	pattern="nimbus.host: \"localhost\""
+	pattern="nimbus.seeds: [\"localhost\"]"
 	[ `grep -c "$pattern" /opt/storm/apache-storm-${version}/conf/storm.yaml` -eq 0 ] && return 0 || return 1
 }
 

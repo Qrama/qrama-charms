@@ -1,0 +1,14 @@
+"name": "data-source"
+"summary": "This charm deploys a script that will send data to kafka"
+"maintainer": "Sebastien Pattyn <sebastien.pattyn@gmail.com>"
+"description": |
+  <Multi-line description here>
+"tags":
+  # Replace "misc" with one or more whitelisted tags from this list:
+  # https://jujucharms.com/docs/stable/authors-charm-metadata
+  - "misc"
+"requires":
+  "topic":
+    "interface": "kafka-topic"
+"series": ["xenial"]
+"subordinate": !!bool "false"

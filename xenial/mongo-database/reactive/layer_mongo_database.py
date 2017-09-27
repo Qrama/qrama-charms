@@ -14,34 +14,31 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 # pylint: disable=c0111,c0103,c0301,c0412
-import subprocess as sp
-
-from charms.reactive import when, when_not, set_state, hookenv, hook
+from charms.reactive import when, when_not, set_state, hook
+from charmhelpers.core import unitdata
 from charmhelpers.core.hookenv import status_set, service_name, log, unit_private_ip, config
 from charmhelpers.contrib.python.packages import pip_install
 
-URI= ''
-DB_NAME= ''
+unitd = unitdata.kv()
 
 @when_not('layer-mongo-database.installed')
 @when('mongodb.available')
 def install_layer_mongo_database(mongodb):
     pip_install('pymongo')
-    DB_NAME = service_name()
+    db_name = service_name()
     conf = config()
     import pymongo
-    log('Creating database {}'.format(DB_NAME ))
-    URI = mongodb.connection_string()
-    conn = pymongo.MongoClient(URI)
-    tengu_db = conn[DB_NAME ]
-    tengu_db.createCollection(conf['collection'])
-    status_set('active', 'Database {} succesfully created'.format(DB_NAME ))
+    log('Creating database {}'.format(db_name))
+    uri = mongodb.connection_string()
+    conn = pymongo.MongoClient(uri)
+    tengu_db = conn[db_name]
+    tengu_db[conf['collection']]
+    unitd.set('db_name', db_name)
+    unitd.set('uri', uri)
+    status_set('active', 'Database {} succesfully created'.format(db_name))
     set_state('layer-mongo-database.installed')
 
 @when('layer-mongo-database.installed', 'db.available')
-@when_not('layer-mongo-database.configured')
 def export_db(db):
-    print(db)
     conf = config()
-    db.configure(URI, DB_NAME, conf['collection'])
-    set_state('layer-mongo-database.configured')
+    db.configure(unitd.get('uri'), unitd.get('db_name'), conf['collection'])

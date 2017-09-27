@@ -17,33 +17,33 @@
 import subprocess as sp
 
 from charms.reactive import when, when_not, set_state, hookenv
+from charmhelpers.core import unitdata
 from charmhelpers.core.hookenv import status_set, service_name, log, unit_private_ip, config
 
-TOPIC = ''
-PORT = ''
+unitd = unitdata.kv()
 
 @when_not('layer-kafka-topic.installed')
 @when('kafka.ready')
 def install_kafka_topic(kafka):
-    TOPIC = service_name()
-    log('Creating Kafka Topic {}'.format(TOPIC))
+    topic_name = service_name()
+    log('Creating Kafka Topic {}'.format(topic_name))
     zks = kafka.zookeepers()
     kafkas = kafka.kafkas()
     for unit in kafkas:
         if unit['host'] == unit_private_ip():
-            PORT = unit['port']
+            port = unit['port']
     string_zks = ''
     for zk in zks:
         string_zks += '{}:{},'.format(zk['host'], zk['port'])
     string_zks = string_zks[:-1]
     conf = config()
+    unitd.set('topic_name', topic_name)
+    unitd.set('port', port)
     sp.check_call(['/usr/lib/kafka/bin/kafka-topics.sh', '--zookeeper', string_zks, '--create', '--topic',
-                   TOPIC, '--partitions', str(conf['partitions']), '--replication-factor', str(conf['replication-factor'])])
-    status_set('active', 'Topic {} is available.'.format(TOPIC))
+                   topic_name, '--partitions', str(conf['partitions']), '--replication-factor', str(conf['replication-factor'])])
+    status_set('active', 'Topic {} is available.'.format(topic_name))
     set_state('layer-kafka-topic.installed')
 
 @when('topic.available', 'layer-kafka-topic.installed')
-@when_not('layer-kafka-topic.exported')
 def setup_topic(topic):
-    topic.configure(TOPIC, PORT)
-    set_state('layer-kafka-topic.exported')
+    topic.configure(unitd.get('topic_name'), unitd.get('port'))
