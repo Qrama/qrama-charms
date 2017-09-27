@@ -5,7 +5,7 @@ from charms.reactive import scopes
 
 
 class ProvidesRedis(RelationBase):
-    scope = scopes.GLOBAL
+    scope = scopes.UNIT
 
     @hook('{provides:redis}-relation-{joined,changed}')
     def changed(self):
@@ -31,5 +31,5 @@ class ProvidesRedis(RelationBase):
 
         relation_info['uri'] = uri
 
-        conv = self.conversation()
-        conv.set_remote(**relation_info)
+        for conv in self.conversations():
+            conv.set_remote(**relation_info)
