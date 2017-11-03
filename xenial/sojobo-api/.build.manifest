@@ -107,7 +107,7 @@
     "files/sojobo_api/api/w_juju.py": [
       "sojobo-api", 
       "static", 
-      "e3c6a0f965ddbdc8ffb071504ce117798936b99c82af04fbf0d850ed80f0fd26"
+      "2112cef6627e87beca99e2f3d65f8523fa198244e282175967a77f008e29632c"
     ], 
     "lib/charms/__init__.py": [
       "layer:apt", 
@@ -312,7 +312,7 @@
     "files/sojobo_api/api/w_datastore.py": [
       "sojobo-api", 
       "static", 
-      "3b54a6aa0dc8e324cb8a1525848752d87479bdbfde296462f9128b760662dc7c"
+      "6268df4cb0b67854ab0e5e11a7576b2bfa7d9c2970dd73624f81d745f2db1808"
     ], 
     "tests/stresstest.jmx": [
       "sojobo-api", 
@@ -377,7 +377,7 @@
     "files/sojobo_api/scripts/add_model.py": [
       "sojobo-api", 
       "static", 
-      "cee33ae3760af83f5f5e640d82310d13bee5b1f4fea72e745998f4db3403e2df"
+      "a3906d7c14cfd790a432a04d9f9890c5d50e9a6e975cdcdab2a105b10588e4f7"
     ], 
     "hooks/relations/http/interface.yaml": [
       "interface:http", 
@@ -387,7 +387,7 @@
     "reactive/sojobo-api.py": [
       "sojobo-api", 
       "static", 
-      "c244eed9db5180dfc74f403a2081becae28ea4faef003b97a408657d2086bd02"
+      "81cc1ae14bd2462f101b2ec1b850fbcb3c8b5a490944e376d397216c9bd40e96"
     ], 
     "hooks/relations/sojobo/__init__.py": [
       "interface:sojobo", 
@@ -562,7 +562,7 @@
     "files/sojobo_api/scripts/add_controller.py": [
       "sojobo-api", 
       "static", 
-      "4940e4ec0711a6a01fbc78718fef4c02acde177c016c65946a7137a3486cfed8"
+      "8084c088c59a90f29a28951f3d20bc58e32a82a4b12c8c9dae4be253a8d5fd59"
     ], 
     "hooks/sojobo-relation-broken": [
       "interface:sojobo", 

@@ -320,6 +320,11 @@ def get_model_uuid(controller, model):
         if mod['name'] == model.m_name:
             return mod['uuid']
 
+def get_model_credential(controller, model):
+    for mod in get_all_models(controller):
+        if mod['name'] == model.m_name:
+            return mod['credential']
+
 
 def get_model_access(model, controller, username):
     return datastore.get_model_access(controller, model, username) if not None else "None"
@@ -328,7 +333,8 @@ def get_model_access(model, controller, username):
 def get_models_info(token, controller):
     result = []
     for mod in get_all_models(controller):
-        if get_model_access(controller.c_name, mod, token.username):
+        print(mod, datastore.get_model_access(controller.c_name, mod, token.username))
+        if datastore.get_model_access(controller.c_name, mod['name'], token.username) in ['read', 'write', 'admin']:
             result.append(mod)
     return result
 
@@ -338,34 +344,17 @@ async def get_model_info(token, controller, model):
     if state == 'ready':
         async with model.connect(token):
             users = get_users_model(token, controller, model)
-            ssh = await get_ssh_keys(token, model)
             applications = await get_applications_info(token, model)
             machines = await get_machines_info(token, model)
             gui = await get_gui_url(controller, model)
-            credentials = await get_model_creds(token, model)
-        return {'name': model.m_name, 'users': users, 'ssh-keys': ssh,
+            credentials = {'cloud': controller.c_type, 'credential-name': get_model_credential(controller, model)}
+        return {'name': model.m_name, 'users': users,
                 'applications': applications, 'machines': machines, 'juju-gui-url' : gui,
                 'state': datastore.check_model_state(controller.c_name, model.m_name), 'credentials' : credentials}
     elif state == 'accepted' or state == 'error':
         return {'name': model.m_name, 'state': state, 'users' : {"user" : token.username, "access" : "admin"}}
     else:
         return {}
-
-
-async def get_model_creds(token, model):
-    async with model.connect(token) as juju:
-        info = await juju.get_info()
-    cloud_cred = info.serialize()['cloud-credential-tag']
-    cloud_result = tag.untag('cloudcred-', cloud_cred)
-    return get_cloud_response(cloud_result)
-
-
-def get_cloud_response(data):
-    values = data.split('_')
-    if len(values) == 3:
-        result = {'cloud' : values[0], 'user' : values[1], 'credential-name' : values[2]}
-        return result
-    return None
 
 
 async def get_ssh_keys(token, model):
