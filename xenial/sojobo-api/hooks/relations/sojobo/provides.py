@@ -32,9 +32,10 @@ class SojoboProvides(RelationBase):
         conv.remove_state('{relation_name}.available')
         conv.set_state('{relation_name}.removed')
 
-    def configure(self, url, api_dir, api_key, user):
+    def configure(self, url, api_dir, api_key, admin_pass, user):
         for conv in self.conversations():
             conv.set_remote(data={'url': url,
                                   'api-dir': api_dir,
                                   'api-key': api_key,
+                                  'admin_pass': admin_pass,
                                   'user': user})

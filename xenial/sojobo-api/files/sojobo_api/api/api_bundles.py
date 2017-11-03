@@ -1,7 +1,21 @@
-# pylint: disable=c0111,c0301
-#!/usr/bin/env python3
+# Copyright (C) 2017 Qrama
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# pylint: disable=c0111,c0301,c0325,c0326,w0406,e0401,e0611
 from functools import wraps
 import requests
+import yaml
 from flask import request, Blueprint, abort
 from sojobo_api.api.w_juju import create_response
 from sojobo_api import settings
@@ -9,7 +23,7 @@ from sojobo_api import settings
 
 BUNDLES = Blueprint('bundles', __name__)
 
-
+REPO = settings.REPO_NAME
 def get():
     return BUNDLES
 
@@ -31,7 +45,7 @@ def authenticate(func):
 @authenticate
 def get_bundles():
     i = 1
-    res = requests.get('https://api.github.com/orgs/tengu-team/repos')
+    res = requests.get('https://api.github.com/orgs/{}/repos'.format(REPO))
     data = []
     while res.json() != [] and res.status_code == 200:
         for b in res.json():
@@ -43,14 +57,14 @@ def get_bundles():
                     'logo': None
                 })
         i += 1
-        res = requests.get('https://api.github.com/orgs/tengu-team/repos?page={}'.format(i))
+        res = requests.get('https://api.github.com/orgs/{}/repos?page={}'.format(REPO, i))
     return create_response(200, data)
 
 
 @BUNDLES.route('/<bundle>', methods=['GET'])
 @authenticate
 def get_bundle(bundle):
-    res = requests.get('https://api.github.com/repos/tengu-team/{}'.format(bundle))
+    res = requests.get('https://api.github.com/repos/{}/{}'.format(REPO, bundle))
     if res.status_code == 200:
         data = {
             'name': res.json()['name'],
@@ -60,12 +74,13 @@ def get_bundle(bundle):
         }
         return create_response(200, data)
     else:
-        abort(400, 'The bundle {} could not be found'.format(bundle))
+        abort(404, 'The bundle {}:{} could not be found'.format(REPO, bundle))
 
 
 def get_json(bundle):
-    res = requests.get('https://raw.githubusercontent.com/tengu-team/{}/master/bundle.json'.format(bundle))
+    res = requests.get('https://raw.githubusercontent.com/{}/{}/master/bundle.yaml'.format(REPO, bundle))
     if res.status_code == 200:
-        return res.json()
+        res_dict = yaml.load(res.text)
+        return res_dict
     else:
-        return None
+        abort(404, 'The bundle {}:{} could not be found'.format(REPO, bundle))

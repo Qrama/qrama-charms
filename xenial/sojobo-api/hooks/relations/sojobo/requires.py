@@ -39,4 +39,5 @@ class SojoboRequires(RelationBase):
             yield {'url': conv.get_remote('url'),
                    'api-dir': conv.get_remote('api-dir'),
                    'api-key': conv.get_remote('api-key'),
+                   'admin_pass': conv.get_remote('admin_pass'),
                    'user': conv.get_remote('user')}

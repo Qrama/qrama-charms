@@ -14,16 +14,13 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 # pylint: disable=c0111,c0301,c0325, r0903,w0406
-from subprocess import check_output, check_call
+from subprocess import check_output, check_call, CalledProcessError
 from sojobo_api.api import w_errors as errors
 from flask import abort
-import json
 import yaml
 from juju.client.connection import JujuData
 
-
 CRED_KEYS = ['access-key', 'secret-key']
-
 
 class Token(object):
     def __init__(self, url, username, password):
@@ -35,7 +32,7 @@ class Token(object):
 def create_controller(name, region, credentials):
     path = create_credentials_file(name, credentials)
     check_call(['juju', 'add-credential', 'aws', '-f', path, '--replace'])
-    output = check_output(['juju', 'bootstrap', '--agent-version=2.2.2', 'aws/{}'.format(region), name, '--credential', name])
+    output = check_output(['juju', 'bootstrap', '--agent-version=2.1.2', 'aws/{}'.format(region), name, '--credential', name])
     return output
 
 
@@ -57,25 +54,19 @@ def create_credentials_file(name, credentials):
         yaml.dump(data, dest, default_flow_style=True)
     return path
 
-
 def generate_cred_file(name, credentials):
-    result = {
-        'type': 'access-key',
-        'name': name,
-        'key': json.dumps({'access-key': credentials['access-key'], 'secret-key': credentials['secret-key']})
-    }
+    result = {}
+    result['type'] = 'access-key'
+    result['name'] = name
+    result['key'] = {'access-key': credentials['access-key'], 'secret-key': credentials['secret-key']}
     return result
 
 
-# Currently not being used, but already provided if we encounter a cloud which requires some
-# specific logic to return this data
 def get_public_url(c_name):
     jujudata = JujuData()
     result = jujudata.controllers()
     return result[c_name]['api-endpoints'][0]
 
 
-# Currently not being used, but already provided if we encounter a cloud which requires some
-# specific logic to return this data
 def get_gui_url(controller, model):
     return 'https://{}/gui/{}'.format(controller.public_ip, model.m_uuid)

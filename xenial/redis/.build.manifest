@@ -1,6 +1,7 @@
 {
   "layers": [
     "layer:basic", 
+    "layer:metrics", 
     "redis", 
     "interface:redis", 
     "build"
@@ -29,7 +30,7 @@
     "reactive/redis.py": [
       "redis", 
       "static", 
-      "6fac5a7072fdb34851e5d4306bd689139be8a6ef684967225207f9b14e1fba8d"
+      "7cfc9cb5f8d5794ae9dc07df73f61bce0d5f035eaa33e5e9543e639448cce900"
     ], 
     "lib/charms/layer/execd.py": [
       "layer:basic", 
@@ -117,9 +118,9 @@
       "76a97c878c9c7a8321bb395c2b44d3fe2f8d81314d219b20138ed0e2dddd5182"
     ], 
     "copyright": [
-      "layer:basic", 
+      "layer:metrics", 
       "static", 
-      "f6740d66fd60b60f2533d9fcb53907078d1e20920a0219afce7182e2a1c97629"
+      "08509dcbade4c20761ba4382ef23c831744dbab1d4a8dd94a1c2b4d4e913334c"
     ], 
     "wheelhouse/PyYAML-3.12.tar.gz": [
       "layer:basic", 
@@ -171,6 +172,11 @@
       "static", 
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
+    "metrics.yaml": [
+      "redis", 
+      "static", 
+      "e06189f3fee221858ecf3d0390a70d94f3f95ee849ebe1efadd94ef4dd8935b9"
+    ], 
     "lib/charms/layer/basic.py": [
       "layer:basic", 
       "static", 
@@ -184,7 +190,12 @@
     "hooks/relations/redis/requires.py": [
       "interface:redis", 
       "static", 
-      "3e7151bb1f45d5f21f9a62bed6d8272e11f127539353bd60a9b4bb450e9a5a28"
+      "a3f8b12a1ad24efe03d65780c9e3a35832b3d7ee348159ded74e134dca5c6ad3"
+    ], 
+    "hooks/collect-metrics": [
+      "layer:metrics", 
+      "static", 
+      "28625f52430ff52fed68a51838b3b794344ac4357b4f49346651db867d36a451"
     ], 
     "wheelhouse/pip-8.1.2.tar.gz": [
       "layer:basic", 
@@ -229,7 +240,7 @@
     "layer.yaml": [
       "redis", 
       "dynamic", 
-      "71d8069cbd8b978ffedaf6530bc9a9b927b48c80eb49d5949917752d47114ae9"
+      "6fdbb470d68692c34e4c36eeb64e63a525a8921c3adc6206e78f00f37754bbb3"
     ], 
     "config.yaml": [
       "redis", 

@@ -7,6 +7,7 @@
   "redis": {}
 "includes":
 - "layer:basic"
+- "layer:metrics"
 - "interface:redis"
 "repo": "https://github.com:jamesbeedy/juju-charm-redis"
 "is": "redis"

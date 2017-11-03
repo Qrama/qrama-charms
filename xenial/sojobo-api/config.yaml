@@ -62,8 +62,7 @@
   "port":
     "type": "int"
     "default": !!int "80"
-    "description": |
-      NGINX listen port
+    "description": "listen port."
   "host":
     "type": "string"
     "default": "127.0.0.1"
@@ -74,3 +73,7 @@
     "default": "/home/ubuntu/qrama-charms"
     "description": |
       The location where the api will search for local charms, when the app_name is prefixed with "local:<app_name>"
+  "github-repo":
+    "type": "string"
+    "default": "tengu-team"
+    "description": "The github-repo where the bundles can be found."

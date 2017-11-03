@@ -16,10 +16,10 @@
       "static", 
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
-    "wheelhouse/pyaml-17.8.0.tar.gz": [
-      "layer:basic", 
-      "dynamic", 
-      "9cf5ff8fc3b82aab1428e67ab2040b52a9f39433517cb7c5b852498ed3a75740"
+    "LICENSE": [
+      "controller-google", 
+      "static", 
+      "956caac924f88d39f85d505a690a5f670a325d76b70c7c3ae8aee71d563a3ffe"
     ], 
     "hooks/relations/sojobo/__init__.py": [
       "interface:sojobo", 
@@ -36,10 +36,10 @@
       "static", 
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
-    "wheelhouse/PyYAML-3.12.tar.gz": [
+    "wheelhouse/charmhelpers-0.18.2.tar.gz": [
       "layer:basic", 
       "dynamic", 
-      "592766c6303207a20efc445587778322d7f73b161bd994f227adaa341ba212ab"
+      "6bb4276024d03e5caa176628e027cd0d75320395de6018d261fdda7e379da256"
     ], 
     "Makefile": [
       "layer:basic", 
@@ -51,6 +51,11 @@
       "static", 
       "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     ], 
+    "wheelhouse/pyaml-17.10.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "a9a3e83372072fc7dc1aebcab37d6f2e08fb8066f553f31d6fc9cb2ad0b515d3"
+    ], 
     "hooks/relations/sojobo/.gitignore": [
       "interface:sojobo", 
       "static", 
@@ -60,6 +65,11 @@
       "layer:basic", 
       "dynamic", 
       "ddaa01a212cd6d641401cb01b605f4a4d9f37bfc93043d7f760ec70fb99ff9ff"
+    ], 
+    "wheelhouse/charms.reactive-0.5.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "4df8e4c0052b0d46ec8a17dc724faa98169a879752eee78dc07d0f6a0a80837e"
     ], 
     "hooks/upgrade-charm": [
       "layer:basic", 
@@ -71,10 +81,15 @@
       "dynamic", 
       "cacecf0baa674d356641f1d406b8bff1d756d739c46b869a54de515d08e6fc9c"
     ], 
-    "charmbuild/controller-google/lib/charms/layer/basic.py": [
-      "controller-google", 
+    "hooks/relations/sojobo/LICENSE": [
+      "interface:sojobo", 
       "static", 
-      "a98b1ba58bd144f8a79ac0847bfe6741253bbd1a9805f12e9cbc7df3bd12fece"
+      "956caac924f88d39f85d505a690a5f670a325d76b70c7c3ae8aee71d563a3ffe"
+    ], 
+    "wheelhouse/six-1.11.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "70e8a77beed4562e7f14fe23a786b54f6296e34344c23bc42f07b15018ff98e9"
     ], 
     "hooks/hook.template": [
       "layer:basic", 
@@ -96,40 +111,20 @@
       "dynamic", 
       "a1b17bc9b7f9224066b0413117c4a0daed002329983f1a3d719a8ce2e9dfda9c"
     ], 
-    "charmbuild/controller-google/.build.manifest": [
-      "controller-google", 
-      "static", 
-      "ba058a18ec7d00954b419fed04f0a2b2d72468c87f1586f3af6bf4e760d7c595"
-    ], 
-    "LICENSE": [
-      "controller-google", 
-      "static", 
-      "956caac924f88d39f85d505a690a5f670a325d76b70c7c3ae8aee71d563a3ffe"
-    ], 
     "copyright": [
       "layer:basic", 
       "static", 
       "f6740d66fd60b60f2533d9fcb53907078d1e20920a0219afce7182e2a1c97629"
     ], 
-    "wheelhouse/netaddr-0.7.19.tar.gz": [
+    "wheelhouse/PyYAML-3.12.tar.gz": [
       "layer:basic", 
       "dynamic", 
-      "38aeec7cdd035081d3a4c306394b19d677623bf76fa0913f6695127c7753aefd"
-    ], 
-    "requirements.txt": [
-      "layer:basic", 
-      "static", 
-      "0f1c70d27e26005a96d66ad54482877ae20f7737693c833e29dd72bd6ac24892"
+      "592766c6303207a20efc445587778322d7f73b161bd994f227adaa341ba212ab"
     ], 
     ".gitignore": [
       "controller-google", 
       "static", 
       "f24477a840737ae9a1439e10ec2c1003279b9569cc0e3661bd145df95fd0343a"
-    ], 
-    "hooks/relations/sojobo/LICENSE": [
-      "interface:sojobo", 
-      "static", 
-      "956caac924f88d39f85d505a690a5f670a325d76b70c7c3ae8aee71d563a3ffe"
     ], 
     "hooks/install": [
       "layer:basic", 
@@ -140,11 +135,6 @@
       "interface:sojobo", 
       "dynamic", 
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
-    ], 
-    ".build.manifest": [
-      "build", 
-      "dynamic", 
-      "unchecked"
     ], 
     "icon.svg": [
       "controller-google", 
@@ -166,20 +156,15 @@
       "static", 
       "d09706ef3a224eb60d34366a2867c382791aa30157ab5b77eda37f29731df2e2"
     ], 
-    "wheelhouse/charms.reactive-0.4.7.tar.gz": [
+    "wheelhouse/netaddr-0.7.19.tar.gz": [
       "layer:basic", 
       "dynamic", 
-      "f023f5aef267786db1be51209610487171ba56e848f7b1c49877b06337000256"
-    ], 
-    "wheelhouse/charmhelpers-0.17.0.tar.gz": [
-      "layer:basic", 
-      "dynamic", 
-      "232f9ee252c58e9357aaa74d14d351e786716fa0cec3f496f74c40ad0bc6a0b5"
+      "38aeec7cdd035081d3a4c306394b19d677623bf76fa0913f6695127c7753aefd"
     ], 
     "files/controller_google.py": [
       "controller-google", 
       "static", 
-      "1b6a01f67ee62ce41913061beb2062c5757bbc6a103a53e296d02a693da784a8"
+      "e05d67199a8c7614832ef9c63edbf14ad1cfe5ce0ef695bcac4b5979867284c3"
     ], 
     "hooks/sojobo-relation-departed": [
       "interface:sojobo", 
@@ -190,11 +175,6 @@
       "interface:sojobo", 
       "dynamic", 
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
-    ], 
-    "charmbuild/controller-google/lib/charms/layer/__init__.py": [
-      "controller-google", 
-      "static", 
-      "4ffd74384bd81d737572acf2d14fe55431eab8f49d6212d9aabedf24e1d992b2"
     ], 
     "hooks/relations/sojobo/requires.py": [
       "interface:sojobo", 
@@ -256,15 +236,15 @@
       "static", 
       "71a8b901f7e64a6b1b61959fc25819bafc9c9905e37a918615b9f949295095a4"
     ], 
-    "charmbuild/controller-google/lib/charms/layer/execd.py": [
-      "controller-google", 
-      "static", 
-      "c0eb4c90e93a14f04d851f78bc6592e093226321fbe328125958633397aed014"
-    ], 
-    "wheelhouse/six-1.10.0.tar.gz": [
-      "layer:basic", 
+    ".build.manifest": [
+      "build", 
       "dynamic", 
-      "105f8d68616f8248e24bf0e9372ef04d3cc10104f1980f54d57b2ce73a5ad56a"
+      "unchecked"
+    ], 
+    "requirements.txt": [
+      "layer:basic", 
+      "static", 
+      "0f1c70d27e26005a96d66ad54482877ae20f7737693c833e29dd72bd6ac24892"
     ]
   }
 }
