@@ -444,13 +444,10 @@ def create_model(token, controller, model, credentials):
 
 
 async def delete_model(token, controller, model):
-    if datastore.check_model_state(controller.c_name, model.m_name) != 'error':
-        async with controller.connect(token) as juju:
-            await juju.destroy_models(model.m_uuid)
-        datastore.delete_model(controller.c_name, model.m_name)
-        return "Model {} is being deleted".format(model.m_name)
-    else:
-        return "Model {} is in errorstate".format(model.m_name)
+    async with controller.connect(token) as juju:
+        await juju.destroy_models(model.m_uuid)
+    datastore.delete_model(controller.c_name, model.m_name)
+    return "Model {} is being deleted".format(model.m_name)
 #####################################################################################
 # Machines FUNCTIONS
 #####################################################################################

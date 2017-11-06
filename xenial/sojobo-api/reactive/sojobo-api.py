@@ -51,6 +51,7 @@ def upgrade_charm():
     log('Updating Sojobo API')
     install_api()
     set_state('api.installed')
+    status_set('active', 'admin-password: {} api-key: {}'.format(db.get('password'), db.get('api-key')))
 
 
 @when('api.installed', 'nginx.passenger.available')
