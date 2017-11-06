@@ -22,11 +22,6 @@
       "static", 
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
-    "wheelhouse/pyaml-17.8.0.tar.gz": [
-      "layer:basic", 
-      "dynamic", 
-      "9cf5ff8fc3b82aab1428e67ab2040b52a9f39433517cb7c5b852498ed3a75740"
-    ], 
     "lib/charms/layer/execd.py": [
       "layer:basic", 
       "static", 
@@ -37,6 +32,11 @@
       "static", 
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
+    "wheelhouse/charmhelpers-0.18.2.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "6bb4276024d03e5caa176628e027cd0d75320395de6018d261fdda7e379da256"
+    ], 
     "Makefile": [
       "layer:basic", 
       "static", 
@@ -46,6 +46,11 @@
       "layer:leadership", 
       "static", 
       "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    ], 
+    "wheelhouse/pyaml-17.10.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "a9a3e83372072fc7dc1aebcab37d6f2e08fb8066f553f31d6fc9cb2ad0b515d3"
     ], 
     "tests/00-setup": [
       "spark-job", 
@@ -67,10 +72,10 @@
       "dynamic", 
       "cacecf0baa674d356641f1d406b8bff1d756d739c46b869a54de515d08e6fc9c"
     ], 
-    "reactive/leadership.py": [
-      "layer:leadership", 
-      "static", 
-      "e2b233cf861adc3b2d9e9c062134ce2f104953f03283cdddd88f49efee652e8f"
+    "wheelhouse/six-1.11.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "70e8a77beed4562e7f14fe23a786b54f6296e34344c23bc42f07b15018ff98e9"
     ], 
     "hooks/hook.template": [
       "layer:basic", 
@@ -105,12 +110,17 @@
     "lib/charms/leadership.py": [
       "layer:leadership", 
       "static", 
-      "12b52fa768c3e9072556ac6f46f68129dc762f89eb806d8dee921c86497f6707"
+      "20ffcbbc08147506759726ad51567420659ffb8a2e0121079240b8706658e332"
     ], 
     "wheelhouse/PyYAML-3.12.tar.gz": [
       "layer:basic", 
       "dynamic", 
       "592766c6303207a20efc445587778322d7f73b161bd994f227adaa341ba212ab"
+    ], 
+    "hooks/relations/spark/README.md": [
+      "interface:spark", 
+      "static", 
+      "4b6649f8bf8b5968560d6021f62d8f72590c19c4787449884775056fc75f1693"
     ], 
     ".gitignore": [
       "layer:leadership", 
@@ -122,10 +132,10 @@
       "static", 
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
-    "hooks/relations/spark/README.md": [
-      "interface:spark", 
+    "reactive/leadership.py": [
+      "layer:leadership", 
       "static", 
-      "4b6649f8bf8b5968560d6021f62d8f72590c19c4787449884775056fc75f1693"
+      "e2b233cf861adc3b2d9e9c062134ce2f104953f03283cdddd88f49efee652e8f"
     ], 
     "hooks/relations/spark/requires.py": [
       "interface:spark", 
@@ -137,20 +147,15 @@
       "static", 
       "838ad266cf853eb2b8076bf3938c53498360ebd4ad91f3c4466b9edc6c842be1"
     ], 
-    "config.yaml": [
-      "spark-job", 
-      "dynamic", 
-      "bf3838ebfece48ed6aa19ffdc3b2aa592bcde8460030ce0593e1c076120ac1ae"
+    "hooks/config-changed": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
     "lib/charms/layer/__init__.py": [
       "layer:basic", 
       "static", 
       "71a8b901f7e64a6b1b61959fc25819bafc9c9905e37a918615b9f949295095a4"
-    ], 
-    "wheelhouse/charms.reactive-0.4.7.tar.gz": [
-      "layer:basic", 
-      "dynamic", 
-      "f023f5aef267786db1be51209610487171ba56e848f7b1c49877b06337000256"
     ], 
     "hooks/stop": [
       "layer:basic", 
@@ -171,11 +176,6 @@
       "layer:basic", 
       "dynamic", 
       "38aeec7cdd035081d3a4c306394b19d677623bf76fa0913f6695127c7753aefd"
-    ], 
-    "wheelhouse/charmhelpers-0.17.0.tar.gz": [
-      "layer:basic", 
-      "dynamic", 
-      "232f9ee252c58e9357aaa74d14d351e786716fa0cec3f496f74c40ad0bc6a0b5"
     ], 
     "hooks/spark-relation-broken": [
       "interface:spark", 
@@ -232,35 +232,35 @@
       "dynamic", 
       "a6be69091dac236ea9c6bc7d012beab42010fa914c459791d627dad4910eb665"
     ], 
+    "wheelhouse/charms.reactive-0.5.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "4df8e4c0052b0d46ec8a17dc724faa98169a879752eee78dc07d0f6a0a80837e"
+    ], 
     "hooks/spark-relation-joined": [
       "interface:spark", 
       "dynamic", 
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
-    "requirements.txt": [
-      "layer:basic", 
-      "static", 
-      "0f1c70d27e26005a96d66ad54482877ae20f7737693c833e29dd72bd6ac24892"
-    ], 
     "layer.yaml": [
       "spark-job", 
       "dynamic", 
-      "090c24c526016cca9664e01665f940ff65e0f6aed77d5ffc4e87cc06f898232b"
+      "4641f01adb75c5c565980c96d3661e82caf0c63b24fe254a8d9e11444039960e"
     ], 
-    "hooks/config-changed": [
-      "layer:basic", 
-      "static", 
-      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    "config.yaml": [
+      "spark-job", 
+      "dynamic", 
+      "bf3838ebfece48ed6aa19ffdc3b2aa592bcde8460030ce0593e1c076120ac1ae"
     ], 
     ".build.manifest": [
       "build", 
       "dynamic", 
       "unchecked"
     ], 
-    "wheelhouse/six-1.10.0.tar.gz": [
+    "requirements.txt": [
       "layer:basic", 
-      "dynamic", 
-      "105f8d68616f8248e24bf0e9372ef04d3cc10104f1980f54d57b2ce73a5ad56a"
+      "static", 
+      "0f1c70d27e26005a96d66ad54482877ae20f7737693c833e29dd72bd6ac24892"
     ]
   }
 }

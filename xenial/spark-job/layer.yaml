@@ -10,5 +10,5 @@
 - "layer:basic"
 - "layer:leadership"
 - "interface:spark"
-"repo": "https://github.com/Qrama/spark-job.git"
+"repo": "https://github.com/tengu-team/layer-python-spark-job.git"
 "is": "spark-job"

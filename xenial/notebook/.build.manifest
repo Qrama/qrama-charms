@@ -30,16 +30,6 @@
       "static", 
       "d09706ef3a224eb60d34366a2867c382791aa30157ab5b77eda37f29731df2e2"
     ], 
-    "wheelhouse/pyaml-17.8.0.tar.gz": [
-      "layer:basic", 
-      "dynamic", 
-      "9cf5ff8fc3b82aab1428e67ab2040b52a9f39433517cb7c5b852498ed3a75740"
-    ], 
-    "Makefile": [
-      "layer:basic", 
-      "static", 
-      "b7ab3a34e5faf79b96a8632039a0ad0aa87f2a9b5f0ba604e007cafb22190301"
-    ], 
     "wheelhouse/netaddr-0.7.19.tar.gz": [
       "layer:basic", 
       "dynamic", 
@@ -50,15 +40,25 @@
       "static", 
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
-    "wheelhouse/charmhelpers-0.17.0.tar.gz": [
+    "wheelhouse/charmhelpers-0.18.2.tar.gz": [
       "layer:basic", 
       "dynamic", 
-      "232f9ee252c58e9357aaa74d14d351e786716fa0cec3f496f74c40ad0bc6a0b5"
+      "6bb4276024d03e5caa176628e027cd0d75320395de6018d261fdda7e379da256"
+    ], 
+    "Makefile": [
+      "layer:basic", 
+      "static", 
+      "b7ab3a34e5faf79b96a8632039a0ad0aa87f2a9b5f0ba604e007cafb22190301"
     ], 
     "reactive/__init__.py": [
       "layer:basic", 
       "static", 
       "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    ], 
+    "wheelhouse/pyaml-17.10.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "a9a3e83372072fc7dc1aebcab37d6f2e08fb8066f553f31d6fc9cb2ad0b515d3"
     ], 
     "tests/00-setup": [
       "notebook", 
@@ -75,10 +75,10 @@
       "dynamic", 
       "ddaa01a212cd6d641401cb01b605f4a4d9f37bfc93043d7f760ec70fb99ff9ff"
     ], 
-    ".build.manifest": [
-      "build", 
-      "dynamic", 
-      "unchecked"
+    ".gitignore": [
+      "layer:basic", 
+      "static", 
+      "0da5c4dcda27cd6406e5bb81cbf68ddccaf728ac764ec15053a165c1449d87d9"
     ], 
     "hooks/update-status": [
       "layer:basic", 
@@ -96,9 +96,9 @@
       "cacecf0baa674d356641f1d406b8bff1d756d739c46b869a54de515d08e6fc9c"
     ], 
     "README.md": [
-      "layer:basic", 
+      "notebook", 
       "static", 
-      "81752bbec9629772edf48191912d3bf2d9190081de862fa2d005c21064f238bd"
+      "ccb9b7ab72d435c06cc962393b7386d64ec808dad12df49f25f474e57711bb4b"
     ], 
     "hooks/hook.template": [
       "layer:basic", 
@@ -120,6 +120,11 @@
       "static", 
       "f6740d66fd60b60f2533d9fcb53907078d1e20920a0219afce7182e2a1c97629"
     ], 
+    "hooks/config-changed": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
     "hooks/install": [
       "layer:basic", 
       "static", 
@@ -135,20 +140,10 @@
       "dynamic", 
       "a6be69091dac236ea9c6bc7d012beab42010fa914c459791d627dad4910eb665"
     ], 
-    ".gitignore": [
-      "layer:basic", 
-      "static", 
-      "0da5c4dcda27cd6406e5bb81cbf68ddccaf728ac764ec15053a165c1449d87d9"
-    ], 
-    "wheelhouse/six-1.10.0.tar.gz": [
+    "wheelhouse/charms.reactive-0.5.0.tar.gz": [
       "layer:basic", 
       "dynamic", 
-      "105f8d68616f8248e24bf0e9372ef04d3cc10104f1980f54d57b2ce73a5ad56a"
-    ], 
-    "wheelhouse/charms.reactive-0.4.7.tar.gz": [
-      "layer:basic", 
-      "dynamic", 
-      "f023f5aef267786db1be51209610487171ba56e848f7b1c49877b06337000256"
+      "4df8e4c0052b0d46ec8a17dc724faa98169a879752eee78dc07d0f6a0a80837e"
     ], 
     "lib/charms/layer/execd.py": [
       "layer:basic", 
@@ -165,25 +160,25 @@
       "dynamic", 
       "d7ae383d55a3cece37252dd45054174b37ef4d2b390b080de44c9d07135fe8f5"
     ], 
-    "hooks/config-changed": [
+    "wheelhouse/six-1.11.0.tar.gz": [
       "layer:basic", 
-      "static", 
-      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+      "dynamic", 
+      "70e8a77beed4562e7f14fe23a786b54f6296e34344c23bc42f07b15018ff98e9"
     ], 
     "reactive/layer_notebook.py": [
       "notebook", 
       "static", 
-      "aca0635aa932c096bc72fdc1f4b3f4a946370b44db351ae55866ad4f5f956a92"
+      "e6242cf7f3bae2f78fde54ad8d1528047ed374bb13d24f145884acdcc969e8a9"
     ], 
     "wheelhouse/pip-8.1.2.tar.gz": [
       "layer:basic", 
       "dynamic", 
       "4d24b03ffa67638a3fa931c09fd9e0273ffa904e95ebebe7d4b1a54c93d7b732"
     ], 
-    "README.ex": [
-      "notebook", 
-      "static", 
-      "eb25333fb6ee2abc2d5dde329dfd6b4b2a6dd5516094e75354fb6cd84010afad"
+    ".build.manifest": [
+      "build", 
+      "dynamic", 
+      "unchecked"
     ], 
     "icon.svg": [
       "notebook", 
