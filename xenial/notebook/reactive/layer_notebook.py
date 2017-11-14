@@ -31,7 +31,7 @@ def install_layer_notebook():
     if conf['notebook_location']:
         file = requests.post('http://127.0.0.1:9080/api/notebook', json={"name": service_name()})
         data = file.json()
-        pip_install('simplejson')
+        sp.check_call(['pip3', 'install', 'simplejson'])
         notebook_path = '/var/lib/zeppelin/notebook/{}/note.json'.format(data['body'])
         if os.path.exists(notebook_path):
             os.remove(notebook_path)

@@ -30,6 +30,11 @@
       "static", 
       "d09706ef3a224eb60d34366a2867c382791aa30157ab5b77eda37f29731df2e2"
     ], 
+    "wheelhouse/Jinja2-2.10.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "f84be1bb0040caca4cea721fcbbbbd61f9be9464ca236387158b0feea01914a4"
+    ], 
     "wheelhouse/netaddr-0.7.19.tar.gz": [
       "layer:basic", 
       "dynamic", 
@@ -70,10 +75,10 @@
       "static", 
       "8fb6559bf4d4b7cdf1b857564c1d7265df98e863a4746fcbae092f141e59d97e"
     ], 
-    "wheelhouse/Jinja2-2.9.6.tar.gz": [
+    "wheelhouse/pip-8.1.2.tar.gz": [
       "layer:basic", 
       "dynamic", 
-      "ddaa01a212cd6d641401cb01b605f4a4d9f37bfc93043d7f760ec70fb99ff9ff"
+      "4d24b03ffa67638a3fa931c09fd9e0273ffa904e95ebebe7d4b1a54c93d7b732"
     ], 
     ".gitignore": [
       "layer:basic", 
@@ -168,12 +173,7 @@
     "reactive/layer_notebook.py": [
       "notebook", 
       "static", 
-      "e6242cf7f3bae2f78fde54ad8d1528047ed374bb13d24f145884acdcc969e8a9"
-    ], 
-    "wheelhouse/pip-8.1.2.tar.gz": [
-      "layer:basic", 
-      "dynamic", 
-      "4d24b03ffa67638a3fa931c09fd9e0273ffa904e95ebebe7d4b1a54c93d7b732"
+      "4f228d38934657e3697301078170327005a484b62d01c435ca785a36b601a976"
     ], 
     ".build.manifest": [
       "build", 
