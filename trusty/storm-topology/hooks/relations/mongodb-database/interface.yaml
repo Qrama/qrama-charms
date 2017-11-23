@@ -1,4 +1,0 @@
-name: mongodb-database
-summary: mongoDB database interface
-version: 1
-repo: https://github.com/Qrama/interface-mongodb-database.git

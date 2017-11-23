@@ -176,16 +176,16 @@ def create_model(controller):
         con = juju.authorize( token, controller)
         LOGGER.info('/TENGU/controllers/%s/models [POST] => Authorized!', controller)
         valid, model = juju.check_input(data['model'], "model")
-        if not 'credential' in data:
-            credentials = datastore.get_default_credential(controller)
-        else:
-            credentials = data['credential']
         if con.c_access == 'add-model' or con.c_access == 'superuser':
-            if valid:
-                LOGGER.info('/TENGU/controllers/%s/models [POST] => Creating model, check add_model.log for more details', controller)
-                code, response = juju.create_model(token, con.c_name, model, credentials)
+            if juju.credential_exists(token.username, data['credential']):
+                credentials = data['credential']
+                if valid:
+                    LOGGER.info('/TENGU/controllers/%s/models [POST] => Creating model, check add_model.log for more details', controller)
+                    code, response = juju.create_model(token, con.c_name, model, credentials)
+                else:
+                    code, response = 400, model
             else:
-                code, response = 400, model
+                code, response = 400, 'Credential {} not found for user {}'.format(data['credential'], token.username)
         else:
             code, response = errors.no_permission()
             LOGGER.error('/TENGU/controllers/%s/models [POST] => No Permission to perform this action!', controller)

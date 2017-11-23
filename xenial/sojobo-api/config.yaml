@@ -35,9 +35,14 @@
     "default": |
       - 561F9B9CAC40B2F7
       - null
+  "snap_proxy":
+    "description": "HTTP/HTTPS web proxy for Snappy to use when accessing the snap\
+      \ store.\n"
+    "type": "string"
+    "default": ""
   "user":
     "type": "string"
-    "default": "ubuntu"
+    "default": "sojobo"
     "description": "user to install the tools for"
   "controllers_yaml":
     "type": "string"
@@ -54,11 +59,6 @@
     "default": ""
     "description": |
       base64 encoded contents of ~/.local/share/juju/clouds.yaml
-  "snap_proxy":
-    "description": "HTTP/HTTPS web proxy for Snappy to use when accessing the snap\
-      \ store.\n"
-    "type": "string"
-    "default": ""
   "port":
     "type": "int"
     "default": !!int "80"

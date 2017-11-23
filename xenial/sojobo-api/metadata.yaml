@@ -4,6 +4,8 @@
 "description": ""
 "tags":
 - "big_data"
+"series":
+- "xenial"
 "requires":
   "redis":
     "interface": "redis"
@@ -14,7 +16,4 @@
     "interface": "sojobo"
   "proxy":
     "interface": "http"
-"series":
-- "xenial"
-- "xenial"
 "subordinate": !!bool "false"
