@@ -42,7 +42,7 @@
     "default": ""
   "user":
     "type": "string"
-    "default": "sojobo"
+    "default": "ubuntu"
     "description": "user to install the tools for"
   "controllers_yaml":
     "type": "string"
