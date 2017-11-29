@@ -1,0 +1,4 @@
+name: activemq-sub
+summary: activeMQ interface
+version: 1
+repo: https://github.com/Qrama/interface-activemq.git

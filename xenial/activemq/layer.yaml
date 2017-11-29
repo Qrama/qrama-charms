@@ -1,0 +1,14 @@
+"options":
+  "basic":
+    "packages":
+    - "openjdk-8-jre-headless"
+    "use_venv": !!bool "false"
+    "include_system_packages": !!bool "false"
+  "activemq": {}
+"includes":
+- "layer:basic"
+- "layer:metrics"
+- "interface:http"
+- "interface:activemq-sub"
+"repo": "git@github.com/tengu-team/interface-activemq.git"
+"is": "activemq"

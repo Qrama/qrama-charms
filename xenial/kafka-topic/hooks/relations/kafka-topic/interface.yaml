@@ -1,4 +1,0 @@
-name: kafka-topic
-summary: Kafka Topic interface
-version: 1
-repo: https://github.com/Qrama/interface-kafka-topic.git

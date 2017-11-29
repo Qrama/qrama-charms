@@ -1,0 +1,2 @@
+MONGO_URI = '{{MONGO_URI}}'
+MONGO_DB = '{{MONGO_DB}}'

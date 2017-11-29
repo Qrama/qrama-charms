@@ -1,0 +1,18 @@
+"name": "activemq"
+"summary": "this layer provides the activeMQ service"
+"maintainer": "Sebastien Pattyn <sebastien.pattyn@tengu.io>"
+"description": "Apache ActiveMQ \u2122 is the most popular and powerful open source\
+  \ messaging and\nIntegration Patterns server.Apache ActiveMQ is fast, supports many\
+  \ Cross\nLanguage Clients and Protocols, comes with easy to use Enterprise Integration\n\
+  Patterns and many advanced features while fully supporting JMS 1.1 and\nJ2EE 1.4.\
+  \ Apache ActiveMQ is released under the Apache 2.0 License\n"
+"tags":
+- "misc"
+"series":
+- "xenial"
+"provides":
+  "http":
+    "interface": "http"
+  "messagebroker":
+    "interface": "activemq-sub"
+"subordinate": !!bool "false"

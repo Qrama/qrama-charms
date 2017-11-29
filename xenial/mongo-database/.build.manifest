@@ -7,124 +7,49 @@
     "build"
   ], 
   "signatures": {
-    "tests/10-deploy": [
-      "mongo-database", 
-      "static", 
-      "b7ab8b4df4aa6a6c00e2d0bdd8e1c8b418b179e639a97e65354b1b768b0dc7a8"
-    ], 
-    "hooks/relations/mongodb/copyright": [
-      "interface:mongodb", 
-      "static", 
-      "188b8b4aa4477e8d2a0b4c290c451326456a0ddf58e1f314c3f5bf151ddbd8a8"
-    ], 
-    "bin/layer_option": [
-      "layer:basic", 
-      "static", 
-      "621b556cd208005e131e9f648859294347da9376609745a73ca2e808dd2032f9"
-    ], 
-    "hooks/leader-settings-changed": [
-      "layer:basic", 
-      "static", 
-      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
-    ], 
-    "wheelhouse/pyaml-17.8.0.tar.gz": [
-      "layer:basic", 
+    ".build.manifest": [
+      "build", 
       "dynamic", 
-      "9cf5ff8fc3b82aab1428e67ab2040b52a9f39433517cb7c5b852498ed3a75740"
-    ], 
-    "lib/charms/layer/execd.py": [
-      "layer:basic", 
-      "static", 
-      "af1f2409869f990cdb33cffc4120fb6713876e8e680ac5f064ea510bbdca1073"
-    ], 
-    "hooks/leader-elected": [
-      "layer:basic", 
-      "static", 
-      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
-    ], 
-    "Makefile": [
-      "layer:basic", 
-      "static", 
-      "b7ab3a34e5faf79b96a8632039a0ad0aa87f2a9b5f0ba604e007cafb22190301"
-    ], 
-    "reactive/__init__.py": [
-      "layer:basic", 
-      "static", 
-      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-    ], 
-    "tests/00-setup": [
-      "mongo-database", 
-      "static", 
-      "111c079b81d260bbcd716dcf41672372a4cf4aaa14154b6c3055deeedae37a06"
-    ], 
-    "wheelhouse/Jinja2-2.9.6.tar.gz": [
-      "layer:basic", 
-      "dynamic", 
-      "ddaa01a212cd6d641401cb01b605f4a4d9f37bfc93043d7f760ec70fb99ff9ff"
-    ], 
-    "hooks/upgrade-charm": [
-      "layer:basic", 
-      "static", 
-      "8fb6559bf4d4b7cdf1b857564c1d7265df98e863a4746fcbae092f141e59d97e"
-    ], 
-    "hooks/relations/mongodb-database/__init__.py": [
-      "interface:mongodb-database", 
-      "static", 
-      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-    ], 
-    "hooks/relations/mongodb/__init__.py": [
-      "interface:mongodb", 
-      "static", 
-      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-    ], 
-    "wheelhouse/Tempita-0.5.2.tar.gz": [
-      "layer:basic", 
-      "dynamic", 
-      "cacecf0baa674d356641f1d406b8bff1d756d739c46b869a54de515d08e6fc9c"
-    ], 
-    "hooks/mongodb-relation-changed": [
-      "interface:mongodb", 
-      "dynamic", 
-      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
-    ], 
-    "hooks/hook.template": [
-      "layer:basic", 
-      "static", 
-      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
-    ], 
-    "tox.ini": [
-      "layer:basic", 
-      "static", 
-      "00b57a776ac313e92a52daa05d1fdb6056c21b3105b643d32610fd937664321b"
-    ], 
-    "metadata.yaml": [
-      "mongo-database", 
-      "dynamic", 
-      "ae29aeddc4909fb139e521f6848d8d9b39926721c6ccead3102da76dfa6cddc5"
-    ], 
-    "copyright": [
-      "layer:basic", 
-      "static", 
-      "f6740d66fd60b60f2533d9fcb53907078d1e20920a0219afce7182e2a1c97629"
-    ], 
-    "wheelhouse/PyYAML-3.12.tar.gz": [
-      "layer:basic", 
-      "dynamic", 
-      "592766c6303207a20efc445587778322d7f73b161bd994f227adaa341ba212ab"
-    ], 
-    "hooks/mongodb-relation-broken": [
-      "interface:mongodb", 
-      "dynamic", 
-      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+      "unchecked"
     ], 
     ".gitignore": [
       "layer:basic", 
       "static", 
       "0da5c4dcda27cd6406e5bb81cbf68ddccaf728ac764ec15053a165c1449d87d9"
     ], 
-    "hooks/install": [
+    "Makefile": [
       "layer:basic", 
       "static", 
+      "b7ab3a34e5faf79b96a8632039a0ad0aa87f2a9b5f0ba604e007cafb22190301"
+    ], 
+    "README.md": [
+      "mongo-database", 
+      "static", 
+      "ebde9b9b5f06eb301f3cd4d6534a20fe3da01fb5a2fc637d4cf221ba0bc78734"
+    ], 
+    "bin/layer_option": [
+      "layer:basic", 
+      "static", 
+      "621b556cd208005e131e9f648859294347da9376609745a73ca2e808dd2032f9"
+    ], 
+    "config.yaml": [
+      "mongo-database", 
+      "dynamic", 
+      "d0a4a545849305c03a36272b9e556f0ab31e0c268b6c98182157d058b6d53b66"
+    ], 
+    "copyright": [
+      "layer:basic", 
+      "static", 
+      "f6740d66fd60b60f2533d9fcb53907078d1e20920a0219afce7182e2a1c97629"
+    ], 
+    "hooks/config-changed": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/db-relation-broken": [
+      "interface:mongodb-database", 
+      "dynamic", 
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
     "hooks/db-relation-changed": [
@@ -137,74 +62,39 @@
       "dynamic", 
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
-    "layer.yaml": [
-      "mongo-database", 
-      "dynamic", 
-      "5a1fbee190bc2cd7385dca0ade74ef9118c0f594270bc0095999fb20d5758bba"
-    ], 
-    ".build.manifest": [
-      "build", 
-      "dynamic", 
-      "unchecked"
-    ], 
-    "icon.svg": [
-      "mongo-database", 
-      "static", 
-      "dd1b15096ddf776a5fa69d4cf472579b8faf599a27c4b227eea446d40393c580"
-    ], 
-    "config.yaml": [
-      "mongo-database", 
-      "dynamic", 
-      "d0a4a545849305c03a36272b9e556f0ab31e0c268b6c98182157d058b6d53b66"
-    ], 
-    "lib/charms/layer/__init__.py": [
-      "layer:basic", 
-      "static", 
-      "71a8b901f7e64a6b1b61959fc25819bafc9c9905e37a918615b9f949295095a4"
-    ], 
-    "wheelhouse/charms.reactive-0.4.7.tar.gz": [
-      "layer:basic", 
-      "dynamic", 
-      "f023f5aef267786db1be51209610487171ba56e848f7b1c49877b06337000256"
-    ], 
-    "hooks/stop": [
-      "layer:basic", 
-      "static", 
-      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
-    ], 
-    "lib/charms/layer/basic.py": [
-      "layer:basic", 
-      "static", 
-      "d09706ef3a224eb60d34366a2867c382791aa30157ab5b77eda37f29731df2e2"
-    ], 
-    "wheelhouse/netaddr-0.7.19.tar.gz": [
-      "layer:basic", 
-      "dynamic", 
-      "38aeec7cdd035081d3a4c306394b19d677623bf76fa0913f6695127c7753aefd"
-    ], 
-    "hooks/mongodb-relation-joined": [
-      "interface:mongodb", 
-      "dynamic", 
-      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
-    ], 
     "hooks/db-relation-joined": [
       "interface:mongodb-database", 
       "dynamic", 
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
-    "wheelhouse/pip-8.1.2.tar.gz": [
+    "hooks/hook.template": [
       "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/install": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/leader-elected": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/leader-settings-changed": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/mongodb-relation-broken": [
+      "interface:mongodb", 
       "dynamic", 
-      "4d24b03ffa67638a3fa931c09fd9e0273ffa904e95ebebe7d4b1a54c93d7b732"
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
-    "hooks/relations/mongodb-database/LICENSE": [
-      "interface:mongodb-database", 
-      "static", 
-      "589ed823e9a84c56feb95ac58e7cf384626b9cbf4fda2a907bc36e103de1bad2"
-    ], 
-    "hooks/update-status": [
-      "layer:basic", 
-      "static", 
+    "hooks/mongodb-relation-changed": [
+      "interface:mongodb", 
+      "dynamic", 
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
     "hooks/mongodb-relation-departed": [
@@ -212,15 +102,25 @@
       "dynamic", 
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
-    "wheelhouse/charmhelpers-0.18.1.tar.gz": [
-      "layer:basic", 
+    "hooks/mongodb-relation-joined": [
+      "interface:mongodb", 
       "dynamic", 
-      "15dbae866550b724fb81ce501e118386b28a554110bd45f8ce3f62139411cf9f"
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
-    "README.md": [
-      "mongo-database", 
+    "hooks/relations/mongodb-database/LICENSE": [
+      "interface:mongodb-database", 
       "static", 
-      "ebde9b9b5f06eb301f3cd4d6534a20fe3da01fb5a2fc637d4cf221ba0bc78734"
+      "589ed823e9a84c56feb95ac58e7cf384626b9cbf4fda2a907bc36e103de1bad2"
+    ], 
+    "hooks/relations/mongodb-database/__init__.py": [
+      "interface:mongodb-database", 
+      "static", 
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    ], 
+    "hooks/relations/mongodb-database/interface.yaml": [
+      "interface:mongodb-database", 
+      "static", 
+      "f5b394e7a50d7bb2788c46c278b31b56182043aeb31fc2865ea7d4ddadd544e7"
     ], 
     "hooks/relations/mongodb-database/provides.py": [
       "interface:mongodb-database", 
@@ -232,55 +132,155 @@
       "static", 
       "722f1143583a0b8ea9cc4b202e5d719bb3ed8b1868cc0ee455fc70f54e40f71c"
     ], 
-    "hooks/start": [
-      "layer:basic", 
-      "static", 
-      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
-    ], 
-    "wheelhouse/MarkupSafe-1.0.tar.gz": [
-      "layer:basic", 
-      "dynamic", 
-      "a6be69091dac236ea9c6bc7d012beab42010fa914c459791d627dad4910eb665"
-    ], 
-    "hooks/db-relation-broken": [
-      "interface:mongodb-database", 
-      "dynamic", 
-      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
-    ], 
-    "requirements.txt": [
-      "layer:basic", 
-      "static", 
-      "0f1c70d27e26005a96d66ad54482877ae20f7737693c833e29dd72bd6ac24892"
-    ], 
-    "hooks/relations/mongodb/requires.py": [
+    "hooks/relations/mongodb/__init__.py": [
       "interface:mongodb", 
       "static", 
-      "02416b8b8650aad5b756f4c050e94166d464c4ce11e2069bd0b238d99e8b6cea"
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     ], 
-    "hooks/config-changed": [
-      "layer:basic", 
+    "hooks/relations/mongodb/copyright": [
+      "interface:mongodb", 
       "static", 
-      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
-    ], 
-    "hooks/relations/mongodb-database/interface.yaml": [
-      "interface:mongodb-database", 
-      "static", 
-      "f5b394e7a50d7bb2788c46c278b31b56182043aeb31fc2865ea7d4ddadd544e7"
-    ], 
-    "reactive/layer_mongo_database.py": [
-      "mongo-database", 
-      "static", 
-      "4fe097a5d77aceff089b787d6669cab331f099749abb5c39a157eba151afa3cb"
+      "188b8b4aa4477e8d2a0b4c290c451326456a0ddf58e1f314c3f5bf151ddbd8a8"
     ], 
     "hooks/relations/mongodb/interface.yaml": [
       "interface:mongodb", 
       "static", 
       "512c111baee1fea7f6614e82b4a2215a91689b467181ca8667837ba4a2876023"
     ], 
-    "wheelhouse/six-1.10.0.tar.gz": [
+    "hooks/relations/mongodb/requires.py": [
+      "interface:mongodb", 
+      "static", 
+      "02416b8b8650aad5b756f4c050e94166d464c4ce11e2069bd0b238d99e8b6cea"
+    ], 
+    "hooks/start": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/stop": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/update-status": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/upgrade-charm": [
+      "layer:basic", 
+      "static", 
+      "8fb6559bf4d4b7cdf1b857564c1d7265df98e863a4746fcbae092f141e59d97e"
+    ], 
+    "icon.svg": [
+      "mongo-database", 
+      "static", 
+      "dd1b15096ddf776a5fa69d4cf472579b8faf599a27c4b227eea446d40393c580"
+    ], 
+    "layer.yaml": [
+      "mongo-database", 
+      "dynamic", 
+      "5a1fbee190bc2cd7385dca0ade74ef9118c0f594270bc0095999fb20d5758bba"
+    ], 
+    "lib/charms/layer/__init__.py": [
+      "layer:basic", 
+      "static", 
+      "71a8b901f7e64a6b1b61959fc25819bafc9c9905e37a918615b9f949295095a4"
+    ], 
+    "lib/charms/layer/basic.py": [
+      "layer:basic", 
+      "static", 
+      "d09706ef3a224eb60d34366a2867c382791aa30157ab5b77eda37f29731df2e2"
+    ], 
+    "lib/charms/layer/execd.py": [
+      "layer:basic", 
+      "static", 
+      "fda8bd491032db1db8ddaf4e99e7cc878c6fb5432efe1f91cadb5b34765d076d"
+    ], 
+    "metadata.yaml": [
+      "mongo-database", 
+      "dynamic", 
+      "67984bdddeaf830881265f02d6a5527e7e7d026062ebb892937e6e9e59853b54"
+    ], 
+    "reactive/__init__.py": [
+      "layer:basic", 
+      "static", 
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    ], 
+    "reactive/layer_mongo_database.py": [
+      "mongo-database", 
+      "static", 
+      "f5318d176dea5af3f7c938b89ad67beddde362c9b6cbb153ddff79f1a5bfc606"
+    ], 
+    "requirements.txt": [
+      "layer:basic", 
+      "static", 
+      "0f1c70d27e26005a96d66ad54482877ae20f7737693c833e29dd72bd6ac24892"
+    ], 
+    "tests/00-setup": [
+      "mongo-database", 
+      "static", 
+      "111c079b81d260bbcd716dcf41672372a4cf4aaa14154b6c3055deeedae37a06"
+    ], 
+    "tests/10-deploy": [
+      "mongo-database", 
+      "static", 
+      "b7ab8b4df4aa6a6c00e2d0bdd8e1c8b418b179e639a97e65354b1b768b0dc7a8"
+    ], 
+    "tox.ini": [
+      "layer:basic", 
+      "static", 
+      "00b57a776ac313e92a52daa05d1fdb6056c21b3105b643d32610fd937664321b"
+    ], 
+    "wheelhouse/Jinja2-2.10.tar.gz": [
       "layer:basic", 
       "dynamic", 
-      "105f8d68616f8248e24bf0e9372ef04d3cc10104f1980f54d57b2ce73a5ad56a"
+      "f84be1bb0040caca4cea721fcbbbbd61f9be9464ca236387158b0feea01914a4"
+    ], 
+    "wheelhouse/MarkupSafe-1.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "a6be69091dac236ea9c6bc7d012beab42010fa914c459791d627dad4910eb665"
+    ], 
+    "wheelhouse/PyYAML-3.12.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "592766c6303207a20efc445587778322d7f73b161bd994f227adaa341ba212ab"
+    ], 
+    "wheelhouse/Tempita-0.5.2.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "cacecf0baa674d356641f1d406b8bff1d756d739c46b869a54de515d08e6fc9c"
+    ], 
+    "wheelhouse/charmhelpers-0.18.2.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "6bb4276024d03e5caa176628e027cd0d75320395de6018d261fdda7e379da256"
+    ], 
+    "wheelhouse/charms.reactive-0.5.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "4df8e4c0052b0d46ec8a17dc724faa98169a879752eee78dc07d0f6a0a80837e"
+    ], 
+    "wheelhouse/netaddr-0.7.19.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "38aeec7cdd035081d3a4c306394b19d677623bf76fa0913f6695127c7753aefd"
+    ], 
+    "wheelhouse/pip-8.1.2.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "4d24b03ffa67638a3fa931c09fd9e0273ffa904e95ebebe7d4b1a54c93d7b732"
+    ], 
+    "wheelhouse/pyaml-17.10.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "a9a3e83372072fc7dc1aebcab37d6f2e08fb8066f553f31d6fc9cb2ad0b515d3"
+    ], 
+    "wheelhouse/six-1.11.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "70e8a77beed4562e7f14fe23a786b54f6296e34344c23bc42f07b15018ff98e9"
     ]
   }
 }

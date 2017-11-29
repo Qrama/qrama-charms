@@ -1,0 +1,19 @@
+"options":
+  "apt":
+    "packages": ["python3-pip"]
+    "version_package": ""
+    "full_version": !!bool "false"
+  "streambundle-api": {}
+  "nginx-passenger": {}
+  "basic":
+    "use_venv": !!bool "false"
+    "packages": []
+    "include_system_packages": !!bool "false"
+"includes":
+- "layer:basic"
+- "layer:apt"
+- "interface:http"
+- "layer:nginx-passenger"
+- "interface:mongodb-database"
+"repo": "https://github.com/jamesbeedy/layer-nginx-passenger.git"
+"is": "streambundle-api"

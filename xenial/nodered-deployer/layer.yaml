@@ -1,0 +1,11 @@
+"options":
+  "nodered-deployer": {}
+  "basic":
+    "use_venv": !!bool "false"
+    "packages": []
+    "include_system_packages": !!bool "false"
+"includes":
+- "layer:basic"
+- "interface:nodered-flow"
+"repo": "git@github.com/tengu-team/layer-nodered-deployer"
+"is": "nodered-deployer"

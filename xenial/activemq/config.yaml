@@ -1,0 +1,32 @@
+"options":
+  "port":
+    "type": "int"
+    "default": !!int "61616"
+    "description": |
+      Port where activeMQ will be running. default set to 61616.
+  "admin_panel_enabled":
+    "type": "boolean"
+    "default": !!bool "true"
+    "description": |
+      Set to True if you want to make the admin panel publicly accessible. Set to
+      False to disable it publicly.
+  "brokername":
+    "type": "string"
+    "default": "ActiveMQ standalone"
+    "description": |
+      This will change the name of your message broker and will be visible in the admin web console.
+  "version":
+    "type": "string"
+    "default": "5.14.5"
+    "description": |
+      Version of Activemq that needs to be downloaded. Supported version atm is 5.14.5.
+  "port_stomp":
+    "type": "int"
+    "default": !!int "61613"
+    "description": |
+      Enable the STOMP protocol for your activemq messagebroker. Set to 0 to disable stomp.
+  "port_amqp":
+    "type": "int"
+    "default": !!int "5672"
+    "description": |
+      Enable the AMQP protocol for your activemq messagebroker.Set to 0 to disable amqp.

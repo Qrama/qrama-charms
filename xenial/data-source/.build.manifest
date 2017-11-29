@@ -2,73 +2,123 @@
   "layers": [
     "layer:basic", 
     "data-source", 
-    "interface:kafka-topic", 
+    "interface:activemq-topic", 
     "build"
   ], 
   "signatures": {
-    "tests/10-deploy": [
-      "data-source", 
-      "static", 
-      "c253612739a53dc145bdd14274502662825faf42e07dfb63cc837e279ab52096"
-    ], 
-    "bin/layer_option": [
-      "layer:basic", 
-      "static", 
-      "621b556cd208005e131e9f648859294347da9376609745a73ca2e808dd2032f9"
-    ], 
-    "hooks/leader-settings-changed": [
-      "layer:basic", 
-      "static", 
-      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
-    ], 
-    "wheelhouse/pyaml-17.8.0.tar.gz": [
-      "layer:basic", 
+    ".build.manifest": [
+      "build", 
       "dynamic", 
-      "9cf5ff8fc3b82aab1428e67ab2040b52a9f39433517cb7c5b852498ed3a75740"
+      "unchecked"
     ], 
-    "lib/charms/layer/execd.py": [
+    ".gitignore": [
       "layer:basic", 
       "static", 
-      "af1f2409869f990cdb33cffc4120fb6713876e8e680ac5f064ea510bbdca1073"
-    ], 
-    "hooks/leader-elected": [
-      "layer:basic", 
-      "static", 
-      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
-    ], 
-    "hooks/topic-relation-changed": [
-      "interface:kafka-topic", 
-      "dynamic", 
-      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+      "0da5c4dcda27cd6406e5bb81cbf68ddccaf728ac764ec15053a165c1449d87d9"
     ], 
     "Makefile": [
       "layer:basic", 
       "static", 
       "b7ab3a34e5faf79b96a8632039a0ad0aa87f2a9b5f0ba604e007cafb22190301"
     ], 
-    "reactive/__init__.py": [
+    "README.md": [
+      "data-source", 
+      "static", 
+      "eb25333fb6ee2abc2d5dde329dfd6b4b2a6dd5516094e75354fb6cd84010afad"
+    ], 
+    "bin/layer_option": [
       "layer:basic", 
+      "static", 
+      "621b556cd208005e131e9f648859294347da9376609745a73ca2e808dd2032f9"
+    ], 
+    "copyright": [
+      "layer:basic", 
+      "static", 
+      "f6740d66fd60b60f2533d9fcb53907078d1e20920a0219afce7182e2a1c97629"
+    ], 
+    "hooks/config-changed": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/hook.template": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/install": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/leader-elected": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/leader-settings-changed": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/relations/activemq-topic/LICENSE": [
+      "interface:activemq-topic", 
+      "static", 
+      "589ed823e9a84c56feb95ac58e7cf384626b9cbf4fda2a907bc36e103de1bad2"
+    ], 
+    "hooks/relations/activemq-topic/__init__.py": [
+      "interface:activemq-topic", 
       "static", 
       "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     ], 
+    "hooks/relations/activemq-topic/interface.yaml": [
+      "interface:activemq-topic", 
+      "static", 
+      "04441d0d71236956a18614100ca6ae02d4bce570e8c7f60c53c7d1fba2f03639"
+    ], 
+    "hooks/relations/activemq-topic/provides.py": [
+      "interface:activemq-topic", 
+      "static", 
+      "663daec35b626e166edff7a01af177852b15985368c8b66d0cb90d4afe7b953d"
+    ], 
+    "hooks/relations/activemq-topic/requires.py": [
+      "interface:activemq-topic", 
+      "static", 
+      "f304c6caed63822b6d79211c7f72b01f9497707110c539d18401cb7d93244b4c"
+    ], 
+    "hooks/start": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/stop": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
     "hooks/topic-relation-broken": [
-      "interface:kafka-topic", 
+      "interface:activemq-topic", 
       "dynamic", 
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
-    "tests/00-setup": [
-      "data-source", 
-      "static", 
-      "111c079b81d260bbcd716dcf41672372a4cf4aaa14154b6c3055deeedae37a06"
-    ], 
-    "wheelhouse/Jinja2-2.9.6.tar.gz": [
-      "layer:basic", 
+    "hooks/topic-relation-changed": [
+      "interface:activemq-topic", 
       "dynamic", 
-      "ddaa01a212cd6d641401cb01b605f4a4d9f37bfc93043d7f760ec70fb99ff9ff"
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
     "hooks/topic-relation-departed": [
-      "interface:kafka-topic", 
+      "interface:activemq-topic", 
       "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/topic-relation-joined": [
+      "interface:activemq-topic", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/update-status": [
+      "layer:basic", 
+      "static", 
       "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
     ], 
     "hooks/upgrade-charm": [
@@ -76,170 +126,120 @@
       "static", 
       "8fb6559bf4d4b7cdf1b857564c1d7265df98e863a4746fcbae092f141e59d97e"
     ], 
-    "wheelhouse/Tempita-0.5.2.tar.gz": [
-      "layer:basic", 
-      "dynamic", 
-      "cacecf0baa674d356641f1d406b8bff1d756d739c46b869a54de515d08e6fc9c"
-    ], 
-    "hooks/hook.template": [
-      "layer:basic", 
-      "static", 
-      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
-    ], 
-    "tox.ini": [
-      "layer:basic", 
-      "static", 
-      "00b57a776ac313e92a52daa05d1fdb6056c21b3105b643d32610fd937664321b"
-    ], 
-    "metadata.yaml": [
-      "data-source", 
-      "dynamic", 
-      "fbd94748f483099120e0cfe33e160d7097a8734a05ec8b585248c6c5c245ff23"
-    ], 
-    "copyright": [
-      "layer:basic", 
-      "static", 
-      "f6740d66fd60b60f2533d9fcb53907078d1e20920a0219afce7182e2a1c97629"
-    ], 
-    "wheelhouse/PyYAML-3.12.tar.gz": [
-      "layer:basic", 
-      "dynamic", 
-      "592766c6303207a20efc445587778322d7f73b161bd994f227adaa341ba212ab"
-    ], 
-    "hooks/relations/kafka-topic/interface.yaml": [
-      "interface:kafka-topic", 
-      "static", 
-      "44ec34b0ec0a93685693ef17d205cba3daaecce455246795b5d6e1929a3e86c3"
-    ], 
-    ".gitignore": [
-      "layer:basic", 
-      "static", 
-      "0da5c4dcda27cd6406e5bb81cbf68ddccaf728ac764ec15053a165c1449d87d9"
-    ], 
-    "hooks/install": [
-      "layer:basic", 
-      "static", 
-      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
-    ], 
-    ".build.manifest": [
-      "build", 
-      "dynamic", 
-      "unchecked"
-    ], 
     "icon.svg": [
       "data-source", 
       "static", 
       "fd634ed7d7cd7bafcfdc0d54cdd128911dd425bc75e3cbe6bd5564fb5b0055c0"
     ], 
-    "hooks/config-changed": [
-      "layer:basic", 
-      "static", 
-      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
-    ], 
-    "wheelhouse/charms.reactive-0.4.7.tar.gz": [
-      "layer:basic", 
-      "dynamic", 
-      "f023f5aef267786db1be51209610487171ba56e848f7b1c49877b06337000256"
-    ], 
-    "hooks/stop": [
-      "layer:basic", 
-      "static", 
-      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
-    ], 
-    "lib/charms/layer/basic.py": [
-      "layer:basic", 
-      "static", 
-      "d09706ef3a224eb60d34366a2867c382791aa30157ab5b77eda37f29731df2e2"
-    ], 
-    "wheelhouse/netaddr-0.7.19.tar.gz": [
-      "layer:basic", 
-      "dynamic", 
-      "38aeec7cdd035081d3a4c306394b19d677623bf76fa0913f6695127c7753aefd"
-    ], 
-    "templates/kafka_topic.py": [
-      "data-source", 
-      "static", 
-      "3d0ee8dfdbe8cd9e0389c08ac9b743f5ee76e63d7c03807b141779454e687821"
-    ], 
-    "hooks/relations/kafka-topic/provides.py": [
-      "interface:kafka-topic", 
-      "static", 
-      "990ceb9abb29f32d7464ac9a2016c3cd0f0c1100bea759b1f7b0522824df1783"
-    ], 
-    "hooks/relations/kafka-topic/__init__.py": [
-      "interface:kafka-topic", 
-      "static", 
-      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-    ], 
-    "hooks/update-status": [
-      "layer:basic", 
-      "static", 
-      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
-    ], 
-    "hooks/topic-relation-joined": [
-      "interface:kafka-topic", 
-      "dynamic", 
-      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
-    ], 
-    "README.md": [
-      "data-source", 
-      "static", 
-      "eb25333fb6ee2abc2d5dde329dfd6b4b2a6dd5516094e75354fb6cd84010afad"
-    ], 
-    "hooks/start": [
-      "layer:basic", 
-      "static", 
-      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
-    ], 
-    "wheelhouse/MarkupSafe-1.0.tar.gz": [
-      "layer:basic", 
-      "dynamic", 
-      "a6be69091dac236ea9c6bc7d012beab42010fa914c459791d627dad4910eb665"
-    ], 
-    "hooks/relations/kafka-topic/LICENSE": [
-      "interface:kafka-topic", 
-      "static", 
-      "589ed823e9a84c56feb95ac58e7cf384626b9cbf4fda2a907bc36e103de1bad2"
-    ], 
-    "requirements.txt": [
-      "layer:basic", 
-      "static", 
-      "0f1c70d27e26005a96d66ad54482877ae20f7737693c833e29dd72bd6ac24892"
-    ], 
     "layer.yaml": [
       "data-source", 
       "dynamic", 
-      "49936a7635901d9f6f0a0689cf4158eaa53985facf977499c32d2f10e4f050e1"
+      "2126ff119410e1d53acfc3698bf886b623135864d0e2e84fd728e6b98028715e"
     ], 
     "lib/charms/layer/__init__.py": [
       "layer:basic", 
       "static", 
       "71a8b901f7e64a6b1b61959fc25819bafc9c9905e37a918615b9f949295095a4"
     ], 
-    "hooks/relations/kafka-topic/requires.py": [
-      "interface:kafka-topic", 
+    "lib/charms/layer/basic.py": [
+      "layer:basic", 
       "static", 
-      "9fe459fac15386f3334190bcd5a173ee6698119fe3551f0054421497b66812f6"
+      "d09706ef3a224eb60d34366a2867c382791aa30157ab5b77eda37f29731df2e2"
+    ], 
+    "lib/charms/layer/execd.py": [
+      "layer:basic", 
+      "static", 
+      "fda8bd491032db1db8ddaf4e99e7cc878c6fb5432efe1f91cadb5b34765d076d"
+    ], 
+    "metadata.yaml": [
+      "data-source", 
+      "dynamic", 
+      "fdbe0f454bc85f951d3f55941707e8b9a8859a22571cf03fe3d15f6325187e7c"
+    ], 
+    "reactive/__init__.py": [
+      "layer:basic", 
+      "static", 
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     ], 
     "reactive/layer_data_source.py": [
       "data-source", 
       "static", 
-      "b20f6d27f866d7da9da5b68c6164af402d5a0b790780ea7212dce6e5c33b444b"
+      "611c79d96eeef897e60752581e4862cc139c64ef3dda11ecb57e242f839eea15"
+    ], 
+    "requirements.txt": [
+      "layer:basic", 
+      "static", 
+      "0f1c70d27e26005a96d66ad54482877ae20f7737693c833e29dd72bd6ac24892"
+    ], 
+    "templates/feed.py": [
+      "data-source", 
+      "static", 
+      "aca483309a43c3499465280bad7b608b12cd92d3a93d0a20e0ccc517e7e2132e"
+    ], 
+    "tests/00-setup": [
+      "data-source", 
+      "static", 
+      "111c079b81d260bbcd716dcf41672372a4cf4aaa14154b6c3055deeedae37a06"
+    ], 
+    "tests/10-deploy": [
+      "data-source", 
+      "static", 
+      "c253612739a53dc145bdd14274502662825faf42e07dfb63cc837e279ab52096"
+    ], 
+    "tox.ini": [
+      "layer:basic", 
+      "static", 
+      "00b57a776ac313e92a52daa05d1fdb6056c21b3105b643d32610fd937664321b"
+    ], 
+    "wheelhouse/Jinja2-2.10.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "f84be1bb0040caca4cea721fcbbbbd61f9be9464ca236387158b0feea01914a4"
+    ], 
+    "wheelhouse/MarkupSafe-1.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "a6be69091dac236ea9c6bc7d012beab42010fa914c459791d627dad4910eb665"
+    ], 
+    "wheelhouse/PyYAML-3.12.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "592766c6303207a20efc445587778322d7f73b161bd994f227adaa341ba212ab"
+    ], 
+    "wheelhouse/Tempita-0.5.2.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "cacecf0baa674d356641f1d406b8bff1d756d739c46b869a54de515d08e6fc9c"
+    ], 
+    "wheelhouse/charmhelpers-0.18.2.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "6bb4276024d03e5caa176628e027cd0d75320395de6018d261fdda7e379da256"
+    ], 
+    "wheelhouse/charms.reactive-0.5.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "4df8e4c0052b0d46ec8a17dc724faa98169a879752eee78dc07d0f6a0a80837e"
+    ], 
+    "wheelhouse/netaddr-0.7.19.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "38aeec7cdd035081d3a4c306394b19d677623bf76fa0913f6695127c7753aefd"
     ], 
     "wheelhouse/pip-8.1.2.tar.gz": [
       "layer:basic", 
       "dynamic", 
       "4d24b03ffa67638a3fa931c09fd9e0273ffa904e95ebebe7d4b1a54c93d7b732"
     ], 
-    "wheelhouse/charmhelpers-0.18.1.tar.gz": [
+    "wheelhouse/pyaml-17.10.0.tar.gz": [
       "layer:basic", 
       "dynamic", 
-      "15dbae866550b724fb81ce501e118386b28a554110bd45f8ce3f62139411cf9f"
+      "a9a3e83372072fc7dc1aebcab37d6f2e08fb8066f553f31d6fc9cb2ad0b515d3"
     ], 
-    "wheelhouse/six-1.10.0.tar.gz": [
+    "wheelhouse/six-1.11.0.tar.gz": [
       "layer:basic", 
       "dynamic", 
-      "105f8d68616f8248e24bf0e9372ef04d3cc10104f1980f54d57b2ce73a5ad56a"
+      "70e8a77beed4562e7f14fe23a786b54f6296e34344c23bc42f07b15018ff98e9"
     ]
   }
 }

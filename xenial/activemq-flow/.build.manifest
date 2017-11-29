@@ -1,0 +1,347 @@
+{
+  "layers": [
+    "layer:basic", 
+    "activemq-flow", 
+    "interface:activemq-topic", 
+    "interface:nodered-flow", 
+    "interface:mongodb-database", 
+    "build"
+  ], 
+  "signatures": {
+    ".build.manifest": [
+      "build", 
+      "dynamic", 
+      "unchecked"
+    ], 
+    ".gitignore": [
+      "layer:basic", 
+      "static", 
+      "0da5c4dcda27cd6406e5bb81cbf68ddccaf728ac764ec15053a165c1449d87d9"
+    ], 
+    "Makefile": [
+      "layer:basic", 
+      "static", 
+      "b7ab3a34e5faf79b96a8632039a0ad0aa87f2a9b5f0ba604e007cafb22190301"
+    ], 
+    "README.ex": [
+      "activemq-flow", 
+      "static", 
+      "eb25333fb6ee2abc2d5dde329dfd6b4b2a6dd5516094e75354fb6cd84010afad"
+    ], 
+    "README.md": [
+      "layer:basic", 
+      "static", 
+      "92dcf485a5356407aa1c92da864dfc14c14bb6b9b15879fdcf75dd7f7a29c0bf"
+    ], 
+    "bin/layer_option": [
+      "layer:basic", 
+      "static", 
+      "621b556cd208005e131e9f648859294347da9376609745a73ca2e808dd2032f9"
+    ], 
+    "config.yaml": [
+      "activemq-flow", 
+      "dynamic", 
+      "8f2680233043fcf666743b1b4d0dd3e36bd386faecabef269e290bd8db308bcb"
+    ], 
+    "copyright": [
+      "layer:basic", 
+      "static", 
+      "f6740d66fd60b60f2533d9fcb53907078d1e20920a0219afce7182e2a1c97629"
+    ], 
+    "hooks/config-changed": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/dataflow-relation-broken": [
+      "interface:nodered-flow", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/dataflow-relation-changed": [
+      "interface:nodered-flow", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/dataflow-relation-departed": [
+      "interface:nodered-flow", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/dataflow-relation-joined": [
+      "interface:nodered-flow", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/db-relation-broken": [
+      "interface:mongodb-database", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/db-relation-changed": [
+      "interface:mongodb-database", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/db-relation-departed": [
+      "interface:mongodb-database", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/db-relation-joined": [
+      "interface:mongodb-database", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/hook.template": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/install": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/leader-elected": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/leader-settings-changed": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/relations/activemq-topic/LICENSE": [
+      "interface:activemq-topic", 
+      "static", 
+      "589ed823e9a84c56feb95ac58e7cf384626b9cbf4fda2a907bc36e103de1bad2"
+    ], 
+    "hooks/relations/activemq-topic/__init__.py": [
+      "interface:activemq-topic", 
+      "static", 
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    ], 
+    "hooks/relations/activemq-topic/interface.yaml": [
+      "interface:activemq-topic", 
+      "static", 
+      "04441d0d71236956a18614100ca6ae02d4bce570e8c7f60c53c7d1fba2f03639"
+    ], 
+    "hooks/relations/activemq-topic/provides.py": [
+      "interface:activemq-topic", 
+      "static", 
+      "663daec35b626e166edff7a01af177852b15985368c8b66d0cb90d4afe7b953d"
+    ], 
+    "hooks/relations/activemq-topic/requires.py": [
+      "interface:activemq-topic", 
+      "static", 
+      "f304c6caed63822b6d79211c7f72b01f9497707110c539d18401cb7d93244b4c"
+    ], 
+    "hooks/relations/mongodb-database/LICENSE": [
+      "interface:mongodb-database", 
+      "static", 
+      "589ed823e9a84c56feb95ac58e7cf384626b9cbf4fda2a907bc36e103de1bad2"
+    ], 
+    "hooks/relations/mongodb-database/__init__.py": [
+      "interface:mongodb-database", 
+      "static", 
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    ], 
+    "hooks/relations/mongodb-database/interface.yaml": [
+      "interface:mongodb-database", 
+      "static", 
+      "f5b394e7a50d7bb2788c46c278b31b56182043aeb31fc2865ea7d4ddadd544e7"
+    ], 
+    "hooks/relations/mongodb-database/provides.py": [
+      "interface:mongodb-database", 
+      "static", 
+      "b3740bafbe844ec5430c5704b9ce7bad0a818a41f6cbf3e5b0c143a4531ee148"
+    ], 
+    "hooks/relations/mongodb-database/requires.py": [
+      "interface:mongodb-database", 
+      "static", 
+      "722f1143583a0b8ea9cc4b202e5d719bb3ed8b1868cc0ee455fc70f54e40f71c"
+    ], 
+    "hooks/relations/nodered-flow/LICENSE": [
+      "interface:nodered-flow", 
+      "static", 
+      "589ed823e9a84c56feb95ac58e7cf384626b9cbf4fda2a907bc36e103de1bad2"
+    ], 
+    "hooks/relations/nodered-flow/__init__.py": [
+      "interface:nodered-flow", 
+      "static", 
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    ], 
+    "hooks/relations/nodered-flow/interface.yaml": [
+      "interface:nodered-flow", 
+      "static", 
+      "dc388f8f46f16a9cbc3040a4dd2fcddc9a5c1080056c420c0501611c45461058"
+    ], 
+    "hooks/relations/nodered-flow/provides.py": [
+      "interface:nodered-flow", 
+      "static", 
+      "7d86b8e142fc6bfc8b1261565d432ceee1e528f186f404cb1bddc035f983c2b7"
+    ], 
+    "hooks/relations/nodered-flow/requires.py": [
+      "interface:nodered-flow", 
+      "static", 
+      "72a31a026ddfb42cf1303897de45eab427c2195aace4f974c941ee54f6ceeaa9"
+    ], 
+    "hooks/start": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/stop": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/topic-relation-broken": [
+      "interface:activemq-topic", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/topic-relation-changed": [
+      "interface:activemq-topic", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/topic-relation-departed": [
+      "interface:activemq-topic", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/topic-relation-joined": [
+      "interface:activemq-topic", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/update-status": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/upgrade-charm": [
+      "layer:basic", 
+      "static", 
+      "8fb6559bf4d4b7cdf1b857564c1d7265df98e863a4746fcbae092f141e59d97e"
+    ], 
+    "icon.svg": [
+      "activemq-flow", 
+      "static", 
+      "085f367baa9c4ec724561b6e0d5d167c14c4295d6311b719a57729a17ac025c7"
+    ], 
+    "layer.yaml": [
+      "activemq-flow", 
+      "dynamic", 
+      "e1de4a389c480817a27111503073582150a0ab30224a895eab263cca6ebb6010"
+    ], 
+    "lib/charms/layer/__init__.py": [
+      "layer:basic", 
+      "static", 
+      "71a8b901f7e64a6b1b61959fc25819bafc9c9905e37a918615b9f949295095a4"
+    ], 
+    "lib/charms/layer/basic.py": [
+      "layer:basic", 
+      "static", 
+      "d09706ef3a224eb60d34366a2867c382791aa30157ab5b77eda37f29731df2e2"
+    ], 
+    "lib/charms/layer/execd.py": [
+      "layer:basic", 
+      "static", 
+      "fda8bd491032db1db8ddaf4e99e7cc878c6fb5432efe1f91cadb5b34765d076d"
+    ], 
+    "metadata.yaml": [
+      "activemq-flow", 
+      "dynamic", 
+      "e67dd9876c681047e6802d6db52df9acf0f845cff66bbc031bb3badd35f3a716"
+    ], 
+    "reactive/__init__.py": [
+      "layer:basic", 
+      "static", 
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    ], 
+    "reactive/layer_activemq_flow.py": [
+      "activemq-flow", 
+      "static", 
+      "f7114d7be9d4aabb21dfcab703ab50ee62f9bb4092489041f6bca29ecb109536"
+    ], 
+    "requirements.txt": [
+      "layer:basic", 
+      "static", 
+      "0f1c70d27e26005a96d66ad54482877ae20f7737693c833e29dd72bd6ac24892"
+    ], 
+    "templates/flow.json": [
+      "activemq-flow", 
+      "static", 
+      "293ec13bd3d1182666a481aa5a96d9ae14a7640aa7c87b31af535e7b21df9ec3"
+    ], 
+    "tests/00-setup": [
+      "activemq-flow", 
+      "static", 
+      "111c079b81d260bbcd716dcf41672372a4cf4aaa14154b6c3055deeedae37a06"
+    ], 
+    "tests/10-deploy": [
+      "activemq-flow", 
+      "static", 
+      "9d1f53b5b99b2d493f7e9290ff0ee3b0abc880f6240c2b0a5db489a4f01d4761"
+    ], 
+    "tox.ini": [
+      "layer:basic", 
+      "static", 
+      "00b57a776ac313e92a52daa05d1fdb6056c21b3105b643d32610fd937664321b"
+    ], 
+    "wheelhouse/Jinja2-2.10.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "f84be1bb0040caca4cea721fcbbbbd61f9be9464ca236387158b0feea01914a4"
+    ], 
+    "wheelhouse/MarkupSafe-1.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "a6be69091dac236ea9c6bc7d012beab42010fa914c459791d627dad4910eb665"
+    ], 
+    "wheelhouse/PyYAML-3.12.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "592766c6303207a20efc445587778322d7f73b161bd994f227adaa341ba212ab"
+    ], 
+    "wheelhouse/Tempita-0.5.2.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "cacecf0baa674d356641f1d406b8bff1d756d739c46b869a54de515d08e6fc9c"
+    ], 
+    "wheelhouse/charmhelpers-0.18.2.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "6bb4276024d03e5caa176628e027cd0d75320395de6018d261fdda7e379da256"
+    ], 
+    "wheelhouse/charms.reactive-0.5.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "4df8e4c0052b0d46ec8a17dc724faa98169a879752eee78dc07d0f6a0a80837e"
+    ], 
+    "wheelhouse/netaddr-0.7.19.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "38aeec7cdd035081d3a4c306394b19d677623bf76fa0913f6695127c7753aefd"
+    ], 
+    "wheelhouse/pip-8.1.2.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "4d24b03ffa67638a3fa931c09fd9e0273ffa904e95ebebe7d4b1a54c93d7b732"
+    ], 
+    "wheelhouse/pyaml-17.10.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "a9a3e83372072fc7dc1aebcab37d6f2e08fb8066f553f31d6fc9cb2ad0b515d3"
+    ], 
+    "wheelhouse/six-1.11.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "70e8a77beed4562e7f14fe23a786b54f6296e34344c23bc42f07b15018ff98e9"
+    ]
+  }
+}

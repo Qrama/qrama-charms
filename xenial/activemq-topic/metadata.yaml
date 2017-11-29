@@ -1,0 +1,19 @@
+"name": "activemq-topic"
+"summary": "Deploys a topic/queue for activeMQ"
+"maintainer": "S\xE9bastien Pattyn <sebastien.pattyn@tengu.io>"
+"description": |
+  This subordinate charm will create a topic or a queue on your ActiveMQ.
+  It makes it possible to directly connect to a topic or queue instead of first
+  connecting to the messagebroker.
+"tags":
+- "misc"
+"series":
+- "xenial"
+"requires":
+  "messagebroker":
+    "interface": "activemq-sub"
+    "scope": "container"
+"provides":
+  "activemqtopic":
+    "interface": "activemq-topic"
+"subordinate": !!bool "true"

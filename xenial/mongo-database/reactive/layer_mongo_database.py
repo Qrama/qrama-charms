@@ -18,6 +18,7 @@ from charms.reactive import when, when_not, set_state, hook
 from charmhelpers.core import unitdata
 from charmhelpers.core.hookenv import status_set, service_name, log, unit_private_ip, config
 from charmhelpers.contrib.python.packages import pip_install
+import datetime
 
 unitd = unitdata.kv()
 
@@ -32,13 +33,15 @@ def install_layer_mongo_database(mongodb):
     uri = mongodb.connection_string()
     conn = pymongo.MongoClient(uri)
     tengu_db = conn[db_name]
-    tengu_db[conf['collection']]
+    tengu_db[conf['collection']].insert_one(
+    {'tengu_db': 'created {}'.format(datetime.datetime.now())}
+    )
     unitd.set('db_name', db_name)
     unitd.set('uri', uri)
     status_set('active', 'Database {} succesfully created'.format(db_name))
     set_state('layer-mongo-database.installed')
 
-@when('layer-mongo-database.installed', 'db.available')
+@when('layer-mongo-database.installed', 'db.connected')
 def export_db(db):
     conf = config()
     db.configure(unitd.get('uri'), unitd.get('db_name'), conf['collection'])

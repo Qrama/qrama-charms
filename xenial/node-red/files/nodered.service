@@ -1,0 +1,17 @@
+[Unit]
+Description=The NodeRed
+After=syslog.target network.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+Nice=5
+KillSignal=SIGINT
+ExecStart=/usr/bin/node-red
+ Restart=on-failure
+ StandardOutput=syslog
+WorkingDirectory=/root/.node-red
+
+[Install]
+WantedBy=multi-user.tar

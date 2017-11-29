@@ -16,28 +16,28 @@
 # pylint: disable=c0111,c0103,c0301,c0412
 import subprocess as sp
 import os
-
+from charmhelpers.fetch.archiveurl import ArchiveUrlFetchHandler
 from charmhelpers.core.templating import render
 from charms.reactive import when, when_not, set_state, hookenv
 from charmhelpers.core.hookenv import status_set, service_name, log, unit_private_ip, config
 
-SCRIPT_DIR = '/opt/kafka_script'
+SCRIPT_DIR = '/opt/script'
 
 @when_not('layer-data-source.installed')
 def install_layer_data_source():
-    sp.check_call(['pip3', 'install', 'kafka-python', 'feedparser'])
+    sp.check_call(['pip3', 'install', 'feedparser', 'stomp.py'])
     if not os.path.exists(SCRIPT_DIR):
         os.makedirs(SCRIPT_DIR)
     set_state('layer-data-source.installed')
-    status_set('blocked', 'waiting for relation with Kafka Topic')
+    status_set('blocked', 'waiting for relation with ActiveMQ Topic')
 
 
 @when_not('layer-data-source.script.deployed')
 @when('topic.available', 'layer-data-source.installed')
 def deploy_script(topic):
-    data = topic.topic_data()
-    context = {'host': data['host'], 'port': data['port'], 'topic': data['topic']}
-    render('kafka_topic.py', '{}/kafka_producer.py'.format(SCRIPT_DIR), context)
-    sp.Popen(['python3', '{}/kafka_producer.py'.format(SCRIPT_DIR)])
-    status_set('active', 'RSS feed is sending data to Kafka Topic')
+    data = topic.connection()
+    context = {'host': data['host'], 'port': 61613, 'topic': data['name']}
+    render('feed.py', '{}/topic_producer.py'.format(SCRIPT_DIR), context)
+    sp.Popen(['python3', '{}/topic_producer.py'.format(SCRIPT_DIR)])
+    status_set('active', 'RSS feed is sending data to ActiveMQ Topic')
     set_state('layer-data-source.script.deployed')

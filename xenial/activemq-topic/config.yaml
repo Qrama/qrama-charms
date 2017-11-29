@@ -1,0 +1,7 @@
+"options":
+  "topic":
+    "type": "string"
+    "default": "topic"
+    "description": |
+      - This value will define if the deployed subordinate is a topic or a queue
+        Set to the True voor topic and to False for a Queue.

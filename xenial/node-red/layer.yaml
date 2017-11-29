@@ -1,0 +1,17 @@
+"options":
+  "apt":
+    "packages":
+    - "nodejs"
+    "version_package": ""
+    "full_version": !!bool "false"
+  "node-red": {}
+  "basic":
+    "use_venv": !!bool "false"
+    "packages": []
+    "include_system_packages": !!bool "false"
+"includes":
+- "layer:basic"
+- "layer:apt"
+- "interface:http"
+"repo": "git@github.com/tengu-team/layer-node-red"
+"is": "node-red"

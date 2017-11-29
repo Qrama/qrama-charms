@@ -7,8 +7,9 @@
   # Replace "misc" with one or more whitelisted tags from this list:
   # https://jujucharms.com/docs/stable/authors-charm-metadata
   - "misc"
+"series":
+- "xenial"
 "requires":
   "topic":
-    "interface": "kafka-topic"
-"series": ["xenial"]
+    "interface": "activemq-topic"
 "subordinate": !!bool "false"
