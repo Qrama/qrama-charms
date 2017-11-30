@@ -17,7 +17,6 @@
 import subprocess as sp
 import tempfile
 import requests
-import simplejson
 import json
 import os
 
@@ -32,6 +31,7 @@ def install_layer_notebook():
         file = requests.post('http://127.0.0.1:9080/api/notebook', json={"name": service_name()})
         data = file.json()
         sp.check_call(['pip3', 'install', 'simplejson'])
+        import simplejson
         notebook_path = '/var/lib/zeppelin/notebook/{}/note.json'.format(data['body'])
         if os.path.exists(notebook_path):
             os.remove(notebook_path)
